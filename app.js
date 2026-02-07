@@ -1,170 +1,213 @@
-let currentBook = null;
-let currentISBN = null;
+let currentData = null;
+let currentIndex = 0; // 0=book, 1=wallpaper, 2=quote
+let currentDate = null;
 
 // 初始化
 async function init() {
-    showLoading();
+    // 获取今日数据
+    currentData = DailyData.getToday();
+    currentDate = currentData.date;
     
-    // 显示今日书籍或 URL 参数指定的日期
+    // 检查 URL 参数
     const urlParams = new URLSearchParams(window.location.search);
     const dateParam = urlParams.get('date');
-    
-    let isbn;
     if (dateParam) {
-        isbn = getBookByDate(dateParam);
-    } else {
-        isbn = getTodayBookISBN();
-    }
-    
-    if (isbn) {
-        currentISBN = isbn;
-        const book = await BookAPI.getBookWithCache(isbn);
-        if (book) {
-            displayBook(book);
-        } else {
-            showError('无法加载书籍信息，请稍后重试');
+        const data = DailyData.getByDate(dateParam);
+        if (data) {
+            currentData = data;
+            currentDate = dateParam;
         }
     }
     
-    updateDateBadge(dateParam);
+    // 加载内容
+    await loadContent();
+    updateDateDisplay();
     
-    // 绑定事件
-    document.getElementById('prevDay').addEventListener('click', showPrevBook);
-    document.getElementById('nextDay').addEventListener('click', showNextBook);
-    document.getElementById('randomBook').addEventListener('click', showRandomBook);
-    document.getElementById('shareBtn').addEventListener('click', shareBook);
+    // 绑定导航点击
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const index = parseInt(item.dataset.index);
+            goToSlide(index);
+        });
+    });
+    
+    // 绑定指示器点击
+    document.querySelectorAll('.dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.dataset.index);
+            goToSlide(index);
+        });
+    });
+    
+    // 触摸滑动支持
+    initSwipe();
+    
+    // 绑定按钮
+    document.getElementById('downloadBtn').addEventListener('click', downloadWallpaper);
+    document.getElementById('shareQuoteBtn').addEventListener('click', shareQuote);
 }
 
-// 显示加载状态
-function showLoading() {
-    document.getElementById('bookTitle').textContent = '加载中...';
-    document.getElementById('bookAuthor').textContent = '';
-    document.getElementById('bookCategory').textContent = '';
-    document.getElementById('bookDescription').textContent = '正在从 Open Library 获取书籍信息...';
-    document.getElementById('bookQuote').textContent = '';
-    document.getElementById('bookCover').src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="450"%3E%3Crect fill=%22%23f5f3f0" width="300" height="450"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill=%22%23999" font-family="sans-serif" font-size="16"%3E加载中...%3C/text%3E%3C/svg%3E';
-}
-
-// 显示错误
-function showError(message) {
-    document.getElementById('bookTitle').textContent = '出错了';
-    document.getElementById('bookDescription').textContent = message;
-}
-
-// 显示书籍
-function displayBook(book) {
-    if (!book) return;
+// 加载内容
+async function loadContent() {
+    if (!currentData) return;
     
-    currentBook = book;
-    currentISBN = book.id;
+    const { book, wallpaper, quote } = currentData;
     
-    // 更新内容
+    // 加载书籍
+    document.getElementById('bookCategory').textContent = book.category;
     document.getElementById('bookTitle').textContent = book.title;
     document.getElementById('bookAuthor').textContent = book.author;
-    document.getElementById('bookCategory').textContent = book.category;
-    document.getElementById('bookRating').textContent = book.rating;
-    document.getElementById('bookDescription').textContent = book.description;
-    document.getElementById('bookQuote').textContent = book.quote;
-    document.getElementById('bookCover').src = book.cover;
-    document.getElementById('bookCover').alt = book.title;
-    document.getElementById('bookLink').href = book.link;
-    
-    // 更新导航按钮
-    updateNavigationButtons();
-}
-
-// 更新日期徽章
-function updateDateBadge(dateStr) {
-    const date = dateStr ? new Date(dateStr) : new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    
-    document.getElementById('dayNum').textContent = String(day).padStart(2, '0');
-    document.getElementById('monthNum').textContent = `${month}月`;
-}
-
-// 更新导航按钮状态
-function updateNavigationButtons() {
-    const prevBtn = document.getElementById('prevDay');
-    const nextBtn = document.getElementById('nextDay');
-    
-    const prevBook = getAdjacentBookISBN(currentISBN, 'prev');
-    const nextBook = getAdjacentBookISBN(currentISBN, 'next');
-    
-    prevBtn.disabled = !prevBook;
-    prevBtn.style.opacity = prevBook ? '1' : '0.3';
-    
-    nextBtn.disabled = !nextBook;
-    nextBtn.style.opacity = nextBook ? '1' : '0.3';
-}
-
-// 显示上一本
-async function showPrevBook() {
-    const isbn = getAdjacentBookISBN(currentISBN, 'prev');
-    if (isbn) {
-        showLoading();
-        const book = await BookAPI.getBookWithCache(isbn);
-        if (book) {
-            displayBook(book);
-            updateDateBadge(getBookDateByIsbn(isbn));
-            updateURL(getBookDateByIsbn(isbn));
-        }
-    }
-}
-
-// 显示下一本
-async function showNextBook() {
-    const isbn = getAdjacentBookISBN(currentISBN, 'next');
-    if (isbn) {
-        showLoading();
-        const book = await BookAPI.getBookWithCache(isbn);
-        if (book) {
-            displayBook(book);
-            updateDateBadge(getBookDateByIsbn(isbn));
-            updateURL(getBookDateByIsbn(isbn));
-        }
-    }
-}
-
-// 显示随机书籍
-async function showRandomBook() {
-    showLoading();
-    const isbn = getRandomBookISBN();
-    const book = await BookAPI.getBookWithCache(isbn);
-    if (book) {
-        displayBook(book);
-        updateDateBadge(getBookDateByIsbn(isbn));
-        updateURL(getBookDateByIsbn(isbn));
-    }
-}
-
-// 根据 ISBN 获取日期
-function getBookDateByIsbn(isbn) {
-    const book = dailyBooks.find(b => b.isbn === isbn);
-    return book ? book.date : new Date().toISOString().split('T')[0];
-}
-
-// 分享功能
-function shareBook() {
-    if (!currentBook) return;
-    
-    const shareData = {
-        title: `Littlebook 推荐：${currentBook.title}`,
-        text: `${currentBook.title} - ${currentBook.author}\n\n${currentBook.quote}`,
-        url: window.location.href
+    document.getElementById('bookDesc').textContent = book.desc;
+    document.getElementById('bookCover').src = await DailyData.fetchCover(book.isbn);
+    document.getElementById('bookCover').onerror = function() {
+        this.src = 'https://via.placeholder.com/300x450/2a2a4a/ffffff?text=Littlebook';
     };
     
+    // 加载壁纸
+    document.getElementById('wallpaperImage').src = wallpaper.url;
+    document.getElementById('wallpaperCredit').textContent = wallpaper.credit;
+    
+    // 加载语录
+    document.getElementById('quoteText').textContent = quote.text;
+    document.getElementById('quoteSource').textContent = `—— ${quote.source}`;
+}
+
+// 更新日期显示
+function updateDateDisplay() {
+    const date = new Date(currentDate);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    const weekday = weekdays[date.getDay()];
+    
+    document.getElementById('dateText').textContent = `${month}月${day}日 ${weekday}`;
+}
+
+// 切换到指定卡片
+function goToSlide(index) {
+    currentIndex = index;
+    const wrapper = document.getElementById('swiperWrapper');
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
+    
+    // 更新导航状态
+    document.querySelectorAll('.nav-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
+    
+    // 更新指示器
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+    
+    // 更新卡片激活状态
+    document.querySelectorAll('.card').forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+    });
+}
+
+// 触摸滑动
+function initSwipe() {
+    const container = document.getElementById('swiperContainer');
+    let startX = 0;
+    let isDragging = false;
+    
+    container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    }, { passive: true });
+    
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        // 滑动阈值 50px
+        if (Math.abs(diff) > 50) {
+            if (diff > 0 && currentIndex < 2) {
+                // 左滑，下一张
+                goToSlide(currentIndex + 1);
+            } else if (diff < 0 && currentIndex > 0) {
+                // 右滑，上一张
+                goToSlide(currentIndex - 1);
+            }
+        }
+    });
+    
+    // 鼠标滑动（桌面端）
+    container.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        isDragging = true;
+    });
+    
+    container.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const diff = startX - e.clientX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0 && currentIndex < 2) {
+                goToSlide(currentIndex + 1);
+            } else if (diff < 0 && currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            }
+        }
+    });
+}
+
+// 下载壁纸
+function downloadWallpaper() {
+    if (!currentData) return;
+    
+    const link = document.createElement('a');
+    link.href = currentData.wallpaper.download;
+    link.download = `littlebook-wallpaper-${currentDate}.jpg`;
+    link.target = '_blank';
+    link.click();
+}
+
+// 分享语录
+function shareQuote() {
+    if (!currentData) return;
+    
+    const { quote } = currentData;
+    const text = `${quote.text}\n\n${quote.source}\n\n分享自 Littlebook`;
+    
     if (navigator.share) {
-        navigator.share(shareData);
+        navigator.share({
+            title: 'Littlebook 每日语录',
+            text: text,
+            url: window.location.href
+        });
     } else {
-        const text = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
         navigator.clipboard.writeText(text).then(() => {
-            const btn = document.getElementById('shareBtn');
-            const originalText = btn.textContent;
-            btn.textContent = '已复制!';
-            setTimeout(() => btn.textContent = originalText, 2000);
+            const btn = document.getElementById('shareQuoteBtn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 已复制';
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+            }, 2000);
         });
     }
+}
+
+// 切换日期（前后天）
+async function changeDate(direction) {
+    const newData = DailyData.getAdjacent(currentDate, direction);
+    if (!newData) return;
+    
+    currentData = newData;
+    currentDate = newData.date;
+    
+    await loadContent();
+    updateDateDisplay();
+    updateURL(currentDate);
 }
 
 // 更新 URL
@@ -175,17 +218,26 @@ function updateURL(dateStr) {
 
 // 监听浏览器前进后退
 window.addEventListener('popstate', async (e) => {
-    const date = e.state?.date || new Date().toISOString().split('T')[0];
-    const isbn = getBookByDate(date);
-    if (isbn) {
-        showLoading();
-        const book = await BookAPI.getBookWithCache(isbn);
-        if (book) {
-            displayBook(book);
-            updateDateBadge(date);
+    const date = e.state?.date;
+    if (date) {
+        const data = DailyData.getByDate(date);
+        if (data) {
+            currentData = data;
+            currentDate = date;
+            await loadContent();
+            updateDateDisplay();
         }
     }
 });
 
-// 页面加载完成后初始化
+// 键盘导航
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+    } else if (e.key === 'ArrowRight' && currentIndex < 2) {
+        goToSlide(currentIndex + 1);
+    }
+});
+
+// 初始化
 document.addEventListener('DOMContentLoaded', init);
