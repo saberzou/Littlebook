@@ -1,117 +1,160 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Littlebook - 每日一书·壁纸·语录</title>
+    <title>Littlebook — Daily Book, Wallpaper & Quote</title>
+    <meta name="description" content="A curated daily book recommendation with a beautiful wallpaper and an inspiring quote.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
-        <!-- 日期显示 -->
-        <div class="date-header">
-            <span class="date-text" id="dateText">2月7日 周五</span>
+
+        <!-- Top bar: theme toggle only -->
+        <div class="top-bar">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
         </div>
 
-        <!-- 滑动卡片容器 -->
-        <div class="swiper-container" id="swiperContainer">
-            <div class="swiper-wrapper" id="swiperWrapper">
-                
-                <!-- 书籍卡片 -->
-                <div class="card book-card" data-type="book">
-                    <div class="card-content">
-                        <div class="book-cover-wrapper">
-                            <div class="book-spine"></div>
-                            <img id="bookCover" src="" alt="书籍封面">
-                        </div>
-                        <div class="book-meta">
-                            <span class="tag" id="bookCategory">心理学</span>
-                            <h1 class="title" id="bookTitle">思考，快与慢</h1>
-                            <p class="author" id="bookAuthor">丹尼尔·卡尼曼</p>
-                            <p class="desc" id="bookDesc">诺贝尔经济学奖得主深入剖析人类思维的两种模式...</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 壁纸卡片 -->
-                <div class="card wallpaper-card" data-type="wallpaper">
-                    <div class="card-content">
-                        <div class="wallpaper-wrapper">
-                            <img id="wallpaperImage" src="" alt="每日壁纸">
-                            <div class="wallpaper-overlay">
-                                <button class="download-btn" id="downloadBtn">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                        <polyline points="7 10 12 15 17 10"></polyline>
-                                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                                    </svg>
-                                    保存壁纸
-                                </button>
-                            </div>
-                        </div>
-                        <p class="wallpaper-credit" id="wallpaperCredit">Photo by Unsplash</p>
-                    </div>
-                </div>
-
-                <!-- 语录卡片 -->
-                <div class="card quote-card" data-type="quote">
-                    <div class="card-content">
-                        <div class="quote-wrapper">
-                            <svg class="quote-icon" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                            </svg>
-                            <p class="quote-text" id="quoteText">
-                                我们常常高估自己对世界的了解，却低估了事件中存在的偶然性。
-                            </p>
-                            <p class="quote-source" id="quoteSource">—— 丹尼尔·卡尼曼《思考，快与慢》</p>
-                        </div>
-                        <button class="share-quote-btn" id="shareQuoteBtn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="18" cy="5" r="3"></circle>
-                                <circle cx="6" cy="12" r="3"></circle>
-                                <circle cx="18" cy="19" r="3"></circle>
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                            </svg>
-                            分享语录
-                        </button>
-                    </div>
-                </div>
-
+        <!-- Horizontal swipeable calendar strip -->
+        <div class="calendar-strip" id="calendarStrip">
+            <div class="calendar-track" id="calendarTrack">
+                <!-- Filled by JS -->
             </div>
         </div>
 
-        <!-- 滑动指示器 -->
-        <div class="slide-indicator">
+        <!-- Main content area -->
+        <div class="content-area" id="contentArea">
+
+            <!-- Normal content pages (shown when date has data) -->
+            <div class="swiper-container" id="swiperContainer">
+                <div class="swiper-wrapper" id="swiperWrapper">
+
+                    <!-- Book page -->
+                    <div class="page book-page fan-center" data-index="0">
+                        <div class="book-cover-wrapper">
+                            <div class="book-spine"></div>
+                            <img id="bookCover" src="" alt="Book cover">
+                        </div>
+                        <div class="book-meta">
+                            <span class="tag" id="bookCategory">Psychology</span>
+                            <h1 class="book-title" id="bookTitle">Thinking, Fast and Slow</h1>
+                            <p class="book-author" id="bookAuthor">Daniel Kahneman</p>
+                            <p class="book-desc" id="bookDesc">Nobel laureate dissects two modes of human thought...</p>
+                        </div>
+                    </div>
+
+                    <!-- Wallpaper page -->
+                    <div class="page wallpaper-page fan-right" data-index="1">
+                        <div class="wallpaper-image-wrapper">
+                            <img id="wallpaperImage" src="" alt="Daily wallpaper">
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="download-btn" id="downloadBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Save Wallpaper
+                            </button>
+                            <p class="wallpaper-credit" id="wallpaperCredit">Photo by Unsplash</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote page -->
+                    <div class="page quote-page fan-right" data-index="2">
+                        <div class="quote-card">
+                            <div class="quote-decoration">&ldquo;</div>
+                            <div class="quote-content">
+                                <p class="quote-text" id="quoteText">
+                                    We are often overconfident about what we know about the world...
+                                </p>
+                                <p class="quote-source" id="quoteSource">— Daniel Kahneman</p>
+                                <button class="share-quote-btn" id="shareQuoteBtn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
+                                    Share Quote
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Hourglass overlay (shown when tomorrow is selected) -->
+            <div class="hourglass-overlay" id="hourglassOverlay">
+                <div class="hourglass-container">
+                    <pre class="hourglass-art" id="hourglassArt"></pre>
+                    <div class="hourglass-label">Tomorrow's pick arrives in</div>
+                    <div class="hourglass-countdown" id="hourglassCountdown">--:--:--</div>
+                    <div class="hourglass-hint">Come back tomorrow for a new book, wallpaper & quote</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dot indicator -->
+        <div class="slide-indicator" id="slideIndicator">
             <span class="dot active" data-index="0"></span>
             <span class="dot" data-index="1"></span>
             <span class="dot" data-index="2"></span>
         </div>
 
-        <!-- 毛玻璃底部导航 -->
-        <nav class="glass-nav">
-            <button class="nav-item active" data-type="book" data-index="0">
+        <!-- iOS 26 pill nav -->
+        <nav class="pill-nav" id="pillNav">
+            <button class="nav-item active" data-index="0">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                 </svg>
-                <span class="nav-label">书籍</span>
+                <span class="nav-label">Book</span>
             </button>
-            <button class="nav-item" data-type="wallpaper" data-index="1">
+            <button class="nav-item" data-index="1">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                     <circle cx="8.5" cy="8.5" r="1.5"></circle>
                     <polyline points="21 15 16 10 5 21"></polyline>
                 </svg>
-                <span class="nav-label">壁纸</span>
+                <span class="nav-label">Wallpaper</span>
             </button>
-            <button class="nav-item" data-type="quote" data-index="2">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            <button class="nav-item" data-index="2">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"></path>
+                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z"></path>
                 </svg>
-                <span class="nav-label">语录</span>
+                <span class="nav-label">Quote</span>
             </button>
+            <a href="weekly.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span class="nav-label">Week</span>
+            </a>
         </nav>
 
     </div>
