@@ -25,6 +25,11 @@
                 <p class="subtitle">过去 7 天的好书精选</p>
             </header>
 
+            <!-- 加载状态 -->
+            <div id="loadingState" class="loading-state">
+                <p>正在加载书籍数据...</p>
+            </div>
+
             <!-- 本周推荐列表 -->
             <div class="weekly-list" id="weeklyList">
                 <!-- 动态生成 -->
@@ -37,28 +42,40 @@
         </footer>
     </div>
 
+    <script src="api.js"></script>
     <script src="books.js"></script>
     <script>
         // 生成本周推荐列表
-        function renderWeeklyList() {
+        async function renderWeeklyList() {
             const container = document.getElementById('weeklyList');
+            const loadingState = document.getElementById('loadingState');
+            
+            loadingState.style.display = 'block';
+            container.innerHTML = '';
+            
             const today = new Date();
+            const books = [];
             
             // 获取最近7天的书
-            const weekBooks = [];
             for (let i = 0; i < 7; i++) {
                 const date = new Date(today);
                 date.setDate(date.getDate() - i);
                 const dateStr = date.toISOString().split('T')[0];
-                const book = getBookByDate(dateStr);
-                if (book) {
-                    weekBooks.push({ ...book, displayDate: dateStr, isToday: i === 0 });
+                const isbn = getBookByDate(dateStr);
+                
+                if (isbn) {
+                    const book = await BookAPI.getBookWithCache(isbn);
+                    if (book) {
+                        books.push({ ...book, displayDate: dateStr, isToday: i === 0, index: i });
+                    }
                 }
             }
-
-            container.innerHTML = weekBooks.map((book, index) => `
+            
+            loadingState.style.display = 'none';
+            
+            container.innerHTML = books.map((book) => `
                 <article class="weekly-item ${book.isToday ? 'today' : ''}" data-date="${book.displayDate}">
-                    <div class="item-number">${String(index + 1).padStart(2, '0')}</div>
+                    <div class="item-number">${String(book.index + 1).padStart(2, '0')}</div>
                     <div class="item-cover">
                         <img src="${book.cover}" alt="${book.title}" loading="lazy">
                     </div>
