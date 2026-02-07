@@ -6,25 +6,46 @@
 }
 
 :root {
-    /* Axel Style Guide - Warm Minimalism */
-    --cream: #FDF8F3;
-    --coral: #E8A87C;
-    --coral-dark: #D99A6E;
-    --coral-light: #F4C2A1;
-    --brown: #3D3229;
-    --brown-light: #6B5E55;
-    --gray: #C4BBB5;
-    --white: #FFFFFF;
-    --warm-bg: #F5F0EB;
-    --warm-border: #E8E3DE;
-    
+    /* Light theme — Warm Minimalism */
+    --bg: #FDF8F3;
+    --bg-secondary: #F5F0EB;
+    --surface: #FFFFFF;
+    --accent: #E8A87C;
+    --accent-dark: #D99A6E;
+    --accent-light: #F4C2A1;
+    --accent-bg: rgba(232, 168, 124, 0.15);
+    --text-primary: #3D3229;
+    --text-secondary: #6B5E55;
+    --text-tertiary: #C4BBB5;
+    --border: #E8E3DE;
     --shadow-card: 0 4px 20px rgba(61, 50, 41, 0.08);
     --shadow-card-hover: 0 8px 30px rgba(61, 50, 41, 0.12);
     --shadow-nav: 0 4px 24px rgba(61, 50, 41, 0.1);
-    
+    --nav-bg: rgba(253, 248, 243, 0.85);
+    --quote-mark-color: rgba(232, 168, 124, 0.18);
     --radius-card: 16px;
-    --radius-button: 8px;
+    --radius-button: 12px;
     --radius-pill: 20px;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --bg: #1A1612;
+    --bg-secondary: #231F1A;
+    --surface: #2A2520;
+    --accent: #E8A87C;
+    --accent-dark: #F4C2A1;
+    --accent-light: #D99A6E;
+    --accent-bg: rgba(232, 168, 124, 0.12);
+    --text-primary: #F0EBE6;
+    --text-secondary: #A89E95;
+    --text-tertiary: #6B5E55;
+    --border: #3D3832;
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.3);
+    --shadow-nav: 0 4px 24px rgba(0, 0, 0, 0.25);
+    --nav-bg: rgba(26, 22, 18, 0.88);
+    --quote-mark-color: rgba(232, 168, 124, 0.12);
 }
 
 html, body {
@@ -34,10 +55,11 @@ html, body {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--cream);
-    color: var(--brown);
+    background: var(--bg);
+    color: var(--text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.4s, color 0.4s;
 }
 
 /* App Container */
@@ -48,71 +70,134 @@ body {
     position: relative;
 }
 
-/* Date Header */
-.date-header {
-    padding: 24px 24px 16px;
-    text-align: center;
+/* Top Bar: date + dark mode toggle */
+.top-bar {
+    padding: 20px 24px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     z-index: 10;
 }
 
 .date-text {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    color: var(--brown-light);
+    color: var(--text-secondary);
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
 
-/* Swiper Container */
+.theme-toggle {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 1.5px solid var(--border);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+    width: 18px;
+    height: 18px;
+    transition: opacity 0.3s;
+}
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* =============================================
+   FAN / ROTATE TRANSITION
+   Pages pivot from bottom-center like a hand of cards
+   ============================================= */
 .swiper-container {
     flex: 1;
     overflow: hidden;
     position: relative;
+    perspective: 1200px;
 }
 
 .swiper-wrapper {
-    display: flex;
-    height: 100%;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Cards */
-.card {
-    min-width: 100%;
-    height: 100%;
-    padding: 0 24px 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-content {
     width: 100%;
-    max-width: 360px;
-    background: var(--white);
-    border-radius: var(--radius-card);
-    padding: 32px;
-    box-shadow: var(--shadow-card);
+    height: 100%;
+    position: relative;
 }
 
-/* Book Card */
-.book-card .card-content {
-    text-align: center;
+.page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 8px 24px 100px;
+    overflow-y: auto;
+    transform-origin: 50% 120%;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.15, 1),
+                opacity 0.55s cubic-bezier(0.4, 0, 0.15, 1);
+    will-change: transform, opacity;
+}
+
+/* Fan positions: left / center / right */
+.page.fan-left {
+    transform: rotate(-18deg) scale(0.88);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page.fan-center {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+.page.fan-right {
+    transform: rotate(18deg) scale(0.88);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =============================================
+   BOOK PAGE — no container card, open layout
+   ============================================= */
+.book-page {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
 }
 
 .book-cover-wrapper {
     position: relative;
-    width: 150px;
-    height: 220px;
-    margin: 0 auto 28px;
-    perspective: 1000px;
+    width: 200px;
+    height: 300px;
+    margin-bottom: 28px;
+    perspective: 800px;
+    flex-shrink: 0;
 }
 
 .book-spine {
     position: absolute;
     left: 0;
     top: 0;
-    width: 14px;
+    width: 16px;
     height: 100%;
     background: linear-gradient(
         to right,
@@ -129,89 +214,99 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px 10px 10px 4px;
-    box-shadow: 
+    border-radius: 4px 12px 12px 4px;
+    box-shadow:
         -2px 0 6px rgba(0,0,0,0.1),
-        6px 10px 24px rgba(61, 50, 41, 0.15);
-    transform: rotateY(-5deg);
+        6px 10px 28px rgba(61, 50, 41, 0.2);
+    transform: rotateY(-4deg);
     transform-origin: left center;
+}
+
+.book-meta {
+    text-align: center;
+    max-width: 320px;
 }
 
 .tag {
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    color: var(--coral);
-    background: rgba(232, 168, 124, 0.15);
-    padding: 6px 14px;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 5px 14px;
     border-radius: var(--radius-pill);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.title {
-    font-family: 'Noto Serif SC', serif;
+.book-title {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--brown);
-    margin-bottom: 8px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
     line-height: 1.4;
 }
 
-.author {
-    font-size: 0.95rem;
-    color: var(--brown-light);
-    margin-bottom: 16px;
+.book-author {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
 }
 
-.desc {
-    font-size: 0.9rem;
-    color: var(--brown-light);
+.book-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
     line-height: 1.7;
 }
 
-/* Wallpaper Card */
-.wallpaper-card .card-content {
-    padding: 0;
-    overflow: hidden;
+/* =============================================
+   WALLPAPER PAGE — standalone image, no card
+   ============================================= */
+.wallpaper-page {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
 }
 
-.wallpaper-wrapper {
-    position: relative;
+.wallpaper-image-wrapper {
     width: 100%;
+    max-width: 360px;
     aspect-ratio: 3/4;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    flex-shrink: 0;
 }
 
-.wallpaper-wrapper img {
+.wallpaper-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
-.wallpaper-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(61, 50, 41, 0.5) 0%, transparent 50%);
+.wallpaper-actions {
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 24px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.wallpaper-wrapper:hover .wallpaper-overlay {
-    opacity: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 360px;
 }
 
 .download-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    background: var(--coral);
-    color: var(--white);
+    width: 100%;
+    background: var(--accent);
+    color: #FFFFFF;
     border: none;
-    padding: 12px 20px;
+    padding: 14px 20px;
     border-radius: var(--radius-button);
     font-size: 0.9rem;
     font-weight: 600;
@@ -220,46 +315,71 @@ body {
 }
 
 .download-btn:hover {
-    background: var(--coral-dark);
+    background: var(--accent-dark);
     transform: translateY(-1px);
 }
 
 .wallpaper-credit {
-    padding: 16px 24px;
-    font-size: 0.8rem;
-    color: var(--gray);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
     text-align: center;
 }
 
-/* Quote Card */
-.quote-card .card-content {
+/* =============================================
+   QUOTE PAGE — card with large decorative mark
+   ============================================= */
+.quote-page {
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-card {
+    width: 100%;
+    max-width: 360px;
+    background: var(--surface);
+    border-radius: var(--radius-card);
+    padding: 40px 32px 36px;
+    box-shadow: var(--shadow-card);
     text-align: center;
-    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
 }
 
-.quote-wrapper {
-    margin-bottom: 28px;
+/* Large decorative quotation mark */
+.quote-decoration {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--quote-mark-color);
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    user-select: none;
 }
 
-.quote-icon {
-    color: var(--coral);
-    opacity: 0.5;
-    margin-bottom: 20px;
+.quote-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 48px;
 }
 
 .quote-text {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 1.25rem;
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-size: 1.2rem;
     font-weight: 500;
-    line-height: 1.8;
+    line-height: 1.9;
     margin-bottom: 20px;
-    color: var(--brown);
+    color: var(--text-primary);
 }
 
 .quote-source {
-    font-size: 0.875rem;
-    color: var(--brown-light);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
     font-style: italic;
+    margin-bottom: 24px;
 }
 
 .share-quote-btn {
@@ -267,8 +387,8 @@ body {
     align-items: center;
     gap: 8px;
     background: transparent;
-    border: 1.5px solid var(--warm-border);
-    color: var(--brown-light);
+    border: 1.5px solid var(--border);
+    color: var(--text-secondary);
     padding: 10px 20px;
     border-radius: var(--radius-button);
     font-size: 0.85rem;
@@ -278,16 +398,18 @@ body {
 }
 
 .share-quote-btn:hover {
-    border-color: var(--coral);
-    color: var(--coral);
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
-/* Slide Indicator */
+/* =============================================
+   SLIDE INDICATOR DOTS
+   ============================================= */
 .slide-indicator {
     display: flex;
     justify-content: center;
     gap: 8px;
-    padding: 12px 0;
+    padding: 8px 0;
     z-index: 10;
 }
 
@@ -295,7 +417,7 @@ body {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--gray);
+    background: var(--text-tertiary);
     transition: all 0.3s;
     cursor: pointer;
 }
@@ -303,95 +425,254 @@ body {
 .dot.active {
     width: 24px;
     border-radius: 3px;
-    background: var(--coral);
+    background: var(--accent);
 }
 
-/* Glass Navigation - Warm Minimalism */
-.glass-nav {
+/* =============================================
+   iOS 26 PILL NAV BAR
+   Floating capsule with smooth segmented control
+   ============================================= */
+.pill-nav {
     position: fixed;
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px;
-    background: rgba(253, 248, 243, 0.85);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--warm-border);
-    border-radius: 20px;
-    padding: 8px;
+    gap: 4px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 5px;
     z-index: 100;
     box-shadow: var(--shadow-nav);
 }
 
-.nav-item {
+.pill-nav .nav-item {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     background: transparent;
     border: none;
-    color: var(--brown-light);
-    padding: 10px 20px;
-    border-radius: 12px;
+    color: var(--text-secondary);
+    padding: 10px 18px;
+    border-radius: 24px;
     cursor: pointer;
-    transition: all 0.2s;
-    min-width: 64px;
-}
-
-.nav-item:hover {
-    color: var(--brown);
-}
-
-.nav-item.active {
-    background: rgba(232, 168, 124, 0.15);
-    color: var(--coral);
-}
-
-.nav-icon {
-    width: 22px;
-    height: 22px;
-}
-
-.nav-label {
-    font-size: 0.7rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.8rem;
     font-weight: 500;
+    font-family: inherit;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
-/* Responsive */
+.pill-nav .nav-item:hover {
+    color: var(--text-primary);
+}
+
+.pill-nav .nav-item.active {
+    background: var(--accent);
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(232, 168, 124, 0.35);
+}
+
+.pill-nav .nav-item .nav-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.pill-nav .nav-item .nav-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* =============================================
+   RESPONSIVE — Mobile
+   ============================================= */
 @media (max-width: 480px) {
-    .card {
-        padding: 0 16px 100px;
+    .page {
+        padding: 4px 16px 90px;
     }
-    
-    .card-content {
-        padding: 24px;
-    }
-    
+
     .book-cover-wrapper {
-        width: 130px;
-        height: 190px;
+        width: 170px;
+        height: 255px;
     }
-    
-    .title {
+
+    .book-title {
         font-size: 1.3rem;
     }
-    
+
     .quote-text {
         font-size: 1.1rem;
     }
-    
-    .glass-nav {
-        bottom: 16px;
-        padding: 6px;
+
+    .quote-decoration {
+        font-size: 6rem;
     }
-    
-    .nav-item {
-        padding: 8px 16px;
-        min-width: 56px;
+
+    .pill-nav {
+        bottom: 16px;
+        padding: 4px;
+    }
+
+    .pill-nav .nav-item {
+        padding: 9px 14px;
+    }
+
+    .wallpaper-image-wrapper {
+        max-width: 100%;
     }
 }
 
-/* Animations */
+/* =============================================
+   WEEKLY PAGE STYLES
+   ============================================= */
+.weekly-body {
+    overflow: auto !important;
+    height: auto !important;
+    min-height: 100vh;
+}
+
+.weekly-container {
+    padding: 24px 24px 120px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.weekly-header {
+    text-align: center;
+    padding: 40px 0 32px;
+}
+
+.weekly-header h1 {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.weekly-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.day-card {
+    background: var(--surface);
+    border-radius: var(--radius-card);
+    padding: 20px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 50px 72px 1fr;
+    gap: 16px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-card);
+    transition: all 0.2s;
+}
+
+.day-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+.day-card.today {
+    border: 2px solid var(--accent);
+}
+
+.day-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-align: center;
+}
+
+.day-card.today .day-number {
+    color: var(--accent);
+}
+
+.day-cover {
+    width: 72px;
+    height: 100px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(61, 50, 41, 0.1);
+}
+
+.day-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.day-info h3 {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.day-info .author {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.day-info .meta {
+    display: flex;
+    gap: 8px;
+    font-size: 0.7rem;
+}
+
+.day-info .meta span:first-child {
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.today-badge {
+    background: var(--accent);
+    color: #FFFFFF;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.weekly-theme-toggle {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+@media (max-width: 480px) {
+    .weekly-container {
+        padding: 16px 16px 100px;
+    }
+
+    .day-card {
+        grid-template-columns: 40px 60px 1fr;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .day-cover {
+        width: 60px;
+        height: 84px;
+    }
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -403,6 +684,8 @@ body {
     }
 }
 
-.card.active .card-content {
-    animation: fadeIn 0.4s ease;
+.page.fan-center .book-meta,
+.page.fan-center .wallpaper-actions,
+.page.fan-center .quote-content {
+    animation: fadeIn 0.5s ease 0.15s both;
 }
