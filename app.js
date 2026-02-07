@@ -13,12 +13,13 @@ function init() {
     }
     
     displayBook(currentBook);
-    updateDateDisplay();
+    updateDateBadge();
     
     // 绑定事件
-    document.getElementById('prevBtn').addEventListener('click', showPrevBook);
-    document.getElementById('nextBtn').addEventListener('click', showNextBook);
-    document.getElementById('randomBtn').addEventListener('click', showRandomBook);
+    document.getElementById('prevDay').addEventListener('click', showPrevBook);
+    document.getElementById('nextDay').addEventListener('click', showNextBook);
+    document.getElementById('randomBook').addEventListener('click', showRandomBook);
+    document.getElementById('shareBtn').addEventListener('click', shareBook);
 }
 
 // 显示书籍
@@ -27,8 +28,9 @@ function displayBook(book) {
     
     currentBook = book;
     
+    // 更新内容
     document.getElementById('bookTitle').textContent = book.title;
-    document.getElementById('bookAuthor').textContent = `作者：${book.author}`;
+    document.getElementById('bookAuthor').textContent = book.author;
     document.getElementById('bookCategory').textContent = book.category;
     document.getElementById('bookRating').textContent = book.rating;
     document.getElementById('bookDescription').textContent = book.description;
@@ -37,30 +39,25 @@ function displayBook(book) {
     document.getElementById('bookCover').alt = book.title;
     document.getElementById('bookLink').href = book.link;
     
-    updateDateDisplay(book.date);
+    // 更新日期
+    updateDateBadge(book.date);
     updateNavigationButtons();
 }
 
-// 更新日期显示
-function updateDateDisplay(dateStr) {
+// 更新日期徽章
+function updateDateBadge(dateStr) {
     const date = dateStr ? new Date(dateStr) : new Date();
-    const options = { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        weekday: 'long'
-    };
-    const dateText = date.toLocaleDateString('zh-CN', options);
-    const isToday = date.toDateString() === new Date().toDateString();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
     
-    document.getElementById('dateDisplay').textContent = 
-        isToday ? `📅 今日推荐 · ${dateText}` : `📅 ${dateText}`;
+    document.getElementById('dayNum').textContent = String(day).padStart(2, '0');
+    document.getElementById('monthNum').textContent = `${month}月`;
 }
 
 // 更新导航按钮状态
 function updateNavigationButtons() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevDay');
+    const nextBtn = document.getElementById('nextDay');
     
     const prevBook = getAdjacentBook(currentBook.id, 'prev');
     const nextBook = getAdjacentBook(currentBook.id, 'next');
@@ -95,6 +92,28 @@ function showRandomBook() {
     const book = getRandomBook();
     displayBook(book);
     updateURL(book.date);
+}
+
+// 分享功能
+function shareBook() {
+    const shareData = {
+        title: `Littlebook 推荐：${currentBook.title}`,
+        text: `${currentBook.title} - ${currentBook.author}\n\n${currentBook.quote}`,
+        url: window.location.href
+    };
+    
+    if (navigator.share) {
+        navigator.share(shareData);
+    } else {
+        // 复制到剪贴板
+        const text = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.getElementById('shareBtn');
+            const originalText = btn.textContent;
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        });
+    }
 }
 
 // 更新 URL

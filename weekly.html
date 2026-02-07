@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本周推荐 - Littlebook</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <nav class="top-nav">
+            <a href="index.html" class="logo">Littlebook</a>
+            <div class="nav-links">
+                <a href="index.html">今日</a>
+                <a href="weekly.html" class="active">本周推荐</a>
+                <a href="about.html">关于</a>
+            </div>
+        </nav>
+
+        <!-- 主内容区 -->
+        <main class="weekly-content">
+            <header class="page-header">
+                <h1>本周推荐</h1>
+                <p class="subtitle">过去 7 天的好书精选</p>
+            </header>
+
+            <!-- 本周推荐列表 -->
+            <div class="weekly-list" id="weeklyList">
+                <!-- 动态生成 -->
+            </div>
+        </main>
+
+        <!-- 底部 -->
+        <footer class="simple-footer">
+            <p>每日一本好书 · 开启新知</p>
+        </footer>
+    </div>
+
+    <script src="books.js"></script>
+    <script>
+        // 生成本周推荐列表
+        function renderWeeklyList() {
+            const container = document.getElementById('weeklyList');
+            const today = new Date();
+            
+            // 获取最近7天的书
+            const weekBooks = [];
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                const book = getBookByDate(dateStr);
+                if (book) {
+                    weekBooks.push({ ...book, displayDate: dateStr, isToday: i === 0 });
+                }
+            }
+
+            container.innerHTML = weekBooks.map((book, index) => `
+                <article class="weekly-item ${book.isToday ? 'today' : ''}" data-date="${book.displayDate}">
+                    <div class="item-number">${String(index + 1).padStart(2, '0')}</div>
+                    <div class="item-cover">
+                        <img src="${book.cover}" alt="${book.title}" loading="lazy">
+                    </div>
+                    <div class="item-info">
+                        <div class="item-meta">
+                            <span class="item-date">${formatDate(book.displayDate)}</span>
+                            <span class="item-category">${book.category}</span>
+                        </div>
+                        <h2 class="item-title">${book.title}</h2>
+                        <p class="item-author">${book.author}</p>
+                        <p class="item-desc">${book.description.substring(0, 80)}...</p>
+                        ${book.isToday ? '<span class="today-badge">今日</span>' : ''}
+                    </div>
+                    <a href="index.html?date=${book.displayDate}" class="item-link">
+                        <span class="link-arrow">→</span>
+                    </a>
+                </article>
+            `).join('');
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const weekday = weekdays[date.getDay()];
+            return `${month}月${day}日 ${weekday}`;
+        }
+
+        // 页面加载完成后渲染
+        document.addEventListener('DOMContentLoaded', renderWeeklyList);
+    </script>
+</body>
+</html>

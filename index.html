@@ -5,43 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Littlebook - 每日好书推荐</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>📚 Littlebook</h1>
-            <p class="tagline">每日一本好书，点亮思维的火花</p>
-        </header>
+        <!-- 顶部导航 -->
+        <nav class="top-nav">
+            <a href="index.html" class="logo">Littlebook</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">今日</a>
+                <a href="weekly.html">本周推荐</a>
+                <a href="about.html">关于</a>
+            </div>
+        </nav>
 
-        <main>
-            <div class="date-display" id="dateDisplay"></div>
-            
-            <div class="book-card" id="bookCard">
-                <div class="book-cover">
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 日期标签 -->
+            <div class="date-badge">
+                <span class="day" id="dayNum">07</span>
+                <span class="month" id="monthNum">2月</span>
+            </div>
+
+            <!-- 书本展示区 -->
+            <div class="book-showcase">
+                <div class="book-cover-large">
+                    <div class="book-spine"></div>
                     <img id="bookCover" src="" alt="书籍封面">
+                    <div class="book-shadow"></div>
                 </div>
-                <div class="book-info">
-                    <h2 id="bookTitle">加载中...</h2>
-                    <p class="author" id="bookAuthor"></p>
-                    <p class="category" id="bookCategory"></p>
-                    <div class="rating" id="bookRating"></div>
-                    <p class="description" id="bookDescription"></p>
-                    <blockquote class="quote" id="bookQuote"></blockquote>
-                    <a id="bookLink" href="#" target="_blank" class="btn">查看详情</a>
+
+                <div class="book-details">
+                    <span class="category-tag" id="bookCategory">心理学</span>
+                    <h1 class="book-title" id="bookTitle">思考，快与慢</h1>
+                    <p class="book-author" id="bookAuthor">[美] 丹尼尔·卡尼曼</p>
+                    
+                    <div class="rating-stars" id="bookRating">★★★★★</div>
+                    
+                    <p class="book-desc" id="bookDescription">
+                        诺贝尔经济学奖得主卡尼曼的巨著，深入剖析人类思维的两种模式...
+                    </p>
+                    
+                    <blockquote class="book-quote" id="bookQuote">
+                        "我们常常高估自己对世界的了解，却低估了事件中存在的偶然性。"
+                    </blockquote>
+
+                    <div class="action-buttons">
+                        <a id="bookLink" href="#" target="_blank" class="btn-primary">查看详情</a>
+                        <button class="btn-secondary" id="shareBtn">分享</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="navigation">
-                <button id="prevBtn" class="nav-btn">← 昨日</button>
-                <button id="randomBtn" class="nav-btn">🎲 随机</button>
-                <button id="nextBtn" class="nav-btn">明日 →</button>
+            <!-- 导航 -->
+            <div class="day-navigation">
+                <button id="prevDay" class="nav-arrow">
+                    <span class="arrow">←</span>
+                    <span class="label">昨日</span>
+                </button>
+                <button id="randomBook" class="nav-random">🎲 随机一本</button>
+                <button id="nextDay" class="nav-arrow">
+                    <span class="label">明日</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
         </main>
 
-        <footer>
-            <p>Made with ❤️ by Littlebook</p>
-            <p class="hint">每天 8:00 更新今日推荐</p>
+        <!-- 底部 -->
+        <footer class="simple-footer">
+            <p>每日一本好书 · 开启新知</p>
         </footer>
     </div>
 
