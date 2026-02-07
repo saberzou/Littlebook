@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Littlebook - 每日好书推荐</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Littlebook</h1>
+            <p class="tagline">每日一本好书，点亮思维的火花</p>
+        </header>
+
+        <main>
+            <div class="date-display" id="dateDisplay"></div>
+            
+            <div class="book-card" id="bookCard">
+                <div class="book-cover">
+                    <img id="bookCover" src="" alt="书籍封面">
+                </div>
+                <div class="book-info">
+                    <h2 id="bookTitle">加载中...</h2>
+                    <p class="author" id="bookAuthor"></p>
+                    <p class="category" id="bookCategory"></p>
+                    <div class="rating" id="bookRating"></div>
+                    <p class="description" id="bookDescription"></p>
+                    <blockquote class="quote" id="bookQuote"></blockquote>
+                    <a id="bookLink" href="#" target="_blank" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prevBtn" class="nav-btn">← 昨日</button>
+                <button id="randomBtn" class="nav-btn">🎲 随机</button>
+                <button id="nextBtn" class="nav-btn">明日 →</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ by Littlebook</p>
+            <p class="hint">每天 8:00 更新今日推荐</p>
+        </footer>
+    </div>
+
+    <script src="books.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
