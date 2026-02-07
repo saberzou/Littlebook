@@ -91,6 +91,12 @@ body {
 }
 
 /* Date Badge */
+.date-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
 .date-badge {
     display: inline-flex;
     flex-direction: column;
@@ -99,7 +105,6 @@ body {
     padding: 16px 24px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-    margin-bottom: 40px;
 }
 
 .date-badge .day {
