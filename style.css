@@ -70,29 +70,17 @@ body {
     position: relative;
 }
 
-/* Top Bar: date + dark mode toggle */
+/* Top Bar: theme toggle */
 .top-bar {
-    padding: 20px 24px 12px;
+    padding: 12px 24px 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     position: relative;
     z-index: 10;
 }
 
-.date-text {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
 .theme-toggle {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
     background: none;
     border: 1.5px solid var(--border);
     color: var(--text-secondary);
@@ -125,6 +113,158 @@ body {
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 /* =============================================
+   CALENDAR STRIP — swipeable horizontal dates
+   ============================================= */
+.calendar-strip {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    z-index: 10;
+    padding: 4px 0 8px;
+}
+
+.calendar-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.calendar-track {
+    display: flex;
+    gap: 6px;
+    padding: 0 24px;
+    width: max-content;
+}
+
+.cal-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 52px;
+    height: 64px;
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    font-family: inherit;
+    padding: 6px 8px;
+}
+
+.cal-cell:hover {
+    background: var(--bg-secondary);
+}
+
+.cal-cell.selected {
+    background: var(--accent);
+    color: #FFFFFF;
+    box-shadow: 0 2px 12px rgba(232, 168, 124, 0.4);
+}
+
+.cal-cell.future {
+    border: 1.5px dashed var(--text-tertiary);
+}
+
+.cal-cell.future.selected {
+    border-color: var(--accent);
+}
+
+.cal-weekday {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.cal-day {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.cal-hourglass-icon {
+    font-size: 0.55rem;
+    line-height: 1;
+    position: absolute;
+    bottom: 3px;
+}
+
+.cal-cell.future.selected .cal-hourglass-icon {
+    color: #FFFFFF;
+}
+
+/* =============================================
+   CONTENT AREA — holds swiper + hourglass
+   ============================================= */
+.content-area {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =============================================
+   HOURGLASS OVERLAY — ASCII art countdown
+   ============================================= */
+.hourglass-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    padding: 24px;
+}
+
+.hourglass-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.hourglass-art {
+    font-family: 'Courier New', 'Menlo', monospace;
+    font-size: 0.65rem;
+    line-height: 1.25;
+    color: var(--accent);
+    text-align: center;
+    white-space: pre;
+    letter-spacing: 0.5px;
+    user-select: none;
+}
+
+.hourglass-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hourglass-countdown {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 4px;
+    line-height: 1;
+}
+
+.hourglass-hint {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    text-align: center;
+    max-width: 260px;
+    line-height: 1.5;
+}
+
+/* =============================================
    FAN / ROTATE TRANSITION
    Pages pivot from bottom-center like a hand of cards
    ============================================= */
@@ -133,6 +273,8 @@ body {
     overflow: hidden;
     position: relative;
     perspective: 1200px;
+    width: 100%;
+    height: 100%;
 }
 
 .swiper-wrapper {
@@ -525,6 +667,23 @@ body {
 
     .wallpaper-image-wrapper {
         max-width: 100%;
+    }
+
+    .calendar-track {
+        padding: 0 16px;
+    }
+
+    .cal-cell {
+        min-width: 48px;
+        height: 58px;
+    }
+
+    .hourglass-art {
+        font-size: 0.55rem;
+    }
+
+    .hourglass-countdown {
+        font-size: 2.2rem;
     }
 }
 

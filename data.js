@@ -159,11 +159,31 @@ function getAdjacentData(currentDate, direction) {
     return null;
 }
 
+// Get the latest date that has data
+function getLatestDate() {
+    return dailyData[dailyData.length - 1].date;
+}
+
+// Get tomorrow's date string relative to the latest data date
+function getNextDate() {
+    const latest = new Date(getLatestDate() + 'T12:00:00');
+    latest.setDate(latest.getDate() + 1);
+    return latest.toISOString().split('T')[0];
+}
+
+// Get all available date strings
+function getAllDates() {
+    return dailyData.map(d => d.date);
+}
+
 // Export
 window.DailyData = {
     data: dailyData,
     getByDate: getDataByDate,
     getToday: getTodayData,
     getAdjacent: getAdjacentData,
-    fetchCover: fetchBookCover
+    fetchCover: fetchBookCover,
+    getLatestDate: getLatestDate,
+    getNextDate: getNextDate,
+    getAllDates: getAllDates
 };

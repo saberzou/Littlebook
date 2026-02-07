@@ -3,6 +3,10 @@
 let currentData = null;
 let currentIndex = 0; // 0=book, 1=wallpaper, 2=quote
 let currentDate = null;
+let showingHourglass = false;
+let hourglassTimer = null;
+let hourglassAnimFrame = 0;
+let hourglassAnimInterval = null;
 
 const pages = () => document.querySelectorAll('.page');
 const totalPages = () => pages().length;
@@ -16,15 +20,27 @@ function init() {
     const urlParams = new URLSearchParams(window.location.search);
     const dateParam = urlParams.get('date');
     if (dateParam) {
-        const data = DailyData.getByDate(dateParam);
-        if (data) {
-            currentData = data;
-            currentDate = dateParam;
+        const nextDate = DailyData.getNextDate();
+        if (dateParam === nextDate) {
+            currentDate = nextDate;
+        } else {
+            const data = DailyData.getByDate(dateParam);
+            if (data) {
+                currentData = data;
+                currentDate = dateParam;
+            }
         }
     }
 
-    loadContent();
-    updateDateDisplay();
+    // Build calendar strip
+    buildCalendar();
+
+    // Load content or hourglass
+    if (currentDate === DailyData.getNextDate()) {
+        showHourglass();
+    } else {
+        loadContent();
+    }
     applyFan(0);
 
     // Nav items
@@ -56,9 +72,311 @@ function init() {
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
+
+    // Calendar swipe
+    initCalendarSwipe();
 }
 
-// ---- Load content into DOM ----
+// =============================================
+//  CALENDAR STRIP
+// =============================================
+function buildCalendar() {
+    const track = document.getElementById('calendarTrack');
+    track.innerHTML = '';
+
+    const dates = DailyData.getAllDates();
+    const nextDate = DailyData.getNextDate();
+    const allDates = [...dates, nextDate];
+
+    allDates.forEach(dateStr => {
+        const d = new Date(dateStr + 'T12:00:00');
+        const isFuture = dateStr === nextDate;
+        const isSelected = dateStr === currentDate;
+
+        const cell = document.createElement('button');
+        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '');
+        cell.dataset.date = dateStr;
+
+        const weekday = document.createElement('span');
+        weekday.className = 'cal-weekday';
+        weekday.textContent = d.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+
+        const day = document.createElement('span');
+        day.className = 'cal-day';
+        day.textContent = d.getDate();
+
+        cell.appendChild(weekday);
+        cell.appendChild(day);
+
+        if (isFuture) {
+            const hourglassIcon = document.createElement('span');
+            hourglassIcon.className = 'cal-hourglass-icon';
+            hourglassIcon.textContent = '\u231B';
+            cell.appendChild(hourglassIcon);
+        }
+
+        cell.addEventListener('click', () => selectDate(dateStr));
+        track.appendChild(cell);
+    });
+
+    // Scroll to selected date
+    requestAnimationFrame(() => {
+        const selected = track.querySelector('.cal-cell.selected');
+        if (selected) {
+            selected.scrollIntoView({ inline: 'center', behavior: 'instant' });
+        }
+    });
+}
+
+function updateCalendarSelection(dateStr) {
+    document.querySelectorAll('.cal-cell').forEach(cell => {
+        cell.classList.toggle('selected', cell.dataset.date === dateStr);
+    });
+
+    // Scroll selected into view
+    const track = document.getElementById('calendarTrack');
+    const selected = track.querySelector('.cal-cell.selected');
+    if (selected) {
+        selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+    }
+}
+
+function selectDate(dateStr) {
+    const nextDate = DailyData.getNextDate();
+
+    currentDate = dateStr;
+    updateCalendarSelection(dateStr);
+    updateURL(dateStr);
+
+    if (dateStr === nextDate) {
+        showHourglass();
+    } else {
+        const data = DailyData.getByDate(dateStr);
+        if (data) {
+            currentData = data;
+            hideHourglass();
+            loadContent();
+            goToSlide(0);
+        }
+    }
+}
+
+function initCalendarSwipe() {
+    const strip = document.getElementById('calendarStrip');
+    let startX = 0;
+    let scrollStart = 0;
+
+    strip.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        scrollStart = strip.scrollLeft;
+    }, { passive: true });
+
+    strip.addEventListener('touchmove', (e) => {
+        const dx = startX - e.touches[0].clientX;
+        strip.scrollLeft = scrollStart + dx;
+    }, { passive: true });
+}
+
+// =============================================
+//  HOURGLASS — animated ASCII art + countdown
+// =============================================
+const HOURGLASS_FRAMES = [
+    [
+        '     ╔═══════════╗',
+        '     ║ . . . . . ║',
+        '     ║  . . . .  ║',
+        '     ║   . . .   ║',
+        '     ║    . .    ║',
+        '      \\    .    /',
+        '       \\       /',
+        '        \\     /',
+        '         \\   /',
+        '          \\ /',
+        '           X',
+        '          / \\',
+        '         /   \\',
+        '        /     \\',
+        '       /       \\',
+        '      /         \\',
+        '     ║           ║',
+        '     ║           ║',
+        '     ║           ║',
+        '     ║           ║',
+        '     ╚═══════════╝',
+    ],
+    [
+        '     ╔═══════════╗',
+        '     ║  . . . .  ║',
+        '     ║   . . .   ║',
+        '     ║    . .    ║',
+        '     ║     .     ║',
+        '      \\         /',
+        '       \\       /',
+        '        \\     /',
+        '         \\   /',
+        '          \\ /',
+        '           o',
+        '          / \\',
+        '         /   \\',
+        '        /     \\',
+        '       /       \\',
+        '      /         \\',
+        '     ║           ║',
+        '     ║           ║',
+        '     ║     .     ║',
+        '     ║           ║',
+        '     ╚═══════════╝',
+    ],
+    [
+        '     ╔═══════════╗',
+        '     ║   . . .   ║',
+        '     ║    . .    ║',
+        '     ║     .     ║',
+        '     ║           ║',
+        '      \\         /',
+        '       \\       /',
+        '        \\     /',
+        '         \\   /',
+        '          \\ /',
+        '           o',
+        '          / \\',
+        '         /   \\',
+        '        /     \\',
+        '       /       \\',
+        '      /         \\',
+        '     ║           ║',
+        '     ║     .     ║',
+        '     ║    . .    ║',
+        '     ║           ║',
+        '     ╚═══════════╝',
+    ],
+    [
+        '     ╔═══════════╗',
+        '     ║    . .    ║',
+        '     ║     .     ║',
+        '     ║           ║',
+        '     ║           ║',
+        '      \\         /',
+        '       \\       /',
+        '        \\     /',
+        '         \\   /',
+        '          \\ /',
+        '           o',
+        '          / \\',
+        '         /   \\',
+        '        /     \\',
+        '       /       \\',
+        '      /         \\',
+        '     ║     .     ║',
+        '     ║    . .    ║',
+        '     ║   . . .   ║',
+        '     ║           ║',
+        '     ╚═══════════╝',
+    ],
+    [
+        '     ╔═══════════╗',
+        '     ║     .     ║',
+        '     ║           ║',
+        '     ║           ║',
+        '     ║           ║',
+        '      \\         /',
+        '       \\       /',
+        '        \\     /',
+        '         \\   /',
+        '          \\ /',
+        '           o',
+        '          / \\',
+        '         /   \\',
+        '        /     \\',
+        '       /       \\',
+        '      /         \\',
+        '     ║    . .    ║',
+        '     ║   . . .   ║',
+        '     ║  . . . .  ║',
+        '     ║           ║',
+        '     ╚═══════════╝',
+    ],
+    [
+        '     ╔═══════════╗',
+        '     ║           ║',
+        '     ║           ║',
+        '     ║           ║',
+        '     ║           ║',
+        '      \\         /',
+        '       \\       /',
+        '        \\     /',
+        '         \\   /',
+        '          \\ /',
+        '           o',
+        '          / \\',
+        '         /   \\',
+        '        /     \\',
+        '       /       \\',
+        '      /         \\',
+        '     ║   . . .   ║',
+        '     ║  . . . .  ║',
+        '     ║ . . . . . ║',
+        '     ║. . . . . .║',
+        '     ╚═══════════╝',
+    ],
+];
+
+function showHourglass() {
+    showingHourglass = true;
+
+    document.getElementById('swiperContainer').style.display = 'none';
+    document.getElementById('hourglassOverlay').style.display = 'flex';
+    document.getElementById('slideIndicator').style.display = 'none';
+    document.getElementById('pillNav').style.display = 'none';
+
+    // Start animation
+    hourglassAnimFrame = 0;
+    renderHourglassFrame();
+    hourglassAnimInterval = setInterval(() => {
+        hourglassAnimFrame = (hourglassAnimFrame + 1) % HOURGLASS_FRAMES.length;
+        renderHourglassFrame();
+    }, 800);
+
+    // Start countdown
+    updateCountdown();
+    hourglassTimer = setInterval(updateCountdown, 1000);
+}
+
+function hideHourglass() {
+    showingHourglass = false;
+
+    document.getElementById('swiperContainer').style.display = '';
+    document.getElementById('hourglassOverlay').style.display = 'none';
+    document.getElementById('slideIndicator').style.display = '';
+    document.getElementById('pillNav').style.display = '';
+
+    if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
+    if (hourglassAnimInterval) { clearInterval(hourglassAnimInterval); hourglassAnimInterval = null; }
+}
+
+function renderHourglassFrame() {
+    const el = document.getElementById('hourglassArt');
+    el.textContent = HOURGLASS_FRAMES[hourglassAnimFrame].join('\n');
+}
+
+function updateCountdown() {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    const diff = tomorrow - now;
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    const pad = n => String(n).padStart(2, '0');
+    document.getElementById('hourglassCountdown').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+
+// =============================================
+//  CONTENT LOADING
+// =============================================
 function loadContent() {
     if (!currentData) return;
 
@@ -92,14 +410,9 @@ function loadContent() {
     document.getElementById('quoteSource').textContent = `— ${quote.source}`;
 }
 
-// ---- Date display ----
-function updateDateDisplay() {
-    const date = new Date(currentDate + 'T12:00:00'); // noon to avoid timezone shift
-    const options = { month: 'short', day: 'numeric', weekday: 'long' };
-    document.getElementById('dateText').textContent = date.toLocaleDateString('en-US', options);
-}
-
-// ---- Fan transition ----
+// =============================================
+//  FAN TRANSITION
+// =============================================
 function applyFan(activeIndex) {
     pages().forEach((page, i) => {
         page.classList.remove('fan-left', 'fan-center', 'fan-right');
@@ -110,23 +423,24 @@ function applyFan(activeIndex) {
 }
 
 function goToSlide(index) {
+    if (showingHourglass) return;
     const max = totalPages() - 1;
     if (index < 0 || index > max) return;
     currentIndex = index;
     applyFan(index);
 
-    // Update nav
     document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach((item, i) => {
         item.classList.toggle('active', i === index);
     });
 
-    // Update dots
     document.querySelectorAll('.dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
     });
 }
 
-// ---- Touch / mouse swipe ----
+// =============================================
+//  TOUCH / MOUSE SWIPE (content pages)
+// =============================================
 function initSwipe() {
     const container = document.getElementById('swiperContainer');
     let startX = 0;
@@ -163,7 +477,9 @@ function initSwipe() {
     });
 }
 
-// ---- Download wallpaper ----
+// =============================================
+//  ACTIONS
+// =============================================
 function downloadWallpaper() {
     if (!currentData) return;
     const link = document.createElement('a');
@@ -173,7 +489,6 @@ function downloadWallpaper() {
     link.click();
 }
 
-// ---- Share quote ----
 function shareQuote() {
     if (!currentData) return;
     const { quote } = currentData;
@@ -191,43 +506,33 @@ function shareQuote() {
     }
 }
 
-// ---- Date navigation ----
-async function changeDate(direction) {
-    const newData = DailyData.getAdjacent(currentDate, direction);
-    if (!newData) return;
-    currentData = newData;
-    currentDate = newData.date;
-    loadContent();
-    updateDateDisplay();
-    updateURL(currentDate);
-}
-
+// =============================================
+//  URL + HISTORY
+// =============================================
 function updateURL(dateStr) {
     const newURL = `${window.location.pathname}?date=${dateStr}`;
     window.history.pushState({ date: dateStr }, '', newURL);
 }
 
-// ---- Browser back / forward ----
 window.addEventListener('popstate', (e) => {
     const date = e.state?.date;
     if (date) {
-        const data = DailyData.getByDate(date);
-        if (data) {
-            currentData = data;
-            currentDate = date;
-            loadContent();
-            updateDateDisplay();
-        }
+        selectDate(date);
     }
 });
 
-// ---- Keyboard ----
+// =============================================
+//  KEYBOARD
+// =============================================
 document.addEventListener('keydown', (e) => {
+    if (showingHourglass) return;
     if (e.key === 'ArrowLeft' && currentIndex > 0) goToSlide(currentIndex - 1);
     else if (e.key === 'ArrowRight' && currentIndex < totalPages() - 1) goToSlide(currentIndex + 1);
 });
 
-// ---- Dark mode ----
+// =============================================
+//  DARK MODE
+// =============================================
 function toggleTheme() {
     const html = document.documentElement;
     const isDark = html.getAttribute('data-theme') === 'dark';
@@ -240,5 +545,7 @@ function toggleTheme() {
     }
 }
 
-// ---- Boot ----
+// =============================================
+//  BOOT
+// =============================================
 document.addEventListener('DOMContentLoaded', init);

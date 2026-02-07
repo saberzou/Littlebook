@@ -11,9 +11,8 @@
 <body>
     <div class="app-container">
 
-        <!-- Top bar: date + theme toggle -->
+        <!-- Top bar: theme toggle only -->
         <div class="top-bar">
-            <span class="date-text" id="dateText">Feb 7, Friday</span>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -32,77 +31,99 @@
             </button>
         </div>
 
-        <!-- Fan-swipe container -->
-        <div class="swiper-container" id="swiperContainer">
-            <div class="swiper-wrapper" id="swiperWrapper">
-
-                <!-- Book page — no card wrapper -->
-                <div class="page book-page fan-center" data-index="0">
-                    <div class="book-cover-wrapper">
-                        <div class="book-spine"></div>
-                        <img id="bookCover" src="" alt="Book cover">
-                    </div>
-                    <div class="book-meta">
-                        <span class="tag" id="bookCategory">Psychology</span>
-                        <h1 class="book-title" id="bookTitle">Thinking, Fast and Slow</h1>
-                        <p class="book-author" id="bookAuthor">Daniel Kahneman</p>
-                        <p class="book-desc" id="bookDesc">Nobel laureate dissects two modes of human thought...</p>
-                    </div>
-                </div>
-
-                <!-- Wallpaper page — standalone image -->
-                <div class="page wallpaper-page fan-right" data-index="1">
-                    <div class="wallpaper-image-wrapper">
-                        <img id="wallpaperImage" src="" alt="Daily wallpaper">
-                    </div>
-                    <div class="wallpaper-actions">
-                        <button class="download-btn" id="downloadBtn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            Save Wallpaper
-                        </button>
-                        <p class="wallpaper-credit" id="wallpaperCredit">Photo by Unsplash</p>
-                    </div>
-                </div>
-
-                <!-- Quote page — card with large decorative quotation mark -->
-                <div class="page quote-page fan-right" data-index="2">
-                    <div class="quote-card">
-                        <div class="quote-decoration">&ldquo;</div>
-                        <div class="quote-content">
-                            <p class="quote-text" id="quoteText">
-                                We are often overconfident about what we know about the world...
-                            </p>
-                            <p class="quote-source" id="quoteSource">— Daniel Kahneman</p>
-                            <button class="share-quote-btn" id="shareQuoteBtn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="18" cy="5" r="3"></circle>
-                                    <circle cx="6" cy="12" r="3"></circle>
-                                    <circle cx="18" cy="19" r="3"></circle>
-                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                </svg>
-                                Share Quote
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+        <!-- Horizontal swipeable calendar strip -->
+        <div class="calendar-strip" id="calendarStrip">
+            <div class="calendar-track" id="calendarTrack">
+                <!-- Filled by JS -->
             </div>
         </div>
 
+        <!-- Main content area -->
+        <div class="content-area" id="contentArea">
+
+            <!-- Normal content pages (shown when date has data) -->
+            <div class="swiper-container" id="swiperContainer">
+                <div class="swiper-wrapper" id="swiperWrapper">
+
+                    <!-- Book page -->
+                    <div class="page book-page fan-center" data-index="0">
+                        <div class="book-cover-wrapper">
+                            <div class="book-spine"></div>
+                            <img id="bookCover" src="" alt="Book cover">
+                        </div>
+                        <div class="book-meta">
+                            <span class="tag" id="bookCategory">Psychology</span>
+                            <h1 class="book-title" id="bookTitle">Thinking, Fast and Slow</h1>
+                            <p class="book-author" id="bookAuthor">Daniel Kahneman</p>
+                            <p class="book-desc" id="bookDesc">Nobel laureate dissects two modes of human thought...</p>
+                        </div>
+                    </div>
+
+                    <!-- Wallpaper page -->
+                    <div class="page wallpaper-page fan-right" data-index="1">
+                        <div class="wallpaper-image-wrapper">
+                            <img id="wallpaperImage" src="" alt="Daily wallpaper">
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="download-btn" id="downloadBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Save Wallpaper
+                            </button>
+                            <p class="wallpaper-credit" id="wallpaperCredit">Photo by Unsplash</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote page -->
+                    <div class="page quote-page fan-right" data-index="2">
+                        <div class="quote-card">
+                            <div class="quote-decoration">&ldquo;</div>
+                            <div class="quote-content">
+                                <p class="quote-text" id="quoteText">
+                                    We are often overconfident about what we know about the world...
+                                </p>
+                                <p class="quote-source" id="quoteSource">— Daniel Kahneman</p>
+                                <button class="share-quote-btn" id="shareQuoteBtn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
+                                    Share Quote
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Hourglass overlay (shown when tomorrow is selected) -->
+            <div class="hourglass-overlay" id="hourglassOverlay">
+                <div class="hourglass-container">
+                    <pre class="hourglass-art" id="hourglassArt"></pre>
+                    <div class="hourglass-label">Tomorrow's pick arrives in</div>
+                    <div class="hourglass-countdown" id="hourglassCountdown">--:--:--</div>
+                    <div class="hourglass-hint">Come back tomorrow for a new book, wallpaper & quote</div>
+                </div>
+            </div>
+
+        </div>
+
         <!-- Dot indicator -->
-        <div class="slide-indicator">
+        <div class="slide-indicator" id="slideIndicator">
             <span class="dot active" data-index="0"></span>
             <span class="dot" data-index="1"></span>
             <span class="dot" data-index="2"></span>
         </div>
 
         <!-- iOS 26 pill nav -->
-        <nav class="pill-nav">
+        <nav class="pill-nav" id="pillNav">
             <button class="nav-item active" data-index="0">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
