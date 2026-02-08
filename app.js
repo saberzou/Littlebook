@@ -88,13 +88,16 @@ function buildCalendar() {
     const nextDate = DailyData.getNextDate();
     const allDates = [...dates, nextDate];
 
+    const todayStr = new Date().toISOString().split('T')[0];
+
     allDates.forEach(dateStr => {
         const d = new Date(dateStr + 'T12:00:00');
         const isFuture = dateStr === nextDate;
         const isSelected = dateStr === currentDate;
+        const isToday = dateStr === todayStr;
 
         const cell = document.createElement('button');
-        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '');
+        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '') + (isToday ? ' today' : '');
         cell.dataset.date = dateStr;
 
         const weekday = document.createElement('span');
@@ -108,11 +111,10 @@ function buildCalendar() {
         cell.appendChild(weekday);
         cell.appendChild(day);
 
-        if (isFuture) {
-            const hourglassIcon = document.createElement('span');
-            hourglassIcon.className = 'cal-hourglass-icon';
-            hourglassIcon.textContent = '\u231B';
-            cell.appendChild(hourglassIcon);
+        if (isToday) {
+            const todayDot = document.createElement('span');
+            todayDot.className = 'cal-today-dot';
+            cell.appendChild(todayDot);
         }
 
         cell.addEventListener('click', () => selectDate(dateStr));
