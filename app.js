@@ -88,13 +88,16 @@ function buildCalendar() {
     const nextDate = DailyData.getNextDate();
     const allDates = [...dates, nextDate];
 
+    const todayStr = new Date().toISOString().split('T')[0];
+
     allDates.forEach(dateStr => {
         const d = new Date(dateStr + 'T12:00:00');
         const isFuture = dateStr === nextDate;
         const isSelected = dateStr === currentDate;
+        const isToday = dateStr === todayStr;
 
         const cell = document.createElement('button');
-        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '');
+        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '') + (isToday ? ' today' : '');
         cell.dataset.date = dateStr;
 
         const weekday = document.createElement('span');
@@ -108,11 +111,10 @@ function buildCalendar() {
         cell.appendChild(weekday);
         cell.appendChild(day);
 
-        if (isFuture) {
-            const hourglassIcon = document.createElement('span');
-            hourglassIcon.className = 'cal-hourglass-icon';
-            hourglassIcon.textContent = '\u231B';
-            cell.appendChild(hourglassIcon);
+        if (isToday) {
+            const todayDot = document.createElement('span');
+            todayDot.className = 'cal-today-dot';
+            cell.appendChild(todayDot);
         }
 
         cell.addEventListener('click', () => selectDate(dateStr));
@@ -401,13 +403,45 @@ function loadContent() {
         );
     };
 
-    // Wallpaper
-    document.getElementById('wallpaperImage').src = wallpaper.url;
-    document.getElementById('wallpaperCredit').textContent = wallpaper.credit;
+    // Wallpaper — fetch from Unsplash API
+    loadWallpaper(wallpaper.photoId);
 
     // Quote
     document.getElementById('quoteText').textContent = quote.text;
     document.getElementById('quoteSource').textContent = `— ${quote.source}`;
+}
+
+async function loadWallpaper(photoId) {
+    const img = document.getElementById('wallpaperImage');
+    const creditEl = document.getElementById('wallpaperCredit');
+
+    // Show loading state
+    img.style.opacity = '0.4';
+    creditEl.textContent = 'Loading...';
+
+    const wp = await DailyData.fetchWallpaper(photoId);
+
+    img.src = wp.urlPortrait;
+    img.style.opacity = '';
+
+    // Proper Unsplash attribution with links
+    creditEl.innerHTML = '';
+    const txt1 = document.createTextNode('Photo by ');
+    const userLink = document.createElement('a');
+    userLink.href = wp.creditUrl;
+    userLink.target = '_blank';
+    userLink.rel = 'noopener noreferrer';
+    userLink.textContent = wp.credit;
+    const txt2 = document.createTextNode(' on ');
+    const unsplashLink = document.createElement('a');
+    unsplashLink.href = wp.unsplashUrl;
+    unsplashLink.target = '_blank';
+    unsplashLink.rel = 'noopener noreferrer';
+    unsplashLink.textContent = 'Unsplash';
+    creditEl.appendChild(txt1);
+    creditEl.appendChild(userLink);
+    creditEl.appendChild(txt2);
+    creditEl.appendChild(unsplashLink);
 }
 
 // =============================================
@@ -480,10 +514,17 @@ function initSwipe() {
 // =============================================
 //  ACTIONS
 // =============================================
-function downloadWallpaper() {
+async function downloadWallpaper() {
     if (!currentData) return;
+    const { photoId } = currentData.wallpaper;
+
+    // Trigger Unsplash download tracking (API guidelines requirement)
+    await DailyData.trackDownload(photoId);
+
+    // Get cached wallpaper data for download URL
+    const wp = await DailyData.fetchWallpaper(photoId);
     const link = document.createElement('a');
-    link.href = currentData.wallpaper.download;
+    link.href = wp.urlPortrait;
     link.download = `littlebook-wallpaper-${currentDate}.jpg`;
     link.target = '_blank';
     link.click();
