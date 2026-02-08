@@ -1,4 +1,9 @@
-// Daily data: book + wallpaper + quote
+// Unsplash API
+const UNSPLASH_KEY = '7-kO0WQ3pHHi_EcDxNzCIEixVr9QeRZecSUQhXVEh9c';
+const UNSPLASH_API = 'https://api.unsplash.com';
+const wallpaperCache = {};
+
+// Daily data: book + wallpaper (photo ID) + quote
 const dailyData = [
     {
         date: "2026-02-07",
@@ -9,11 +14,7 @@ const dailyData = [
             category: "Psychology",
             desc: "Nobel laureate dissects two modes of human thought, revealing systematic errors in our decision-making."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop&crop=faces&q=80",
-            credit: "Photo by Denise Jans on Unsplash",
-            download: "https://unsplash.com/photos/9lTUClNBK_4/download?force=true"
-        },
+        wallpaper: { photoId: "9lTUClNBK_4" },
         quote: {
             text: "We are often overconfident about what we know about the world, and underestimate the role of chance in events.",
             source: "Daniel Kahneman, Thinking, Fast and Slow"
@@ -28,11 +29,7 @@ const dailyData = [
             category: "Self-Improvement",
             desc: "Proven methods for building good habits and breaking bad ones through tiny, incremental changes."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=1200&fit=crop&crop=center&q=80",
-            credit: "Photo by Alfons Morales on Unsplash",
-            download: "https://unsplash.com/photos/YLSwjSy7stw/download?force=true"
-        },
+        wallpaper: { photoId: "YLSwjSy7stw" },
         quote: {
             text: "Improve by 1% each day, and in a year you'll be 37 times better. Decline by 1%, and you'll approach zero.",
             source: "James Clear, Atomic Habits"
@@ -47,11 +44,7 @@ const dailyData = [
             category: "History",
             desc: "A sweeping narrative of humanity from the Cognitive Revolution to the present, challenging everything we thought we knew."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=1200&fit=crop&crop=center&q=80",
-            credit: "Photo by Christian Wiediger on Unsplash",
-            download: "https://unsplash.com/photos/lgf2D8qmZuw/download?force=true"
-        },
+        wallpaper: { photoId: "lgf2D8qmZuw" },
         quote: {
             text: "The iron rule of history is that what seems inevitable in hindsight was far from obvious at the time.",
             source: "Yuval Noah Harari, Sapiens"
@@ -66,11 +59,7 @@ const dailyData = [
             category: "Productivity",
             desc: "A guide to rebuilding focus in the age of distraction and producing work of real value."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=1200&fit=crop&crop=center&q=80",
-            credit: "Photo by Sharon McCutcheon on Unsplash",
-            download: "https://unsplash.com/photos/eyFbjKWlR2g/download?force=true"
-        },
+        wallpaper: { photoId: "eyFbjKWlR2g" },
         quote: {
             text: "High-quality work produced = Time spent x Intensity of focus.",
             source: "Cal Newport, Deep Work"
@@ -85,11 +74,7 @@ const dailyData = [
             category: "Philosophy",
             desc: "An introduction to Adlerian psychology through Socratic dialogue, exploring how to find true freedom."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&h=1200&fit=crop&crop=center&q=80",
-            credit: "Photo by Aaron Burden on Unsplash",
-            download: "https://unsplash.com/photos/Y02jEX_B0O0/download?force=true"
-        },
+        wallpaper: { photoId: "Y02jEX_B0O0" },
         quote: {
             text: "True freedom is being disliked by other people.",
             source: "Ichiro Kishimi, The Courage to Be Disliked"
@@ -104,11 +89,7 @@ const dailyData = [
             category: "Wealth & Wisdom",
             desc: "Collected wisdom from Silicon Valley's philosopher-investor on wealth creation and finding happiness."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&h=1200&fit=crop&crop=center&q=80",
-            credit: "Photo by Susan Yin on Unsplash",
-            download: "https://unsplash.com/photos/FXJfTl8xvl0/download?force=true"
-        },
+        wallpaper: { photoId: "FXJfTl8xvl0" },
         quote: {
             text: "Play iterated games. All the returns in life — whether in wealth, relationships, or knowledge — come from compound interest.",
             source: "Eric Jorgenson, The Almanack of Naval Ravikant"
@@ -123,17 +104,59 @@ const dailyData = [
             category: "Philosophy",
             desc: "A radical rethinking of time management for finite humans — embrace your limits to live a meaningful life."
         },
-        wallpaper: {
-            url: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=1200&fit=crop&crop=center&q=80",
-            credit: "Photo by Christin Hume on Unsplash",
-            download: "https://unsplash.com/photos/mIi8HzvHxWc/download?force=true"
-        },
+        wallpaper: { photoId: "mIi8HzvHxWc" },
         quote: {
             text: "The real measure of any time management technique is whether it helps you neglect the right things.",
             source: "Oliver Burkeman, Four Thousand Weeks"
         }
     }
 ];
+
+// Fetch wallpaper data from Unsplash API (with cache)
+async function fetchWallpaper(photoId) {
+    if (wallpaperCache[photoId]) return wallpaperCache[photoId];
+
+    try {
+        const res = await fetch(
+            `${UNSPLASH_API}/photos/${photoId}?client_id=${UNSPLASH_KEY}`
+        );
+        if (!res.ok) throw new Error(res.status);
+        const photo = await res.json();
+
+        const data = {
+            url: photo.urls.regular,
+            urlPortrait: photo.urls.raw + '&w=800&h=1200&fit=crop&crop=center&q=80',
+            credit: photo.user.name,
+            creditUrl: photo.user.links.html + '?utm_source=littlebook&utm_medium=referral',
+            downloadLocation: photo.links.download_location,
+            unsplashUrl: photo.links.html + '?utm_source=littlebook&utm_medium=referral',
+        };
+        wallpaperCache[photoId] = data;
+        return data;
+    } catch {
+        // Fallback: direct Unsplash image URL (no API)
+        return {
+            url: `https://images.unsplash.com/photo-${photoId}?w=800&h=1200&fit=crop&crop=center&q=80`,
+            urlPortrait: `https://images.unsplash.com/photo-${photoId}?w=800&h=1200&fit=crop&crop=center&q=80`,
+            credit: 'Unsplash',
+            creditUrl: 'https://unsplash.com/?utm_source=littlebook&utm_medium=referral',
+            downloadLocation: null,
+            unsplashUrl: `https://unsplash.com/photos/${photoId}`,
+        };
+    }
+}
+
+// Trigger Unsplash download tracking (required by API guidelines)
+async function trackDownload(photoId) {
+    const cached = wallpaperCache[photoId];
+    if (cached && cached.downloadLocation) {
+        try {
+            await fetch(cached.downloadLocation + '?client_id=' + UNSPLASH_KEY);
+        } catch {
+            // Silently fail — tracking is best-effort
+        }
+    }
+}
 
 // Open Library cover URL
 function fetchBookCover(isbn) {
@@ -183,6 +206,8 @@ window.DailyData = {
     getToday: getTodayData,
     getAdjacent: getAdjacentData,
     fetchCover: fetchBookCover,
+    fetchWallpaper: fetchWallpaper,
+    trackDownload: trackDownload,
     getLatestDate: getLatestDate,
     getNextDate: getNextDate,
     getAllDates: getAllDates
