@@ -151,6 +151,10 @@ body {
     border-color: var(--accent);
 }
 
+.cal-cell.no-data {
+    opacity: 0.4;
+}
+
 .cal-weekday {
     font-size: 0.6rem;
     font-weight: 600;

@@ -14,19 +14,26 @@ const totalPages = () => pages().length;
 // ---- Initialise ----
 function init() {
     currentData = DailyData.getToday();
-    currentDate = currentData.date;
+    currentDate = currentData ? currentData.date : new Date().toISOString().split('T')[0];
+
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
     // Check URL params
     const urlParams = new URLSearchParams(window.location.search);
     const dateParam = urlParams.get('date');
     if (dateParam) {
-        const nextDate = DailyData.getNextDate();
-        if (dateParam === nextDate) {
-            currentDate = nextDate;
+        if (dateParam === tomorrowStr) {
+            currentDate = tomorrowStr;
         } else {
             const data = DailyData.getByDate(dateParam);
             if (data) {
                 currentData = data;
+                currentDate = dateParam;
+            } else {
+                // Past date with no data — still set the date for calendar selection
                 currentDate = dateParam;
             }
         }
@@ -36,7 +43,7 @@ function init() {
     buildCalendar();
 
     // Load content or hourglass
-    if (currentDate === DailyData.getNextDate()) {
+    if (currentDate === tomorrowStr || !DailyData.getByDate(currentDate)) {
         showHourglass();
     } else {
         loadContent();
@@ -84,20 +91,35 @@ function buildCalendar() {
     const track = document.getElementById('calendarTrack');
     track.innerHTML = '';
 
-    const dates = DailyData.getAllDates();
-    const nextDate = DailyData.getNextDate();
-    const allDates = [...dates, nextDate];
+    // Always show 7 cells: 5 past days + today + tomorrow
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    const calendarDates = [];
 
-    const todayStr = new Date().toISOString().split('T')[0];
+    for (let i = 5; i >= 1; i--) {
+        const d = new Date(today);
+        d.setDate(d.getDate() - i);
+        calendarDates.push(d.toISOString().split('T')[0]);
+    }
+    calendarDates.push(todayStr); // today
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    calendarDates.push(tomorrowStr); // tomorrow
 
-    allDates.forEach(dateStr => {
+    calendarDates.forEach(dateStr => {
         const d = new Date(dateStr + 'T12:00:00');
-        const isFuture = dateStr === nextDate;
+        const isFuture = dateStr === tomorrowStr;
         const isSelected = dateStr === currentDate;
         const isToday = dateStr === todayStr;
+        const hasData = !!DailyData.getByDate(dateStr);
 
         const cell = document.createElement('button');
-        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '') + (isToday ? ' today' : '');
+        cell.className = 'cal-cell'
+            + (isSelected ? ' selected' : '')
+            + (isFuture ? ' future' : '')
+            + (isToday ? ' today' : '')
+            + (!hasData && !isFuture ? ' no-data' : '');
         cell.dataset.date = dateStr;
 
         const weekday = document.createElement('span');
@@ -144,13 +166,16 @@ function updateCalendarSelection(dateStr) {
 }
 
 function selectDate(dateStr) {
-    const nextDate = DailyData.getNextDate();
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
     currentDate = dateStr;
     updateCalendarSelection(dateStr);
     updateURL(dateStr);
 
-    if (dateStr === nextDate) {
+    if (dateStr === tomorrowStr) {
         showHourglass();
     } else {
         const data = DailyData.getByDate(dateStr);
@@ -159,6 +184,9 @@ function selectDate(dateStr) {
             hideHourglass();
             loadContent();
             goToSlide(0);
+        } else {
+            // Past date with no data available
+            showHourglass();
         }
     }
 }
