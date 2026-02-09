@@ -99,7 +99,11 @@ body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     z-index: 10;
-    padding: 4px 0 8px;
+    padding: 8px 0 12px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
 }
 
 .calendar-strip::-webkit-scrollbar {
@@ -636,20 +640,72 @@ body {
     }
 
     .book-cover-wrapper {
-        width: 170px;
-        height: 255px;
+        width: 150px;
+        height: 225px;
+        margin-bottom: 20px;
     }
 
     .book-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+    }
+
+    .book-author {
+        font-size: 0.82rem;
+        margin-bottom: 10px;
+    }
+
+    .book-desc {
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+
+    .book-meta {
+        max-width: 300px;
+    }
+
+    .wallpaper-image-wrapper {
+        max-width: 280px;
+        aspect-ratio: 3/4;
+    }
+
+    .wallpaper-actions {
+        max-width: 280px;
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .download-btn {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+    }
+
+    .quote-card {
+        max-width: 300px;
+        padding: 32px 24px 28px;
     }
 
     .quote-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 16px;
     }
 
     .quote-decoration {
-        font-size: 6rem;
+        font-size: 5rem;
+    }
+
+    .quote-content {
+        padding-top: 36px;
+    }
+
+    .quote-source {
+        font-size: 0.8rem;
+        margin-bottom: 18px;
+    }
+
+    .share-quote-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
     }
 
     .pill-nav {
@@ -659,10 +715,6 @@ body {
 
     .pill-nav .nav-item {
         padding: 9px 14px;
-    }
-
-    .wallpaper-image-wrapper {
-        max-width: 100%;
     }
 
     .calendar-track {
