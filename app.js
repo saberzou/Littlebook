@@ -315,7 +315,7 @@ function generateCoverPlaceholder(title, author) {
 function loadContent() {
     if (!currentData) return;
 
-    const { book, wallpaper, quote } = currentData;
+    const { book, quote } = currentData;
 
     // Book
     document.getElementById('bookCategory').textContent = book.category;
@@ -347,8 +347,8 @@ function loadContent() {
     // Preload adjacent dates' covers
     preloadAdjacentCovers();
 
-    // Wallpaper — fetch from Unsplash API
-    loadWallpaper(wallpaper.photoId);
+    // Wallpaper — fetch from Unsplash wallpapers topic
+    loadWallpaper();
 
     // Quote
     document.getElementById('quoteText').textContent = quote.text;
@@ -372,7 +372,7 @@ function preloadAdjacentCovers() {
     });
 }
 
-async function loadWallpaper(photoId) {
+async function loadWallpaper() {
     const img = document.getElementById('wallpaperImage');
     const creditEl = document.getElementById('wallpaperCredit');
 
@@ -380,7 +380,8 @@ async function loadWallpaper(photoId) {
     img.style.opacity = '0.4';
     creditEl.textContent = 'Loading...';
 
-    const wp = await DailyData.fetchWallpaper(photoId);
+    // Fetch from Unsplash wallpapers topic based on current date
+    const wp = await DailyData.fetchWallpaperForDate(currentDate);
 
     img.src = wp.urlPortrait;
     img.style.opacity = '';
@@ -473,14 +474,13 @@ function initSwipe() {
 //  ACTIONS
 // =============================================
 async function downloadWallpaper() {
-    if (!currentData) return;
-    const { photoId } = currentData.wallpaper;
+    if (!currentDate) return;
 
     // Trigger Unsplash download tracking (API guidelines requirement)
-    await DailyData.trackDownload(photoId);
+    await DailyData.trackDownload(currentDate);
 
     // Get cached wallpaper data for download URL
-    const wp = await DailyData.fetchWallpaper(photoId);
+    const wp = await DailyData.fetchWallpaperForDate(currentDate);
     const link = document.createElement('a');
     link.href = wp.urlPortrait;
     link.download = `littlebook-wallpaper-${currentDate}.jpg`;

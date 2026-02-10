@@ -14,7 +14,6 @@ const dailyData = [
             category: "Strategy",
             desc: "Ancient Chinese military treatise offering timeless wisdom on strategy, leadership and conflict resolution."
         },
-        wallpaper: { photoId: "5E5N49RWtbA" },
         quote: {
             text: "In the midst of chaos, there is also opportunity.",
             source: "Sun Tzu, The Art of War"
@@ -29,7 +28,6 @@ const dailyData = [
             category: "Communication",
             desc: "The classic guide to interpersonal skills that has helped millions build better relationships and succeed in life."
         },
-        wallpaper: { photoId: "OgcJIKRnRC8" },
         quote: {
             text: "You can make more friends in two months by becoming interested in other people than in two years by trying to get people interested in you.",
             source: "Dale Carnegie, How to Win Friends and Influence People"
@@ -44,7 +42,6 @@ const dailyData = [
             category: "Psychology",
             desc: "Nobel laureate dissects two modes of human thought, revealing systematic errors in our decision-making."
         },
-        wallpaper: { photoId: "8xqqEM1Ha7I" },
         quote: {
             text: "We are often overconfident about what we know about the world, and underestimate the role of chance in events.",
             source: "Daniel Kahneman, Thinking, Fast and Slow"
@@ -59,7 +56,6 @@ const dailyData = [
             category: "Self-Improvement",
             desc: "Proven methods for building good habits and breaking bad ones through tiny, incremental changes."
         },
-        wallpaper: { photoId: "1tvoNtVqgns" },
         quote: {
             text: "Improve by 1% each day, and in a year you'll be 37 times better. Decline by 1%, and you'll approach zero.",
             source: "James Clear, Atomic Habits"
@@ -74,7 +70,6 @@ const dailyData = [
             category: "History",
             desc: "A sweeping narrative of humanity from the Cognitive Revolution to the present, challenging everything we thought we knew."
         },
-        wallpaper: { photoId: "tO7KVwv4UyQ" },
         quote: {
             text: "The iron rule of history is that what seems inevitable in hindsight was far from obvious at the time.",
             source: "Yuval Noah Harari, Sapiens"
@@ -89,7 +84,6 @@ const dailyData = [
             category: "Productivity",
             desc: "A guide to rebuilding focus in the age of distraction and producing work of real value."
         },
-        wallpaper: { photoId: "raZDkCx56pg" },
         quote: {
             text: "High-quality work produced = Time spent x Intensity of focus.",
             source: "Cal Newport, Deep Work"
@@ -104,7 +98,6 @@ const dailyData = [
             category: "Philosophy",
             desc: "An introduction to Adlerian psychology through Socratic dialogue, exploring how to find true freedom."
         },
-        wallpaper: { photoId: "eoJ0Lhi-nFA" },
         quote: {
             text: "True freedom is being disliked by other people.",
             source: "Ichiro Kishimi, The Courage to Be Disliked"
@@ -119,7 +112,6 @@ const dailyData = [
             category: "Wealth & Wisdom",
             desc: "Collected wisdom from Silicon Valley's philosopher-investor on wealth creation and finding happiness."
         },
-        wallpaper: { photoId: "nfKmnLEl7bc" },
         quote: {
             text: "Play iterated games. All the returns in life — whether in wealth, relationships, or knowledge — come from compound interest.",
             source: "Eric Jorgenson, The Almanack of Naval Ravikant"
@@ -134,7 +126,6 @@ const dailyData = [
             category: "Philosophy",
             desc: "A radical rethinking of time management for finite humans — embrace your limits to live a meaningful life."
         },
-        wallpaper: { photoId: "B9yFFlVOjP4" },
         quote: {
             text: "The real measure of any time management technique is whether it helps you neglect the right things.",
             source: "Oliver Burkeman, Four Thousand Weeks"
@@ -142,7 +133,64 @@ const dailyData = [
     }
 ];
 
-// Fetch wallpaper data from Unsplash API (with cache)
+// Simple hash from date string to get a consistent index
+function dateHash(dateStr) {
+    let hash = 0;
+    for (let i = 0; i < dateStr.length; i++) {
+        hash = ((hash << 5) - hash) + dateStr.charCodeAt(i);
+        hash |= 0;
+    }
+    return Math.abs(hash);
+}
+
+// Fetch wallpaper from Unsplash wallpapers topic, deterministic per date
+let topicPhotosCache = null;
+
+async function fetchWallpaperForDate(dateStr) {
+    // Return from cache if already fetched for this date
+    if (wallpaperCache[dateStr]) return wallpaperCache[dateStr];
+
+    try {
+        // Fetch wallpapers topic photos (cache the full list)
+        if (!topicPhotosCache) {
+            const page = (dateHash(dateStr) % 5) + 1; // vary pages for diversity
+            const res = await fetch(
+                `${UNSPLASH_API}/topics/wallpapers/photos?per_page=30&page=${page}&order_by=popular&client_id=${UNSPLASH_KEY}`
+            );
+            if (!res.ok) throw new Error(res.status);
+            topicPhotosCache = await res.json();
+        }
+
+        // Pick a photo deterministically based on date
+        const index = dateHash(dateStr) % topicPhotosCache.length;
+        const photo = topicPhotosCache[index];
+
+        const data = {
+            photoId: photo.id,
+            url: photo.urls.regular,
+            urlPortrait: photo.urls.raw + '&w=800&h=1200&fit=crop&crop=center&q=80',
+            credit: photo.user.name,
+            creditUrl: photo.user.links.html + '?utm_source=littlebook&utm_medium=referral',
+            downloadLocation: photo.links.download_location,
+            unsplashUrl: photo.links.html + '?utm_source=littlebook&utm_medium=referral',
+        };
+        wallpaperCache[dateStr] = data;
+        return data;
+    } catch {
+        // Fallback: use Unsplash source random with date seed
+        return {
+            photoId: null,
+            url: `https://source.unsplash.com/800x1200/?wallpaper&sig=${dateHash(dateStr)}`,
+            urlPortrait: `https://source.unsplash.com/800x1200/?wallpaper&sig=${dateHash(dateStr)}`,
+            credit: 'Unsplash',
+            creditUrl: 'https://unsplash.com/?utm_source=littlebook&utm_medium=referral',
+            downloadLocation: null,
+            unsplashUrl: 'https://unsplash.com/t/wallpapers',
+        };
+    }
+}
+
+// Fetch wallpaper by specific photo ID (legacy support)
 async function fetchWallpaper(photoId) {
     if (wallpaperCache[photoId]) return wallpaperCache[photoId];
 
@@ -154,6 +202,7 @@ async function fetchWallpaper(photoId) {
         const photo = await res.json();
 
         const data = {
+            photoId: photo.id,
             url: photo.urls.regular,
             urlPortrait: photo.urls.raw + '&w=800&h=1200&fit=crop&crop=center&q=80',
             credit: photo.user.name,
@@ -164,8 +213,8 @@ async function fetchWallpaper(photoId) {
         wallpaperCache[photoId] = data;
         return data;
     } catch {
-        // Fallback: direct Unsplash image URL (no API)
         return {
+            photoId,
             url: `https://images.unsplash.com/photo-${photoId}?w=800&h=1200&fit=crop&crop=center&q=80`,
             urlPortrait: `https://images.unsplash.com/photo-${photoId}?w=800&h=1200&fit=crop&crop=center&q=80`,
             credit: 'Unsplash',
@@ -177,8 +226,8 @@ async function fetchWallpaper(photoId) {
 }
 
 // Trigger Unsplash download tracking (required by API guidelines)
-async function trackDownload(photoId) {
-    const cached = wallpaperCache[photoId];
+async function trackDownload(dateOrPhotoId) {
+    const cached = wallpaperCache[dateOrPhotoId];
     if (cached && cached.downloadLocation) {
         try {
             await fetch(cached.downloadLocation + '?client_id=' + UNSPLASH_KEY);
@@ -237,6 +286,7 @@ window.DailyData = {
     getAdjacent: getAdjacentData,
     fetchCover: fetchBookCover,
     fetchWallpaper: fetchWallpaper,
+    fetchWallpaperForDate: fetchWallpaperForDate,
     trackDownload: trackDownload,
     getLatestDate: getLatestDate,
     getNextDate: getNextDate,

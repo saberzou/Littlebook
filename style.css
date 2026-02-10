@@ -695,9 +695,9 @@ body {
 
 /* Theme toggle — standalone rounded button */
 .theme-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
+    width: 54px;
+    height: 54px;
+    border-radius: 27px;
     background: var(--nav-bg);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -830,8 +830,9 @@ body {
     }
 
     .theme-btn {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
     }
 
     .calendar-track {
