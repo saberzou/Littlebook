@@ -311,8 +311,8 @@ body {
 
 .book-cover-wrapper {
     position: relative;
-    width: 200px;
-    height: 300px;
+    width: 240px;
+    height: 360px;
     margin-bottom: 20px;
     perspective: 800px;
     flex-shrink: 0;
@@ -738,8 +738,8 @@ body {
     }
 
     .book-cover-wrapper {
-        width: 150px;
-        height: 225px;
+        width: 180px;
+        height: 270px;
         margin-bottom: 20px;
     }
 

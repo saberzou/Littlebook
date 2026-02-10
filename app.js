@@ -302,8 +302,8 @@ function generateCoverPlaceholder(title, author) {
     ).join('');
 
     return 'data:image/svg+xml,' + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300">' +
-        '<rect width="200" height="300" fill="%236B5E55" rx="4"/>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="360">' +
+        '<rect width="240" height="360" fill="%236B5E55" rx="4"/>' +
         '<line x1="30" y1="60" x2="170" y2="60" stroke="%23E8A87C" stroke-width="2" opacity="0.6"/>' +
         titleSvg +
         `<text x="100" y="${titleY + lines.length * 28 + 8}" text-anchor="middle" fill="%23C4BBB5" font-family="sans-serif" font-size="11">${(author || '').replace(/&/g, '&amp;')}</text>` +
