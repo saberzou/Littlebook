@@ -5,7 +5,8 @@ let currentIndex = 0; // 0=book, 1=wallpaper, 2=quote
 let currentDate = null;
 let showingHourglass = false;
 let hourglassTimer = null;
-let hourglassAnimId = null;
+
+
 
 const pages = () => document.querySelectorAll('.page');
 const totalPages = () => pages().length;
@@ -42,10 +43,12 @@ function init() {
     buildCalendar();
 
     // Load content or hourglass
-    if (currentDate === tomorrowStr || !DailyData.getByDate(currentDate)) {
+    if (currentDate === tomorrowStr) {
         showHourglass();
-    } else {
+    } else if (DailyData.getByDate(currentDate)) {
         loadContent();
+    } else {
+        showNoData();
     }
     applySlide(0);
 
@@ -53,13 +56,6 @@ function init() {
     document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach(item => {
         item.addEventListener('click', () => {
             goToSlide(parseInt(item.dataset.index));
-        });
-    });
-
-    // Dot indicators
-    document.querySelectorAll('.dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-            goToSlide(parseInt(dot.dataset.index));
         });
     });
 
@@ -171,24 +167,35 @@ function selectDate(dateStr) {
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
+    // Skip if same date
+    if (dateStr === currentDate) return;
+
     currentDate = dateStr;
     updateCalendarSelection(dateStr);
     updateURL(dateStr);
 
-    if (dateStr === tomorrowStr) {
-        showHourglass();
-    } else {
-        const data = DailyData.getByDate(dateStr);
-        if (data) {
-            currentData = data;
-            hideHourglass();
-            loadContent();
-            goToSlide(0);
-        } else {
-            // Past date with no data available
+    const contentArea = document.getElementById('contentArea');
+    contentArea.classList.add('fade-out');
+
+    setTimeout(() => {
+        if (dateStr === tomorrowStr) {
             showHourglass();
+        } else {
+            const data = DailyData.getByDate(dateStr);
+            if (data) {
+                currentData = data;
+                hideHourglass();
+                loadContent();
+                goToSlide(0);
+            } else {
+                showNoData();
+            }
         }
-    }
+        // Fade back in
+        requestAnimationFrame(() => {
+            contentArea.classList.remove('fade-out');
+        });
+    }, 250);
 }
 
 function initCalendarSwipe() {
@@ -208,228 +215,21 @@ function initCalendarSwipe() {
 }
 
 // =============================================
-//  HOURGLASS — Canvas-based animated hourglass
+//  WAITING OVERLAY — Dog ASCII art + countdown
 // =============================================
-const SAND_COLOR = '#E8A87C';
-const GLASS_COLOR_LIGHT = '#3D3229';
-const GLASS_COLOR_DARK = '#F0EBE6';
-
-// Sand particle system
-let sandParticles = [];
-let fallingGrains = [];
-let topSandLevel = 0;
-let bottomSandLevel = 0;
-
-function initHourglassSand() {
-    sandParticles = [];
-    fallingGrains = [];
-    topSandLevel = 1.0; // 1.0 = full, 0.0 = empty
-    bottomSandLevel = 0.0;
-
-    // Calculate based on time remaining
-    const now = new Date();
-    const tomorrow = new Date(now);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-    const totalMs = 24 * 60 * 60 * 1000;
-    const elapsed = totalMs - (tomorrow - now);
-    const progress = Math.min(1, Math.max(0, elapsed / totalMs));
-
-    topSandLevel = 1.0 - progress;
-    bottomSandLevel = progress;
-}
-
-function drawHourglass(canvas) {
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width;
-    const H = canvas.height;
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const glassColor = isDark ? GLASS_COLOR_DARK : GLASS_COLOR_LIGHT;
-
-    ctx.clearRect(0, 0, W, H);
-
-    // Hourglass dimensions
-    const cx = W / 2;
-    const topY = 20;
-    const botY = H - 20;
-    const midY = H / 2;
-    const halfW = 80;
-    const neckW = 6;
-    const capH = 8;
-
-    // Draw glass outline
-    ctx.strokeStyle = glassColor;
-    ctx.lineWidth = 2.5;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    // Top cap
-    ctx.beginPath();
-    ctx.moveTo(cx - halfW, topY);
-    ctx.lineTo(cx + halfW, topY);
-    ctx.stroke();
-
-    // Bottom cap
-    ctx.beginPath();
-    ctx.moveTo(cx - halfW, botY);
-    ctx.lineTo(cx + halfW, botY);
-    ctx.stroke();
-
-    // Left side
-    ctx.beginPath();
-    ctx.moveTo(cx - halfW, topY + capH);
-    ctx.lineTo(cx - halfW, topY);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(cx - halfW, botY - capH);
-    ctx.lineTo(cx - halfW, botY);
-    ctx.stroke();
-
-    // Right side
-    ctx.beginPath();
-    ctx.moveTo(cx + halfW, topY + capH);
-    ctx.lineTo(cx + halfW, topY);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(cx + halfW, botY - capH);
-    ctx.lineTo(cx + halfW, botY);
-    ctx.stroke();
-
-    // Glass curves — top bulb
-    ctx.beginPath();
-    ctx.moveTo(cx - halfW, topY + capH);
-    ctx.bezierCurveTo(
-        cx - halfW, midY - 20,
-        cx - neckW, midY - 15,
-        cx - neckW, midY
-    );
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(cx + halfW, topY + capH);
-    ctx.bezierCurveTo(
-        cx + halfW, midY - 20,
-        cx + neckW, midY - 15,
-        cx + neckW, midY
-    );
-    ctx.stroke();
-
-    // Glass curves — bottom bulb
-    ctx.beginPath();
-    ctx.moveTo(cx - neckW, midY);
-    ctx.bezierCurveTo(
-        cx - neckW, midY + 15,
-        cx - halfW, midY + 20,
-        cx - halfW, botY - capH
-    );
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(cx + neckW, midY);
-    ctx.bezierCurveTo(
-        cx + neckW, midY + 15,
-        cx + halfW, midY + 20,
-        cx + halfW, botY - capH
-    );
-    ctx.stroke();
-
-    // Draw sand in top bulb
-    if (topSandLevel > 0.02) {
-        const sandTopStart = topY + capH + 10;
-        const sandTopEnd = midY - 18;
-        const sandRange = sandTopEnd - sandTopStart;
-        const sandFillY = sandTopEnd - sandRange * topSandLevel;
-
-        ctx.fillStyle = SAND_COLOR;
-        ctx.globalAlpha = 0.6;
-
-        // Draw sand dots in top
-        for (let y = sandFillY; y < sandTopEnd; y += 6) {
-            const t = (y - sandTopStart) / sandRange;
-            const bulbWidth = halfW * (1 - Math.pow(t - 0.2, 2) * 1.5);
-            const w = Math.max(neckW, Math.min(halfW - 5, bulbWidth));
-            for (let x = cx - w + 4; x < cx + w - 4; x += 6) {
-                const jx = x + (Math.random() - 0.5) * 3;
-                const jy = y + (Math.random() - 0.5) * 3;
-                ctx.beginPath();
-                ctx.arc(jx, jy, 1.8, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        ctx.globalAlpha = 1;
-    }
-
-    // Draw sand in bottom bulb
-    if (bottomSandLevel > 0.02) {
-        const sandBotStart = midY + 18;
-        const sandBotEnd = botY - capH - 10;
-        const sandRange = sandBotEnd - sandBotStart;
-        const sandFillY = sandBotEnd - sandRange * bottomSandLevel;
-
-        ctx.fillStyle = SAND_COLOR;
-        ctx.globalAlpha = 0.6;
-
-        for (let y = sandFillY; y < sandBotEnd; y += 6) {
-            const t = (y - sandBotStart) / sandRange;
-            const bulbWidth = halfW * (1 - Math.pow(t - 0.8, 2) * 1.5);
-            const w = Math.max(neckW, Math.min(halfW - 5, bulbWidth));
-            for (let x = cx - w + 4; x < cx + w - 4; x += 6) {
-                const jx = x + (Math.random() - 0.5) * 3;
-                const jy = y + (Math.random() - 0.5) * 3;
-                ctx.beginPath();
-                ctx.arc(jx, jy, 1.8, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        ctx.globalAlpha = 1;
-    }
-
-    // Falling sand stream through neck
-    if (topSandLevel > 0.02) {
-        ctx.fillStyle = SAND_COLOR;
-        ctx.globalAlpha = 0.7;
-        const streamTop = midY - 12;
-        const streamBot = midY + 12;
-        const time = Date.now() / 150;
-        for (let i = 0; i < 8; i++) {
-            const t = ((time + i * 3) % 24) / 24;
-            const y = streamTop + t * (streamBot - streamTop);
-            const x = cx + (Math.random() - 0.5) * 4;
-            ctx.beginPath();
-            ctx.arc(x, y, 1.5, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-    }
-}
-
-function animateHourglass() {
-    const canvas = document.getElementById('hourglassCanvas');
-    if (!canvas) return;
-
-    // Slowly transfer sand
-    if (topSandLevel > 0) {
-        const rate = 0.0003;
-        topSandLevel = Math.max(0, topSandLevel - rate);
-        bottomSandLevel = Math.min(1, bottomSandLevel + rate);
-    }
-
-    drawHourglass(canvas);
-    hourglassAnimId = requestAnimationFrame(animateHourglass);
-}
 
 function showHourglass() {
     showingHourglass = true;
 
     document.getElementById('swiperContainer').style.display = 'none';
     document.getElementById('hourglassOverlay').style.display = 'flex';
-    document.getElementById('slideIndicator').style.display = 'none';
     document.getElementById('bottomBar').style.display = 'none';
 
-    initHourglassSand();
-    animateHourglass();
+    // Restore countdown elements (may have been hidden by showNoData)
+    document.querySelector('.ascii-dog').style.display = 'block';
+    document.querySelector('.hourglass-label').textContent = "Tomorrow's pick arrives in";
+    document.querySelector('.hourglass-countdown').style.display = '';
+    document.querySelector('.hourglass-hint').textContent = 'Come back tomorrow for a new book, wallpaper & quote';
 
     // Start countdown
     updateCountdown();
@@ -441,11 +241,25 @@ function hideHourglass() {
 
     document.getElementById('swiperContainer').style.display = '';
     document.getElementById('hourglassOverlay').style.display = 'none';
-    document.getElementById('slideIndicator').style.display = '';
     document.getElementById('bottomBar').style.display = '';
 
     if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
-    if (hourglassAnimId) { cancelAnimationFrame(hourglassAnimId); hourglassAnimId = null; }
+}
+
+function showNoData() {
+    showingHourglass = false;
+
+    document.getElementById('swiperContainer').style.display = 'none';
+    document.getElementById('hourglassOverlay').style.display = 'flex';
+    document.getElementById('bottomBar').style.display = 'none';
+
+    // Hide countdown-specific elements, show a simple message
+    document.querySelector('.ascii-dog').style.display = 'block';
+    document.querySelector('.hourglass-label').textContent = 'No content for this day';
+    document.querySelector('.hourglass-countdown').style.display = 'none';
+    document.querySelector('.hourglass-hint').textContent = 'Select another date to explore';
+
+    if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
 }
 
 function updateCountdown() {
@@ -466,6 +280,38 @@ function updateCountdown() {
 // =============================================
 //  CONTENT LOADING
 // =============================================
+function generateCoverPlaceholder(title, author) {
+    // Wrap title text into lines (max ~14 chars per line)
+    const maxChars = 14;
+    const words = title.split(' ');
+    const lines = [];
+    let line = '';
+    words.forEach(w => {
+        if ((line + ' ' + w).trim().length > maxChars) {
+            if (line) lines.push(line.trim());
+            line = w;
+        } else {
+            line = (line + ' ' + w).trim();
+        }
+    });
+    if (line) lines.push(line.trim());
+
+    const titleY = 130 - (lines.length * 12);
+    const titleSvg = lines.map((l, i) =>
+        `<text x="100" y="${titleY + i * 28}" text-anchor="middle" fill="%23F0EBE6" font-family="Georgia, serif" font-size="18" font-weight="600">${l.replace(/&/g, '&amp;')}</text>`
+    ).join('');
+
+    return 'data:image/svg+xml,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300">' +
+        '<rect width="200" height="300" fill="%236B5E55" rx="4"/>' +
+        '<line x1="30" y1="60" x2="170" y2="60" stroke="%23E8A87C" stroke-width="2" opacity="0.6"/>' +
+        titleSvg +
+        `<text x="100" y="${titleY + lines.length * 28 + 8}" text-anchor="middle" fill="%23C4BBB5" font-family="sans-serif" font-size="11">${(author || '').replace(/&/g, '&amp;')}</text>` +
+        '<line x1="30" y1="240" x2="170" y2="240" stroke="%23E8A87C" stroke-width="2" opacity="0.6"/>' +
+        '</svg>'
+    );
+}
+
 function loadContent() {
     if (!currentData) return;
 
@@ -478,17 +324,28 @@ function loadContent() {
     document.getElementById('bookDesc').textContent = book.desc;
 
     const coverImg = document.getElementById('bookCover');
-    coverImg.src = DailyData.fetchCover(book.isbn);
-    coverImg.alt = book.title;
-    coverImg.onerror = function () {
-        this.onerror = null;
-        this.src = 'data:image/svg+xml,' + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" fill="%23F5F0EB">' +
-            '<rect width="200" height="300"/>' +
-            '<text x="100" y="155" text-anchor="middle" fill="%236B5E55" font-family="serif" font-size="16">Littlebook</text>' +
-            '</svg>'
-        );
+    const wrapper = coverImg.closest('.book-cover-wrapper');
+    const coverUrl = DailyData.fetchCover(book.isbn);
+
+    // Show skeleton
+    wrapper.classList.add('loading');
+
+    // Check if already cached by browser
+    const testImg = new Image();
+    testImg.onload = () => {
+        coverImg.src = coverUrl;
+        coverImg.alt = book.title;
+        wrapper.classList.remove('loading');
     };
+    testImg.onerror = () => {
+        coverImg.src = generateCoverPlaceholder(book.title, book.author);
+        coverImg.alt = book.title;
+        wrapper.classList.remove('loading');
+    };
+    testImg.src = coverUrl;
+
+    // Preload adjacent dates' covers
+    preloadAdjacentCovers();
 
     // Wallpaper — fetch from Unsplash API
     loadWallpaper(wallpaper.photoId);
@@ -496,6 +353,23 @@ function loadContent() {
     // Quote
     document.getElementById('quoteText').textContent = quote.text;
     document.getElementById('quoteSource').textContent = `— ${quote.source}`;
+}
+
+function preloadAdjacentCovers() {
+    if (!currentDate) return;
+    const allDates = DailyData.getAllDates();
+    const idx = allDates.indexOf(currentDate);
+    const toPreload = [];
+    if (idx > 0) toPreload.push(allDates[idx - 1]);
+    if (idx < allDates.length - 1) toPreload.push(allDates[idx + 1]);
+
+    toPreload.forEach(date => {
+        const data = DailyData.getByDate(date);
+        if (data && data.book) {
+            const img = new Image();
+            img.src = DailyData.fetchCover(data.book.isbn);
+        }
+    });
 }
 
 async function loadWallpaper(photoId) {
@@ -554,9 +428,6 @@ function goToSlide(index) {
         item.classList.toggle('active', i === index);
     });
 
-    document.querySelectorAll('.dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
 }
 
 // =============================================

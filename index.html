@@ -70,7 +70,11 @@
                     <!-- Quote page -->
                     <div class="page quote-page slide-right" data-index="2">
                         <div class="quote-card">
-                            <div class="quote-decoration">&ldquo;</div>
+                            <div class="quote-decoration">
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+                                </svg>
+                            </div>
                             <div class="quote-content">
                                 <p class="quote-text" id="quoteText">
                                     We are often overconfident about what we know about the world...
@@ -98,7 +102,16 @@
             <!-- Hourglass overlay (shown when tomorrow is selected) -->
             <div class="hourglass-overlay" id="hourglassOverlay">
                 <div class="hourglass-container">
-                    <canvas id="hourglassCanvas" width="240" height="360"></canvas>
+                    <pre class="ascii-dog">        __
+        /  \
+       / ..|\
+      (_\  |_)
+      /  \@'
+     /     \
+ _  /  `   |
+\\/  \  | _\
+ \   /_ || \_
+  \____)|_) \_)</pre>
                     <div class="hourglass-label">Tomorrow's pick arrives in</div>
                     <div class="hourglass-countdown" id="hourglassCountdown">--:--:--</div>
                     <div class="hourglass-hint">Come back tomorrow for a new book, wallpaper & quote</div>
@@ -107,20 +120,13 @@
 
         </div>
 
-        <!-- Dot indicator -->
-        <div class="slide-indicator" id="slideIndicator">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-        </div>
-
         <!-- Bottom bar: pill nav left, theme toggle right -->
         <div class="bottom-bar" id="bottomBar">
             <nav class="pill-nav" id="pillNav">
                 <button class="nav-item active" data-index="0" aria-label="Book">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 2v8l3-3 3 3V2"/>
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
                     </svg>
                 </button>
                 <button class="nav-item" data-index="1" aria-label="Wallpaper">

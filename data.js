@@ -6,6 +6,36 @@ const wallpaperCache = {};
 // Daily data: book + wallpaper (photo ID) + quote
 const dailyData = [
     {
+        date: "2026-02-05",
+        book: {
+            isbn: "9781599869773",
+            title: "The Art of War",
+            author: "Sun Tzu",
+            category: "Strategy",
+            desc: "Ancient Chinese military treatise offering timeless wisdom on strategy, leadership and conflict resolution."
+        },
+        wallpaper: { photoId: "5E5N49RWtbA" },
+        quote: {
+            text: "In the midst of chaos, there is also opportunity.",
+            source: "Sun Tzu, The Art of War"
+        }
+    },
+    {
+        date: "2026-02-06",
+        book: {
+            isbn: "9780671027032",
+            title: "How to Win Friends and Influence People",
+            author: "Dale Carnegie",
+            category: "Communication",
+            desc: "The classic guide to interpersonal skills that has helped millions build better relationships and succeed in life."
+        },
+        wallpaper: { photoId: "OgcJIKRnRC8" },
+        quote: {
+            text: "You can make more friends in two months by becoming interested in other people than in two years by trying to get people interested in you.",
+            source: "Dale Carnegie, How to Win Friends and Influence People"
+        }
+    },
+    {
         date: "2026-02-07",
         book: {
             isbn: "9780374533557",
