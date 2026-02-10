@@ -14,7 +14,7 @@ const dailyData = [
             category: "Psychology",
             desc: "Nobel laureate dissects two modes of human thought, revealing systematic errors in our decision-making."
         },
-        wallpaper: { photoId: "9lTUClNBK_4" },
+        wallpaper: { photoId: "8xqqEM1Ha7I" },
         quote: {
             text: "We are often overconfident about what we know about the world, and underestimate the role of chance in events.",
             source: "Daniel Kahneman, Thinking, Fast and Slow"
@@ -29,7 +29,7 @@ const dailyData = [
             category: "Self-Improvement",
             desc: "Proven methods for building good habits and breaking bad ones through tiny, incremental changes."
         },
-        wallpaper: { photoId: "YLSwjSy7stw" },
+        wallpaper: { photoId: "1tvoNtVqgns" },
         quote: {
             text: "Improve by 1% each day, and in a year you'll be 37 times better. Decline by 1%, and you'll approach zero.",
             source: "James Clear, Atomic Habits"
@@ -44,7 +44,7 @@ const dailyData = [
             category: "History",
             desc: "A sweeping narrative of humanity from the Cognitive Revolution to the present, challenging everything we thought we knew."
         },
-        wallpaper: { photoId: "lgf2D8qmZuw" },
+        wallpaper: { photoId: "tO7KVwv4UyQ" },
         quote: {
             text: "The iron rule of history is that what seems inevitable in hindsight was far from obvious at the time.",
             source: "Yuval Noah Harari, Sapiens"
@@ -59,7 +59,7 @@ const dailyData = [
             category: "Productivity",
             desc: "A guide to rebuilding focus in the age of distraction and producing work of real value."
         },
-        wallpaper: { photoId: "eyFbjKWlR2g" },
+        wallpaper: { photoId: "raZDkCx56pg" },
         quote: {
             text: "High-quality work produced = Time spent x Intensity of focus.",
             source: "Cal Newport, Deep Work"
@@ -74,7 +74,7 @@ const dailyData = [
             category: "Philosophy",
             desc: "An introduction to Adlerian psychology through Socratic dialogue, exploring how to find true freedom."
         },
-        wallpaper: { photoId: "Y02jEX_B0O0" },
+        wallpaper: { photoId: "eoJ0Lhi-nFA" },
         quote: {
             text: "True freedom is being disliked by other people.",
             source: "Ichiro Kishimi, The Courage to Be Disliked"
@@ -89,7 +89,7 @@ const dailyData = [
             category: "Wealth & Wisdom",
             desc: "Collected wisdom from Silicon Valley's philosopher-investor on wealth creation and finding happiness."
         },
-        wallpaper: { photoId: "FXJfTl8xvl0" },
+        wallpaper: { photoId: "nfKmnLEl7bc" },
         quote: {
             text: "Play iterated games. All the returns in life — whether in wealth, relationships, or knowledge — come from compound interest.",
             source: "Eric Jorgenson, The Almanack of Naval Ravikant"
@@ -104,7 +104,7 @@ const dailyData = [
             category: "Philosophy",
             desc: "A radical rethinking of time management for finite humans — embrace your limits to live a meaningful life."
         },
-        wallpaper: { photoId: "mIi8HzvHxWc" },
+        wallpaper: { photoId: "B9yFFlVOjP4" },
         quote: {
             text: "The real measure of any time management technique is whether it helps you neglect the right things.",
             source: "Oliver Burkeman, Four Thousand Weeks"
