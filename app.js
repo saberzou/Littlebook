@@ -5,8 +5,7 @@ let currentIndex = 0; // 0=book, 1=wallpaper, 2=quote
 let currentDate = null;
 let showingHourglass = false;
 let hourglassTimer = null;
-let hourglassAnimFrame = 0;
-let hourglassAnimInterval = null;
+let hourglassAnimId = null;
 
 const pages = () => document.querySelectorAll('.page');
 const totalPages = () => pages().length;
@@ -41,7 +40,7 @@ function init() {
     } else {
         loadContent();
     }
-    applyFan(0);
+    applySlide(0);
 
     // Nav items
     document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach(item => {
@@ -63,6 +62,7 @@ function init() {
     // Buttons
     document.getElementById('downloadBtn').addEventListener('click', downloadWallpaper);
     document.getElementById('shareQuoteBtn').addEventListener('click', shareQuote);
+    document.getElementById('buyBookBtn').addEventListener('click', buyBook);
 
     // Dark mode toggle
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
@@ -86,18 +86,47 @@ function buildCalendar() {
 
     const dates = DailyData.getAllDates();
     const nextDate = DailyData.getNextDate();
-    const allDates = [...dates, nextDate];
-
     const todayStr = new Date().toISOString().split('T')[0];
 
-    allDates.forEach(dateStr => {
+    // Find Monday of the current week
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon, ...
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const monday = new Date(today);
+    monday.setDate(today.getDate() + mondayOffset);
+    const mondayStr = monday.toISOString().split('T')[0];
+
+    // Build the full week from Monday to Sunday + tomorrow if it's after Sunday
+    const weekDates = [];
+    for (let i = 0; i < 7; i++) {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        weekDates.push(d.toISOString().split('T')[0]);
+    }
+
+    // Add tomorrow (next date) if not already in the week
+    if (!weekDates.includes(nextDate)) {
+        weekDates.push(nextDate);
+    }
+
+    // Also include any data dates from before this Monday (for scrolling back)
+    const allCalendarDates = [...new Set([...dates.filter(d => d < mondayStr), ...weekDates])].sort();
+
+    allCalendarDates.forEach(dateStr => {
         const d = new Date(dateStr + 'T12:00:00');
         const isFuture = dateStr === nextDate;
         const isSelected = dateStr === currentDate;
         const isToday = dateStr === todayStr;
+        const hasData = dates.includes(dateStr);
+        const isPastLocked = dateStr < mondayStr && !hasData;
 
         const cell = document.createElement('button');
-        cell.className = 'cal-cell' + (isSelected ? ' selected' : '') + (isFuture ? ' future' : '') + (isToday ? ' today' : '');
+        let cls = 'cal-cell';
+        if (isSelected) cls += ' selected';
+        if (isFuture) cls += ' future';
+        if (isToday) cls += ' today';
+        if (isPastLocked) cls += ' past-locked';
+        cell.className = cls;
         cell.dataset.date = dateStr;
 
         const weekday = document.createElement('span');
@@ -117,7 +146,9 @@ function buildCalendar() {
             cell.appendChild(todayDot);
         }
 
-        cell.addEventListener('click', () => selectDate(dateStr));
+        if (!isPastLocked) {
+            cell.addEventListener('click', () => selectDate(dateStr));
+        }
         track.appendChild(cell);
     });
 
@@ -180,148 +211,217 @@ function initCalendarSwipe() {
 }
 
 // =============================================
-//  HOURGLASS — animated ASCII art + countdown
+//  HOURGLASS — Canvas-based animated hourglass
 // =============================================
-const HOURGLASS_FRAMES = [
-    [
-        '     ╔═══════════╗',
-        '     ║ . . . . . ║',
-        '     ║  . . . .  ║',
-        '     ║   . . .   ║',
-        '     ║    . .    ║',
-        '      \\    .    /',
-        '       \\       /',
-        '        \\     /',
-        '         \\   /',
-        '          \\ /',
-        '           X',
-        '          / \\',
-        '         /   \\',
-        '        /     \\',
-        '       /       \\',
-        '      /         \\',
-        '     ║           ║',
-        '     ║           ║',
-        '     ║           ║',
-        '     ║           ║',
-        '     ╚═══════════╝',
-    ],
-    [
-        '     ╔═══════════╗',
-        '     ║  . . . .  ║',
-        '     ║   . . .   ║',
-        '     ║    . .    ║',
-        '     ║     .     ║',
-        '      \\         /',
-        '       \\       /',
-        '        \\     /',
-        '         \\   /',
-        '          \\ /',
-        '           o',
-        '          / \\',
-        '         /   \\',
-        '        /     \\',
-        '       /       \\',
-        '      /         \\',
-        '     ║           ║',
-        '     ║           ║',
-        '     ║     .     ║',
-        '     ║           ║',
-        '     ╚═══════════╝',
-    ],
-    [
-        '     ╔═══════════╗',
-        '     ║   . . .   ║',
-        '     ║    . .    ║',
-        '     ║     .     ║',
-        '     ║           ║',
-        '      \\         /',
-        '       \\       /',
-        '        \\     /',
-        '         \\   /',
-        '          \\ /',
-        '           o',
-        '          / \\',
-        '         /   \\',
-        '        /     \\',
-        '       /       \\',
-        '      /         \\',
-        '     ║           ║',
-        '     ║     .     ║',
-        '     ║    . .    ║',
-        '     ║           ║',
-        '     ╚═══════════╝',
-    ],
-    [
-        '     ╔═══════════╗',
-        '     ║    . .    ║',
-        '     ║     .     ║',
-        '     ║           ║',
-        '     ║           ║',
-        '      \\         /',
-        '       \\       /',
-        '        \\     /',
-        '         \\   /',
-        '          \\ /',
-        '           o',
-        '          / \\',
-        '         /   \\',
-        '        /     \\',
-        '       /       \\',
-        '      /         \\',
-        '     ║     .     ║',
-        '     ║    . .    ║',
-        '     ║   . . .   ║',
-        '     ║           ║',
-        '     ╚═══════════╝',
-    ],
-    [
-        '     ╔═══════════╗',
-        '     ║     .     ║',
-        '     ║           ║',
-        '     ║           ║',
-        '     ║           ║',
-        '      \\         /',
-        '       \\       /',
-        '        \\     /',
-        '         \\   /',
-        '          \\ /',
-        '           o',
-        '          / \\',
-        '         /   \\',
-        '        /     \\',
-        '       /       \\',
-        '      /         \\',
-        '     ║    . .    ║',
-        '     ║   . . .   ║',
-        '     ║  . . . .  ║',
-        '     ║           ║',
-        '     ╚═══════════╝',
-    ],
-    [
-        '     ╔═══════════╗',
-        '     ║           ║',
-        '     ║           ║',
-        '     ║           ║',
-        '     ║           ║',
-        '      \\         /',
-        '       \\       /',
-        '        \\     /',
-        '         \\   /',
-        '          \\ /',
-        '           o',
-        '          / \\',
-        '         /   \\',
-        '        /     \\',
-        '       /       \\',
-        '      /         \\',
-        '     ║   . . .   ║',
-        '     ║  . . . .  ║',
-        '     ║ . . . . . ║',
-        '     ║. . . . . .║',
-        '     ╚═══════════╝',
-    ],
-];
+const SAND_COLOR = '#E8A87C';
+const GLASS_COLOR_LIGHT = '#3D3229';
+const GLASS_COLOR_DARK = '#F0EBE6';
+
+// Sand particle system
+let sandParticles = [];
+let fallingGrains = [];
+let topSandLevel = 0;
+let bottomSandLevel = 0;
+
+function initHourglassSand() {
+    sandParticles = [];
+    fallingGrains = [];
+    topSandLevel = 1.0; // 1.0 = full, 0.0 = empty
+    bottomSandLevel = 0.0;
+
+    // Calculate based on time remaining
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const totalMs = 24 * 60 * 60 * 1000;
+    const elapsed = totalMs - (tomorrow - now);
+    const progress = Math.min(1, Math.max(0, elapsed / totalMs));
+
+    topSandLevel = 1.0 - progress;
+    bottomSandLevel = progress;
+}
+
+function drawHourglass(canvas) {
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const glassColor = isDark ? GLASS_COLOR_DARK : GLASS_COLOR_LIGHT;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Hourglass dimensions
+    const cx = W / 2;
+    const topY = 20;
+    const botY = H - 20;
+    const midY = H / 2;
+    const halfW = 80;
+    const neckW = 6;
+    const capH = 8;
+
+    // Draw glass outline
+    ctx.strokeStyle = glassColor;
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    // Top cap
+    ctx.beginPath();
+    ctx.moveTo(cx - halfW, topY);
+    ctx.lineTo(cx + halfW, topY);
+    ctx.stroke();
+
+    // Bottom cap
+    ctx.beginPath();
+    ctx.moveTo(cx - halfW, botY);
+    ctx.lineTo(cx + halfW, botY);
+    ctx.stroke();
+
+    // Left side
+    ctx.beginPath();
+    ctx.moveTo(cx - halfW, topY + capH);
+    ctx.lineTo(cx - halfW, topY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx - halfW, botY - capH);
+    ctx.lineTo(cx - halfW, botY);
+    ctx.stroke();
+
+    // Right side
+    ctx.beginPath();
+    ctx.moveTo(cx + halfW, topY + capH);
+    ctx.lineTo(cx + halfW, topY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx + halfW, botY - capH);
+    ctx.lineTo(cx + halfW, botY);
+    ctx.stroke();
+
+    // Glass curves — top bulb
+    ctx.beginPath();
+    ctx.moveTo(cx - halfW, topY + capH);
+    ctx.bezierCurveTo(
+        cx - halfW, midY - 20,
+        cx - neckW, midY - 15,
+        cx - neckW, midY
+    );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx + halfW, topY + capH);
+    ctx.bezierCurveTo(
+        cx + halfW, midY - 20,
+        cx + neckW, midY - 15,
+        cx + neckW, midY
+    );
+    ctx.stroke();
+
+    // Glass curves — bottom bulb
+    ctx.beginPath();
+    ctx.moveTo(cx - neckW, midY);
+    ctx.bezierCurveTo(
+        cx - neckW, midY + 15,
+        cx - halfW, midY + 20,
+        cx - halfW, botY - capH
+    );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx + neckW, midY);
+    ctx.bezierCurveTo(
+        cx + neckW, midY + 15,
+        cx + halfW, midY + 20,
+        cx + halfW, botY - capH
+    );
+    ctx.stroke();
+
+    // Draw sand in top bulb
+    if (topSandLevel > 0.02) {
+        const sandTopStart = topY + capH + 10;
+        const sandTopEnd = midY - 18;
+        const sandRange = sandTopEnd - sandTopStart;
+        const sandFillY = sandTopEnd - sandRange * topSandLevel;
+
+        ctx.fillStyle = SAND_COLOR;
+        ctx.globalAlpha = 0.6;
+
+        // Draw sand dots in top
+        for (let y = sandFillY; y < sandTopEnd; y += 6) {
+            const t = (y - sandTopStart) / sandRange;
+            const bulbWidth = halfW * (1 - Math.pow(t - 0.2, 2) * 1.5);
+            const w = Math.max(neckW, Math.min(halfW - 5, bulbWidth));
+            for (let x = cx - w + 4; x < cx + w - 4; x += 6) {
+                const jx = x + (Math.random() - 0.5) * 3;
+                const jy = y + (Math.random() - 0.5) * 3;
+                ctx.beginPath();
+                ctx.arc(jx, jy, 1.8, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        ctx.globalAlpha = 1;
+    }
+
+    // Draw sand in bottom bulb
+    if (bottomSandLevel > 0.02) {
+        const sandBotStart = midY + 18;
+        const sandBotEnd = botY - capH - 10;
+        const sandRange = sandBotEnd - sandBotStart;
+        const sandFillY = sandBotEnd - sandRange * bottomSandLevel;
+
+        ctx.fillStyle = SAND_COLOR;
+        ctx.globalAlpha = 0.6;
+
+        for (let y = sandFillY; y < sandBotEnd; y += 6) {
+            const t = (y - sandBotStart) / sandRange;
+            const bulbWidth = halfW * (1 - Math.pow(t - 0.8, 2) * 1.5);
+            const w = Math.max(neckW, Math.min(halfW - 5, bulbWidth));
+            for (let x = cx - w + 4; x < cx + w - 4; x += 6) {
+                const jx = x + (Math.random() - 0.5) * 3;
+                const jy = y + (Math.random() - 0.5) * 3;
+                ctx.beginPath();
+                ctx.arc(jx, jy, 1.8, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        ctx.globalAlpha = 1;
+    }
+
+    // Falling sand stream through neck
+    if (topSandLevel > 0.02) {
+        ctx.fillStyle = SAND_COLOR;
+        ctx.globalAlpha = 0.7;
+        const streamTop = midY - 12;
+        const streamBot = midY + 12;
+        const time = Date.now() / 150;
+        for (let i = 0; i < 8; i++) {
+            const t = ((time + i * 3) % 24) / 24;
+            const y = streamTop + t * (streamBot - streamTop);
+            const x = cx + (Math.random() - 0.5) * 4;
+            ctx.beginPath();
+            ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+    }
+}
+
+function animateHourglass() {
+    const canvas = document.getElementById('hourglassCanvas');
+    if (!canvas) return;
+
+    // Slowly transfer sand
+    if (topSandLevel > 0) {
+        const rate = 0.0003;
+        topSandLevel = Math.max(0, topSandLevel - rate);
+        bottomSandLevel = Math.min(1, bottomSandLevel + rate);
+    }
+
+    drawHourglass(canvas);
+    hourglassAnimId = requestAnimationFrame(animateHourglass);
+}
 
 function showHourglass() {
     showingHourglass = true;
@@ -329,15 +429,10 @@ function showHourglass() {
     document.getElementById('swiperContainer').style.display = 'none';
     document.getElementById('hourglassOverlay').style.display = 'flex';
     document.getElementById('slideIndicator').style.display = 'none';
-    document.getElementById('pillNav').style.display = 'none';
+    document.getElementById('bottomBar').style.display = 'none';
 
-    // Start animation
-    hourglassAnimFrame = 0;
-    renderHourglassFrame();
-    hourglassAnimInterval = setInterval(() => {
-        hourglassAnimFrame = (hourglassAnimFrame + 1) % HOURGLASS_FRAMES.length;
-        renderHourglassFrame();
-    }, 800);
+    initHourglassSand();
+    animateHourglass();
 
     // Start countdown
     updateCountdown();
@@ -350,15 +445,10 @@ function hideHourglass() {
     document.getElementById('swiperContainer').style.display = '';
     document.getElementById('hourglassOverlay').style.display = 'none';
     document.getElementById('slideIndicator').style.display = '';
-    document.getElementById('pillNav').style.display = '';
+    document.getElementById('bottomBar').style.display = '';
 
     if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
-    if (hourglassAnimInterval) { clearInterval(hourglassAnimInterval); hourglassAnimInterval = null; }
-}
-
-function renderHourglassFrame() {
-    const el = document.getElementById('hourglassArt');
-    el.textContent = HOURGLASS_FRAMES[hourglassAnimFrame].join('\n');
+    if (hourglassAnimId) { cancelAnimationFrame(hourglassAnimId); hourglassAnimId = null; }
 }
 
 function updateCountdown() {
@@ -445,14 +535,14 @@ async function loadWallpaper(photoId) {
 }
 
 // =============================================
-//  FAN TRANSITION
+//  SLIDE TRANSITION (left/right)
 // =============================================
-function applyFan(activeIndex) {
+function applySlide(activeIndex) {
     pages().forEach((page, i) => {
-        page.classList.remove('fan-left', 'fan-center', 'fan-right');
-        if (i < activeIndex) page.classList.add('fan-left');
-        else if (i === activeIndex) page.classList.add('fan-center');
-        else page.classList.add('fan-right');
+        page.classList.remove('slide-left', 'slide-center', 'slide-right');
+        if (i < activeIndex) page.classList.add('slide-left');
+        else if (i === activeIndex) page.classList.add('slide-center');
+        else page.classList.add('slide-right');
     });
 }
 
@@ -461,7 +551,7 @@ function goToSlide(index) {
     const max = totalPages() - 1;
     if (index < 0 || index > max) return;
     currentIndex = index;
-    applyFan(index);
+    applySlide(index);
 
     document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach((item, i) => {
         item.classList.toggle('active', i === index);
@@ -528,6 +618,13 @@ async function downloadWallpaper() {
     link.download = `littlebook-wallpaper-${currentDate}.jpg`;
     link.target = '_blank';
     link.click();
+}
+
+function buyBook() {
+    if (!currentData) return;
+    const { isbn } = currentData.book;
+    const url = `https://www.amazon.com/dp/${isbn}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
 }
 
 function shareQuote() {

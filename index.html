@@ -11,7 +11,6 @@
 <body>
     <div class="app-container">
 
-
         <!-- Horizontal swipeable calendar strip -->
         <div class="calendar-strip" id="calendarStrip">
             <div class="calendar-track" id="calendarTrack">
@@ -27,7 +26,7 @@
                 <div class="swiper-wrapper" id="swiperWrapper">
 
                     <!-- Book page -->
-                    <div class="page book-page fan-center" data-index="0">
+                    <div class="page book-page slide-center" data-index="0">
                         <div class="book-cover-wrapper">
                             <div class="book-spine"></div>
                             <img id="bookCover" src="" alt="Book cover">
@@ -38,16 +37,26 @@
                             <p class="book-author" id="bookAuthor">Daniel Kahneman</p>
                             <p class="book-desc" id="bookDesc">Nobel laureate dissects two modes of human thought...</p>
                         </div>
+                        <div class="book-actions">
+                            <button class="line-btn" id="buyBookBtn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                                Buy Book
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Wallpaper page -->
-                    <div class="page wallpaper-page fan-right" data-index="1">
+                    <div class="page wallpaper-page slide-right" data-index="1">
                         <div class="wallpaper-image-wrapper">
                             <img id="wallpaperImage" src="" alt="Daily wallpaper">
                         </div>
                         <div class="wallpaper-actions">
-                            <button class="download-btn" id="downloadBtn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <button class="line-btn" id="downloadBtn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                     <polyline points="7 10 12 15 17 10"></polyline>
                                     <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -59,7 +68,7 @@
                     </div>
 
                     <!-- Quote page -->
-                    <div class="page quote-page fan-right" data-index="2">
+                    <div class="page quote-page slide-right" data-index="2">
                         <div class="quote-card">
                             <div class="quote-decoration">&ldquo;</div>
                             <div class="quote-content">
@@ -67,17 +76,19 @@
                                     We are often overconfident about what we know about the world...
                                 </p>
                                 <p class="quote-source" id="quoteSource">— Daniel Kahneman</p>
-                                <button class="share-quote-btn" id="shareQuoteBtn">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="18" cy="5" r="3"></circle>
-                                        <circle cx="6" cy="12" r="3"></circle>
-                                        <circle cx="18" cy="19" r="3"></circle>
-                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                    </svg>
-                                    Share Quote
-                                </button>
                             </div>
+                        </div>
+                        <div class="quote-actions">
+                            <button class="line-btn" id="shareQuoteBtn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                                Share Quote
+                            </button>
                         </div>
                     </div>
 
@@ -87,7 +98,7 @@
             <!-- Hourglass overlay (shown when tomorrow is selected) -->
             <div class="hourglass-overlay" id="hourglassOverlay">
                 <div class="hourglass-container">
-                    <pre class="hourglass-art" id="hourglassArt"></pre>
+                    <canvas id="hourglassCanvas" width="240" height="360"></canvas>
                     <div class="hourglass-label">Tomorrow's pick arrives in</div>
                     <div class="hourglass-countdown" id="hourglassCountdown">--:--:--</div>
                     <div class="hourglass-hint">Come back tomorrow for a new book, wallpaper & quote</div>
@@ -103,36 +114,34 @@
             <span class="dot" data-index="2"></span>
         </div>
 
-        <!-- iOS 26 pill nav -->
-        <nav class="pill-nav" id="pillNav">
-            <button class="nav-item active" data-index="0">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-                <span class="nav-label">Book</span>
-            </button>
-            <button class="nav-item" data-index="1">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                    <polyline points="21 15 16 10 5 21"></polyline>
-                </svg>
-                <span class="nav-label">Wallpaper</span>
-            </button>
-            <button class="nav-item" data-index="2">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"></path>
-                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z"></path>
-                </svg>
-                <span class="nav-label">Quote</span>
-            </button>
-            <span class="nav-divider"></span>
-            <button class="nav-item nav-theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <svg class="nav-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <!-- Bottom bar: pill nav left, theme toggle right -->
+        <div class="bottom-bar" id="bottomBar">
+            <nav class="pill-nav" id="pillNav">
+                <button class="nav-item active" data-index="0" aria-label="Book">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </button>
+                <button class="nav-item" data-index="1" aria-label="Wallpaper">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                </button>
+                <button class="nav-item" data-index="2" aria-label="Quote">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"></path>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z"></path>
+                    </svg>
+                </button>
+            </nav>
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg class="nav-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -144,7 +153,7 @@
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
             </button>
-        </nav>
+        </div>
 
     </div>
 
