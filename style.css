@@ -70,26 +70,6 @@ body {
     position: relative;
 }
 
-/* Theme toggle (inside pill nav) */
-.nav-theme-toggle .icon-sun { display: none; }
-.nav-theme-toggle .icon-moon { display: flex; }
-
-[data-theme="dark"] .nav-theme-toggle .icon-sun { display: flex; }
-[data-theme="dark"] .nav-theme-toggle .icon-moon { display: none; }
-
-.nav-theme-toggle {
-    padding: 10px 14px;
-}
-
-.nav-divider {
-    width: 1px;
-    height: 20px;
-    background: var(--border);
-    align-self: center;
-    margin: 0 2px;
-    flex-shrink: 0;
-}
-
 /* =============================================
    CALENDAR STRIP — swipeable horizontal dates
    ============================================= */
@@ -147,12 +127,24 @@ body {
     box-shadow: 0 2px 12px rgba(232, 168, 124, 0.4);
 }
 
+/* Tomorrow / future dates: grayed out */
 .cal-cell.future {
-    border: 1.5px dashed var(--text-tertiary);
+    color: var(--text-tertiary);
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .cal-cell.future.selected {
-    border-color: var(--accent);
+    opacity: 1;
+    color: #FFFFFF;
+}
+
+/* Past inaccessible dates */
+.cal-cell.past-locked {
+    color: var(--text-tertiary);
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
 }
 
 .cal-cell.no-data {
@@ -197,7 +189,7 @@ body {
 }
 
 /* =============================================
-   HOURGLASS OVERLAY — ASCII art countdown
+   HOURGLASS OVERLAY — canvas countdown
    ============================================= */
 .hourglass-overlay {
     display: none;
@@ -214,18 +206,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
 
-.hourglass-art {
-    font-family: 'Courier New', 'Menlo', monospace;
-    font-size: 0.65rem;
-    line-height: 1.25;
-    color: var(--accent);
-    text-align: center;
-    white-space: pre;
-    letter-spacing: 0.5px;
-    user-select: none;
+#hourglassCanvas {
+    display: block;
 }
 
 .hourglass-label {
@@ -254,14 +239,13 @@ body {
 }
 
 /* =============================================
-   FAN / ROTATE TRANSITION
-   Pages pivot from bottom-center like a hand of cards
+   HORIZONTAL SLIDE TRANSITION
+   Pages slide left/right
    ============================================= */
 .swiper-container {
     flex: 1;
     overflow: hidden;
     position: relative;
-    perspective: 1200px;
     width: 100%;
     height: 100%;
 }
@@ -280,34 +264,33 @@ body {
     justify-content: center;
     padding: 8px 24px 100px;
     overflow-y: auto;
-    transform-origin: 50% 120%;
-    transition: transform 0.55s cubic-bezier(0.4, 0, 0.15, 1),
-                opacity 0.55s cubic-bezier(0.4, 0, 0.15, 1);
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.15, 1),
+                opacity 0.45s cubic-bezier(0.4, 0, 0.15, 1);
     will-change: transform, opacity;
 }
 
-/* Fan positions: left / center / right */
-.page.fan-left {
-    transform: rotate(-18deg) scale(0.88);
+/* Slide positions: left / center / right */
+.page.slide-left {
+    transform: translateX(-100%);
     opacity: 0;
     pointer-events: none;
 }
 
-.page.fan-center {
-    transform: rotate(0deg) scale(1);
+.page.slide-center {
+    transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
     z-index: 2;
 }
 
-.page.fan-right {
-    transform: rotate(18deg) scale(0.88);
+.page.slide-right {
+    transform: translateX(100%);
     opacity: 0;
     pointer-events: none;
 }
 
 /* =============================================
-   BOOK PAGE — no container card, open layout
+   BOOK PAGE — fixed cover position
    ============================================= */
 .book-page {
     flex-direction: column;
@@ -319,7 +302,7 @@ body {
     position: relative;
     width: 200px;
     height: 300px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     perspective: 800px;
     flex-shrink: 0;
 }
@@ -356,6 +339,13 @@ body {
 .book-meta {
     text-align: center;
     max-width: 360px;
+    flex-shrink: 0;
+    height: 160px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .tag {
@@ -366,7 +356,7 @@ body {
     background: var(--accent-bg);
     padding: 5px 14px;
     border-radius: var(--radius-pill);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
@@ -376,20 +366,62 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     line-height: 1.4;
 }
 
 .book-author {
     font-size: 0.9rem;
     color: var(--text-secondary);
-    margin-bottom: 14px;
+    margin-bottom: 8px;
 }
 
 .book-desc {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-actions {
+    margin-top: 16px;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+}
+
+/* =============================================
+   UNIFIED LINE BUTTON STYLE
+   ============================================= */
+.line-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-secondary);
+    padding: 12px 20px;
+    border-radius: var(--radius-button);
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.line-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.line-btn:active {
+    transform: scale(0.98);
 }
 
 /* =============================================
@@ -428,28 +460,6 @@ body {
     max-width: 360px;
 }
 
-.download-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    background: var(--accent);
-    color: #FFFFFF;
-    border: none;
-    padding: 14px 20px;
-    border-radius: var(--radius-button);
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.download-btn:hover {
-    background: var(--accent-dark);
-    transform: translateY(-1px);
-}
-
 .wallpaper-credit {
     font-size: 0.75rem;
     color: var(--text-tertiary);
@@ -471,13 +481,16 @@ body {
    QUOTE PAGE — card with large decorative mark
    ============================================= */
 .quote-page {
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 8px;
 }
 
 .quote-card {
     width: 100%;
     max-width: 360px;
+    min-height: 420px;
     background: var(--surface);
     border-radius: var(--radius-card);
     padding: 40px 32px 36px;
@@ -485,27 +498,29 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-/* Large decorative quotation mark */
+/* Large decorative quotation mark — centered */
 .quote-decoration {
     font-family: 'Noto Serif SC', 'Georgia', serif;
     font-size: 8rem;
     font-weight: 700;
-    line-height: 1;
+    line-height: 0.8;
     color: var(--quote-mark-color);
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
     pointer-events: none;
     user-select: none;
+    margin-bottom: -20px;
 }
 
 .quote-content {
     position: relative;
     z-index: 1;
-    padding-top: 48px;
 }
 
 .quote-text {
@@ -521,27 +536,14 @@ body {
     font-size: 0.85rem;
     color: var(--text-secondary);
     font-style: italic;
-    margin-bottom: 24px;
 }
 
-.share-quote-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: 1.5px solid var(--border);
-    color: var(--text-secondary);
-    padding: 10px 20px;
-    border-radius: var(--radius-button);
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.share-quote-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+.quote-actions {
+    margin-top: 16px;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
 }
 
 /* =============================================
@@ -571,14 +573,22 @@ body {
 }
 
 /* =============================================
-   iOS 26 PILL NAV BAR
-   Floating capsule with smooth segmented control
+   BOTTOM BAR — nav left, theme toggle right
    ============================================= */
-.pill-nav {
+.bottom-bar {
     position: fixed;
     bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* iOS 26 PILL NAV BAR — icon only */
+.pill-nav {
     display: flex;
     gap: 4px;
     background: var(--nav-bg);
@@ -587,27 +597,24 @@ body {
     border: 1px solid var(--border);
     border-radius: 28px;
     padding: 5px;
-    z-index: 100;
     box-shadow: var(--shadow-nav);
+    pointer-events: auto;
 }
 
 .pill-nav .nav-item {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    padding: 10px 18px;
-    border-radius: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 0.8rem;
-    font-weight: 500;
     font-family: inherit;
-    white-space: nowrap;
-    text-decoration: none;
 }
 
 .pill-nav .nav-item:hover {
@@ -621,15 +628,46 @@ body {
 }
 
 .pill-nav .nav-item .nav-icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
 }
 
-.pill-nav .nav-item .nav-label {
-    font-size: 0.8rem;
-    font-weight: 600;
+/* Theme toggle — standalone rounded button */
+.theme-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-nav);
+    transition: all 0.3s;
+    pointer-events: auto;
 }
+
+.theme-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.theme-btn .icon-sun,
+.theme-btn .icon-moon {
+    width: 20px;
+    height: 20px;
+}
+
+.theme-btn .icon-sun { display: none; }
+.theme-btn .icon-moon { display: block; }
+
+[data-theme="dark"] .theme-btn .icon-sun { display: block; }
+[data-theme="dark"] .theme-btn .icon-moon { display: none; }
 
 /* =============================================
    RESPONSIVE — Mobile
@@ -643,6 +681,10 @@ body {
         width: 150px;
         height: 225px;
         margin-bottom: 20px;
+    }
+
+    .book-meta {
+        height: 140px;
     }
 
     .book-title {
@@ -708,13 +750,28 @@ body {
         font-size: 0.8rem;
     }
 
-    .pill-nav {
+    .quote-card {
+        min-height: 360px;
+    }
+
+    .bottom-bar {
         bottom: 16px;
+        left: 16px;
+        right: 16px;
+    }
+
+    .pill-nav {
         padding: 4px;
     }
 
     .pill-nav .nav-item {
-        padding: 9px 14px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .theme-btn {
+        width: 40px;
+        height: 40px;
     }
 
     .calendar-track {
@@ -724,10 +781,6 @@ body {
     .cal-cell {
         min-width: 48px;
         height: 58px;
-    }
-
-    .hourglass-art {
-        font-size: 0.55rem;
     }
 
     .hourglass-countdown {
@@ -919,8 +972,8 @@ body {
     }
 }
 
-.page.fan-center .book-meta,
-.page.fan-center .wallpaper-actions,
-.page.fan-center .quote-content {
+.page.slide-center .book-meta,
+.page.slide-center .wallpaper-actions,
+.page.slide-center .quote-content {
     animation: fadeIn 0.5s ease 0.15s both;
 }
