@@ -298,16 +298,16 @@ function generateCoverPlaceholder(title, author) {
 
     const titleY = 130 - (lines.length * 12);
     const titleSvg = lines.map((l, i) =>
-        `<text x="100" y="${titleY + i * 28}" text-anchor="middle" fill="%23F0EBE6" font-family="Georgia, serif" font-size="18" font-weight="600">${l.replace(/&/g, '&amp;')}</text>`
+        `<text x="100" y="${titleY + i * 28}" text-anchor="middle" fill="#EDEDED" font-family="system-ui, sans-serif" font-size="18" font-weight="600">${l.replace(/&/g, '&amp;')}</text>`
     ).join('');
 
     return 'data:image/svg+xml,' + encodeURIComponent(
         '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="360">' +
-        '<rect width="240" height="360" fill="%236B5E55" rx="4"/>' +
-        '<line x1="30" y1="60" x2="170" y2="60" stroke="%23E8A87C" stroke-width="2" opacity="0.6"/>' +
+        '<rect width="240" height="360" fill="#171717" rx="4"/>' +
+        '<line x1="30" y1="60" x2="170" y2="60" stroke="#333333" stroke-width="1" opacity="0.8"/>' +
         titleSvg +
-        `<text x="100" y="${titleY + lines.length * 28 + 8}" text-anchor="middle" fill="%23C4BBB5" font-family="sans-serif" font-size="11">${(author || '').replace(/&/g, '&amp;')}</text>` +
-        '<line x1="30" y1="240" x2="170" y2="240" stroke="%23E8A87C" stroke-width="2" opacity="0.6"/>' +
+        `<text x="100" y="${titleY + lines.length * 28 + 8}" text-anchor="middle" fill="#888888" font-family="system-ui, sans-serif" font-size="11">${(author || '').replace(/&/g, '&amp;')}</text>` +
+        '<line x1="30" y1="240" x2="170" y2="240" stroke="#333333" stroke-width="1" opacity="0.8"/>' +
         '</svg>'
     );
 }
@@ -324,25 +324,55 @@ function loadContent() {
     document.getElementById('bookDesc').textContent = book.desc;
 
     const coverImg = document.getElementById('bookCover');
-    const wrapper = coverImg.closest('.book-cover-wrapper');
+    const bookFront = coverImg.closest('.book-front');
     const coverUrl = DailyData.fetchCover(book.isbn);
 
     // Show skeleton
-    wrapper.classList.add('loading');
+    bookFront.classList.add('loading');
 
-    // Check if already cached by browser
-    const testImg = new Image();
-    testImg.onload = () => {
-        coverImg.src = coverUrl;
-        coverImg.alt = book.title;
-        wrapper.classList.remove('loading');
-    };
-    testImg.onerror = () => {
+    const showPlaceholder = () => {
         coverImg.src = generateCoverPlaceholder(book.title, book.author);
         coverImg.alt = book.title;
-        wrapper.classList.remove('loading');
+        bookFront.classList.remove('loading');
+    };
+
+    // Timeout fallback in case image hangs
+    const timeout = setTimeout(showPlaceholder, 3000);
+
+    const testImg = new Image();
+    testImg.onload = () => {
+        clearTimeout(timeout);
+        // Verify image has actual dimensions (not a 1x1 error pixel)
+        if (testImg.naturalWidth > 10 && testImg.naturalHeight > 10) {
+            coverImg.src = coverUrl;
+            coverImg.alt = book.title;
+            bookFront.classList.remove('loading');
+        } else {
+            showPlaceholder();
+        }
+    };
+    testImg.onerror = () => {
+        clearTimeout(timeout);
+        showPlaceholder();
     };
     testImg.src = coverUrl;
+
+    // Set book rotation angle based on date
+    const bookAngles = [
+        { rotY: -25, rotX: 8 },
+        { rotY: -18, rotX: 5 },
+        { rotY: -30, rotX: 10 },
+        { rotY: -12, rotX: 6 },
+        { rotY: -22, rotX: 12 },
+        { rotY: -28, rotX: 4 },
+        { rotY: -15, rotX: 9 },
+    ];
+    const dayHash = currentDate.split('').reduce((h, c) => ((h << 5) - h) + c.charCodeAt(0), 0);
+    const angle = bookAngles[Math.abs(dayHash) % bookAngles.length];
+    const book3d = document.querySelector('.book-3d');
+    if (book3d) {
+        book3d.style.transform = `rotateY(${angle.rotY}deg) rotateX(${angle.rotX}deg)`;
+    }
 
     // Preload adjacent dates' covers
     preloadAdjacentCovers();

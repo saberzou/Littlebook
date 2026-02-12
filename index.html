@@ -6,7 +6,7 @@
     <title>Littlebook — Daily Book, Wallpaper & Quote</title>
     <meta name="description" content="A curated daily book recommendation with a beautiful wallpaper and an inspiring quote.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
@@ -27,9 +27,26 @@
 
                     <!-- Book page -->
                     <div class="page book-page slide-center" data-index="0">
-                        <div class="book-cover-wrapper">
-                            <div class="book-spine"></div>
-                            <img id="bookCover" src="" alt="Book cover">
+                        <div class="book-scene">
+                            <div class="book-3d">
+                                <!-- Front cover -->
+                                <div class="book-face book-front">
+                                    <img id="bookCover" src="" alt="Book cover">
+                                </div>
+                                <!-- Inner pages -->
+                                <div class="book-face book-page-layer book-page-1"></div>
+                                <div class="book-face book-page-layer book-page-2"></div>
+                                <!-- Spine -->
+                                <div class="book-face book-spine"></div>
+                                <!-- Pages (right side) -->
+                                <div class="book-face book-pages"></div>
+                                <!-- Back cover -->
+                                <div class="book-face book-back"></div>
+                                <!-- Top pages -->
+                                <div class="book-face book-top"></div>
+                                <!-- Bottom pages -->
+                                <div class="book-face book-bottom"></div>
+                            </div>
                         </div>
                         <div class="book-meta">
                             <span class="tag" id="bookCategory">Psychology</span>
