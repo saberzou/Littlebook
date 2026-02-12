@@ -52,6 +52,9 @@ function init() {
     }
     applySlide(0);
 
+    // Position nav slider on init
+    requestAnimationFrame(() => updateNavSlider(0));
+
     // Nav items
     document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach(item => {
         item.addEventListener('click', () => {
@@ -78,6 +81,9 @@ function init() {
 
     // Calendar swipe
     initCalendarSwipe();
+
+    // Reposition nav slider on resize
+    window.addEventListener('resize', () => updateNavSlider(currentIndex));
 }
 
 // =============================================
@@ -437,6 +443,21 @@ async function loadWallpaper() {
 }
 
 // =============================================
+//  NAV SLIDER
+// =============================================
+function updateNavSlider(index) {
+    const slider = document.getElementById('navSlider');
+    const items = document.querySelectorAll('.pill-nav .nav-item[data-index]');
+    if (!slider || !items[index]) return;
+    const nav = document.getElementById('pillNav');
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = items[index].getBoundingClientRect();
+    slider.style.width = itemRect.width + 'px';
+    slider.style.height = itemRect.height + 'px';
+    slider.style.transform = 'translateX(' + (itemRect.left - navRect.left - parseFloat(getComputedStyle(nav).paddingLeft)) + 'px)';
+}
+
+// =============================================
 //  SLIDE TRANSITION (left/right)
 // =============================================
 function applySlide(activeIndex) {
@@ -458,6 +479,9 @@ function goToSlide(index) {
     document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach((item, i) => {
         item.classList.toggle('active', i === index);
     });
+
+    // Slide the nav indicator
+    updateNavSlider(index);
 
 }
 
