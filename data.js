@@ -132,6 +132,20 @@ const dailyData = [
         }
     },
     {
+        date: "2026-02-14",
+        book: {
+            isbn: "9780062457714",
+            title: "The Course of Love",
+            author: "Alain de Botton",
+            category: "Fiction",
+            desc: "A novel that explores what happens after the initial thrill of falling in love — the long, complex journey of sustaining it."
+        },
+        quote: {
+            text: "Love is a skill, not just an enthusiasm.",
+            source: "Alain de Botton, The Course of Love"
+        }
+    },
+    {
         date: "2026-02-15",
         book: {
             isbn: "9780465050659",
