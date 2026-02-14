@@ -158,6 +158,20 @@ const dailyData = [
             text: "Good design is actually a lot harder to notice than poor design, in part because good designs fit our needs so well that the design is invisible.",
             source: "Don Norman, The Design of Everyday Things"
         }
+    },
+    {
+        date: "2026-02-16",
+        book: {
+            isbn: "9780761169253",
+            title: "Steal Like an Artist",
+            author: "Austin Kleon",
+            category: "Creativity",
+            desc: "A manifesto showing how developing your creative voice means learning from and building on the work you admire."
+        },
+        quote: {
+            text: "The best way to come up with good ideas is to come up with lots of ideas.",
+            source: "Austin Kleon, Steal Like an Artist"
+        }
     }
 ];
 
