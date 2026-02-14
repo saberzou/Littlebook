@@ -130,6 +130,20 @@ const dailyData = [
             text: "The real measure of any time management technique is whether it helps you neglect the right things.",
             source: "Oliver Burkeman, Four Thousand Weeks"
         }
+    },
+    {
+        date: "2026-02-15",
+        book: {
+            isbn: "9780465050659",
+            title: "The Design of Everyday Things",
+            author: "Don Norman",
+            category: "Design",
+            desc: "A seminal exploration of user-centered design and how good design becomes invisible to the user."
+        },
+        quote: {
+            text: "Good design is actually a lot harder to notice than poor design, in part because good designs fit our needs so well that the design is invisible.",
+            source: "Don Norman, The Design of Everyday Things"
+        }
     }
 ];
 
