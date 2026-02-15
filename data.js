@@ -172,6 +172,20 @@ const dailyData = [
             text: "The best way to come up with good ideas is to come up with lots of ideas.",
             source: "Austin Kleon, Steal Like an Artist"
         }
+    },
+    {
+        date: "2026-02-17",
+        book: {
+            isbn: "9780465026562",
+            title: "Gödel, Escher, Bach",
+            author: "Douglas Hofstadter",
+            category: "Art & Science",
+            desc: "A landmark exploration of consciousness, patterns, and self-reference through music, art, and mathematics."
+        },
+        quote: {
+            text: "We are strange loops: cycling systems which strange-loop back to themselves in a complex, self-reinforcing way.",
+            source: "Douglas Hofstadter, Gödel, Escher, Bach"
+        }
     }
 ];
 
