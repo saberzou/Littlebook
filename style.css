@@ -800,13 +800,13 @@ body {
 /* iOS 26 PILL NAV BAR — icon only */
 .pill-nav {
     display: flex;
-    gap: 10px;
+    gap: 4px;
     background: var(--nav-bg);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--border);
     border-radius: 28px;
-    padding: 5px 8px;
+    padding: 5px;
     box-shadow: var(--shadow-nav);
     pointer-events: auto;
     position: relative;
@@ -816,7 +816,7 @@ body {
 .pill-nav .nav-slider {
     position: absolute;
     top: 5px;
-    left: 8px;
+    left: 5px;
     width: 56px;
     height: 44px;
     border-radius: 22px;
