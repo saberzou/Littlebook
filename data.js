@@ -186,6 +186,20 @@ const dailyData = [
             text: "We are strange loops: cycling systems which strange-loop back to themselves in a complex, self-reinforcing way.",
             source: "Douglas Hofstadter, Gödel, Escher, Bach"
         }
+    },
+    {
+        date: "2026-02-18",
+        book: {
+            isbn: "9781603580557",
+            title: "Thinking in Systems: A Primer",
+            author: "Donella H. Meadows",
+            category: "Systems & Science",
+            desc: "An elegant introduction to systems thinking and how to understand complex interconnected problems."
+        },
+        quote: {
+            text: "The behavior of a system cannot be known just by knowing the elements of which the system is made.",
+            source: "Donella H. Meadows, Thinking in Systems"
+        }
     }
 ];
 
