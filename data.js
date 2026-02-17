@@ -200,6 +200,20 @@ const dailyData = [
             text: "The behavior of a system cannot be known just by knowing the elements of which the system is made.",
             source: "Donella H. Meadows, Thinking in Systems"
         }
+    },
+    {
+        date: "2026-02-19",
+        book: {
+            isbn: "9780804139298",
+            title: "Zero to One",
+            author: "Peter Thiel",
+            category: "Business",
+            desc: "A guide to building the future by creating something genuinely new rather than copying what exists."
+        },
+        quote: {
+            text: "The most contrarian thing of all is not to oppose the crowd but to think for yourself.",
+            source: "Peter Thiel, Zero to One"
+        }
     }
 ];
 
