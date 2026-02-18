@@ -214,6 +214,20 @@ const dailyData = [
             text: "The most contrarian thing of all is not to oppose the crowd but to think for yourself.",
             source: "Peter Thiel, Zero to One"
         }
+    },
+    {
+        date: "2026-02-20",
+        book: {
+            isbn: "9780735214484",
+            title: "Range",
+            author: "David Epstein",
+            category: "Learning",
+            desc: "Why generalists who embrace diverse experiences and broad knowledge excel at solving novel problems."
+        },
+        quote: {
+            text: "The ability to make distant connections is what we celebrate as creativity.",
+            source: "David Epstein, Range"
+        }
     }
 ];
 
