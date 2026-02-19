@@ -228,6 +228,20 @@ const dailyData = [
             text: "The ability to make distant connections is what we celebrate as creativity.",
             source: "David Epstein, Range"
         }
+    },
+    {
+        date: "2026-02-21",
+        book: {
+            isbn: "9781553814528",
+            title: "Braiding Sweetgrass",
+            author: "Robin Wall Kimmerer",
+            category: "Nature & Wisdom",
+            desc: "Indigenous botanist weaves together science, nature writing, and indigenous wisdom to explore our relationship with the living world."
+        },
+        quote: {
+            text: "We are caretakers, not owners. Our gifts come with the responsibility to reciprocate and care for what sustains us.",
+            source: "Robin Wall Kimmerer, Braiding Sweetgrass"
+        }
     }
 ];
 
