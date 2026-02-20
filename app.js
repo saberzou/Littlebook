@@ -6,25 +6,16 @@ let currentDate = null;
 let showingHourglass = false;
 let hourglassTimer = null;
 
-// Return YYYY-MM-DD in Asia/Shanghai timezone (avoids UTC mismatch)
+// Return YYYY-MM-DD in visitor's local timezone
 function localDateStr(date) {
-    const d = date || new Date();
-    const parts = d.toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' }).split('/');
-    // en-CA gives YYYY-MM-DD directly
-    return d.toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' });
+    return (date || new Date()).toLocaleDateString('en-CA');
 }
 
-// Return a Date object offset by `days` from today in Asia/Shanghai
+// Return YYYY-MM-DD offset by `days` from today in visitor's local timezone
 function localDateOffset(days) {
-    // Get current CST date components
-    const now = new Date();
-    const cstStr = now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' });
-    const cst = new Date(cstStr);
-    cst.setDate(cst.getDate() + days);
-    const y = cst.getFullYear();
-    const m = String(cst.getMonth() + 1).padStart(2, '0');
-    const dd = String(cst.getDate()).padStart(2, '0');
-    return `${y}-${m}-${dd}`;
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d.toLocaleDateString('en-CA');
 }
 
 

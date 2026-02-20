@@ -361,7 +361,7 @@ function getDataByDate(dateStr) {
 
 // Get today's data
 function getTodayData() {
-    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' });
+    const today = new Date().toLocaleDateString('en-CA');
     return getDataByDate(today) || dailyData[0];
 }
 
