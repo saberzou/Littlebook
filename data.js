@@ -242,6 +242,20 @@ const dailyData = [
             text: "We are caretakers, not owners. Our gifts come with the responsibility to reciprocate and care for what sustains us.",
             source: "Robin Wall Kimmerer, Braiding Sweetgrass"
         }
+    },
+    {
+        date: "2026-02-22",
+        book: {
+            isbn: "9780399590504",
+            title: "Educated",
+            author: "Tara Westover",
+            category: "Memoir",
+            desc: "A transformative memoir of a woman who leaves an isolated survivalist family to pursue education and self-discovery."
+        },
+        quote: {
+            text: "I am no longer afraid. I took my education into my own hands.",
+            source: "Tara Westover, Educated"
+        }
     }
 ];
 
