@@ -361,7 +361,7 @@ function getDataByDate(dateStr) {
 
 // Get today's data
 function getTodayData() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' });
     return getDataByDate(today) || dailyData[0];
 }
 
@@ -382,7 +382,10 @@ function getLatestDate() {
 function getNextDate() {
     const latest = new Date(getLatestDate() + 'T12:00:00');
     latest.setDate(latest.getDate() + 1);
-    return latest.toISOString().split('T')[0];
+    const y = latest.getFullYear();
+    const m = String(latest.getMonth() + 1).padStart(2, '0');
+    const d = String(latest.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
 }
 
 // Get all available date strings

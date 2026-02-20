@@ -6,6 +6,27 @@ let currentDate = null;
 let showingHourglass = false;
 let hourglassTimer = null;
 
+// Return YYYY-MM-DD in Asia/Shanghai timezone (avoids UTC mismatch)
+function localDateStr(date) {
+    const d = date || new Date();
+    const parts = d.toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' }).split('/');
+    // en-CA gives YYYY-MM-DD directly
+    return d.toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' });
+}
+
+// Return a Date object offset by `days` from today in Asia/Shanghai
+function localDateOffset(days) {
+    // Get current CST date components
+    const now = new Date();
+    const cstStr = now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' });
+    const cst = new Date(cstStr);
+    cst.setDate(cst.getDate() + days);
+    const y = cst.getFullYear();
+    const m = String(cst.getMonth() + 1).padStart(2, '0');
+    const dd = String(cst.getDate()).padStart(2, '0');
+    return `${y}-${m}-${dd}`;
+}
+
 
 
 const pages = () => document.querySelectorAll('.page');
@@ -14,12 +35,10 @@ const totalPages = () => pages().length;
 // ---- Initialise ----
 function init() {
     currentData = DailyData.getToday();
-    currentDate = currentData ? currentData.date : new Date().toISOString().split('T')[0];
+    currentDate = currentData ? currentData.date : localDateStr();
 
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    const todayStr = localDateStr();
+    const tomorrowStr = localDateOffset(1);
 
     // Check URL params
     const urlParams = new URLSearchParams(window.location.search);
@@ -94,19 +113,14 @@ function buildCalendar() {
     track.innerHTML = '';
 
     // Always show 7 cells: 5 past days + today + tomorrow
-    const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
+    const todayStr = localDateStr();
     const calendarDates = [];
 
     for (let i = 5; i >= 1; i--) {
-        const d = new Date(today);
-        d.setDate(d.getDate() - i);
-        calendarDates.push(d.toISOString().split('T')[0]);
+        calendarDates.push(localDateOffset(-i));
     }
     calendarDates.push(todayStr); // today
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    const tomorrowStr = localDateOffset(1);
     calendarDates.push(tomorrowStr); // tomorrow
 
     calendarDates.forEach(dateStr => {
@@ -168,10 +182,7 @@ function updateCalendarSelection(dateStr) {
 }
 
 function selectDate(dateStr) {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    const tomorrowStr = localDateOffset(1);
 
     // Skip if same date
     if (dateStr === currentDate) return;
