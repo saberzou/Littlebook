@@ -256,6 +256,20 @@ const dailyData = [
             text: "I am no longer afraid. I took my education into my own hands.",
             source: "Tara Westover, Educated"
         }
+    },
+    {
+        date: "2026-02-23",
+        book: {
+            isbn: "9780807014295",
+            title: "Man's Search for Meaning",
+            author: "Viktor E. Frankl",
+            category: "Philosophy",
+            desc: "A Holocaust survivor's profound meditation on finding meaning in suffering and how the search for purpose can sustain us through adversity."
+        },
+        quote: {
+            text: "The last of the human freedoms is to choose one's attitudes in any given set of circumstances.",
+            source: "Viktor E. Frankl, Man's Search for Meaning"
+        }
     }
 ];
 
