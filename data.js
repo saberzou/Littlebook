@@ -270,6 +270,20 @@ const dailyData = [
             text: "The last of the human freedoms is to choose one's attitudes in any given set of circumstances.",
             source: "Viktor E. Frankl, Man's Search for Meaning"
         }
+    },
+    {
+        date: "2026-02-24",
+        book: {
+            isbn: "9780156012195",
+            title: "The Little Prince",
+            author: "Antoine de Saint-Exupéry",
+            category: "Literature",
+            desc: "A poetic fable about a young prince's journey across distant planets, exploring timeless themes of love, loss, friendship, and what truly matters in life."
+        },
+        quote: {
+            text: "And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is essential is invisible to the eye.",
+            source: "Antoine de Saint-Exupéry, The Little Prince"
+        }
     }
 ];
 
