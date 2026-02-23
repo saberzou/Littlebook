@@ -284,6 +284,20 @@ const dailyData = [
             text: "And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is essential is invisible to the eye.",
             source: "Antoine de Saint-Exupéry, The Little Prince"
         }
+    },
+    {
+        date: "2026-02-25",
+        book: {
+            isbn: "9780020195597",
+            title: "The Midnight Library",
+            author: "Matt Haig",
+            category: "Contemporary Fiction",
+            desc: "A woman on the edge of despair discovers a magical library containing all the lives she could have lived, learning that every life has infinite possibility."
+        },
+        quote: {
+            text: "Between life and death, there is a library. It holds all possible versions of your life.",
+            source: "Matt Haig, The Midnight Library"
+        }
     }
 ];
 
