@@ -298,6 +298,20 @@ const dailyData = [
             text: "Between life and death, there is a library. It holds all possible versions of your life.",
             source: "Matt Haig, The Midnight Library"
         }
+    },
+    {
+        date: "2026-02-26",
+        book: {
+            isbn: "9780307961517",
+            title: "The Invention of Nature",
+            author: "Andrea Wulf",
+            category: "Biography & Science",
+            desc: "A sweeping biography of explorer-scientist Alexander von Humboldt, whose revolutionary vision unified nature as an interconnected whole."
+        },
+        quote: {
+            text: "Everything is interconnected. The universe is one unified organism, not a collection of separate things.",
+            source: "Andrea Wulf, The Invention of Nature"
+        }
     }
 ];
 
