@@ -312,6 +312,20 @@ const dailyData = [
             text: "Everything is interconnected. The universe is one unified organism, not a collection of separate things.",
             source: "Andrea Wulf, The Invention of Nature"
         }
+    },
+    {
+        date: "2026-02-27",
+        book: {
+            isbn: "9780316396584",
+            title: "Humankind",
+            author: "Rutger Bregman",
+            category: "Philosophy",
+            desc: "A revolutionary take on human history that challenges the assumption we're selfish by nature, revealing evidence of our natural cooperation and kindness."
+        },
+        quote: {
+            text: "History is not a catalogue of disasters. It is a story about improbable possibilities.",
+            source: "Rutger Bregman, Humankind"
+        }
     }
 ];
 
