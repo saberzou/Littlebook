@@ -304,19 +304,20 @@ function generateCoverPlaceholder(title, author) {
     });
     if (line) lines.push(line.trim());
 
-    const totalTextHeight = lines.length * 28;
-    const titleY = (360 - totalTextHeight) / 2 + 14;
+    const totalBlockHeight = lines.length * 28 + 20;
+    const titleY = (360 - totalBlockHeight) / 2 + 14;
+    const cx = 120;
     const titleSvg = lines.map((l, i) =>
-        `<text x="100" y="${titleY + i * 28}" text-anchor="middle" fill="#EDEDED" font-family="system-ui, sans-serif" font-size="18" font-weight="600">${l.replace(/&/g, '&amp;')}</text>`
+        `<text x="${cx}" y="${titleY + i * 28}" text-anchor="middle" fill="#EDEDED" font-family="system-ui, sans-serif" font-size="18" font-weight="600">${l.replace(/&/g, '&amp;')}</text>`
     ).join('');
 
     return 'data:image/svg+xml,' + encodeURIComponent(
         '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="360">' +
         '<rect width="240" height="360" fill="#171717" rx="4"/>' +
-        `<line x1="30" y1="${titleY - 30}" x2="170" y2="${titleY - 30}" stroke="#333333" stroke-width="1" opacity="0.8"/>` +
+        `<line x1="40" y1="${titleY - 30}" x2="200" y2="${titleY - 30}" stroke="#333333" stroke-width="1" opacity="0.8"/>` +
         titleSvg +
-        `<text x="100" y="${titleY + lines.length * 28 + 8}" text-anchor="middle" fill="#888888" font-family="system-ui, sans-serif" font-size="11">${(author || '').replace(/&/g, '&amp;')}</text>` +
-        `<line x1="30" y1="${titleY + lines.length * 28 + 40}" x2="170" y2="${titleY + lines.length * 28 + 40}" stroke="#333333" stroke-width="1" opacity="0.8"/>` +
+        `<text x="${cx}" y="${titleY + lines.length * 28 + 8}" text-anchor="middle" fill="#888888" font-family="system-ui, sans-serif" font-size="11">${(author || '').replace(/&/g, '&amp;')}</text>` +
+        `<line x1="40" y1="${titleY + lines.length * 28 + 40}" x2="200" y2="${titleY + lines.length * 28 + 40}" stroke="#333333" stroke-width="1" opacity="0.8"/>` +
         '</svg>'
     );
 }
