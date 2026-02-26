@@ -335,9 +335,7 @@ function loadContent() {
 
     const coverImg = document.getElementById('bookCover');
     const bookFront = coverImg.closest('.book-front');
-    const coverUrl = DailyData.fetchCover(book.isbn);
 
-    // Show skeleton
     bookFront.classList.add('loading');
 
     const showPlaceholder = () => {
@@ -346,26 +344,19 @@ function loadContent() {
         bookFront.classList.remove('loading');
     };
 
-    // Timeout fallback in case image hangs
-    const timeout = setTimeout(showPlaceholder, 3000);
-
-    const testImg = new Image();
-    testImg.onload = () => {
-        clearTimeout(timeout);
-        // Verify image has actual dimensions (not a 1x1 error pixel)
-        if (testImg.naturalWidth > 10 && testImg.naturalHeight > 10) {
-            coverImg.src = coverUrl;
+    const coverTimeout = new Promise(resolve => setTimeout(() => resolve(null), 10000));
+    Promise.race([
+        DailyData.fetchBestCover(book.isbn, book.title, book.author),
+        coverTimeout
+    ]).then(url => {
+        if (url) {
+            coverImg.src = url;
             coverImg.alt = book.title;
             bookFront.classList.remove('loading');
         } else {
             showPlaceholder();
         }
-    };
-    testImg.onerror = () => {
-        clearTimeout(timeout);
-        showPlaceholder();
-    };
-    testImg.src = coverUrl;
+    }).catch(() => showPlaceholder());
 
     // Set book rotation angle based on date
     const bookAngles = [
@@ -406,8 +397,7 @@ function preloadAdjacentCovers() {
     toPreload.forEach(date => {
         const data = DailyData.getByDate(date);
         if (data && data.book) {
-            const img = new Image();
-            img.src = DailyData.fetchCover(data.book.isbn);
+            DailyData.fetchBestCover(data.book.isbn, data.book.title, data.book.author);
         }
     });
 }
