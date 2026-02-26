@@ -480,14 +480,28 @@ async function googleBooksCover(isbn) {
     } catch { return null; }
 }
 
-async function olSearchCover(title, author) {
-    try {
-        const params = new URLSearchParams({ title, author, fields: 'cover_i', limit: '1' });
-        const res = await fetch(`https://openlibrary.org/search.json?${params}`);
-        if (!res.ok) return null;
-        const coverId = (await res.json()).docs?.[0]?.cover_i;
-        return coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null;
-    } catch { return null; }
+let olSearchActive = 0;
+const olSearchQueue = [];
+
+function olSearchCover(title, author) {
+    return new Promise(resolve => {
+        const run = async () => {
+            olSearchActive++;
+            try {
+                const params = new URLSearchParams({ title, author, fields: 'cover_i', limit: '1' });
+                const res = await fetch(`https://openlibrary.org/search.json?${params}`);
+                if (!res.ok) { resolve(null); return; }
+                const coverId = (await res.json()).docs?.[0]?.cover_i;
+                resolve(coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null);
+            } catch { resolve(null); }
+            finally {
+                olSearchActive--;
+                if (olSearchQueue.length > 0) olSearchQueue.shift()();
+            }
+        };
+        if (olSearchActive < 2) run();
+        else olSearchQueue.push(run);
+    });
 }
 
 const coverUrlCache = {};
