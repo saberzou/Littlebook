@@ -326,6 +326,20 @@ const dailyData = [
             text: "History is not a catalogue of disasters. It is a story about improbable possibilities.",
             source: "Rutger Bregman, Humankind"
         }
+    },
+    {
+        date: "2026-02-28",
+        book: {
+            isbn: "9780441172719",
+            title: "Dune",
+            author: "Frank Herbert",
+            category: "Science Fiction",
+            desc: "An epic tale of political intrigue, prophecy, and survival on the desert planet Arrakis, exploring themes of power, destiny, and human potential."
+        },
+        quote: {
+            text: "Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear.",
+            source: "Frank Herbert, Dune"
+        }
     }
 ];
 
