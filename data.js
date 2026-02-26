@@ -433,9 +433,102 @@ async function trackDownload(dateOrPhotoId) {
     }
 }
 
-// Open Library cover URL
+// Open Library cover URL (legacy — single-source, synchronous)
 function fetchBookCover(isbn) {
     return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`;
+}
+
+// =============================================
+//  MULTI-SOURCE COVER FETCHING
+// =============================================
+
+function isbn13to10(isbn13) {
+    const s = isbn13.replace(/-/g, '');
+    if (s.length !== 13 || !s.startsWith('978')) return null;
+    const body = s.slice(3, 12);
+    let sum = 0;
+    for (let i = 0; i < 9; i++) sum += parseInt(body[i]) * (10 - i);
+    const r = (11 - (sum % 11)) % 11;
+    return body + (r === 10 ? 'X' : String(r));
+}
+
+function probeImage(url, timeout = 3000) {
+    return new Promise(resolve => {
+        const timer = setTimeout(() => resolve(null), timeout);
+        const img = new Image();
+        img.onload = () => {
+            clearTimeout(timer);
+            resolve(img.naturalWidth > 10 && img.naturalHeight > 10 ? url : null);
+        };
+        img.onerror = () => { clearTimeout(timer); resolve(null); };
+        img.src = url;
+    });
+}
+
+async function googleBooksCover(isbn) {
+    try {
+        const res = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn.replace(/-/g, '')}&fields=items(volumeInfo/imageLinks)`
+        );
+        if (!res.ok) return null;
+        const data = await res.json();
+        const links = data.items?.[0]?.volumeInfo?.imageLinks;
+        if (!links) return null;
+        const raw = links.extraLarge || links.large || links.medium
+            || links.small || links.thumbnail || links.smallThumbnail || '';
+        return raw.replace(/^http:/, 'https:').replace(/zoom=\d/, 'zoom=3') || null;
+    } catch { return null; }
+}
+
+async function olSearchCover(title, author) {
+    try {
+        const params = new URLSearchParams({ title, author, fields: 'cover_i', limit: '1' });
+        const res = await fetch(`https://openlibrary.org/search.json?${params}`);
+        if (!res.ok) return null;
+        const coverId = (await res.json()).docs?.[0]?.cover_i;
+        return coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null;
+    } catch { return null; }
+}
+
+const coverUrlCache = {};
+
+async function fetchBestCoverUrl(isbn, title, author) {
+    if (coverUrlCache[isbn]) return coverUrlCache[isbn];
+
+    const isbn10 = isbn13to10(isbn);
+    const ol = (id, size) => `https://covers.openlibrary.org/b/isbn/${id}-${size}.jpg?default=false`;
+
+    const googlePromise = googleBooksCover(isbn);
+    const olSearchPromise = (title && author) ? olSearchCover(title, author) : Promise.resolve(null);
+
+    let url = await probeImage(ol(isbn, 'L'));
+    if (url) { coverUrlCache[isbn] = url; return url; }
+
+    if (isbn10) {
+        url = await probeImage(ol(isbn10, 'L'));
+        if (url) { coverUrlCache[isbn] = url; return url; }
+    }
+
+    const olSearchUrl = await olSearchPromise;
+    if (olSearchUrl) {
+        url = await probeImage(olSearchUrl);
+        if (url) { coverUrlCache[isbn] = url; return url; }
+    }
+
+    const googleUrl = await googlePromise;
+    if (googleUrl) {
+        url = await probeImage(googleUrl);
+        if (url) { coverUrlCache[isbn] = url; return url; }
+    }
+
+    url = await probeImage(ol(isbn, 'M'));
+    if (url) { coverUrlCache[isbn] = url; return url; }
+    if (isbn10) {
+        url = await probeImage(ol(isbn10, 'M'));
+        if (url) { coverUrlCache[isbn] = url; return url; }
+    }
+
+    return null;
 }
 
 // Get data by date
@@ -484,6 +577,7 @@ window.DailyData = {
     getToday: getTodayData,
     getAdjacent: getAdjacentData,
     fetchCover: fetchBookCover,
+    fetchBestCover: fetchBestCoverUrl,
     fetchWallpaper: fetchWallpaper,
     fetchWallpaperForDate: fetchWallpaperForDate,
     trackDownload: trackDownload,
