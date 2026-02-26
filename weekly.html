@@ -70,7 +70,12 @@
             for (let i = 0; i < DailyData.data.length; i++) {
                 const data = DailyData.data[i];
                 const isToday = data.date === today;
-                const coverUrl = DailyData.fetchCover(data.book.isbn);
+                const placeholderSvg = 'data:image/svg+xml,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="72" height="100" fill="%23F5F0EB">' +
+                    '<rect width="72" height="100"/>' +
+                    '<text x="36" y="54" text-anchor="middle" fill="%236B5E55" font-family="serif" font-size="10">Book</text>' +
+                    '</svg>'
+                );
 
                 const card = document.createElement('a');
                 card.href = `index.html?date=${encodeURIComponent(data.date)}`;
@@ -83,18 +88,12 @@
                 const cover = document.createElement('div');
                 cover.className = 'day-cover';
                 const img = document.createElement('img');
-                img.src = coverUrl;
+                img.src = placeholderSvg;
                 img.alt = data.book.title;
                 img.loading = 'lazy';
-                img.onerror = function () {
-                    this.onerror = null;
-                    this.src = 'data:image/svg+xml,' + encodeURIComponent(
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="72" height="100" fill="%23F5F0EB">' +
-                        '<rect width="72" height="100"/>' +
-                        '<text x="36" y="54" text-anchor="middle" fill="%236B5E55" font-family="serif" font-size="10">Book</text>' +
-                        '</svg>'
-                    );
-                };
+                DailyData.fetchBestCover(data.book.isbn, data.book.title, data.book.author).then(url => {
+                    if (url) img.src = url;
+                });
                 cover.appendChild(img);
 
                 const info = document.createElement('div');
