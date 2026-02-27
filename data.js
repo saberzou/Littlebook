@@ -340,6 +340,20 @@ const dailyData = [
             text: "Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear.",
             source: "Frank Herbert, Dune"
         }
+    },
+    {
+        date: "2026-03-01",
+        book: {
+            isbn: "9780385480017",
+            title: "Bird by Bird",
+            author: "Anne Lamott",
+            category: "Writing & Creativity",
+            desc: "A beloved guide to writing and life, offering practical wisdom and spiritual insight on overcoming perfectionism and finding your voice."
+        },
+        quote: {
+            text: "Writing and reading decrease our sense of isolation. They deepen and widen and expand our sense of life.",
+            source: "Anne Lamott, Bird by Bird"
+        }
     }
 ];
 
