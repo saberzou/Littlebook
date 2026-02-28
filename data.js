@@ -376,6 +376,20 @@ const dailyData = [
             text: "Writing and reading decrease our sense of isolation. They deepen and widen and expand our sense of life.",
             source: "Anne Lamott, Bird by Bird"
         }
+    },
+    {
+        date: "2026-03-02",
+        book: {
+            isbn: "9780385095129",
+            title: "The Double Helix",
+            author: "James D. Watson",
+            category: "Science & Discovery",
+            desc: "Watson's intimate account of the race to discover DNA's structure, revealing the brilliance, ambition, and personalities behind one of science's greatest breakthroughs."
+        },
+        quote: {
+            text: "Science rarely ends with a final answer. It ends with a better question.",
+            source: "James D. Watson, The Double Helix"
+        }
     }
 ];
 
