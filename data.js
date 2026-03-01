@@ -390,6 +390,20 @@ const dailyData = [
             text: "Science rarely ends with a final answer. It ends with a better question.",
             source: "James D. Watson, The Double Helix"
         }
+    },
+    {
+        date: "2026-03-03",
+        book: {
+            isbn: "9780192860926",
+            title: "The Selfish Gene",
+            author: "Richard Dawkins",
+            category: "Evolution & Biology",
+            desc: "A groundbreaking exploration of evolution that reframes life through the lens of genes, asking what organisms are really for beyond reproductive success."
+        },
+        quote: {
+            text: "We are survival machines—robot vehicles blindly programmed to preserve the selfish molecules known as genes.",
+            source: "Richard Dawkins, The Selfish Gene"
+        }
     }
 ];
 
