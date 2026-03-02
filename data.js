@@ -404,6 +404,20 @@ const dailyData = [
             text: "We are survival machines—robot vehicles blindly programmed to preserve the selfish molecules known as genes.",
             source: "Richard Dawkins, The Selfish Gene"
         }
+    },
+    {
+        date: "2026-03-04",
+        book: {
+            isbn: "9780307389717",
+            title: "What I Talk About When I Talk About Running",
+            author: "Haruki Murakami",
+            category: "Sports & Philosophy",
+            desc: "A meditative memoir-essay on the connection between running marathons and the discipline required to write, exploring how solitude shapes creative work."
+        },
+        quote: {
+            text: "I run in order to acquire a void.",
+            source: "Haruki Murakami, What I Talk About When I Talk About Running"
+        }
     }
 ];
 
