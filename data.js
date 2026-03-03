@@ -418,6 +418,20 @@ const dailyData = [
             text: "I run in order to acquire a void.",
             source: "Haruki Murakami, What I Talk About When I Talk About Running"
         }
+    },
+    {
+        date: "2026-03-05",
+        book: {
+            isbn: "9781524746742",
+            title: "Dopamine Nation",
+            author: "Anna Lembke",
+            category: "Neuroscience & Behavior",
+            desc: "A Stanford psychiatrist explores how constant stimulation rewires our brains and offers practical strategies for reclaiming balance in an age of unlimited dopamine hits."
+        },
+        quote: {
+            text: "In the age of internet pornography, social media, and digital gaming, we are all at risk of numbing ourselves to the point of dysfunction.",
+            source: "Anna Lembke, Dopamine Nation"
+        }
     }
 ];
 
