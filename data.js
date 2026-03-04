@@ -432,6 +432,20 @@ const dailyData = [
             text: "In the age of internet pornography, social media, and digital gaming, we are all at risk of numbing ourselves to the point of dysfunction.",
             source: "Anna Lembke, Dopamine Nation"
         }
+    },
+    {
+        date: "2026-03-06",
+        book: {
+            isbn: "9781617322402",
+            title: "Maybe You Should Talk to Someone",
+            author: "Lori Gottlieb",
+            category: "Mental Health & Psychology",
+            desc: "A therapist becomes a patient, revealing the hidden conversations that happen in therapy and what it really takes to understand ourselves and others."
+        },
+        quote: {
+            text: "We are all works in progress. The goal is not to arrive at some final, polished version of ourselves, but to become increasingly aware of who we are.",
+            source: "Lori Gottlieb, Maybe You Should Talk to Someone"
+        }
     }
 ];
 
