@@ -358,7 +358,8 @@ const dailyData = [
             category: "Science Fiction",
             desc: "An epic tale of political intrigue, prophecy, and survival on the desert planet Arrakis, exploring themes of power, destiny, and human potential."
         },
-        quote: {
+                wallpaper: { id: "7_q1mh7Ibvk", imgBase: "https://images.unsplash.com/photo-1772415912163-bd5fe16b8ff0", user: "Dmytro Koplyk", userUrl: "https://unsplash.com/@dkoplyk" },
+quote: {
             text: "Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear.",
             source: "Frank Herbert, Dune"
         }
@@ -372,7 +373,8 @@ const dailyData = [
             category: "Writing & Creativity",
             desc: "A beloved guide to writing and life, offering practical wisdom and spiritual insight on overcoming perfectionism and finding your voice."
         },
-        quote: {
+                wallpaper: { id: "-Fr4DhM0ge8", imgBase: "https://images.unsplash.com/photo-1772392174256-ae0ceb14ca99", user: "Peter Steiner", userUrl: "https://unsplash.com/@pedrino5_official" },
+quote: {
             text: "Writing and reading decrease our sense of isolation. They deepen and widen and expand our sense of life.",
             source: "Anne Lamott, Bird by Bird"
         }
@@ -386,7 +388,8 @@ const dailyData = [
             category: "Science & Discovery",
             desc: "Watson's intimate account of the race to discover DNA's structure, revealing the brilliance, ambition, and personalities behind one of science's greatest breakthroughs."
         },
-        quote: {
+                wallpaper: { id: "_jmXZHtCi4U", imgBase: "https://images.unsplash.com/photo-1772289239052-7bbbd9bda160", user: "NIR HIMI", userUrl: "https://unsplash.com/@nirhimi" },
+quote: {
             text: "Science rarely ends with a final answer. It ends with a better question.",
             source: "James D. Watson, The Double Helix"
         }
@@ -400,7 +403,8 @@ const dailyData = [
             category: "Evolution & Biology",
             desc: "A groundbreaking exploration of evolution that reframes life through the lens of genes, asking what organisms are really for beyond reproductive success."
         },
-        quote: {
+                wallpaper: { id: "HuqZMC7shx0", imgBase: "https://images.unsplash.com/photo-1770110000218-e9376e581258", user: "Philipp Düsel", userUrl: "https://unsplash.com/@philipp_dice" },
+quote: {
             text: "We are survival machines—robot vehicles blindly programmed to preserve the selfish molecules known as genes.",
             source: "Richard Dawkins, The Selfish Gene"
         }
@@ -414,7 +418,8 @@ const dailyData = [
             category: "Sports & Philosophy",
             desc: "A meditative memoir-essay on the connection between running marathons and the discipline required to write, exploring how solitude shapes creative work."
         },
-        quote: {
+                wallpaper: { id: "OkO9BDH-IEc", imgBase: "https://images.unsplash.com/photo-1770873263537-fbb8d39b6103", user: "Ryunosuke Kikuno", userUrl: "https://unsplash.com/@ryunosuke_kikuno" },
+quote: {
             text: "I run in order to acquire a void.",
             source: "Haruki Murakami, What I Talk About When I Talk About Running"
         }
@@ -428,7 +433,8 @@ const dailyData = [
             category: "Neuroscience & Behavior",
             desc: "A Stanford psychiatrist explores how constant stimulation rewires our brains and offers practical strategies for reclaiming balance in an age of unlimited dopamine hits."
         },
-        quote: {
+                wallpaper: { id: "llezNN2OGEY", imgBase: "https://images.unsplash.com/photo-1771149076648-d0fdcd270f86", user: "Kristaps Ungurs", userUrl: "https://unsplash.com/@kristapsungurs" },
+quote: {
             text: "In the age of internet pornography, social media, and digital gaming, we are all at risk of numbing ourselves to the point of dysfunction.",
             source: "Anna Lembke, Dopamine Nation"
         }
@@ -442,7 +448,8 @@ const dailyData = [
             category: "Mental Health & Psychology",
             desc: "A therapist becomes a patient, revealing the hidden conversations that happen in therapy and what it really takes to understand ourselves and others."
         },
-        quote: {
+                wallpaper: { id: "0IFvTeguMJs", imgBase: "https://images.unsplash.com/photo-1772211506039-8bd23fcc060a", user: "Maria Lupan", userUrl: "https://unsplash.com/@luandmario" },
+quote: {
             text: "We are all works in progress. The goal is not to arrive at some final, polished version of ourselves, but to become increasingly aware of who we are.",
             source: "Lori Gottlieb, Maybe You Should Talk to Someone"
         }
