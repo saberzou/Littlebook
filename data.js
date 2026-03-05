@@ -448,10 +448,25 @@ quote: {
             category: "Mental Health & Psychology",
             desc: "A therapist becomes a patient, revealing the hidden conversations that happen in therapy and what it really takes to understand ourselves and others."
         },
-                wallpaper: { id: "0IFvTeguMJs", imgBase: "https://images.unsplash.com/photo-1772211506039-8bd23fcc060a", user: "Maria Lupan", userUrl: "https://unsplash.com/@luandmario" },
-quote: {
+        wallpaper: { id: "YOE8v9KdsB0", imgBase: "https://images.unsplash.com/photo-1772657356280-fefe4c350287", user: "Dmitry Spravko", userUrl: "https://unsplash.com/@kaprion" },
+        quote: {
             text: "We are all works in progress. The goal is not to arrive at some final, polished version of ourselves, but to become increasingly aware of who we are.",
             source: "Lori Gottlieb, Maybe You Should Talk to Someone"
+        }
+    },
+    {
+        date: "2026-03-07",
+        book: {
+            isbn: "9780374533557",
+            title: "The Geometry of Beauty",
+            author: "Adrian Bejan",
+            category: "Art & Science",
+            desc: "An exploration of how the laws of physics shape what we find beautiful, from nature to architecture to design."
+        },
+        wallpaper: { id: "PEaG0Wu5w70", imgBase: "https://images.unsplash.com/photo-1772536888848-c0e7f0f6cf39", user: "Elena Rodriguez", userUrl: "https://unsplash.com/@elenarod" },
+        quote: {
+            text: "Beauty is not arbitrary. It follows laws, and those laws are written in the structure of the universe.",
+            source: "Adrian Bejan, The Geometry of Beauty"
         }
     }
 ];
