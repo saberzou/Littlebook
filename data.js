@@ -468,6 +468,21 @@ quote: {
             text: "Beauty is not arbitrary. It follows laws, and those laws are written in the structure of the universe.",
             source: "Adrian Bejan, The Geometry of Beauty"
         }
+    },
+    {
+        date: "2026-03-08",
+        book: {
+            isbn: "9780525657743",
+            title: "The Anthropocene Reviewed",
+            author: "John Green",
+            category: "Essays",
+            desc: "A collection of personal essays reviewing facets of the human-centered planet on a five-star scale, from Diet Dr Pepper to sunsets."
+        },
+        wallpaper: { id: "0IFvTeguMJs", imgBase: "https://images.unsplash.com/photo-1772211506039-8bd23fcc060a", user: "Maria Lupan", userUrl: "https://unsplash.com/@luandmario" },
+        quote: {
+            text: "All the light we never see is still shining. We just have to look up.",
+            source: "John Green, The Anthropocene Reviewed"
+        }
     }
 ];
 
