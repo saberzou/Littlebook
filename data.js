@@ -483,6 +483,21 @@ quote: {
             text: "All the light we never see is still shining. We just have to look up.",
             source: "John Green, The Anthropocene Reviewed"
         }
+    },
+    {
+        date: "2026-03-09",
+        book: {
+            isbn: "9780062316110",
+            title: "Sapiens: A Graphic Novel",
+            author: "Yuval Noah Harari & David Vandermeulen",
+            category: "History & Graphic Novel",
+            desc: "The illustrated adaptation of the bestselling history of humankind, turning big ideas about civilization into vivid visual storytelling."
+        },
+        wallpaper: { id: "yfXHqoFpNH0", imgBase: "https://images.unsplash.com/photo-1772656928131-bd7592d1d119", user: "Dmitry Spravko", userUrl: "https://unsplash.com/@kaprion" },
+        quote: {
+            text: "We did not domesticate wheat. It domesticated us.",
+            source: "Yuval Noah Harari, Sapiens"
+        }
     }
 ];
 
