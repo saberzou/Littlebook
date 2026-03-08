@@ -498,6 +498,21 @@ quote: {
             text: "We did not domesticate wheat. It domesticated us.",
             source: "Yuval Noah Harari, Sapiens"
         }
+    },
+    {
+        date: "2026-03-10",
+        book: {
+            isbn: "9780374529260",
+            title: "Thinking, Fast and Slow",
+            author: "Daniel Kahneman",
+            category: "Psychology & Behavioral Science",
+            desc: "Nobel laureate Kahneman reveals the two systems that drive how we think — the fast, intuitive mind and the slow, deliberate one — reshaping our understanding of decision-making."
+        },
+        wallpaper: { id: "A1IoRfRQHuk", imgBase: "https://images.unsplash.com/photo-1772733694354-3b4a33568ef4", user: "Marek Piwnicki", userUrl: "https://unsplash.com/@marekpiwnicki" },
+        quote: {
+            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
+            source: "Daniel Kahneman, Thinking, Fast and Slow"
+        }
     }
 ];
 
