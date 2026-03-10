@@ -513,6 +513,36 @@ quote: {
             text: "Nothing in life is as important as you think it is, while you are thinking about it.",
             source: "Daniel Kahneman, Thinking, Fast and Slow"
         }
+    },
+    {
+        date: "2026-03-11",
+        book: {
+            isbn: "9780812988406",
+            title: "When Breath Becomes Air",
+            author: "Paul Kalanithi",
+            category: "Memoir & Medicine",
+            desc: "A young neurosurgeon facing terminal cancer explores what makes life worth living, weaving literature, philosophy, and medicine into a devastating and luminous meditation on mortality."
+        },
+        wallpaper: { id: "7DV_dT3JuLs", imgBase: "https://images.unsplash.com/photo-1772173333668-c10d2246e523", user: "Matthew Mosbauer", userUrl: "https://unsplash.com/@matthewmosbauer" },
+        quote: {
+            text: "You can't ever reach perfection, but you can believe in an asymptote toward which you are ceaselessly striving.",
+            source: "Paul Kalanithi, When Breath Becomes Air"
+        }
+    },
+    {
+        date: "2026-03-12",
+        book: {
+            isbn: "9780374529260",
+            title: "Thinking, Fast and Slow",
+            author: "Daniel Kahneman",
+            category: "Psychology & Decision Making",
+            desc: "Nobel laureate Daniel Kahneman maps the two systems that drive how we think — the fast, intuitive, and emotional versus the slow, deliberate, and logical — revealing the cognitive biases that shape our judgments and choices."
+        },
+        wallpaper: { id: "0NkVsmKFzWc", imgBase: "https://images.unsplash.com/photo-1770045990733-6e9f6c083f0d", user: "Edson Junior", userUrl: "https://unsplash.com/@roinuj16" },
+        quote: {
+            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
+            source: "Daniel Kahneman, Thinking, Fast and Slow"
+        }
     }
 ];
 
