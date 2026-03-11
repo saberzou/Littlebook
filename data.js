@@ -543,6 +543,21 @@ quote: {
             text: "Nothing in life is as important as you think it is, while you are thinking about it.",
             source: "Daniel Kahneman, Thinking, Fast and Slow"
         }
+    },
+    {
+        date: "2026-03-13",
+        book: {
+            isbn: "9780525559474",
+            title: "The Boy, the Mole, the Fox and the Horse",
+            author: "Charlie Mackesy",
+            category: "Illustrated & Inspiration",
+            desc: "A beautifully illustrated fable about kindness, courage, and hope — told through the unlikely friendship of a curious boy, a cake-loving mole, a wary fox, and a wise horse."
+        },
+        wallpaper: { id: "_r4AuOYg5Ao", imgBase: "https://images.unsplash.com/photo-1773083405815-34ea5253db0b", user: "Rafael Garcin", userUrl: "https://unsplash.com/@nimbus_vulpis" },
+        quote: {
+            text: "Asking for help isn't giving up. It's refusing to give up.",
+            source: "Charlie Mackesy, The Boy, the Mole, the Fox and the Horse"
+        }
     }
 ];
 
