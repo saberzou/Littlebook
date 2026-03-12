@@ -558,6 +558,21 @@ quote: {
             text: "Asking for help isn't giving up. It's refusing to give up.",
             source: "Charlie Mackesy, The Boy, the Mole, the Fox and the Horse"
         }
+    },
+    {
+        date: "2026-03-14",
+        book: {
+            isbn: "9780062316110",
+            title: "Sapiens: A Brief History of Humankind",
+            author: "Yuval Noah Harari",
+            category: "History & Anthropology",
+            desc: "A sweeping narrative of how Homo sapiens came to dominate the Earth — from the Cognitive Revolution to the age of algorithms."
+        },
+        wallpaper: { id: "e1wycgI4c9g", imgBase: "https://images.unsplash.com/photo-1703333737684-41eb22ed4363", user: "Pawel Czerwinski", userUrl: "https://unsplash.com/@pawel_czerwinski" },
+        quote: {
+            text: "You could never convince a monkey to give you a banana by promising him limitless bananas after death.",
+            source: "Yuval Noah Harari, Sapiens"
+        }
     }
 ];
 
