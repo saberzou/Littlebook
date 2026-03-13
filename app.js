@@ -76,7 +76,6 @@ function init() {
     initSwipe();
 
     // Buttons
-    document.getElementById('downloadBtn').addEventListener('click', downloadWallpaper);
     document.getElementById('shareQuoteBtn').addEventListener('click', shareQuote);
     document.getElementById('buyBookBtn').addEventListener('click', buyBook);
 
@@ -403,7 +402,7 @@ function preloadAdjacentCovers() {
 }
 
 async function loadWallpaper() {
-    const img = document.getElementById('wallpaperImage');
+    const img = document.getElementById('quoteWallpaper');
     const creditEl = document.getElementById('wallpaperCredit');
 
     // Show loading state
@@ -521,21 +520,6 @@ function initSwipe() {
 // =============================================
 //  ACTIONS
 // =============================================
-async function downloadWallpaper() {
-    if (!currentDate) return;
-
-    // Trigger Unsplash download tracking (API guidelines requirement)
-    await DailyData.trackDownload(currentDate);
-
-    // Get cached wallpaper data for download URL
-    const wp = await DailyData.fetchWallpaperForDate(currentDate);
-    const link = document.createElement('a');
-    link.href = wp.urlPortrait;
-    link.download = `littlebook-wallpaper-${currentDate}.jpg`;
-    link.target = '_blank';
-    link.click();
-}
-
 function buyBook() {
     if (!currentData) return;
     const { isbn } = currentData.book;

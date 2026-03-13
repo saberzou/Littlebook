@@ -629,58 +629,7 @@ body {
     transform: scale(0.98);
 }
 
-/* =============================================
-   WALLPAPER PAGE — standalone image, no card
-   ============================================= */
-.wallpaper-page {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 8px;
-}
 
-.wallpaper-image-wrapper {
-    width: 100%;
-    max-width: 360px;
-    aspect-ratio: 3/4;
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-    flex-shrink: 0;
-}
-
-.wallpaper-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.wallpaper-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    width: 100%;
-    max-width: 360px;
-}
-
-.wallpaper-credit {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-    text-align: center;
-}
-
-.wallpaper-credit a {
-    color: var(--text-secondary);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.2s;
-}
-
-.wallpaper-credit a:hover {
-    color: var(--accent);
-}
 
 /* =============================================
    QUOTE PAGE — card with large decorative mark
@@ -709,6 +658,26 @@ body {
     flex-shrink: 0;
 }
 
+/* Full-bleed wallpaper background */
+.quote-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Dark gradient overlay for text readability */
+.quote-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
 /* Large decorative quotation mark — pinned to top of card */
 .quote-decoration {
     position: absolute;
@@ -717,7 +686,8 @@ body {
     transform: translateX(-50%);
     pointer-events: none;
     user-select: none;
-    color: var(--quote-mark-color);
+    color: rgba(255, 255, 255, 0.2);
+    z-index: 2;
 }
 
 .quote-decoration svg {
@@ -728,7 +698,7 @@ body {
 
 .quote-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .quote-text {
@@ -737,13 +707,33 @@ body {
     font-weight: 500;
     line-height: 1.9;
     margin-bottom: 20px;
-    color: var(--text-primary);
+    color: #FFFFFF;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .quote-source {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     font-style: italic;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* Wallpaper credit inside quote card */
+.quote-wallpaper-credit {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+.quote-wallpaper-credit a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 .quote-actions {
@@ -944,23 +934,7 @@ body {
         max-width: 300px;
     }
 
-    .wallpaper-image-wrapper {
-        max-width: 280px;
-        aspect-ratio: 3/4;
-    }
-
-    .wallpaper-actions {
-        max-width: 280px;
-        gap: 6px;
-        margin-top: 12px;
-    }
-
-    .download-btn {
-        padding: 12px 16px;
-        font-size: 0.85rem;
-    }
-
-    .quote-card {
+.quote-card {
         max-width: 300px;
         padding: 32px 24px 28px;
     }
@@ -1214,7 +1188,6 @@ body {
 }
 
 .page.slide-center .book-meta,
-.page.slide-center .wallpaper-actions,
 .page.slide-center .quote-content {
     animation: fadeIn 0.5s ease 0.15s both;
 }
