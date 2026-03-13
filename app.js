@@ -76,8 +76,7 @@ function init() {
     initSwipe();
 
     // Buttons
-    document.getElementById('shareQuoteBtn').addEventListener('click', shareQuote);
-    document.getElementById('buyBookBtn').addEventListener('click', buyBook);
+
 
     // Dark mode toggle
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
@@ -520,29 +519,6 @@ function initSwipe() {
 // =============================================
 //  ACTIONS
 // =============================================
-function buyBook() {
-    if (!currentData) return;
-    const { isbn } = currentData.book;
-    const url = `https://www.amazon.com/dp/${isbn}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-}
-
-function shareQuote() {
-    if (!currentData) return;
-    const { quote } = currentData;
-    const text = `"${quote.text}"\n\n— ${quote.source}\n\nShared from Littlebook`;
-
-    if (navigator.share) {
-        navigator.share({ title: 'Littlebook — Daily Quote', text, url: window.location.href }).catch(() => {});
-    } else {
-        navigator.clipboard.writeText(text).then(() => {
-            const btn = document.getElementById('shareQuoteBtn');
-            const original = btn.innerHTML;
-            btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
-            setTimeout(() => { btn.innerHTML = original; }, 2000);
-        }).catch(() => {});
-    }
-}
 
 // =============================================
 //  URL + HISTORY
