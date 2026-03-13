@@ -573,6 +573,21 @@ quote: {
             text: "You could never convince a monkey to give you a banana by promising him limitless bananas after death.",
             source: "Yuval Noah Harari, Sapiens"
         }
+    },
+    {
+        date: "2026-03-15",
+        book: {
+            isbn: "9780374529512",
+            title: "Thinking, Fast and Slow",
+            author: "Daniel Kahneman",
+            category: "Psychology",
+            desc: "Nobel laureate Daniel Kahneman reveals the two systems that drive the way we think — and the biases that shape every decision we make."
+        },
+        wallpaper: { id: "_4Gla2yHB9U", imgBase: "https://images.unsplash.com/photo-1773270387206-481f73b2b85e", user: "Micke Lindström", userUrl: "https://unsplash.com/@misterlindstrom" },
+        quote: {
+            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
+            source: "Daniel Kahneman, Thinking, Fast and Slow"
+        }
     }
 ];
 
