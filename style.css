@@ -953,7 +953,7 @@ body {
 .book-carousel {
     display: none;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     margin-bottom: 32px;
 }
@@ -970,7 +970,7 @@ body {
 .carousel-track {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 40px 0;
