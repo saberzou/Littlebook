@@ -173,6 +173,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 24px 24px 60px;
     transition: opacity 0.25s ease;
 }
@@ -541,11 +542,17 @@ body {
 
 @media (min-width: 769px) {
     .book-spread {
-        width: 220px;
-        height: 330px;
+        width: 240px;
+        height: 360px;
     }
     .book-spread.open {
-        width: 480px;
+        width: 520px;
+    }
+    .book-meta-below {
+        max-width: 420px;
+    }
+    .book-page-right .quote-text {
+        font-size: 1.4rem;
     }
 }
 
@@ -554,8 +561,8 @@ body {
    ============================================= */
 @media (max-width: 768px) {
     .book-spread {
-        width: 150px;
-        height: 225px;
+        width: 160px;
+        height: 240px;
     }
 
     .book-spread.open {
