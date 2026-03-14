@@ -948,6 +948,70 @@ body {
 }
 
 /* =============================================
+   DESKTOP BOOK CAROUSEL
+   ============================================= */
+.book-carousel {
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 32px;
+}
+
+@media (min-width: 769px) {
+    .book-carousel {
+        display: block;
+    }
+    .book-cover-flat {
+        display: none !important;
+    }
+}
+
+.carousel-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 40px 0;
+    will-change: transform;
+}
+
+.carousel-item {
+    flex-shrink: 0;
+    width: 180px;
+    height: 270px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+    transform-origin: center center;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-item.active {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow:
+        6px 6px 10px rgba(92, 79, 61, 0.06),
+        18px 24px 32px rgba(92, 79, 61, 0.08),
+        36px 48px 64px rgba(92, 79, 61, 0.06);
+}
+
+[data-theme="dark"] .carousel-item.active {
+    box-shadow:
+        6px 6px 10px rgba(0, 0, 0, 0.12),
+        18px 24px 32px rgba(0, 0, 0, 0.15),
+        36px 48px 64px rgba(0, 0, 0, 0.1);
+}
+
+/* =============================================
    ANIMATIONS
    ============================================= */
 @keyframes fadeIn {

@@ -24,6 +24,89 @@ function localDateOffset(days) {
 const pages = () => document.querySelectorAll('.page');
 const totalPages = () => pages().length;
 
+const isDesktop = () => window.innerWidth >= 769;
+let carouselDates = [];
+let carouselBuilt = false;
+
+// =============================================
+//  DESKTOP BOOK CAROUSEL
+// =============================================
+function buildCarousel() {
+    if (!isDesktop()) return;
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
+    track.innerHTML = '';
+    carouselDates = DailyData.getAllDates();
+    
+    carouselDates.forEach((dateStr, i) => {
+        const data = DailyData.getByDate(dateStr);
+        const item = document.createElement('div');
+        item.className = 'carousel-item';
+        item.dataset.date = dateStr;
+        item.dataset.index = i;
+        
+        const img = document.createElement('img');
+        if (data && data.book) {
+            img.src = generateCoverPlaceholder(data.book.title, data.book.author);
+            img.alt = data.book.title;
+            // Eager load real cover
+            DailyData.fetchBestCover(data.book.isbn, data.book.title, data.book.author)
+                .then(url => { if (url) img.src = url; })
+                .catch(() => {});
+        }
+        
+        item.appendChild(img);
+        item.addEventListener('click', () => {
+            if (dateStr !== currentDate) selectDate(dateStr);
+        });
+        track.appendChild(item);
+    });
+    
+    carouselBuilt = true;
+    updateCarousel(currentDate);
+}
+
+function updateCarousel(dateStr) {
+    if (!isDesktop() || !carouselBuilt) return;
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
+    
+    const items = track.querySelectorAll('.carousel-item');
+    const idx = carouselDates.indexOf(dateStr);
+    if (idx < 0) return;
+    
+    // Calculate translateX to center the active item
+    // Each item is 180px wide + 20px gap = 200px per item
+    const itemWidth = 180;
+    const gap = 20;
+    const step = itemWidth + gap;
+    const containerWidth = track.parentElement.offsetWidth;
+    const offset = containerWidth / 2 - itemWidth / 2 - idx * step;
+    
+    track.style.transform = `translateX(${offset}px)`;
+    
+    items.forEach((item, i) => {
+        const dist = Math.abs(i - idx);
+        item.classList.toggle('active', dist === 0);
+        
+        let scale, opacity;
+        if (dist === 0) { scale = 1; opacity = 1; }
+        else if (dist === 1) { scale = 0.8; opacity = 0.7; }
+        else if (dist === 2) { scale = 0.65; opacity = 0.4; }
+        else { scale = 0.55; opacity = 0.25; }
+        
+        if (dist !== 0) {
+            item.style.transform = `scale(${scale})`;
+            item.style.opacity = opacity;
+            item.style.boxShadow = 'none';
+        } else {
+            item.style.transform = '';
+            item.style.opacity = '';
+            item.style.boxShadow = '';
+        }
+    });
+}
+
 // ---- Initialise ----
 function init() {
     currentData = DailyData.getToday();
@@ -91,8 +174,15 @@ function init() {
     // Calendar swipe
     initCalendarSwipe();
 
+    // Build desktop carousel
+    buildCarousel();
+
     // Reposition nav slider on resize
-    window.addEventListener('resize', () => updateNavSlider(currentIndex));
+    window.addEventListener('resize', () => {
+        updateNavSlider(currentIndex);
+        if (isDesktop() && !carouselBuilt) buildCarousel();
+        if (isDesktop()) updateCarousel(currentDate);
+    });
 }
 
 // =============================================
@@ -194,6 +284,7 @@ function selectDate(dateStr) {
                 hideHourglass();
                 loadContent();
                 goToSlide(0);
+                updateCarousel(dateStr);
             } else {
                 showNoData();
             }
