@@ -645,7 +645,7 @@ body {
     max-width: 360px;
     min-height: 420px;
     background: var(--surface);
-    border-radius: var(--radius-card);
+    border-radius: 0;
     padding: 40px 32px 36px;
     box-shadow: var(--shadow-card);
     text-align: center;
@@ -658,25 +658,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Full-bleed wallpaper background */
-.quote-bg-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
 
-/* Dark gradient overlay for text readability */
-.quote-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
-    z-index: 1;
-    pointer-events: none;
-}
 
 /* Large decorative quotation mark — pinned to top of card */
 .quote-decoration {
@@ -686,7 +668,7 @@ body {
     transform: translateX(-50%);
     pointer-events: none;
     user-select: none;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.3);
     z-index: 2;
 }
 
@@ -712,27 +694,11 @@ body {
 
 .quote-source {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     font-style: italic;
 }
 
-/* Wallpaper credit inside quote card */
-.quote-wallpaper-credit {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.5);
-    z-index: 2;
-}
 
-.quote-wallpaper-credit a {
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
 
 .quote-actions {
     margin-top: 16px;

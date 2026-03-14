@@ -376,8 +376,13 @@ function loadContent() {
     // Preload adjacent dates' covers
     preloadAdjacentCovers();
 
-    // Wallpaper — fetch from Unsplash wallpapers topic
-    loadWallpaper();
+    // Random background color from unused palette
+    const quoteColors = ['#D9A48B', '#CC7F4E', '#B8A0B0', '#7BC4D9', '#8B8B6E', '#D4C9A1'];
+    const quoteCard = document.querySelector('.quote-card');
+    if (quoteCard) {
+        const colorIdx = Math.abs(currentDate.split('-').reduce((a, b) => a + parseInt(b), 0)) % quoteColors.length;
+        quoteCard.style.backgroundColor = quoteColors[colorIdx];
+    }
 
     // Quote
     document.getElementById('quoteText').textContent = quote.text;
@@ -400,39 +405,6 @@ function preloadAdjacentCovers() {
     });
 }
 
-async function loadWallpaper() {
-    const img = document.getElementById('quoteWallpaper');
-    const creditEl = document.getElementById('wallpaperCredit');
-
-    // Show loading state
-    img.style.opacity = '0.4';
-    creditEl.textContent = 'Loading...';
-
-    // Fetch from Unsplash wallpapers topic based on current date
-    const wp = await DailyData.fetchWallpaperForDate(currentDate);
-
-    img.src = wp.urlPortrait;
-    img.style.opacity = '';
-
-    // Proper Unsplash attribution with links
-    creditEl.innerHTML = '';
-    const txt1 = document.createTextNode('Photo by ');
-    const userLink = document.createElement('a');
-    userLink.href = wp.creditUrl;
-    userLink.target = '_blank';
-    userLink.rel = 'noopener noreferrer';
-    userLink.textContent = wp.credit;
-    const txt2 = document.createTextNode(' on ');
-    const unsplashLink = document.createElement('a');
-    unsplashLink.href = wp.unsplashUrl;
-    unsplashLink.target = '_blank';
-    unsplashLink.rel = 'noopener noreferrer';
-    unsplashLink.textContent = 'Unsplash';
-    creditEl.appendChild(txt1);
-    creditEl.appendChild(userLink);
-    creditEl.appendChild(txt2);
-    creditEl.appendChild(unsplashLink);
-}
 
 // =============================================
 //  NAV SLIDER
