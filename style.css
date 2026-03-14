@@ -7,8 +7,8 @@
 
 :root {
     /* Light theme — Earthy Stone */
-    --bg: #F5F2ED;
-    --bg-secondary: #EDE9E3;
+    --bg: #E8EDE9;
+    --bg-secondary: #DFE5E0;
     --surface: #FFFFFF;
     --accent: #8B7D6B;
     --accent-dark: #5C4F3D;
@@ -21,7 +21,7 @@
     --shadow-card: 0 4px 20px rgba(92, 79, 61, 0.08);
     --shadow-card-hover: 0 8px 30px rgba(92, 79, 61, 0.14);
     --shadow-nav: 0 4px 24px rgba(92, 79, 61, 0.1);
-    --nav-bg: rgba(245, 242, 237, 0.85);
+    --nav-bg: rgba(232, 237, 233, 0.85);
     --quote-mark-color: rgba(139, 125, 107, 0.12);
     --radius-card: 12px;
     --radius-button: 8px;
