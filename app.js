@@ -135,8 +135,7 @@ function init() {
     // Book spread click to toggle open/close
     document.getElementById('bookSpread').addEventListener('click', toggleBookSpread);
 
-    // Dark mode
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    // Dark mode — auto-detect only (toggle removed)
     const saved = localStorage.getItem('littlebook-theme');
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
