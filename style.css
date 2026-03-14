@@ -324,9 +324,9 @@ body {
     background: var(--bg-secondary);
     position: relative;
     box-shadow:
-        4px 4px 8px rgba(92, 79, 61, 0.06),
-        8px 12px 24px rgba(92, 79, 61, 0.08),
-        16px 24px 48px rgba(92, 79, 61, 0.06);
+        6px 6px 10px rgba(92, 79, 61, 0.06),
+        14px 18px 28px rgba(92, 79, 61, 0.08),
+        24px 36px 56px rgba(92, 79, 61, 0.06);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
@@ -362,9 +362,9 @@ body {
 
 [data-theme="dark"] .book-cover-flat {
     box-shadow: 
-        4px 4px 8px rgba(0, 0, 0, 0.12),
-        8px 12px 24px rgba(0, 0, 0, 0.15),
-        16px 24px 48px rgba(0, 0, 0, 0.1);
+        6px 6px 10px rgba(0, 0, 0, 0.12),
+        14px 18px 28px rgba(0, 0, 0, 0.15),
+        24px 36px 56px rgba(0, 0, 0, 0.1);
 }
 
 .book-meta {
