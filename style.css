@@ -938,8 +938,8 @@ body {
     }
 
     .pill-nav {
-        padding: 4px 6px;
-        gap: 8px;
+        padding: 5px;
+        gap: 4px;
     }
 
     .pill-nav .nav-item {
