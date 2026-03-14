@@ -367,10 +367,8 @@ function loadContent() {
     const { book, quote } = currentData;
 
     // Book info — inside spread left page
-    document.getElementById('bookCategory').textContent = book.category;
     document.getElementById('bookTitle').textContent = book.title;
     document.getElementById('bookAuthor').textContent = book.author;
-    document.getElementById('bookDesc').textContent = book.desc;
 
     // Book info — below spread (visible when closed)
     document.getElementById('bookCategoryBelow').textContent = book.category;
