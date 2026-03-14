@@ -63,16 +63,7 @@
             <!-- Hourglass overlay (shown when tomorrow is selected) -->
             <div class="hourglass-overlay" id="hourglassOverlay">
                 <div class="hourglass-container">
-                    <pre class="ascii-dog">        __
-        /  \
-       / ..|\
-      (_\  |_)
-      /  \@'
-     /     \
- _  /  `   |
-\\/  \  | _\
- \   /_ || \_
-  \____)|_) \_)</pre>
+                    <canvas id="gravityClockCanvas"></canvas>
                     <div class="hourglass-label">Tomorrow's pick arrives in</div>
                     <div class="hourglass-countdown" id="hourglassCountdown">--:--:--</div>
                     <div class="hourglass-hint">Come back tomorrow for a new book, wallpaper & quote</div>
@@ -120,6 +111,7 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="clock.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

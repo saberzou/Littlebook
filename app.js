@@ -1,5 +1,6 @@
 'use strict';
 
+let gravityClock = null;
 let currentData = null;
 let currentIndex = 0; // 0=book, 1=wallpaper, 2=quote
 let currentDate = null;
@@ -232,10 +233,16 @@ function showHourglass() {
     document.getElementById('bottomBar').style.display = 'none';
 
     // Restore countdown elements (may have been hidden by showNoData)
-    document.querySelector('.ascii-dog').style.display = 'block';
+    document.getElementById('gravityClockCanvas').style.display = 'block';
     document.querySelector('.hourglass-label').textContent = "Tomorrow's pick arrives in";
     document.querySelector('.hourglass-countdown').style.display = '';
     document.querySelector('.hourglass-hint').textContent = 'Come back tomorrow for a new book, wallpaper & quote';
+
+    // Start gravity clock
+    const canvas = document.getElementById('gravityClockCanvas');
+    if (gravityClock) gravityClock.stop();
+    gravityClock = new GravityClock(canvas);
+    gravityClock.init();
 
     // Start countdown
     updateCountdown();
@@ -249,6 +256,7 @@ function hideHourglass() {
     document.getElementById('hourglassOverlay').style.display = 'none';
     document.getElementById('bottomBar').style.display = '';
 
+    if (gravityClock) { gravityClock.stop(); gravityClock = null; }
     if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
 }
 
@@ -259,8 +267,8 @@ function showNoData() {
     document.getElementById('hourglassOverlay').style.display = 'flex';
     document.getElementById('bottomBar').style.display = 'none';
 
-    // Hide countdown-specific elements, show a simple message
-    document.querySelector('.ascii-dog').style.display = 'block';
+    // Hide clock canvas, show a simple message
+    document.getElementById('gravityClockCanvas').style.display = 'none';
     document.querySelector('.hourglass-label').textContent = 'No content for this day';
     document.querySelector('.hourglass-countdown').style.display = 'none';
     document.querySelector('.hourglass-hint').textContent = 'Select another date to explore';
