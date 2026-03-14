@@ -457,16 +457,16 @@ quote: {
     {
         date: "2026-03-07",
         book: {
-            isbn: "9780374533557",
-            title: "The Geometry of Beauty",
-            author: "Adrian Bejan",
-            category: "Art & Science",
-            desc: "An exploration of how the laws of physics shape what we find beautiful, from nature to architecture to design."
+            isbn: "9781771642484",
+            title: "The Hidden Life of Trees",
+            author: "Peter Wohlleben",
+            category: "Nature & Science",
+            desc: "A forester reveals the astonishing social networks and communication systems of trees, forever changing how we see the natural world."
         },
         wallpaper: { id: "PEaG0Wu5w70", imgBase: "https://images.unsplash.com/photo-1772536888848-c0e7f0f6cf39", user: "Elena Rodriguez", userUrl: "https://unsplash.com/@elenarod" },
         quote: {
-            text: "Beauty is not arbitrary. It follows laws, and those laws are written in the structure of the universe.",
-            source: "Adrian Bejan, The Geometry of Beauty"
+            text: "Trees are far more alert, social, sophisticated — and even intelligent — than we thought.",
+            source: "Peter Wohlleben, The Hidden Life of Trees"
         }
     },
     {
@@ -487,7 +487,7 @@ quote: {
     {
         date: "2026-03-09",
         book: {
-            isbn: "9780062316110",
+            isbn: "9780063051331",
             title: "Sapiens: A Graphic Novel",
             author: "Yuval Noah Harari & David Vandermeulen",
             category: "History & Graphic Novel",
@@ -502,16 +502,16 @@ quote: {
     {
         date: "2026-03-10",
         book: {
-            isbn: "9780374529260",
-            title: "Thinking, Fast and Slow",
-            author: "Daniel Kahneman",
-            category: "Psychology & Behavioral Science",
-            desc: "Nobel laureate Kahneman reveals the two systems that drive how we think — the fast, intuitive mind and the slow, deliberate one — reshaping our understanding of decision-making."
+            isbn: "9780062315007",
+            title: "The Alchemist",
+            author: "Paulo Coelho",
+            category: "Fiction & Philosophy",
+            desc: "A shepherd boy's journey across the desert in search of treasure becomes a timeless allegory about following your dreams and listening to your heart."
         },
         wallpaper: { id: "A1IoRfRQHuk", imgBase: "https://images.unsplash.com/photo-1772733694354-3b4a33568ef4", user: "Marek Piwnicki", userUrl: "https://unsplash.com/@marekpiwnicki" },
         quote: {
-            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
-            source: "Daniel Kahneman, Thinking, Fast and Slow"
+            text: "When you want something, all the universe conspires in helping you to achieve it.",
+            source: "Paulo Coelho, The Alchemist"
         }
     },
     {
@@ -532,16 +532,16 @@ quote: {
     {
         date: "2026-03-12",
         book: {
-            isbn: "9780374529260",
-            title: "Thinking, Fast and Slow",
-            author: "Daniel Kahneman",
-            category: "Psychology & Decision Making",
-            desc: "Nobel laureate Daniel Kahneman maps the two systems that drive how we think — the fast, intuitive, and emotional versus the slow, deliberate, and logical — revealing the cognitive biases that shape our judgments and choices."
+            isbn: "9780140449334",
+            title: "Meditations",
+            author: "Marcus Aurelius",
+            category: "Philosophy & Stoicism",
+            desc: "The private journals of Rome's philosopher-emperor, offering timeless Stoic wisdom on resilience, duty, and the art of living well."
         },
         wallpaper: { id: "0NkVsmKFzWc", imgBase: "https://images.unsplash.com/photo-1770045990733-6e9f6c083f0d", user: "Edson Junior", userUrl: "https://unsplash.com/@roinuj16" },
         quote: {
-            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
-            source: "Daniel Kahneman, Thinking, Fast and Slow"
+            text: "You have power over your mind — not outside events. Realize this, and you will find strength.",
+            source: "Marcus Aurelius, Meditations"
         }
     },
     {
@@ -577,16 +577,16 @@ quote: {
     {
         date: "2026-03-15",
         book: {
-            isbn: "9780374529512",
-            title: "Thinking, Fast and Slow",
-            author: "Daniel Kahneman",
-            category: "Psychology",
-            desc: "Nobel laureate Daniel Kahneman reveals the two systems that drive the way we think — and the biases that shape every decision we make."
+            isbn: "9781590171998",
+            title: "Stoner",
+            author: "John Williams",
+            category: "Literary Fiction",
+            desc: "A quiet masterpiece about an ordinary man's life — his love of literature, his failed marriage, and the small moments that define a meaningful existence."
         },
         wallpaper: { id: "_4Gla2yHB9U", imgBase: "https://images.unsplash.com/photo-1773270387206-481f73b2b85e", user: "Micke Lindström", userUrl: "https://unsplash.com/@misterlindstrom" },
         quote: {
-            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
-            source: "Daniel Kahneman, Thinking, Fast and Slow"
+            text: "He had, in odd ways, given it to every moment of his life, and had perhaps given it most fully when he was unaware of his giving.",
+            source: "John Williams, Stoner"
         }
     }
 ];
