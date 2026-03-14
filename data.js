@@ -588,6 +588,21 @@ quote: {
             text: "He had, in odd ways, given it to every moment of his life, and had perhaps given it most fully when he was unaware of his giving.",
             source: "John Williams, Stoner"
         }
+    },
+    {
+        date: "2026-03-16",
+        book: {
+            isbn: "9781771642484",
+            title: "The Hidden Life of Trees",
+            author: "Peter Wohlleben",
+            category: "Nature & Science",
+            desc: "A forester reveals how trees communicate, share nutrients through underground networks, and care for each other — reframing forests as complex social communities."
+        },
+        wallpaper: { id: "TViB0UN9T2Y", imgBase: "https://images.unsplash.com/photo-1723821281511-bc0deb3851d7", user: "Valeriia Neganova", userUrl: "https://unsplash.com/@neganova" },
+        quote: {
+            text: "When trees grow together, nutrients and water can be optimally divided among them all so that each tree can grow into the best tree it can be.",
+            source: "Peter Wohlleben, The Hidden Life of Trees"
+        }
     }
 ];
 
