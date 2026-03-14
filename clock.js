@@ -39,19 +39,19 @@ class GravityClock {
     get colors() {
         return this.isDark ? {
             face: '#2A2721',
-            border: '#5A5347',
-            pill: '#3A352D',
-            pillText: '#E0D8CC',
+            border: 'none',
+            pill: null, // use random from pillColors
+            pillText: '#FFFFFF',
             hourHand: '#E0D8CC',
             minuteHand: '#E0D8CC',
             secondHand: '#D9A48B',
             center: '#D9A48B',
             tick: '#5A5347',
         } : {
-            face: '#E8EDE9',
-            border: '#8B7D6B',
-            pill: '#FFFFFF',
-            pillText: '#5C4F3D',
+            face: '#FFFFFF',
+            border: 'none',
+            pill: null, // use random from pillColors
+            pillText: '#FFFFFF',
             hourHand: '#5C4F3D',
             minuteHand: '#5C4F3D',
             secondHand: '#D9A48B',
@@ -86,7 +86,11 @@ class GravityClock {
         this.start();
     }
 
+    // Quote card palette colors for pills
+    static PILL_COLORS = ['#D9A48B', '#CC7F4E', '#B8A0B0', '#7BC4D9', '#8B8B6E', '#D4C9A1'];
+
     _makeBody(number) {
+        const color = GravityClock.PILL_COLORS[Math.floor(Math.random() * GravityClock.PILL_COLORS.length)];
         return {
             number,
             radius: this.pillRadius,
@@ -96,6 +100,7 @@ class GravityClock {
             vy: 0,
             rotation: 0,
             angularVel: 0,
+            color,
         };
     }
 
@@ -238,9 +243,6 @@ class GravityClock {
         ctx.arc(this.cx, this.cy, this.clockRadius, 0, Math.PI * 2);
         ctx.fillStyle = c.face;
         ctx.fill();
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = c.border;
-        ctx.stroke();
 
         // Hour tick marks
         for (let i = 0; i < 12; i++) {
@@ -280,7 +282,7 @@ class GravityClock {
         // Pill circle
         ctx.beginPath();
         ctx.arc(0, 0, body.radius, 0, Math.PI * 2);
-        ctx.fillStyle = c.pill;
+        ctx.fillStyle = body.color;
         ctx.fill();
 
         // Reset shadow
