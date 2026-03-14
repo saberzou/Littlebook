@@ -11,58 +11,67 @@
 <body>
     <div class="app-container">
 
+        <!-- Dark mode toggle - floating top-right -->
+        <button class="theme-btn-float" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2"/><path d="M12 20v2"/>
+                <path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/>
+                <path d="M2 12h2"/><path d="M20 12h2"/>
+                <path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+            </svg>
+        </button>
+
         <!-- Horizontal swipeable calendar strip -->
         <div class="calendar-strip" id="calendarStrip">
-            <div class="calendar-track" id="calendarTrack">
-                <!-- Filled by JS -->
-            </div>
+            <div class="calendar-track" id="calendarTrack"></div>
         </div>
 
         <!-- Main content area -->
         <div class="content-area" id="contentArea">
 
-            <!-- Normal content pages (shown when date has data) -->
-            <div class="swiper-container" id="swiperContainer">
-                <div class="swiper-wrapper" id="swiperWrapper">
+            <!-- Desktop book carousel -->
+            <div class="book-carousel" id="bookCarousel">
+                <div class="carousel-track" id="carouselTrack"></div>
+            </div>
 
-                    <!-- Book page -->
-                    <div class="page book-page slide-center" data-index="0">
-                        <div class="book-carousel" id="bookCarousel">
-                            <div class="carousel-track" id="carouselTrack">
-                                <!-- Populated by JS: one .carousel-item per date -->
-                            </div>
+            <!-- Book spread (cover + unfold pages) -->
+            <div class="book-spread" id="bookSpread">
+                <div class="book-3d">
+                    <!-- Inner pages (visible when open) -->
+                    <div class="book-pages" id="bookPages">
+                        <div class="book-page-left">
+                            <span class="tag" id="bookCategory">Category</span>
+                            <h1 class="book-title" id="bookTitle">Title</h1>
+                            <p class="book-author" id="bookAuthor">Author</p>
+                            <p class="book-desc" id="bookDesc">Description</p>
                         </div>
-                        <div class="book-cover-flat">
-                            <img id="bookCover" src="" alt="Book cover">
-                        </div>
-                        <div class="book-meta">
-                            <span class="tag" id="bookCategory">Psychology</span>
-                            <h1 class="book-title" id="bookTitle">Thinking, Fast and Slow</h1>
-                            <p class="book-author" id="bookAuthor">Daniel Kahneman</p>
-                            <p class="book-desc" id="bookDesc">Nobel laureate dissects two modes of human thought...</p>
-                        </div>
-
-                    </div>
-
-                    <!-- Quote page -->
-                    <div class="page quote-page slide-right" data-index="1">
-                        <div class="quote-card">
+                        <div class="book-page-right">
                             <div class="quote-decoration">
                                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
                                 </svg>
                             </div>
-                            <div class="quote-content">
-                                <p class="quote-text" id="quoteText">
-                                    We are often overconfident about what we know about the world...
-                                </p>
-                                <p class="quote-source" id="quoteSource">— Daniel Kahneman</p>
-                            </div>
+                            <p class="quote-text" id="quoteText">Quote</p>
+                            <p class="quote-source" id="quoteSource">— Source</p>
                         </div>
-
                     </div>
-
+                    <!-- The cover (flips open) -->
+                    <div class="book-cover" id="bookCover3d">
+                        <img id="bookCover" src="" alt="Book cover">
+                    </div>
                 </div>
+            </div>
+
+            <!-- Book meta below spread (visible when closed) -->
+            <div class="book-meta-below" id="bookMetaBelow">
+                <span class="tag" id="bookCategoryBelow">Category</span>
+                <h1 class="book-title" id="bookTitleBelow">Title</h1>
+                <p class="book-author" id="bookAuthorBelow">Author</p>
+                <p class="book-desc" id="bookDescBelow">Description</p>
             </div>
 
             <!-- Hourglass overlay (shown when tomorrow is selected) -->
@@ -75,42 +84,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- Bottom bar: pill nav left, theme toggle right -->
-        <div class="bottom-bar" id="bottomBar">
-            <nav class="pill-nav" id="pillNav">
-                <div class="nav-slider" id="navSlider"></div>
-                <button class="nav-item active" data-index="0" aria-label="Book">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10 2v8l3-3 3 3V2"/>
-                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
-                    </svg>
-                </button>
-                <button class="nav-item" data-index="1" aria-label="Quote">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 14a2 2 0 0 0 2-2V8h-2"/>
-                        <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/>
-                        <path d="M8 14a2 2 0 0 0 2-2V8H8"/>
-                    </svg>
-                </button>
-            </nav>
-            <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
-                </svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="4"/>
-                    <path d="M12 2v2"/>
-                    <path d="M12 20v2"/>
-                    <path d="m4.93 4.93 1.41 1.41"/>
-                    <path d="m17.66 17.66 1.41 1.41"/>
-                    <path d="M2 12h2"/>
-                    <path d="M20 12h2"/>
-                    <path d="m6.34 17.66-1.41 1.41"/>
-                    <path d="m19.07 4.93-1.41 1.41"/>
-                </svg>
-            </button>
         </div>
 
     </div>

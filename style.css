@@ -1,12 +1,7 @@
 /* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    /* Light theme - Earthy Stone */
     --bg: #E8EDE9;
     --bg-secondary: #DFE5E0;
     --surface: #FFFFFF;
@@ -22,13 +17,10 @@
     --shadow-card-hover: 0 8px 30px rgba(92, 79, 61, 0.14);
     --shadow-nav: 0 4px 24px rgba(92, 79, 61, 0.1);
     --nav-bg: rgba(232, 237, 233, 0.85);
-    --quote-mark-color: rgba(139, 125, 107, 0.12);
     --radius-card: 12px;
-    --radius-button: 8px;
     --radius-pill: 100px;
 }
 
-/* Dark theme */
 [data-theme="dark"] {
     --bg: #1A1815;
     --bg-secondary: #222018;
@@ -45,13 +37,9 @@
     --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
     --shadow-nav: 0 4px 24px rgba(0, 0, 0, 0.4);
     --nav-bg: rgba(26, 24, 21, 0.88);
-    --quote-mark-color: rgba(196, 181, 154, 0.08);
 }
 
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
+html, body { height: 100%; overflow: hidden; }
 
 body {
     font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
@@ -62,7 +50,6 @@ body {
     transition: background 0.4s, color 0.4s;
 }
 
-/* App Container */
 .app-container {
     height: 100vh;
     display: flex;
@@ -71,7 +58,42 @@ body {
 }
 
 /* =============================================
-   CALENDAR STRIP - swipeable horizontal dates
+   FLOATING THEME TOGGLE - top right
+   ============================================= */
+.theme-btn-float {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-nav);
+    transition: all 0.3s;
+    z-index: 200;
+}
+
+.theme-btn-float:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.theme-btn-float .icon-sun, .theme-btn-float .icon-moon { width: 18px; height: 18px; }
+.theme-btn-float .icon-sun { display: none; }
+.theme-btn-float .icon-moon { display: block; }
+[data-theme="dark"] .theme-btn-float .icon-sun { display: block; }
+[data-theme="dark"] .theme-btn-float .icon-moon { display: none; }
+
+/* =============================================
+   CALENDAR STRIP
    ============================================= */
 .calendar-strip {
     overflow-x: auto;
@@ -86,9 +108,7 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
-.calendar-strip::-webkit-scrollbar {
-    display: none;
-}
+.calendar-strip::-webkit-scrollbar { display: none; }
 
 .calendar-track {
     display: flex;
@@ -117,9 +137,7 @@ body {
     padding: 6px 8px;
 }
 
-.cal-cell:hover {
-    background: var(--bg-secondary);
-}
+.cal-cell:hover { background: var(--bg-secondary); }
 
 .cal-cell.selected {
     background: var(--accent);
@@ -127,78 +145,42 @@ body {
     box-shadow: 0 2px 12px rgba(139, 125, 107, 0.25);
 }
 
-[data-theme="dark"] .cal-cell.selected {
-    box-shadow: 0 2px 12px rgba(196, 181, 154, 0.15);
-}
+[data-theme="dark"] .cal-cell.selected { box-shadow: 0 2px 12px rgba(196, 181, 154, 0.15); }
 
-/* Tomorrow / future dates: grayed out */
-.cal-cell.future {
-    color: var(--text-tertiary);
-    opacity: 0.5;
-    cursor: pointer;
-}
+.cal-cell.future { color: var(--text-tertiary); opacity: 0.5; cursor: pointer; }
+.cal-cell.future.selected { opacity: 1; color: var(--bg); }
+.cal-cell.no-data { opacity: 0.4; }
 
-.cal-cell.future.selected {
-    opacity: 1;
-    color: var(--bg);
-}
-
-/* Past inaccessible dates */
-.cal-cell.past-locked {
-    color: var(--text-tertiary);
-    opacity: 0.35;
-    cursor: default;
-    pointer-events: none;
-}
-
-.cal-cell.no-data {
-    opacity: 0.4;
-}
-
-.cal-weekday {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    line-height: 1;
-}
-
-.cal-day {
-    font-size: 1.1rem;
-    font-weight: 700;
-    line-height: 1;
-}
+.cal-weekday { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.5px; line-height: 1; }
+.cal-day { font-size: 1.1rem; font-weight: 700; line-height: 1; }
 
 .cal-today-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
+    width: 4px; height: 4px; border-radius: 50%;
     background: var(--accent);
-    position: absolute;
-    bottom: 5px;
+    position: absolute; bottom: 5px;
 }
 
-.cal-cell.selected .cal-today-dot {
-    background: var(--bg);
-}
+.cal-cell.selected .cal-today-dot { background: var(--bg); }
 
 /* =============================================
-   CONTENT AREA - holds swiper + hourglass
+   CONTENT AREA
    ============================================= */
 .content-area {
     flex: 1;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 24px 24px 60px;
     transition: opacity 0.25s ease;
 }
 
-.content-area.fade-out {
-    opacity: 0;
-}
+.content-area.fade-out { opacity: 0; }
 
 /* =============================================
-   HOURGLASS OVERLAY - canvas countdown
+   HOURGLASS OVERLAY
    ============================================= */
 .hourglass-overlay {
     display: none;
@@ -218,114 +200,178 @@ body {
     gap: 20px;
 }
 
-#gravityClockCanvas {
-    display: block;
-    margin: 0 auto;
-}
+#gravityClockCanvas { display: block; margin: 0 auto; }
 
 .hourglass-label {
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 0.85rem; font-weight: 500;
     color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    text-transform: uppercase; letter-spacing: 1px;
 }
 
 .hourglass-countdown {
     font-family: 'Noto Serif SC', 'Georgia', serif;
-    font-size: 2.8rem;
-    font-weight: 700;
+    font-size: 2.8rem; font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: 4px;
-    line-height: 1;
+    letter-spacing: 4px; line-height: 1;
 }
 
 .hourglass-hint {
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
-    text-align: center;
-    max-width: 260px;
-    line-height: 1.5;
+    font-size: 0.8rem; color: var(--text-tertiary);
+    text-align: center; max-width: 260px; line-height: 1.5;
 }
 
 /* =============================================
-   HORIZONTAL SLIDE TRANSITION
-   Pages slide left/right
+   BOOK SPREAD — 3D unfold interaction
    ============================================= */
-.swiper-container {
-    flex: 1;
-    overflow: hidden;
+.book-spread {
+    perspective: 1200px;
+    width: 180px;
+    height: 270px;
+    position: relative;
+    margin: 0 auto 32px;
+    cursor: pointer;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.book-spread.open {
+    width: 400px;
+}
+
+.book-3d {
     position: relative;
     width: 100%;
     height: 100%;
+    transform-style: preserve-3d;
 }
 
-.swiper-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.page {
+/* Inner pages */
+.book-pages {
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 8px 24px 100px;
-    overflow-y: auto;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.15, 1),
-                opacity 0.45s cubic-bezier(0.4, 0, 0.15, 1);
-    will-change: transform, opacity;
-}
-
-/* Slide positions: left / center / right */
-.page.slide-left {
-    transform: translateX(-100%);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.page.slide-center {
-    transform: translateX(0);
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 2;
-}
-
-.page.slide-right {
-    transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* =============================================
-   BOOK PAGE - fixed cover position
-   ============================================= */
-.book-page {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 4px;
-}
-
-/* Flat Book Cover */
-.book-cover-flat {
-    width: 180px;
-    height: 270px;
-    margin-bottom: 32px;
-    flex-shrink: 0;
     border-radius: 4px;
     overflow: hidden;
-    background: var(--bg-secondary);
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+}
+
+.book-spread.open .book-pages {
+    opacity: 1;
+}
+
+.book-page-left, .book-page-right {
+    flex: 1;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+
+.book-page-left {
+    border-right: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset -8px 0 12px rgba(0,0,0,0.08);
+    align-items: center;
+    text-align: center;
+}
+
+.book-page-right {
+    box-shadow: inset 8px 0 12px rgba(0,0,0,0.08);
     position: relative;
+    align-items: center;
+    text-align: center;
+    padding-top: 40px;
+}
+
+/* Page content styles */
+.book-page-left .tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.15);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.book-page-left .book-title {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.book-page-left .book-author {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 8px;
+}
+
+.book-page-left .book-desc {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+}
+
+/* Quote decoration */
+.book-page-right .quote-decoration {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.25);
+}
+
+.book-page-right .quote-decoration svg {
+    width: 32px;
+    height: 32px;
+}
+
+.book-page-right .quote-text {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    color: #FFFFFF;
+}
+
+.book-page-right .quote-source {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.8);
+    font-style: italic;
+}
+
+/* Book cover (the flipping part) */
+.book-cover {
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    border-radius: 4px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    background: var(--bg-secondary);
     box-shadow:
         6px 6px 10px rgba(92, 79, 61, 0.06),
         18px 24px 32px rgba(92, 79, 61, 0.08),
         36px 48px 64px rgba(92, 79, 61, 0.06);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.book-cover-flat img {
+.book-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -334,45 +380,70 @@ body {
 }
 
 /* Loading skeleton */
-.book-cover-flat.loading {
-    background: var(--bg-secondary);
-}
-
-.book-cover-flat.loading::after {
+.book-cover.loading { background: var(--bg-secondary); }
+.book-cover.loading::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(139, 125, 107, 0.15) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(139,125,107,0.15) 50%, transparent 100%);
     animation: shimmer 1.5s infinite;
 }
-
-.book-cover-flat.loading img {
-    opacity: 0;
-}
+.book-cover.loading img { opacity: 0; }
 
 @keyframes shimmer {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
 }
 
-[data-theme="dark"] .book-cover-flat {
-    box-shadow: 
-        6px 6px 10px rgba(0, 0, 0, 0.12),
-        18px 24px 32px rgba(0, 0, 0, 0.15),
-        36px 48px 64px rgba(0, 0, 0, 0.1);
+[data-theme="dark"] .book-cover {
+    box-shadow:
+        6px 6px 10px rgba(0,0,0,0.12),
+        18px 24px 32px rgba(0,0,0,0.15),
+        36px 48px 64px rgba(0,0,0,0.1);
 }
 
-.book-meta {
+/* When closed: cover fills full width (centered) */
+.book-spread:not(.open) .book-cover {
+    width: 100%;
+}
+
+/* Desktop hover on closed cover */
+@media (min-width: 769px) {
+    .book-spread:not(.open):hover .book-cover {
+        transform: rotateY(-12deg);
+        box-shadow:
+            10px 6px 14px rgba(92, 79, 61, 0.08),
+            24px 24px 36px rgba(92, 79, 61, 0.1),
+            42px 48px 68px rgba(92, 79, 61, 0.07);
+    }
+}
+
+/* Open state — cover flips */
+.book-spread.open .book-cover {
+    width: 50%;
+    transform: rotateY(-160deg);
+    box-shadow: none;
+}
+
+/* =============================================
+   BOOK META BELOW (shown when closed)
+   ============================================= */
+.book-meta-below {
     text-align: center;
     max-width: 360px;
-    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    animation: fadeIn 0.5s ease 0.15s both;
 }
 
-.tag {
+.book-spread.open ~ .book-meta-below {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.book-meta-below .tag {
     display: inline-block;
     font-size: 0.7rem;
     font-weight: 600;
@@ -385,7 +456,7 @@ body {
     text-transform: uppercase;
 }
 
-.book-title {
+.book-meta-below .book-title {
     font-family: 'Noto Serif SC', 'Georgia', serif;
     font-size: 1.5rem;
     font-weight: 600;
@@ -394,557 +465,16 @@ body {
     line-height: 1.4;
 }
 
-.book-author {
+.book-meta-below .book-author {
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
-.book-desc {
+.book-meta-below .book-desc {
     font-size: 0.85rem;
     color: var(--text-secondary);
     line-height: 1.6;
-}
-
-.book-actions {
-    margin-top: 16px;
-    width: 100%;
-    max-width: 360px;
-    display: flex;
-    justify-content: center;
-}
-
-/* =============================================
-   UNIFIED LINE BUTTON STYLE
-   ============================================= */
-.line-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: auto;
-    background: transparent;
-    border: 1.5px solid var(--border);
-    color: var(--text-secondary);
-    padding: 12px 28px;
-    border-radius: var(--radius-pill);
-    font-size: 0.85rem;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.line-btn:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--bg);
-}
-
-.line-btn:active {
-    transform: scale(0.98);
-}
-
-
-
-/* =============================================
-   QUOTE PAGE - card with large decorative mark
-   ============================================= */
-.quote-page {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.quote-card {
-    width: 100%;
-    max-width: 360px;
-    min-height: 420px;
-    background: var(--surface);
-    border-radius: 0;
-    padding: 40px 32px 36px;
-    box-shadow: var(--shadow-card);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-
-
-/* Large decorative quotation mark - pinned to top of card */
-.quote-decoration {
-    position: absolute;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
-    user-select: none;
-    color: rgba(255, 255, 255, 0.3);
-    z-index: 2;
-}
-
-.quote-decoration svg {
-    width: 64px;
-    height: 64px;
-    display: block;
-}
-
-.quote-content {
-    position: relative;
-    z-index: 2;
-}
-
-.quote-text {
-    font-family: 'Caveat', cursive;
-    font-size: 1.6rem;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    color: #FFFFFF;
-}
-
-.quote-source {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.85);
-    font-style: italic;
-}
-
-
-
-.quote-actions {
-    margin-top: 16px;
-    width: 100%;
-    max-width: 360px;
-    display: flex;
-    justify-content: center;
-}
-
-/* =============================================
-   SLIDE INDICATOR DOTS
-   ============================================= */
-.slide-indicator {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 0;
-    z-index: 10;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--text-tertiary);
-    transition: all 0.3s;
-    cursor: pointer;
-}
-
-.dot.active {
-    width: 24px;
-    border-radius: 3px;
-    background: var(--accent);
-}
-
-/* =============================================
-   BOTTOM BAR - nav left, theme toggle right
-   ============================================= */
-.bottom-bar {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 360px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 100;
-    pointer-events: none;
-}
-
-/* iOS 26 PILL NAV BAR - icon only */
-.pill-nav {
-    display: flex;
-    gap: 4px;
-    background: var(--nav-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--border);
-    border-radius: 28px;
-    padding: 6px;
-    box-shadow: var(--shadow-nav);
-    pointer-events: auto;
-    position: relative;
-}
-
-/* Sliding pill indicator */
-.pill-nav .nav-slider {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 56px;
-    height: 44px;
-    border-radius: 22px;
-    background: var(--accent);
-    box-shadow: 0 2px 8px rgba(92, 79, 61, 0.15);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 0;
-    pointer-events: none;
-}
-
-[data-theme="dark"] .pill-nav .nav-slider {
-    box-shadow: 0 2px 8px rgba(196, 181, 154, 0.1);
-}
-
-.pill-nav .nav-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    width: 56px;
-    height: 44px;
-    border-radius: 22px;
-    cursor: pointer;
-    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: inherit;
-    z-index: 1;
-}
-
-.pill-nav .nav-item:hover {
-    color: var(--text-primary);
-}
-
-.pill-nav .nav-item.active {
-    color: var(--bg);
-}
-
-[data-theme="dark"] .pill-nav .nav-item.active {
-    color: var(--bg);
-}
-
-.pill-nav .nav-item .nav-icon {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
-/* Theme toggle - standalone rounded button */
-.theme-btn {
-    width: 54px;
-    height: 54px;
-    border-radius: 27px;
-    background: var(--nav-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-nav);
-    transition: all 0.3s;
-    pointer-events: auto;
-}
-
-.theme-btn:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
-.theme-btn .icon-sun,
-.theme-btn .icon-moon {
-    width: 20px;
-    height: 20px;
-}
-
-.theme-btn .icon-sun { display: none; }
-.theme-btn .icon-moon { display: block; }
-
-[data-theme="dark"] .theme-btn .icon-sun { display: block; }
-[data-theme="dark"] .theme-btn .icon-moon { display: none; }
-
-/* =============================================
-   RESPONSIVE - Mobile
-   ============================================= */
-@media (max-width: 480px) {
-    .page {
-        padding: 4px 16px 90px;
-    }
-
-    .book-cover-flat {
-        width: 150px;
-        height: 225px;
-        margin-bottom: 24px;
-    }
-
-    .book-meta {
-    }
-
-    .book-title {
-        font-size: 1.2rem;
-    }
-
-    .book-author {
-        font-size: 0.82rem;
-        margin-bottom: 10px;
-    }
-
-    .book-desc {
-        font-size: 0.82rem;
-        line-height: 1.6;
-    }
-
-    .book-meta {
-        max-width: 300px;
-    }
-
-.quote-card {
-        max-width: 300px;
-        padding: 32px 24px 28px;
-    }
-
-    .quote-text {
-        font-size: 1.6rem;
-        line-height: 1.5;
-        margin-bottom: 16px;
-    }
-
-    .quote-decoration svg {
-        width: 48px;
-        height: 48px;
-    }
-
-    .quote-content {
-        padding-top: 36px;
-    }
-
-    .quote-source {
-        font-size: 0.8rem;
-        margin-bottom: 18px;
-    }
-
-    .share-quote-btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-    }
-
-    .quote-card {
-        min-height: 360px;
-    }
-
-    .bottom-bar {
-        bottom: 16px;
-        max-width: 300px;
-    }
-
-    .pill-nav {
-        padding: 6px;
-        gap: 4px;
-    }
-
-    .pill-nav .nav-item {
-        width: 52px;
-        height: 40px;
-    }
-
-    .theme-btn {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-    }
-
-    .calendar-track {
-        padding: 0 16px;
-    }
-
-    .cal-cell {
-        min-width: 48px;
-        height: 58px;
-    }
-
-    .hourglass-countdown {
-        font-size: 2.2rem;
-    }
-}
-
-/* =============================================
-   WEEKLY PAGE STYLES
-   ============================================= */
-.weekly-body {
-    overflow: auto !important;
-    height: auto !important;
-    min-height: 100vh;
-}
-
-.weekly-container {
-    padding: 24px 24px 120px;
-    max-width: 480px;
-    margin: 0 auto;
-}
-
-.weekly-header {
-    text-align: center;
-    padding: 40px 0 32px;
-}
-
-.weekly-header h1 {
-    font-family: 'Noto Serif SC', 'Georgia', serif;
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-}
-
-.weekly-header p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-.day-card {
-    background: var(--surface);
-    border-radius: var(--radius-card);
-    padding: 20px;
-    margin-bottom: 16px;
-    display: grid;
-    grid-template-columns: 50px 72px 1fr;
-    gap: 16px;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: var(--shadow-card);
-    transition: all 0.2s;
-}
-
-.day-card:hover {
-    box-shadow: var(--shadow-card-hover);
-    transform: translateY(-2px);
-}
-
-.day-card.today {
-    border: 2px solid var(--accent);
-}
-
-.day-number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-tertiary);
-    text-align: center;
-}
-
-.day-card.today .day-number {
-    color: var(--accent);
-}
-
-.day-cover {
-    width: 72px;
-    height: 100px;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(92, 79, 61, 0.1);
-}
-
-.day-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.day-info h3 {
-    font-family: 'Noto Serif SC', 'Georgia', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    line-height: 1.4;
-}
-
-.day-info .author {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-}
-
-.day-info .meta {
-    display: flex;
-    gap: 8px;
-    font-size: 0.7rem;
-}
-
-.day-info .meta span:first-child {
-    color: var(--accent);
-    background: var(--accent-bg);
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-.today-badge {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-.weekly-theme-toggle {
-    position: absolute;
-    right: 24px;
-    top: 24px;
-    background: none;
-    border: 1.5px solid var(--border);
-    color: var(--text-secondary);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-}
-
-.weekly-theme-toggle:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.weekly-theme-toggle .icon-sun,
-.weekly-theme-toggle .icon-moon {
-    width: 18px;
-    height: 18px;
-}
-
-.weekly-theme-toggle .icon-sun { display: none; }
-.weekly-theme-toggle .icon-moon { display: block; }
-
-[data-theme="dark"] .weekly-theme-toggle .icon-sun { display: block; }
-[data-theme="dark"] .weekly-theme-toggle .icon-moon { display: none; }
-
-@media (max-width: 480px) {
-    .weekly-container {
-        padding: 16px 16px 100px;
-    }
-
-    .day-card {
-        grid-template-columns: 40px 60px 1fr;
-        gap: 12px;
-        padding: 16px;
-    }
-
-    .day-cover {
-        width: 60px;
-        height: 84px;
-    }
 }
 
 /* =============================================
@@ -959,12 +489,7 @@ body {
 }
 
 @media (min-width: 769px) {
-    .book-carousel {
-        display: block;
-    }
-    .book-cover-flat {
-        display: none !important;
-    }
+    .book-carousel { display: block; }
 }
 
 .carousel-track {
@@ -1006,26 +531,107 @@ body {
 
 [data-theme="dark"] .carousel-item.active {
     box-shadow:
-        6px 6px 10px rgba(0, 0, 0, 0.12),
-        18px 24px 32px rgba(0, 0, 0, 0.15),
-        36px 48px 64px rgba(0, 0, 0, 0.1);
+        6px 6px 10px rgba(0,0,0,0.12),
+        18px 24px 32px rgba(0,0,0,0.15),
+        36px 48px 64px rgba(0,0,0,0.1);
+}
+
+/* On desktop, hide the book-spread cover since carousel shows covers */
+@media (min-width: 769px) {
+    .book-spread:not(.open) {
+        display: none;
+    }
+    .book-spread.open {
+        display: block;
+    }
+}
+
+/* =============================================
+   MOBILE
+   ============================================= */
+@media (max-width: 768px) {
+    .book-spread {
+        width: 150px;
+        height: 225px;
+    }
+
+    .book-spread.open {
+        width: min(400px, calc(100vw - 48px));
+    }
+
+    .book-spread:not(.open) .book-cover {
+        width: 100%;
+    }
+
+    .book-spread.open .book-cover {
+        width: 50%;
+    }
+
+    .book-page-left .book-title { font-size: 0.95rem; }
+    .book-page-left .book-desc { font-size: 0.65rem; }
+    .book-page-right .quote-text { font-size: 1rem; }
+
+    .book-meta-below .book-title { font-size: 1.2rem; }
+    .book-meta-below .book-author { font-size: 0.82rem; }
+    .book-meta-below .book-desc { font-size: 0.82rem; }
+
+    .content-area { padding: 16px 16px 40px; }
+
+    .calendar-track { padding: 0 16px; }
+    .cal-cell { min-width: 48px; height: 58px; }
+
+    .hourglass-countdown { font-size: 2.2rem; }
 }
 
 /* =============================================
    ANIMATIONS
    ============================================= */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.page.slide-center .book-meta,
-.page.slide-center .quote-content {
-    animation: fadeIn 0.5s ease 0.15s both;
+/* =============================================
+   WEEKLY PAGE STYLES (kept for weekly.html)
+   ============================================= */
+.weekly-body { overflow: auto !important; height: auto !important; min-height: 100vh; }
+
+.weekly-container { padding: 24px 24px 120px; max-width: 480px; margin: 0 auto; }
+
+.weekly-header { text-align: center; padding: 40px 0 32px; }
+.weekly-header h1 { font-family: 'Noto Serif SC', 'Georgia', serif; font-size: 1.75rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+.weekly-header p { color: var(--text-secondary); font-size: 0.95rem; }
+
+.day-card {
+    background: var(--surface); border-radius: var(--radius-card);
+    padding: 20px; margin-bottom: 16px;
+    display: grid; grid-template-columns: 50px 72px 1fr;
+    gap: 16px; align-items: center;
+    text-decoration: none; color: inherit;
+    box-shadow: var(--shadow-card); transition: all 0.2s;
+}
+.day-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+.day-card.today { border: 2px solid var(--accent); }
+.day-number { font-size: 1.5rem; font-weight: 700; color: var(--text-tertiary); text-align: center; }
+.day-card.today .day-number { color: var(--accent); }
+.day-cover { width: 72px; height: 100px; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(92, 79, 61, 0.1); }
+.day-cover img { width: 100%; height: 100%; object-fit: cover; }
+.day-info h3 { font-family: 'Noto Serif SC', 'Georgia', serif; font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; line-height: 1.4; }
+.day-info .author { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; }
+.day-info .meta { display: flex; gap: 8px; font-size: 0.7rem; }
+.day-info .meta span:first-child { color: var(--accent); background: var(--accent-bg); padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+.today-badge { background: var(--accent); color: var(--bg); padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+
+.weekly-theme-toggle { position: absolute; right: 24px; top: 24px; background: none; border: 1.5px solid var(--border); color: var(--text-secondary); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.weekly-theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.weekly-theme-toggle .icon-sun, .weekly-theme-toggle .icon-moon { width: 18px; height: 18px; }
+.weekly-theme-toggle .icon-sun { display: none; }
+.weekly-theme-toggle .icon-moon { display: block; }
+[data-theme="dark"] .weekly-theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .weekly-theme-toggle .icon-moon { display: none; }
+
+@media (max-width: 480px) {
+    .weekly-container { padding: 16px 16px 100px; }
+    .day-card { grid-template-columns: 40px 60px 1fr; gap: 12px; padding: 16px; }
+    .day-cover { width: 60px; height: 84px; }
 }

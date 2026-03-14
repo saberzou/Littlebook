@@ -2,27 +2,19 @@
 
 let gravityClock = null;
 let currentData = null;
-let currentIndex = 0; // 0=book, 1=wallpaper, 2=quote
 let currentDate = null;
 let showingHourglass = false;
 let hourglassTimer = null;
 
-// Return YYYY-MM-DD in visitor's local timezone
 function localDateStr(date) {
     return (date || new Date()).toLocaleDateString('en-CA');
 }
 
-// Return YYYY-MM-DD offset by `days` from today in visitor's local timezone
 function localDateOffset(days) {
     const d = new Date();
     d.setDate(d.getDate() + days);
     return d.toLocaleDateString('en-CA');
 }
-
-
-
-const pages = () => document.querySelectorAll('.page');
-const totalPages = () => pages().length;
 
 const isDesktop = () => window.innerWidth >= 769;
 let carouselDates = [];
@@ -37,31 +29,30 @@ function buildCarousel() {
     if (!track) return;
     track.innerHTML = '';
     carouselDates = DailyData.getAllDates();
-    
+
     carouselDates.forEach((dateStr, i) => {
         const data = DailyData.getByDate(dateStr);
         const item = document.createElement('div');
         item.className = 'carousel-item';
         item.dataset.date = dateStr;
         item.dataset.index = i;
-        
+
         const img = document.createElement('img');
         if (data && data.book) {
             img.src = generateCoverPlaceholder(data.book.title, data.book.author);
             img.alt = data.book.title;
-            // Eager load real cover
             DailyData.fetchBestCover(data.book.isbn, data.book.title, data.book.author)
                 .then(url => { if (url) img.src = url; })
                 .catch(() => {});
         }
-        
+
         item.appendChild(img);
         item.addEventListener('click', () => {
             if (dateStr !== currentDate) selectDate(dateStr);
         });
         track.appendChild(item);
     });
-    
+
     carouselBuilt = true;
     updateCarousel(currentDate);
 }
@@ -70,31 +61,29 @@ function updateCarousel(dateStr) {
     if (!isDesktop() || !carouselBuilt) return;
     const track = document.getElementById('carouselTrack');
     if (!track) return;
-    
+
     const items = track.querySelectorAll('.carousel-item');
     const idx = carouselDates.indexOf(dateStr);
     if (idx < 0) return;
-    
-    // Calculate translateX to center the active item
-    // Each item is 180px wide + 20px gap = 200px per item
+
     const itemWidth = 180;
     const gap = 20;
     const step = itemWidth + gap;
     const containerWidth = track.parentElement.offsetWidth;
     const offset = containerWidth / 2 - itemWidth / 2 - idx * step;
-    
+
     track.style.transform = `translateX(${offset}px)`;
-    
+
     items.forEach((item, i) => {
         const dist = Math.abs(i - idx);
         item.classList.toggle('active', dist === 0);
-        
+
         let scale, opacity;
         if (dist === 0) { scale = 1; opacity = 1; }
         else if (dist === 1) { scale = 0.8; opacity = 0.7; }
         else if (dist === 2) { scale = 0.65; opacity = 0.4; }
         else { scale = 0.55; opacity = 0.25; }
-        
+
         if (dist !== 0) {
             item.style.transform = `scale(${scale})`;
             item.style.opacity = opacity;
@@ -107,7 +96,9 @@ function updateCarousel(dateStr) {
     });
 }
 
-// ---- Initialise ----
+// =============================================
+//  INIT
+// =============================================
 function init() {
     currentData = DailyData.getToday();
     currentDate = currentData ? currentData.date : localDateStr();
@@ -115,7 +106,6 @@ function init() {
     const todayStr = localDateStr();
     const tomorrowStr = localDateOffset(1);
 
-    // Check URL params
     const urlParams = new URLSearchParams(window.location.search);
     const dateParam = urlParams.get('date');
     if (dateParam) {
@@ -127,16 +117,13 @@ function init() {
                 currentData = data;
                 currentDate = dateParam;
             } else {
-                // Past date with no data — still set the date for calendar selection
                 currentDate = dateParam;
             }
         }
     }
 
-    // Build calendar strip
     buildCalendar();
 
-    // Load content or hourglass
     if (currentDate === tomorrowStr) {
         showHourglass();
     } else if (DailyData.getByDate(currentDate)) {
@@ -144,45 +131,31 @@ function init() {
     } else {
         showNoData();
     }
-    applySlide(0);
 
-    // Position nav slider on init
-    requestAnimationFrame(() => updateNavSlider(0));
+    // Book spread click to toggle open/close
+    document.getElementById('bookSpread').addEventListener('click', toggleBookSpread);
 
-    // Nav items
-    document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach(item => {
-        item.addEventListener('click', () => {
-            goToSlide(parseInt(item.dataset.index));
-        });
-    });
-
-    // Swipe support
-    initSwipe();
-
-    // Buttons
-
-
-    // Dark mode toggle
+    // Dark mode
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
-    // Restore saved theme
     const saved = localStorage.getItem('littlebook-theme');
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 
-    // Calendar swipe
     initCalendarSwipe();
-
-    // Build desktop carousel
     buildCarousel();
 
-    // Reposition nav slider on resize
     window.addEventListener('resize', () => {
-        updateNavSlider(currentIndex);
         if (isDesktop() && !carouselBuilt) buildCarousel();
         if (isDesktop()) updateCarousel(currentDate);
     });
+}
+
+// =============================================
+//  BOOK SPREAD TOGGLE
+// =============================================
+function toggleBookSpread() {
+    document.getElementById('bookSpread').classList.toggle('open');
 }
 
 // =============================================
@@ -192,16 +165,12 @@ function buildCalendar() {
     const track = document.getElementById('calendarTrack');
     track.innerHTML = '';
 
-    // Always show 7 cells: 5 past days + today + tomorrow
     const todayStr = localDateStr();
     const calendarDates = [];
-
-    for (let i = 5; i >= 1; i--) {
-        calendarDates.push(localDateOffset(-i));
-    }
-    calendarDates.push(todayStr); // today
+    for (let i = 5; i >= 1; i--) calendarDates.push(localDateOffset(-i));
+    calendarDates.push(todayStr);
     const tomorrowStr = localDateOffset(1);
-    calendarDates.push(tomorrowStr); // tomorrow
+    calendarDates.push(tomorrowStr);
 
     calendarDates.forEach(dateStr => {
         const d = new Date(dateStr + 'T12:00:00');
@@ -239,12 +208,9 @@ function buildCalendar() {
         track.appendChild(cell);
     });
 
-    // Scroll to selected date
     requestAnimationFrame(() => {
         const selected = track.querySelector('.cal-cell.selected');
-        if (selected) {
-            selected.scrollIntoView({ inline: 'center', behavior: 'instant' });
-        }
+        if (selected) selected.scrollIntoView({ inline: 'center', behavior: 'instant' });
     });
 }
 
@@ -252,24 +218,21 @@ function updateCalendarSelection(dateStr) {
     document.querySelectorAll('.cal-cell').forEach(cell => {
         cell.classList.toggle('selected', cell.dataset.date === dateStr);
     });
-
-    // Scroll selected into view
     const track = document.getElementById('calendarTrack');
     const selected = track.querySelector('.cal-cell.selected');
-    if (selected) {
-        selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-    }
+    if (selected) selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
 }
 
 function selectDate(dateStr) {
     const tomorrowStr = localDateOffset(1);
-
-    // Skip if same date
     if (dateStr === currentDate) return;
 
     currentDate = dateStr;
     updateCalendarSelection(dateStr);
     updateURL(dateStr);
+
+    // Close book spread on date change
+    document.getElementById('bookSpread').classList.remove('open');
 
     const contentArea = document.getElementById('contentArea');
     contentArea.classList.add('fade-out');
@@ -283,87 +246,71 @@ function selectDate(dateStr) {
                 currentData = data;
                 hideHourglass();
                 loadContent();
-                goToSlide(0);
                 updateCarousel(dateStr);
             } else {
                 showNoData();
             }
         }
-        // Fade back in
-        requestAnimationFrame(() => {
-            contentArea.classList.remove('fade-out');
-        });
+        requestAnimationFrame(() => contentArea.classList.remove('fade-out'));
     }, 250);
 }
 
 function initCalendarSwipe() {
     const strip = document.getElementById('calendarStrip');
-    let startX = 0;
-    let scrollStart = 0;
-
+    let startX = 0, scrollStart = 0;
     strip.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         scrollStart = strip.scrollLeft;
     }, { passive: true });
-
     strip.addEventListener('touchmove', (e) => {
-        const dx = startX - e.touches[0].clientX;
-        strip.scrollLeft = scrollStart + dx;
+        strip.scrollLeft = scrollStart + (startX - e.touches[0].clientX);
     }, { passive: true });
 }
 
 // =============================================
-//  WAITING OVERLAY — Dog ASCII art + countdown
+//  HOURGLASS / NO DATA
 // =============================================
-
 function showHourglass() {
     showingHourglass = true;
-
-    document.getElementById('swiperContainer').style.display = 'none';
+    document.getElementById('bookSpread').style.display = 'none';
+    document.getElementById('bookMetaBelow').style.display = 'none';
     document.getElementById('hourglassOverlay').style.display = 'flex';
-    document.getElementById('bottomBar').style.display = 'none';
+    if (document.getElementById('bookCarousel')) document.getElementById('bookCarousel').style.display = 'none';
 
-    // Restore countdown elements (may have been hidden by showNoData)
     document.getElementById('gravityClockCanvas').style.display = 'block';
     document.querySelector('.hourglass-label').textContent = "Tomorrow's pick arrives in";
     document.querySelector('.hourglass-countdown').style.display = '';
     document.querySelector('.hourglass-hint').textContent = 'Come back tomorrow for a new book, wallpaper & quote';
 
-    // Start gravity clock
     const canvas = document.getElementById('gravityClockCanvas');
     if (gravityClock) gravityClock.stop();
     gravityClock = new GravityClock(canvas);
     gravityClock.init();
-
-    // Start countdown
     updateCountdown();
     hourglassTimer = setInterval(updateCountdown, 1000);
 }
 
 function hideHourglass() {
     showingHourglass = false;
-
-    document.getElementById('swiperContainer').style.display = '';
+    document.getElementById('bookSpread').style.display = '';
+    document.getElementById('bookMetaBelow').style.display = '';
     document.getElementById('hourglassOverlay').style.display = 'none';
-    document.getElementById('bottomBar').style.display = '';
-
+    if (document.getElementById('bookCarousel')) document.getElementById('bookCarousel').style.display = '';
     if (gravityClock) { gravityClock.stop(); gravityClock = null; }
     if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
 }
 
 function showNoData() {
     showingHourglass = false;
-
-    document.getElementById('swiperContainer').style.display = 'none';
+    document.getElementById('bookSpread').style.display = 'none';
+    document.getElementById('bookMetaBelow').style.display = 'none';
     document.getElementById('hourglassOverlay').style.display = 'flex';
-    document.getElementById('bottomBar').style.display = 'none';
+    if (document.getElementById('bookCarousel')) document.getElementById('bookCarousel').style.display = 'none';
 
-    // Hide clock canvas, show a simple message
     document.getElementById('gravityClockCanvas').style.display = 'none';
     document.querySelector('.hourglass-label').textContent = 'No content for this day';
     document.querySelector('.hourglass-countdown').style.display = 'none';
     document.querySelector('.hourglass-hint').textContent = 'Select another date to explore';
-
     if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
 }
 
@@ -372,12 +319,10 @@ function updateCountdown() {
     const tomorrow = new Date(now);
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow.setHours(0, 0, 0, 0);
-
     const diff = tomorrow - now;
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
-
     const pad = n => String(n).padStart(2, '0');
     document.getElementById('hourglassCountdown').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
 }
@@ -386,7 +331,6 @@ function updateCountdown() {
 //  CONTENT LOADING
 // =============================================
 function generateCoverPlaceholder(title, author) {
-    // Wrap title text into lines (max ~14 chars per line)
     const maxChars = 14;
     const words = title.split(' ');
     const lines = [];
@@ -421,24 +365,33 @@ function generateCoverPlaceholder(title, author) {
 
 function loadContent() {
     if (!currentData) return;
-
     const { book, quote } = currentData;
 
-    // Book
+    // Book info — inside spread left page
     document.getElementById('bookCategory').textContent = book.category;
     document.getElementById('bookTitle').textContent = book.title;
     document.getElementById('bookAuthor').textContent = book.author;
     document.getElementById('bookDesc').textContent = book.desc;
 
-    const coverImg = document.getElementById('bookCover');
-    const bookFlat = coverImg.closest('.book-cover-flat');
+    // Book info — below spread (visible when closed)
+    document.getElementById('bookCategoryBelow').textContent = book.category;
+    document.getElementById('bookTitleBelow').textContent = book.title;
+    document.getElementById('bookAuthorBelow').textContent = book.author;
+    document.getElementById('bookDescBelow').textContent = book.desc;
 
-    bookFlat.classList.add('loading');
+    // Quote — inside spread right page
+    document.getElementById('quoteText').textContent = quote.text;
+    document.getElementById('quoteSource').textContent = `— ${quote.source}`;
+
+    // Cover image
+    const coverImg = document.getElementById('bookCover');
+    const cover3d = document.getElementById('bookCover3d');
+    cover3d.classList.add('loading');
 
     const showPlaceholder = () => {
         coverImg.src = generateCoverPlaceholder(book.title, book.author);
         coverImg.alt = book.title;
-        bookFlat.classList.remove('loading');
+        cover3d.classList.remove('loading');
     };
 
     const coverTimeout = new Promise(resolve => setTimeout(() => resolve(null), 10000));
@@ -449,26 +402,33 @@ function loadContent() {
         if (url) {
             coverImg.src = url;
             coverImg.alt = book.title;
-            bookFlat.classList.remove('loading');
+            cover3d.classList.remove('loading');
         } else {
             showPlaceholder();
         }
     }).catch(() => showPlaceholder());
 
-    // Preload adjacent dates' covers
     preloadAdjacentCovers();
 
-    // Random background color from unused palette
+    // Set book pages background color from palette
     const quoteColors = ['#D9A48B', '#CC7F4E', '#B8A0B0', '#7BC4D9', '#8B8B6E', '#D4C9A1'];
-    const quoteCard = document.querySelector('.quote-card');
-    if (quoteCard) {
-        const colorIdx = Math.abs(currentDate.split('-').reduce((a, b) => a + parseInt(b), 0)) % quoteColors.length;
-        quoteCard.style.backgroundColor = quoteColors[colorIdx];
-    }
+    const colorIdx = Math.abs(currentDate.split('-').reduce((a, b) => a + parseInt(b), 0)) % quoteColors.length;
+    const bgColor = quoteColors[colorIdx];
+    const bookPages = document.getElementById('bookPages');
+    bookPages.style.backgroundColor = bgColor;
 
-    // Quote
-    document.getElementById('quoteText').textContent = quote.text;
-    document.getElementById('quoteSource').textContent = `— ${quote.source}`;
+    // Dark mode: muted version
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        bookPages.style.backgroundColor = blendWithDark(bgColor, 0.35);
+    }
+}
+
+function blendWithDark(hex, amount) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const blend = (c) => Math.round(c * (1 - amount));
+    return `rgb(${blend(r)}, ${blend(g)}, ${blend(b)})`;
 }
 
 function preloadAdjacentCovers() {
@@ -478,7 +438,6 @@ function preloadAdjacentCovers() {
     const toPreload = [];
     if (idx > 0) toPreload.push(allDates[idx - 1]);
     if (idx < allDates.length - 1) toPreload.push(allDates[idx + 1]);
-
     toPreload.forEach(date => {
         const data = DailyData.getByDate(date);
         if (data && data.book) {
@@ -486,93 +445,6 @@ function preloadAdjacentCovers() {
         }
     });
 }
-
-
-// =============================================
-//  NAV SLIDER
-// =============================================
-function updateNavSlider(index) {
-    const slider = document.getElementById('navSlider');
-    const items = document.querySelectorAll('.pill-nav .nav-item[data-index]');
-    if (!slider || !items[index]) return;
-    const nav = document.getElementById('pillNav');
-    const navRect = nav.getBoundingClientRect();
-    const itemRect = items[index].getBoundingClientRect();
-    slider.style.width = itemRect.width + 'px';
-    slider.style.height = itemRect.height + 'px';
-    slider.style.transform = 'translateX(' + (itemRect.left - navRect.left - parseFloat(getComputedStyle(nav).paddingLeft)) + 'px)';
-}
-
-// =============================================
-//  SLIDE TRANSITION (left/right)
-// =============================================
-function applySlide(activeIndex) {
-    pages().forEach((page, i) => {
-        page.classList.remove('slide-left', 'slide-center', 'slide-right');
-        if (i < activeIndex) page.classList.add('slide-left');
-        else if (i === activeIndex) page.classList.add('slide-center');
-        else page.classList.add('slide-right');
-    });
-}
-
-function goToSlide(index) {
-    if (showingHourglass) return;
-    const max = totalPages() - 1;
-    if (index < 0 || index > max) return;
-    currentIndex = index;
-    applySlide(index);
-
-    document.querySelectorAll('.pill-nav .nav-item[data-index]').forEach((item, i) => {
-        item.classList.toggle('active', i === index);
-    });
-
-    // Slide the nav indicator
-    updateNavSlider(index);
-
-}
-
-// =============================================
-//  TOUCH / MOUSE SWIPE (content pages)
-// =============================================
-function initSwipe() {
-    const container = document.getElementById('swiperContainer');
-    let startX = 0;
-    let isDragging = false;
-
-    container.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    }, { passive: true });
-
-    container.addEventListener('touchend', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        const diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0 && currentIndex < totalPages() - 1) goToSlide(currentIndex + 1);
-            else if (diff < 0 && currentIndex > 0) goToSlide(currentIndex - 1);
-        }
-    });
-
-    container.addEventListener('mousedown', (e) => {
-        startX = e.clientX;
-        isDragging = true;
-    });
-
-    container.addEventListener('mouseup', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        const diff = startX - e.clientX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0 && currentIndex < totalPages() - 1) goToSlide(currentIndex + 1);
-            else if (diff < 0 && currentIndex > 0) goToSlide(currentIndex - 1);
-        }
-    });
-}
-
-// =============================================
-//  ACTIONS
-// =============================================
 
 // =============================================
 //  URL + HISTORY
@@ -584,18 +456,7 @@ function updateURL(dateStr) {
 
 window.addEventListener('popstate', (e) => {
     const date = e.state?.date;
-    if (date) {
-        selectDate(date);
-    }
-});
-
-// =============================================
-//  KEYBOARD
-// =============================================
-document.addEventListener('keydown', (e) => {
-    if (showingHourglass) return;
-    if (e.key === 'ArrowLeft' && currentIndex > 0) goToSlide(currentIndex - 1);
-    else if (e.key === 'ArrowRight' && currentIndex < totalPages() - 1) goToSlide(currentIndex + 1);
+    if (date) selectDate(date);
 });
 
 // =============================================
@@ -611,6 +472,8 @@ function toggleTheme() {
         html.setAttribute('data-theme', 'dark');
         localStorage.setItem('littlebook-theme', 'dark');
     }
+    // Re-apply page color for dark mode blend
+    if (currentData) loadContent();
 }
 
 // =============================================
