@@ -488,10 +488,6 @@ body {
     margin-bottom: 32px;
 }
 
-@media (min-width: 769px) {
-    .book-carousel { display: block; }
-}
-
 .carousel-track {
     display: flex;
     align-items: center;
@@ -536,13 +532,20 @@ body {
         36px 48px 64px rgba(0,0,0,0.1);
 }
 
-/* On desktop, hide the book-spread cover since carousel shows covers */
+/* Desktop carousel — disabled for now, using book spread on all sizes */
+/*
 @media (min-width: 769px) {
-    .book-spread:not(.open) {
-        display: none;
+    .book-carousel { display: block; }
+}
+*/
+
+@media (min-width: 769px) {
+    .book-spread {
+        width: 220px;
+        height: 330px;
     }
     .book-spread.open {
-        display: block;
+        width: 480px;
     }
 }
 
