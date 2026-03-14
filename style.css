@@ -325,12 +325,12 @@ body {
 .book-3d {
     --book-w: 200px;
     --book-h: 300px;
-    --book-d: 30px;
+    --book-d: 40px;
     width: var(--book-w);
     height: var(--book-h);
     position: relative;
     transform-style: preserve-3d;
-    transform: rotateY(-25deg) rotateX(8deg);
+    transform: rotateY(-20deg) rotateX(5deg);
 }
 
 .book-face {
@@ -343,9 +343,9 @@ body {
     width: var(--book-w);
     height: var(--book-h);
     transform: translateZ(calc(var(--book-d) / 2));
-    border-radius: 2px 8px 8px 2px;
+    border-radius: 3px 10px 10px 3px;
     overflow: hidden;
-    box-shadow: 4px 4px 20px rgba(92, 79, 61, 0.2);
+    box-shadow: 3px 3px 16px rgba(92, 79, 61, 0.2), inset 0 0 0 1px rgba(139, 125, 107, 0.15);
     background: var(--bg-secondary);
 }
 
@@ -428,11 +428,11 @@ body {
     transform-origin: left center;
     background: linear-gradient(
         to right,
-        #3D3428 0%,
-        #5C4F3D 40%,
-        #3D3428 100%
+        #4A3F32 0%,
+        #6B5E4C 40%,
+        #4A3F32 100%
     );
-    border-radius: 4px 0 0 4px;
+    border-radius: 6px 0 0 6px;
 }
 
 [data-theme="dark"] .book-spine {
@@ -537,12 +537,12 @@ body {
 .book-scene::after {
     content: '';
     position: absolute;
-    bottom: -20px;
-    left: 10%;
-    width: 80%;
-    height: 30px;
+    bottom: -24px;
+    left: 5%;
+    width: 90%;
+    height: 36px;
     background: radial-gradient(ellipse, rgba(92, 79, 61, 0.15) 0%, transparent 70%);
-    filter: blur(8px);
+    filter: blur(12px);
     pointer-events: none;
 }
 
@@ -908,7 +908,7 @@ body {
     .book-3d {
         --book-w: 160px;
         --book-h: 240px;
-        --book-d: 24px;
+        --book-d: 32px;
     }
 
     .book-meta {
