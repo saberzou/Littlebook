@@ -6,7 +6,7 @@
 }
 
 :root {
-    /* Light theme — Earthy Stone */
+    /* Light theme - Earthy Stone */
     --bg: #E8EDE9;
     --bg-secondary: #DFE5E0;
     --surface: #FFFFFF;
@@ -71,7 +71,7 @@ body {
 }
 
 /* =============================================
-   CALENDAR STRIP — swipeable horizontal dates
+   CALENDAR STRIP - swipeable horizontal dates
    ============================================= */
 .calendar-strip {
     overflow-x: auto;
@@ -182,7 +182,7 @@ body {
 }
 
 /* =============================================
-   CONTENT AREA — holds swiper + hourglass
+   CONTENT AREA - holds swiper + hourglass
    ============================================= */
 .content-area {
     flex: 1;
@@ -198,7 +198,7 @@ body {
 }
 
 /* =============================================
-   HOURGLASS OVERLAY — canvas countdown
+   HOURGLASS OVERLAY - canvas countdown
    ============================================= */
 .hourglass-overlay {
     display: none;
@@ -305,7 +305,7 @@ body {
 }
 
 /* =============================================
-   BOOK PAGE — fixed cover position
+   BOOK PAGE - fixed cover position
    ============================================= */
 .book-page {
     flex-direction: column;
@@ -324,9 +324,9 @@ body {
     background: var(--bg-secondary);
     position: relative;
     box-shadow:
-        0 2px 4px rgba(92, 79, 61, 0.08),
-        0 12px 28px rgba(92, 79, 61, 0.12),
-        0 28px 48px rgba(92, 79, 61, 0.08);
+        4px 4px 8px rgba(92, 79, 61, 0.06),
+        8px 12px 24px rgba(92, 79, 61, 0.08),
+        16px 24px 48px rgba(92, 79, 61, 0.06);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
@@ -361,10 +361,10 @@ body {
 }
 
 [data-theme="dark"] .book-cover-flat {
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.2),
-        0 12px 28px rgba(0, 0, 0, 0.25),
-        0 28px 48px rgba(0, 0, 0, 0.15);
+    box-shadow: 
+        4px 4px 8px rgba(0, 0, 0, 0.12),
+        8px 12px 24px rgba(0, 0, 0, 0.15),
+        16px 24px 48px rgba(0, 0, 0, 0.1);
 }
 
 .book-meta {
@@ -453,7 +453,7 @@ body {
 
 
 /* =============================================
-   QUOTE PAGE — card with large decorative mark
+   QUOTE PAGE - card with large decorative mark
    ============================================= */
 .quote-page {
     flex-direction: column;
@@ -481,7 +481,7 @@ body {
 
 
 
-/* Large decorative quotation mark — pinned to top of card */
+/* Large decorative quotation mark - pinned to top of card */
 .quote-decoration {
     position: absolute;
     top: 24px;
@@ -556,7 +556,7 @@ body {
 }
 
 /* =============================================
-   BOTTOM BAR — nav left, theme toggle right
+   BOTTOM BAR - nav left, theme toggle right
    ============================================= */
 .bottom-bar {
     position: fixed;
@@ -572,7 +572,7 @@ body {
     pointer-events: none;
 }
 
-/* iOS 26 PILL NAV BAR — icon only */
+/* iOS 26 PILL NAV BAR - icon only */
 .pill-nav {
     display: flex;
     gap: 4px;
@@ -642,7 +642,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Theme toggle — standalone rounded button */
+/* Theme toggle - standalone rounded button */
 .theme-btn {
     width: 54px;
     height: 54px;
@@ -679,7 +679,7 @@ body {
 [data-theme="dark"] .theme-btn .icon-moon { display: none; }
 
 /* =============================================
-   RESPONSIVE — Mobile
+   RESPONSIVE - Mobile
    ============================================= */
 @media (max-width: 480px) {
     .page {
