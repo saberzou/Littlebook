@@ -332,14 +332,14 @@ function loadContent() {
     document.getElementById('bookDesc').textContent = book.desc;
 
     const coverImg = document.getElementById('bookCover');
-    const bookFront = coverImg.closest('.book-front');
+    const bookFlat = coverImg.closest('.book-cover-flat');
 
-    bookFront.classList.add('loading');
+    bookFlat.classList.add('loading');
 
     const showPlaceholder = () => {
         coverImg.src = generateCoverPlaceholder(book.title, book.author);
         coverImg.alt = book.title;
-        bookFront.classList.remove('loading');
+        bookFlat.classList.remove('loading');
     };
 
     const coverTimeout = new Promise(resolve => setTimeout(() => resolve(null), 10000));
@@ -350,28 +350,11 @@ function loadContent() {
         if (url) {
             coverImg.src = url;
             coverImg.alt = book.title;
-            bookFront.classList.remove('loading');
+            bookFlat.classList.remove('loading');
         } else {
             showPlaceholder();
         }
     }).catch(() => showPlaceholder());
-
-    // Set book rotation angle based on date
-    const bookAngles = [
-        { rotY: -25, rotX: 8 },
-        { rotY: -18, rotX: 5 },
-        { rotY: -30, rotX: 10 },
-        { rotY: -12, rotX: 6 },
-        { rotY: -22, rotX: 12 },
-        { rotY: -28, rotX: 4 },
-        { rotY: -15, rotX: 9 },
-    ];
-    const dayHash = currentDate.split('').reduce((h, c) => ((h << 5) - h) + c.charCodeAt(0), 0);
-    const angle = bookAngles[Math.abs(dayHash) % bookAngles.length];
-    const book3d = document.querySelector('.book-3d');
-    if (book3d) {
-        book3d.style.transform = `rotateY(${angle.rotY}deg) rotateX(${angle.rotX}deg)`;
-    }
 
     // Preload adjacent dates' covers
     preloadAdjacentCovers();
