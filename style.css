@@ -450,7 +450,7 @@ body {
     height: var(--book-h);
     left: calc(var(--book-w) - 1px);
     transform-origin: left center;
-    transform: rotateY(90deg) translateZ(calc(var(--book-d) / -2));
+    transform: rotateY(90deg) translateZ(0px);
     background: repeating-linear-gradient(
         to right,
         #F0EBE4 0px,
