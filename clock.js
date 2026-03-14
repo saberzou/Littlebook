@@ -6,7 +6,8 @@ class GravityClock {
         this.ctx = canvas.getContext('2d');
         this.bodies = [];
         this.animId = null;
-        this.lastHourCheck = -1;
+        this.lastSecondCheck = -1;
+        this.nextDrop = 1; // next number to drop (1-60)
         this.dpr = window.devicePixelRatio || 1;
 
         // Responsive sizing
@@ -28,7 +29,7 @@ class GravityClock {
         this.cx = cssSize / 2;
         this.cy = cssSize / 2;
         this.clockRadius = isMobile ? 130 : 168;
-        this.pillRadius = isMobile ? 14 : 18;
+        this.pillRadius = isMobile ? 10 : 12;
     }
 
     get isDark() {
@@ -62,58 +63,55 @@ class GravityClock {
     init() {
         this.bodies = [];
         const now = new Date();
-        const currentHour = now.getHours(); // 0-23
+        const currentSecond = now.getSeconds(); // 0-59
 
-        for (let i = 1; i <= 24; i++) {
-            const dropped = i <= currentHour;
-            const body = {
-                number: i,
-                radius: this.pillRadius,
-                rotation: 0,
-                angularVel: 0,
-                dropped: dropped,
-                settled: false,
-            };
-
-            if (dropped) {
-                // Random position inside clock, biased toward bottom
-                const angle = Math.random() * Math.PI * 2;
-                const dist = Math.random() * (this.clockRadius - this.pillRadius * 3);
-                body.x = this.cx + Math.cos(angle) * dist * 0.5;
-                body.y = this.cy + Math.abs(Math.sin(angle)) * dist * 0.3 + this.clockRadius * 0.2;
-                body.vx = (Math.random() - 0.5) * 2;
-                body.vy = (Math.random() - 0.5) * 2;
-                body.angularVel = (Math.random() - 0.5) * 0.1;
-            } else {
-                // Queued at top — arranged in an arc
-                const queueIdx = i - currentHour - 1;
-                const total = 24 - currentHour;
-                const spread = Math.min(total, 12);
-                const angleStep = Math.PI * 0.6 / Math.max(spread, 1);
-                const startAngle = -Math.PI / 2 - (spread - 1) * angleStep / 2;
-                const a = startAngle + queueIdx * angleStep;
-                const r = this.clockRadius - this.pillRadius - 4;
-                body.x = this.cx + Math.cos(a) * r;
-                body.y = this.cy + Math.sin(a) * r;
-                body.vx = 0;
-                body.vy = 0;
-            }
-
+        // Pre-spawn pills 1..currentSecond at random positions in lower half (already fell)
+        for (let i = 1; i <= currentSecond; i++) {
+            const body = this._makeBody(i);
+            // Random position in lower half of clock
+            const angle = Math.random() * Math.PI; // 0 to PI = lower semicircle
+            const maxR = this.clockRadius - this.pillRadius - 5;
+            const dist = Math.random() * maxR * 0.7;
+            body.x = this.cx + (Math.random() - 0.5) * maxR * 0.8;
+            body.y = this.cy + Math.abs(dist) * 0.4 + this.clockRadius * 0.15;
+            body.vx = 0;
+            body.vy = 0;
+            body.angularVel = 0;
+            body.rotation = (Math.random() - 0.5) * 0.5;
             this.bodies.push(body);
         }
 
-        this.lastHourCheck = currentHour;
+        this.nextDrop = currentSecond + 1; // next one to drop
+        this.lastSecondCheck = currentSecond;
         this.start();
     }
 
-    dropNumber(body) {
-        body.dropped = true;
+    _makeBody(number) {
+        return {
+            number,
+            radius: this.pillRadius,
+            x: 0,
+            y: 0,
+            vx: 0,
+            vy: 0,
+            rotation: 0,
+            angularVel: 0,
+        };
+    }
+
+    dropNumber(number) {
+        const body = this._makeBody(number);
         body.x = this.cx + (Math.random() - 0.5) * 30;
         body.y = this.cy - this.clockRadius + this.pillRadius + 5;
         body.vx = (Math.random() - 0.5) * 3;
         body.vy = 1;
         body.angularVel = (Math.random() - 0.5) * 0.15;
-        body.settled = false;
+        this.bodies.push(body);
+    }
+
+    resetCycle() {
+        this.bodies = [];
+        this.nextDrop = 1;
     }
 
     start() {
@@ -135,71 +133,65 @@ class GravityClock {
     }
 
     update() {
-        // Check for new hour
         const now = new Date();
-        const currentHour = now.getHours();
-        if (currentHour !== this.lastHourCheck) {
-            // Drop newly passed hours
-            for (let h = this.lastHourCheck + 1; h <= currentHour; h++) {
-                const body = this.bodies.find(b => b.number === h);
-                if (body && !body.dropped) {
-                    this.dropNumber(body);
+        const currentSecond = now.getSeconds(); // 0-59
+
+        if (currentSecond !== this.lastSecondCheck) {
+            if (currentSecond === 0) {
+                // New minute — reset
+                this.resetCycle();
+            } else if (currentSecond >= this.nextDrop) {
+                // Drop all numbers from nextDrop to currentSecond
+                for (let s = this.nextDrop; s <= currentSecond; s++) {
+                    if (s <= 60) this.dropNumber(s);
                 }
+                this.nextDrop = currentSecond + 1;
             }
-            this.lastHourCheck = currentHour;
+            this.lastSecondCheck = currentSecond;
         }
 
         const gravity = 0.15;
         const restitution = 0.3;
         const velDamp = 0.98;
         const angDamp = 0.95;
-        const boundary = this.clockRadius - 3; // inner boundary
+        const boundary = this.clockRadius - 3;
 
-        const dropped = this.bodies.filter(b => b.dropped);
-
-        for (const b of dropped) {
-            // Gravity
+        for (const b of this.bodies) {
             b.vy += gravity;
-
-            // Damping
             b.vx *= velDamp;
             b.vy *= velDamp;
             b.angularVel *= angDamp;
 
-            // Move
             b.x += b.vx;
             b.y += b.vy;
             b.rotation += b.angularVel;
 
-            // Circular boundary collision
+            // Circular boundary
             const dx = b.x - this.cx;
             const dy = b.y - this.cy;
             const dist = Math.sqrt(dx * dx + dy * dy);
             const maxDist = boundary - b.radius;
 
             if (dist > maxDist) {
-                // Push back inside
                 const nx = dx / dist;
                 const ny = dy / dist;
                 b.x = this.cx + nx * maxDist;
                 b.y = this.cy + ny * maxDist;
 
-                // Reflect velocity
                 const dot = b.vx * nx + b.vy * ny;
                 b.vx -= (1 + restitution) * dot * nx;
                 b.vy -= (1 + restitution) * dot * ny;
 
-                // Angular from friction
                 const tangentSpeed = -b.vx * ny + b.vy * nx;
                 b.angularVel += tangentSpeed * 0.01;
             }
         }
 
         // Circle-circle collisions
-        for (let i = 0; i < dropped.length; i++) {
-            for (let j = i + 1; j < dropped.length; j++) {
-                const a = dropped[i];
-                const b = dropped[j];
+        for (let i = 0; i < this.bodies.length; i++) {
+            for (let j = i + 1; j < this.bodies.length; j++) {
+                const a = this.bodies[i];
+                const b = this.bodies[j];
                 const dx = b.x - a.x;
                 const dy = b.y - a.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -210,13 +202,11 @@ class GravityClock {
                     const ny = dy / dist;
                     const overlap = minDist - dist;
 
-                    // Separate
                     a.x -= nx * overlap * 0.5;
                     a.y -= ny * overlap * 0.5;
                     b.x += nx * overlap * 0.5;
                     b.y += ny * overlap * 0.5;
 
-                    // Relative velocity along normal
                     const dvx = a.vx - b.vx;
                     const dvy = a.vy - b.vy;
                     const dvn = dvx * nx + dvy * ny;
@@ -228,7 +218,6 @@ class GravityClock {
                         b.vx += impulse * nx;
                         b.vy += impulse * ny;
 
-                        // Angular transfer
                         const tangent = -dvx * ny + dvy * nx;
                         a.angularVel -= tangent * 0.005;
                         b.angularVel += tangent * 0.005;
@@ -266,14 +255,9 @@ class GravityClock {
             ctx.stroke();
         }
 
-        // Draw queued (non-dropped) bodies first (behind hands)
+        // Draw bodies
         for (const body of this.bodies) {
-            if (!body.dropped) this.drawBody(body);
-        }
-
-        // Draw dropped bodies
-        for (const body of this.bodies) {
-            if (body.dropped) this.drawBody(body);
+            this.drawBody(body);
         }
 
         // Clock hands on top
@@ -296,7 +280,7 @@ class GravityClock {
         // Pill circle
         ctx.beginPath();
         ctx.arc(0, 0, body.radius, 0, Math.PI * 2);
-        ctx.fillStyle = body.dropped ? c.pill : (this.isDark ? '#3A352D' : '#F5F5F0');
+        ctx.fillStyle = c.pill;
         ctx.fill();
 
         // Reset shadow
@@ -306,7 +290,7 @@ class GravityClock {
 
         // Number text
         ctx.fillStyle = c.pillText;
-        ctx.font = `bold ${body.radius * 0.85}px 'Geist', system-ui, sans-serif`;
+        ctx.font = `bold 10px 'Geist', system-ui, sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(body.number, 0, 1);
