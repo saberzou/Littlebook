@@ -545,6 +545,6 @@ function initAudioPlayer() {
 //  BOOT
 // =============================================
 document.addEventListener('DOMContentLoaded', () => {
-    init();
     initAudioPlayer();
+    init();
 });
