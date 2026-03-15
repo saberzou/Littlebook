@@ -14,34 +14,34 @@ TOMORROW=$(date -v+1d +%Y-%m-%d 2>/dev/null || date -d '+1 day' +%Y-%m-%d)
 BOOK_INFO=$(node -e "
   const fs = require('fs');
   const src = fs.readFileSync('$REPO_DIR/data.js', 'utf8');
-  const m = src.match(/date:\\s*\"$TOMORROW\"[\\s\\S]*?book:\\s*\\{([\\s\\S]*?)\\}/);
-  if (!m) { console.error('No book found for $TOMORROW'); process.exit(1); }
-  const block = m[1];
-  const get = (k) => (block.match(new RegExp(k + ':\\s*\"([^\"]+)\"')) || [])[1] || '';
-  console.log(JSON.stringify({
-    title: get('title'),
-    author: get('author'),
-    category: get('category'),
-    desc: get('desc')
-  }));
+  const dateIdx = src.indexOf('date: \"$TOMORROW\"');
+  if (dateIdx < 0) { console.error('No entry for $TOMORROW'); process.exit(1); }
+  const chunk = src.slice(dateIdx, dateIdx + 600);
+  const g = (k) => { const m = chunk.match(new RegExp(k + ': \"([^\"]+)\"')); return m ? m[1] : ''; };
+  console.log(JSON.stringify({ title: g('title'), author: g('author'), category: g('category'), desc: g('desc') }));
 ")
 
-TITLE=$(echo "$BOOK_INFO" | node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(0,'utf8')).title)")
-AUTHOR=$(echo "$BOOK_INFO" | node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(0,'utf8')).author)")
-DESC=$(echo "$BOOK_INFO" | node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(0,'utf8')).desc)")
-CATEGORY=$(echo "$BOOK_INFO" | node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(0,'utf8')).category)")
+TITLE=$(echo "$BOOK_INFO" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).title")
+AUTHOR=$(echo "$BOOK_INFO" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).author")
+DESC=$(echo "$BOOK_INFO" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).desc")
+CATEGORY=$(echo "$BOOK_INFO" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).category")
 
 echo "📚 Generating podcast for: $TITLE by $AUTHOR ($TOMORROW)"
 
 # Check if audio already exists in data.js for this date
-if grep -q "date: \"$TOMORROW\"" "$REPO_DIR/data.js" && \
-   node -e "const s=require('fs').readFileSync('$REPO_DIR/data.js','utf8'); const m=s.match(/date:\\s*\"$TOMORROW\"[\\s\\S]*?audio:/); process.exit(m?0:1)" 2>/dev/null; then
+if node -e "
+  const s = require('fs').readFileSync('$REPO_DIR/data.js', 'utf8');
+  const i = s.indexOf('date: \"$TOMORROW\"');
+  if (i < 0) process.exit(1);
+  const chunk = s.slice(i, i + 300);
+  process.exit(chunk.includes('audio:') ? 0 : 1);
+" 2>/dev/null; then
   echo "⏭️ Audio already exists for $TOMORROW, skipping"
   exit 0
 fi
 
 # Create NotebookLM notebook
-NB_ID=$(notebooklm create "$TITLE - $AUTHOR" --json 2>/dev/null | node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(0,'utf8')).id)")
+NB_ID=$(notebooklm create "$TITLE - $AUTHOR" --json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).notebook.id")
 echo "📓 Created notebook: $NB_ID"
 notebooklm use "$NB_ID" >/dev/null 2>&1
 
@@ -70,7 +70,7 @@ rm "$SOURCE_FILE"
 
 # Generate audio (brief, short)
 echo "🎙️ Generating audio..."
-notebooklm generate audio --format brief --length short --wait \
+notebooklm generate audio --format brief --length short --wait --retry 3 \
   "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." 2>/dev/null
 
 # Download audio
@@ -109,6 +109,6 @@ git commit -m "feat: add AI podcast for $TITLE ($TOMORROW)"
 git push
 
 # Clean up NotebookLM notebook
-notebooklm delete "$NB_ID" --yes >/dev/null 2>&1 || true
+notebooklm delete -n "$NB_ID" --yes >/dev/null 2>&1 || true
 
 echo "✅ Done! Podcast for $TITLE ($TOMORROW) is live."
