@@ -653,7 +653,7 @@ body {
     display: flex;
     justify-content: center;
     margin: 20px auto 0;
-    max-width: 280px;
+    max-width: 360px;
 }
 
 .audio-btn {
