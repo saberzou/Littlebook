@@ -58,6 +58,17 @@
                 <p class="book-desc" id="bookDescBelow">Description</p>
             </div>
 
+            <!-- Audio player pill -->
+            <div class="audio-player" id="audioPlayer" style="display:none">
+                <button class="audio-btn" id="audioBtn" aria-label="Play podcast">
+                    <svg class="audio-icon play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    <svg class="audio-icon pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    <div class="audio-progress" id="audioProgress"></div>
+                    <span class="audio-time" id="audioTime">0:00</span>
+                </button>
+                <audio id="audioEl" preload="metadata"></audio>
+            </div>
+
             <!-- Hourglass overlay (shown when tomorrow is selected) -->
             <div class="hourglass-overlay" id="hourglassOverlay">
                 <div class="hourglass-container">

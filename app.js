@@ -366,6 +366,12 @@ function loadContent() {
     if (!currentData) return;
     const { book, quote } = currentData;
 
+    // Stop any playing audio
+    if (window._stopAudio) window._stopAudio();
+
+    // Show audio player if available
+    if (window._showAudio) window._showAudio(currentData.audio || null);
+
     // Book info — inside spread left page
     document.getElementById('bookTitle').textContent = book.title;
     document.getElementById('bookAuthor').textContent = book.author;
@@ -474,6 +480,71 @@ function toggleTheme() {
 }
 
 // =============================================
+//  AUDIO PLAYER
+// =============================================
+function initAudioPlayer() {
+    const player = document.getElementById('audioPlayer');
+    const btn = document.getElementById('audioBtn');
+    const el = document.getElementById('audioEl');
+    const progress = document.getElementById('audioProgress');
+    const timeEl = document.getElementById('audioTime');
+    if (!player || !el) return;
+
+    function showAudio(src) {
+        if (!src) { player.style.display = 'none'; return; }
+        player.style.display = '';
+        player.classList.remove('playing');
+        player.classList.add('loading');
+        el.src = src;
+        el.load();
+        progress.style.width = '0%';
+        timeEl.textContent = '0:00';
+    }
+
+    function fmt(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    el.addEventListener('loadedmetadata', () => {
+        player.classList.remove('loading');
+        timeEl.textContent = fmt(el.duration);
+    });
+
+    el.addEventListener('timeupdate', () => {
+        if (!el.duration) return;
+        const pct = (el.currentTime / el.duration) * 100;
+        progress.style.width = pct + '%';
+        timeEl.textContent = fmt(el.duration - el.currentTime);
+    });
+
+    el.addEventListener('ended', () => {
+        player.classList.remove('playing');
+        progress.style.width = '0%';
+        timeEl.textContent = fmt(el.duration);
+    });
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (el.paused) {
+            el.play();
+            player.classList.add('playing');
+        } else {
+            el.pause();
+            player.classList.remove('playing');
+        }
+    });
+
+    // Expose for use in loadContent
+    window._showAudio = showAudio;
+    window._stopAudio = () => { el.pause(); el.currentTime = 0; player.classList.remove('playing'); };
+}
+
+// =============================================
 //  BOOT
 // =============================================
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+    initAudioPlayer();
+});
