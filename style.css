@@ -669,7 +669,7 @@ body {
     border: none;
     border-radius: 22px;
     background: var(--surface);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     cursor: pointer;
     overflow: hidden;
     transition: box-shadow 0.2s;
@@ -677,7 +677,7 @@ body {
 }
 
 .audio-btn:hover {
-    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
 .audio-icon {
@@ -728,5 +728,5 @@ body {
 /* Dark mode */
 [data-theme="dark"] .audio-btn {
     background: var(--surface);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
