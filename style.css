@@ -587,7 +587,7 @@ body {
 
     .content-area { padding: 16px 16px 40px; }
 
-    .audio-player { max-width: 160px; }
+    .audio-player { max-width: 200px; }
 
     .calendar-track { padding: 0 16px; }
     .cal-cell { min-width: 48px; height: 58px; }
