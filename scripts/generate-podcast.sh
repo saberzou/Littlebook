@@ -46,7 +46,7 @@ echo "📓 Created notebook: $NB_ID"
 notebooklm use "$NB_ID" >/dev/null 2>&1
 
 # Create source document
-SOURCE_FILE=$(mktemp /tmp/littlebook-source-XXXXX.md)
+SOURCE_FILE=$(mktemp /tmp/littlebook-source-XXXXXX).md
 cat > "$SOURCE_FILE" << SRCEOF
 # $TITLE by $AUTHOR
 
@@ -74,11 +74,11 @@ notebooklm generate audio --format brief --length short --wait --retry 3 \
   "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." 2>/dev/null
 
 # Download audio
-TMP_AUDIO=$(mktemp /tmp/littlebook-audio-XXXXX.mp3)
+TMP_AUDIO=$(mktemp /tmp/littlebook-audio-XXXXXX).mp3
 notebooklm download audio --latest "$TMP_AUDIO" >/dev/null 2>&1
 
 # Compress to 64kbps mono
-COMPRESSED=$(mktemp /tmp/littlebook-compressed-XXXXX.mp3)
+COMPRESSED=$(mktemp /tmp/littlebook-compressed-XXXXXX).mp3
 ffmpeg -y -i "$TMP_AUDIO" -b:a 64k -ac 1 "$COMPRESSED" >/dev/null 2>&1
 rm "$TMP_AUDIO"
 

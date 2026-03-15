@@ -592,6 +592,7 @@ quote: {
     },
     {
         date: "2026-03-16",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-16-y2qL9sPG47w3PJDnwH7jnkeiHDCQo4.mp3",
         book: {
             isbn: "9781771642484",
             title: "The Hidden Life of Trees",
