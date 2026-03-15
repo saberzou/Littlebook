@@ -576,7 +576,7 @@ quote: {
     },
     {
         date: "2026-03-15",
-        audio: "audio/2026-03-15.mp3",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/2026-03-15.mp3",
         book: {
             isbn: "9781590171998",
             title: "Stoner",
