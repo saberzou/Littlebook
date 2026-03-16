@@ -608,6 +608,7 @@ quote: {
     },
     {
         date: "2026-03-17",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-17-PyOeEAAo7CDA0GpDnOdxjBm3azYwWl.mp3",
         book: {
             isbn: "9780062457714",
             title: "The Subtle Art of Not Giving a F*ck",

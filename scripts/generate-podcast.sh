@@ -86,7 +86,9 @@ SIZE=$(du -h "$COMPRESSED" | cut -f1)
 echo "🔊 Compressed audio: $SIZE"
 
 # Upload to Vercel Blob
-BLOB_URL=$(BLOB_READ_WRITE_TOKEN="$BLOB_READ_WRITE_TOKEN" vercel blob put "littlebook/audio/$TOMORROW.mp3" "$COMPRESSED" \
+BLOB_URL=$(vercel blob put "$COMPRESSED" \
+  --pathname "littlebook/audio/$TOMORROW.mp3" \
+  --allow-overwrite true --add-random-suffix false \
   --rw-token "$BLOB_READ_WRITE_TOKEN" --token "$VERCEL_TOKEN" 2>&1 | grep -o 'https://[^ ]*')
 rm "$COMPRESSED"
 echo "☁️ Uploaded: $BLOB_URL"
