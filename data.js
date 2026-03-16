@@ -722,7 +722,16 @@ function olSearchCover(title, author) {
     });
 }
 
-const coverUrlCache = {};
+// Persistent cover URL cache (survives page reloads)
+const COVER_CACHE_KEY = 'littlebook_covers';
+const coverUrlCache = (() => {
+    try {
+        return JSON.parse(localStorage.getItem(COVER_CACHE_KEY)) || {};
+    } catch { return {}; }
+})();
+function _saveCoverCache() {
+    try { localStorage.setItem(COVER_CACHE_KEY, JSON.stringify(coverUrlCache)); } catch {}
+}
 
 async function fetchBestCoverUrl(isbn, title, author) {
     if (coverUrlCache[isbn]) return coverUrlCache[isbn];
@@ -734,30 +743,30 @@ async function fetchBestCoverUrl(isbn, title, author) {
     const olSearchPromise = (title && author) ? olSearchCover(title, author) : Promise.resolve(null);
 
     let url = await probeImage(ol(isbn, 'L'));
-    if (url) { coverUrlCache[isbn] = url; return url; }
+    if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
 
     if (isbn10) {
         url = await probeImage(ol(isbn10, 'L'));
-        if (url) { coverUrlCache[isbn] = url; return url; }
+        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
     }
 
     const olSearchUrl = await olSearchPromise;
     if (olSearchUrl) {
         url = await probeImage(olSearchUrl);
-        if (url) { coverUrlCache[isbn] = url; return url; }
+        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
     }
 
     const googleUrl = await googlePromise;
     if (googleUrl) {
         url = await probeImage(googleUrl);
-        if (url) { coverUrlCache[isbn] = url; return url; }
+        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
     }
 
     url = await probeImage(ol(isbn, 'M'));
-    if (url) { coverUrlCache[isbn] = url; return url; }
+    if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
     if (isbn10) {
         url = await probeImage(ol(isbn10, 'M'));
-        if (url) { coverUrlCache[isbn] = url; return url; }
+        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
     }
 
     return null;
