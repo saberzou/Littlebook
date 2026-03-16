@@ -70,7 +70,7 @@ rm "$SOURCE_FILE"
 
 # Generate audio (brief, short)
 echo "🎙️ Generating audio..."
-notebooklm generate audio --format brief --length short --wait --retry 3 \
+notebooklm generate audio --format brief --length short --wait --timeout 600 --retry 3 \
   "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." 2>/dev/null
 
 # Download audio
