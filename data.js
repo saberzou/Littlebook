@@ -605,6 +605,21 @@ quote: {
             text: "When trees grow together, nutrients and water can be optimally divided among them all so that each tree can grow into the best tree it can be.",
             source: "Peter Wohlleben, The Hidden Life of Trees"
         }
+    },
+    {
+        date: "2026-03-17",
+        book: {
+            isbn: "9780062457714",
+            title: "The Subtle Art of Not Giving a F*ck",
+            author: "Mark Manson",
+            category: "Self-Improvement",
+            desc: "A counterintuitive approach to living a good life by choosing what truly matters and letting go of everything else."
+        },
+        wallpaper: { id: "hw6Dh3R7yxA", imgBase: "https://images.unsplash.com/photo-1636306950045-4dbb10b7e0f4", user: "Pawel Czerwinski", userUrl: "https://unsplash.com/@pawel_czerwinski" },
+        quote: {
+            text: "Who you are is defined by what you're willing to struggle for.",
+            source: "Mark Manson, The Subtle Art of Not Giving a F*ck"
+        }
     }
 ];
 
