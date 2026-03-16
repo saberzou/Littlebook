@@ -389,27 +389,31 @@ function loadContent() {
     // Cover image
     const coverImg = document.getElementById('bookCover');
     const cover3d = document.getElementById('bookCover3d');
+
+    // Immediately show placeholder so old cover doesn't linger
+    const placeholder = generateCoverPlaceholder(book.title, book.author);
+    coverImg.src = placeholder;
+    coverImg.alt = book.title;
     cover3d.classList.add('loading');
 
-    const showPlaceholder = () => {
-        coverImg.src = generateCoverPlaceholder(book.title, book.author);
-        coverImg.alt = book.title;
-        cover3d.classList.remove('loading');
-    };
+    // Tag this fetch so stale responses from previous day switches are ignored
+    const fetchId = ++coverImg._fetchId || (coverImg._fetchId = 1);
 
     const coverTimeout = new Promise(resolve => setTimeout(() => resolve(null), 10000));
     Promise.race([
         DailyData.fetchBestCover(book.isbn, book.title, book.author),
         coverTimeout
     ]).then(url => {
+        if (coverImg._fetchId !== fetchId) return; // stale, ignore
         if (url) {
             coverImg.src = url;
             coverImg.alt = book.title;
-            cover3d.classList.remove('loading');
-        } else {
-            showPlaceholder();
         }
-    }).catch(() => showPlaceholder());
+        cover3d.classList.remove('loading');
+    }).catch(() => {
+        if (coverImg._fetchId !== fetchId) return;
+        cover3d.classList.remove('loading');
+    });
 
     preloadAdjacentCovers();
 
