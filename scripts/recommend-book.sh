@@ -5,8 +5,8 @@
 
 set -euo pipefail
 
-DATA_JS="${1:-$(dirname "$0")/../data.js}"
-DATA_JS="$(cd "$(dirname "$DATA_JS")" && pwd)/$(basename "$DATA_JS")"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+DATA_JS="${1:-$SCRIPT_DIR/../data.js}"
 
 if [ ! -f "$DATA_JS" ]; then
   echo "ERROR: data.js not found at $DATA_JS" >&2
@@ -74,8 +74,11 @@ for subject in "${SHUFFLED[@]}"; do
   echo "  Found $WORK_COUNT works" >&2
 
   # Pick a random non-duplicate book from results
+  # Note: subject is embedded directly via bash variable substitution
   RESULT=$(echo "$RESPONSE" | node -e "
     const existing = $EXISTING_TITLES;
+    const subj = '$subject';
+    const catName = subj.charAt(0).toUpperCase() + subj.slice(1);
     const chunks = [];
     process.stdin.on('data', c => chunks.push(c));
     process.stdin.on('end', () => {
@@ -98,9 +101,7 @@ for subject in "${SHUFFLED[@]}"; do
         // Fuzzy duplicate check (lowercase)
         const tl = title.toLowerCase();
         const isDupe = existing.some(e => {
-          // Exact match
           if (e === tl) return true;
-          // One contains the other (handles subtitle variations)
           if (e.includes(tl) || tl.includes(e)) return true;
           return false;
         });
@@ -112,22 +113,19 @@ for subject in "${SHUFFLED[@]}"; do
         if (author === 'Unknown') continue;
 
         // Skip non-Latin titles (prefer English)
-        if (/[^\x00-\x7F]/.test(title) && !/[a-zA-Z]/.test(title)) continue;
+        if (/[^\\x00-\\x7F]/.test(title) && !/[a-zA-Z]/.test(title)) continue;
 
-        // Extract ISBN from availability or first_publish_year fallback
+        // Extract ISBN from availability
         const isbn = (w.availability && w.availability.isbn) ? w.availability.isbn : '';
 
         // Description: try excerpt, then generic
         const desc = (w.description && typeof w.description === 'string')
-          ? w.description.replace(/\n/g, ' ').slice(0, 200)
+          ? w.description.replace(/\\n/g, ' ').slice(0, 200)
           : (w.description && w.description.value)
-            ? w.description.value.replace(/\n/g, ' ').slice(0, 200)
+            ? w.description.value.replace(/\\n/g, ' ').slice(0, 200)
             : '';
 
-        // Category from subject name (passed in via env)
-        const category = '${subject}'.charAt(0).toUpperCase() + '${subject}'.slice(1);
-
-        console.log(JSON.stringify({ title, author, isbn, category, desc, _key: w.key }));
+        console.log(JSON.stringify({ title, author, isbn, category: catName, desc, _key: w.key }));
         process.exit(0);
       }
 
@@ -152,16 +150,18 @@ for subject in "${SHUFFLED[@]}"; do
           process.stdin.on('data', c => chunks.push(c));
           process.stdin.on('end', () => {
             let book;
-            try { book = JSON.parse(chunks.join('')); } catch(e) { process.stdout.write(chunks.join('')); process.exit(0); }
+            try { book = JSON.parse(chunks.join('')); }
+            catch(e) { process.stdout.write(chunks.join('')); process.exit(0); }
 
             let work;
-            try { work = JSON.parse(process.env.WORK_DATA); } catch(e) { console.log(JSON.stringify(book)); process.exit(0); }
+            try { work = JSON.parse(process.env.WORK_DATA); }
+            catch(e) { console.log(JSON.stringify(book)); process.exit(0); }
 
             // Enrich description
             if (!book.desc) {
               const d = work.description;
-              if (d && typeof d === 'string') book.desc = d.replace(/\n/g, ' ').slice(0, 200);
-              else if (d && d.value) book.desc = d.value.replace(/\n/g, ' ').slice(0, 200);
+              if (d && typeof d === 'string') book.desc = d.replace(/\\n/g, ' ').slice(0, 200);
+              else if (d && d.value) book.desc = d.value.replace(/\\n/g, ' ').slice(0, 200);
             }
 
             // Enrich ISBN from identifiers
@@ -170,7 +170,6 @@ for subject in "${SHUFFLED[@]}"; do
               if (ids.length > 0) book.isbn = ids[0];
             }
 
-            // Remove internal key
             delete book._key;
             console.log(JSON.stringify(book));
           });

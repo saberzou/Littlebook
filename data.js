@@ -487,21 +487,6 @@ quote: {
     {
         date: "2026-03-09",
         book: {
-            isbn: "9780374529260",
-            title: "Thinking, Fast and Slow",
-            author: "Daniel Kahneman",
-            category: "Psychology",
-            desc: "Nobel laureate Daniel Kahneman reveals the two systems that drive the way we think — and the systematic errors that distort our judgment."
-        },
-        wallpaper: { id: "yfXHqoFpNH0", imgBase: "https://images.unsplash.com/photo-1772656928131-bd7592d1d119", user: "Dmitry Spravko", userUrl: "https://unsplash.com/@kaprion" },
-        quote: {
-            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
-            source: "Daniel Kahneman, Thinking, Fast and Slow"
-        }
-    },
-    {
-        date: "2026-03-10",
-        book: {
             isbn: "9780062315007",
             title: "The Alchemist",
             author: "Paulo Coelho",
@@ -515,7 +500,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-11",
+        date: "2026-03-10",
         book: {
             isbn: "9780812988406",
             title: "When Breath Becomes Air",
@@ -530,7 +515,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-12",
+        date: "2026-03-11",
         book: {
             isbn: "9780140449334",
             title: "Meditations",
@@ -545,7 +530,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-13",
+        date: "2026-03-12",
         book: {
             isbn: "9780525559474",
             title: "The Boy, the Mole, the Fox and the Horse",
@@ -560,22 +545,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-14",
-        book: {
-            isbn: "9780141983769",
-            title: "Homo Deus: A Brief History of Tomorrow",
-            author: "Yuval Noah Harari",
-            category: "History & Futurism",
-            desc: "Harari turns from the past to the future, exploring what might happen when old myths are coupled with godlike technologies like AI and genetic engineering."
-        },
-        wallpaper: { id: "e1wycgI4c9g", imgBase: "https://images.unsplash.com/photo-1703333737684-41eb22ed4363", user: "Pawel Czerwinski", userUrl: "https://unsplash.com/@pawel_czerwinski" },
-        quote: {
-            text: "In the twenty-first century, those who ride the train of progress will acquire divine abilities of creation and destruction.",
-            source: "Yuval Noah Harari, Homo Deus"
-        }
-    },
-    {
-        date: "2026-03-15",
+        date: "2026-03-13",
         audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/2026-03-15.mp3",
         book: {
             isbn: "9781590171998",
@@ -591,23 +561,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-16",
-        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-16-y2qL9sPG47w3PJDnwH7jnkeiHDCQo4.mp3",
-        book: {
-            isbn: "9781771642484",
-            title: "The Hidden Life of Trees",
-            author: "Peter Wohlleben",
-            category: "Nature & Science",
-            desc: "A forester reveals how trees communicate, share nutrients through underground networks, and care for each other — reframing forests as complex social communities."
-        },
-        wallpaper: { id: "TViB0UN9T2Y", imgBase: "https://images.unsplash.com/photo-1723821281511-bc0deb3851d7", user: "Valeriia Neganova", userUrl: "https://unsplash.com/@neganova" },
-        quote: {
-            text: "When trees grow together, nutrients and water can be optimally divided among them all so that each tree can grow into the best tree it can be.",
-            source: "Peter Wohlleben, The Hidden Life of Trees"
-        }
-    },
-    {
-        date: "2026-03-17",
+        date: "2026-03-14",
         audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-17-PyOeEAAo7CDA0GpDnOdxjBm3azYwWl.mp3",
         book: {
             isbn: "9780062457714",
@@ -621,23 +575,7 @@ quote: {
             text: "Who you are is defined by what you're willing to struggle for.",
             source: "Mark Manson, The Subtle Art of Not Giving a F*ck"
         }
-    },
-    {
-        date: "2026-03-18",
-        book: {
-            isbn: "9780679720201",
-            title: "The Unbearable Lightness of Being",
-            author: "Milan Kundera",
-            category: "Fiction & Philosophy",
-            desc: "A luminous novel about love, identity, and the weight of human choices — set against the Prague Spring, exploring whether life's meaning comes from its heaviness or its lightness."
-        },
-        wallpaper: { id: "5RAdQdk-pdo", imgBase: "https://images.unsplash.com/photo-1773613707312-5fff9c27abfe", user: "Humans Made This", userUrl: "https://unsplash.com/@humansmadethis" },
-        quote: {
-            text: "The heaviest of burdens is simultaneously an image of life's most intense fulfillment.",
-            source: "Milan Kundera, The Unbearable Lightness of Being"
-        }
-    }
-];
+    },];
 
 // =============================================
 //  WALLPAPER — stable, hardcoded per date
