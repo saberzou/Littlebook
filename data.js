@@ -621,6 +621,21 @@ quote: {
             text: "Who you are is defined by what you're willing to struggle for.",
             source: "Mark Manson, The Subtle Art of Not Giving a F*ck"
         }
+    },
+    {
+        date: "2026-03-18",
+        book: {
+            isbn: "9780062316110",
+            title: "Sapiens: A Brief History of Humankind",
+            author: "Yuval Noah Harari",
+            category: "History",
+            desc: "A sweeping narrative of how Homo sapiens came to dominate the earth through cognitive, agricultural, and scientific revolutions."
+        },
+        wallpaper: { id: "5RAdQdk-pdo", imgBase: "https://images.unsplash.com/photo-1773613707312-5fff9c27abfe", user: "Humans Made This", userUrl: "https://unsplash.com/@humansmadethis" },
+        quote: {
+            text: "We study history not to know the future but to widen our horizons, to understand that our present situation is neither natural nor inevitable.",
+            source: "Yuval Noah Harari, Sapiens"
+        }
     }
 ];
 
