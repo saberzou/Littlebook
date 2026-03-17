@@ -624,6 +624,7 @@ quote: {
     },
     {
         date: "2026-03-18",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-18-NUAzgnfRgcBfOzupAUSujhCVmGduzO.mp3",
         book: {
             isbn: "9780679720201",
             title: "The Unbearable Lightness of Being",
