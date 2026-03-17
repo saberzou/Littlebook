@@ -487,21 +487,6 @@ quote: {
     {
         date: "2026-03-09",
         book: {
-            isbn: "9780063051331",
-            title: "Sapiens: A Graphic Novel",
-            author: "Yuval Noah Harari & David Vandermeulen",
-            category: "History & Graphic Novel",
-            desc: "The illustrated adaptation of the bestselling history of humankind, turning big ideas about civilization into vivid visual storytelling."
-        },
-        wallpaper: { id: "yfXHqoFpNH0", imgBase: "https://images.unsplash.com/photo-1772656928131-bd7592d1d119", user: "Dmitry Spravko", userUrl: "https://unsplash.com/@kaprion" },
-        quote: {
-            text: "We did not domesticate wheat. It domesticated us.",
-            source: "Yuval Noah Harari, Sapiens"
-        }
-    },
-    {
-        date: "2026-03-10",
-        book: {
             isbn: "9780062315007",
             title: "The Alchemist",
             author: "Paulo Coelho",
@@ -515,7 +500,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-11",
+        date: "2026-03-10",
         book: {
             isbn: "9780812988406",
             title: "When Breath Becomes Air",
@@ -530,7 +515,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-12",
+        date: "2026-03-11",
         book: {
             isbn: "9780140449334",
             title: "Meditations",
@@ -545,7 +530,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-13",
+        date: "2026-03-12",
         book: {
             isbn: "9780525559474",
             title: "The Boy, the Mole, the Fox and the Horse",
@@ -560,22 +545,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-14",
-        book: {
-            isbn: "9780062316110",
-            title: "Sapiens: A Brief History of Humankind",
-            author: "Yuval Noah Harari",
-            category: "History & Anthropology",
-            desc: "A sweeping narrative of how Homo sapiens came to dominate the Earth — from the Cognitive Revolution to the age of algorithms."
-        },
-        wallpaper: { id: "e1wycgI4c9g", imgBase: "https://images.unsplash.com/photo-1703333737684-41eb22ed4363", user: "Pawel Czerwinski", userUrl: "https://unsplash.com/@pawel_czerwinski" },
-        quote: {
-            text: "You could never convince a monkey to give you a banana by promising him limitless bananas after death.",
-            source: "Yuval Noah Harari, Sapiens"
-        }
-    },
-    {
-        date: "2026-03-15",
+        date: "2026-03-13",
         audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/2026-03-15.mp3",
         book: {
             isbn: "9781590171998",
@@ -591,23 +561,7 @@ quote: {
         }
     },
     {
-        date: "2026-03-16",
-        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-16-y2qL9sPG47w3PJDnwH7jnkeiHDCQo4.mp3",
-        book: {
-            isbn: "9781771642484",
-            title: "The Hidden Life of Trees",
-            author: "Peter Wohlleben",
-            category: "Nature & Science",
-            desc: "A forester reveals how trees communicate, share nutrients through underground networks, and care for each other — reframing forests as complex social communities."
-        },
-        wallpaper: { id: "TViB0UN9T2Y", imgBase: "https://images.unsplash.com/photo-1723821281511-bc0deb3851d7", user: "Valeriia Neganova", userUrl: "https://unsplash.com/@neganova" },
-        quote: {
-            text: "When trees grow together, nutrients and water can be optimally divided among them all so that each tree can grow into the best tree it can be.",
-            source: "Peter Wohlleben, The Hidden Life of Trees"
-        }
-    },
-    {
-        date: "2026-03-17",
+        date: "2026-03-14",
         audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-17-PyOeEAAo7CDA0GpDnOdxjBm3azYwWl.mp3",
         book: {
             isbn: "9780062457714",
@@ -621,23 +575,7 @@ quote: {
             text: "Who you are is defined by what you're willing to struggle for.",
             source: "Mark Manson, The Subtle Art of Not Giving a F*ck"
         }
-    },
-    {
-        date: "2026-03-18",
-        book: {
-            isbn: "9780062316110",
-            title: "Sapiens: A Brief History of Humankind",
-            author: "Yuval Noah Harari",
-            category: "History",
-            desc: "A sweeping narrative of how Homo sapiens came to dominate the earth through cognitive, agricultural, and scientific revolutions."
-        },
-        wallpaper: { id: "5RAdQdk-pdo", imgBase: "https://images.unsplash.com/photo-1773613707312-5fff9c27abfe", user: "Humans Made This", userUrl: "https://unsplash.com/@humansmadethis" },
-        quote: {
-            text: "We study history not to know the future but to widen our horizons, to understand that our present situation is neither natural nor inevitable.",
-            source: "Yuval Noah Harari, Sapiens"
-        }
-    }
-];
+    },];
 
 // =============================================
 //  WALLPAPER — stable, hardcoded per date
