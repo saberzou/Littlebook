@@ -637,6 +637,21 @@ quote: {
             text: "The heaviest of burdens is simultaneously an image of life's most intense fulfillment.",
             source: "Milan Kundera, The Unbearable Lightness of Being"
         }
+    },
+    {
+        date: "2026-03-19",
+        book: {
+            isbn: "1560009624",
+            title: "The Imperial Animal",
+            author: "Lionel Tiger",
+            category: "Anthropology",
+            desc: "A provocative exploration of human nature through the lens of evolutionary biology — arguing that our politics, wars, and social bonds are driven by the same primal programs that shaped our primate ancestors."
+        },
+        wallpaper: { id: "h2P8wKuv084", imgBase: "https://images.unsplash.com/photo-1773058373644-74e4120bfc77", user: "Sam Roy", userUrl: "https://unsplash.com/@sam_roy7093" },
+        quote: {
+            text: "We are not simply primates who happen to have culture; we are cultural animals whose culture is rooted in our biology.",
+            source: "Lionel Tiger, The Imperial Animal"
+        }
     }
 ];
 
