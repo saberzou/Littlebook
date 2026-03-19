@@ -653,6 +653,21 @@ quote: {
             text: "We are not simply primates who happen to have culture; we are cultural animals whose culture is rooted in our biology.",
             source: "Lionel Tiger, The Imperial Animal"
         }
+    },
+    {
+        date: "2026-03-20",
+        book: {
+            isbn: "9780061233845",
+            title: "Pilgrim at Tinker Creek",
+            author: "Annie Dillard",
+            category: "Nature Writing",
+            desc: "A Pulitzer-winning meditation on the natural world observed from a Virginia creek — equal parts wonder and terror, beauty and violence, all rendered in luminous prose."
+        },
+        wallpaper: { id: "9oP2s79yqHY", imgBase: "https://images.unsplash.com/photo-1772306105553-fbb3c73bef42", user: "Alexander Lunyov", userUrl: "https://unsplash.com/@alexanderlunyov" },
+        quote: {
+            text: "I am a frayed and nibbled survivor in a fallen world, and I am getting along.",
+            source: "Annie Dillard, Pilgrim at Tinker Creek"
+        }
     }
 ];
 
