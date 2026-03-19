@@ -640,6 +640,7 @@ quote: {
     },
     {
         date: "2026-03-19",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-19-NBmE1CNd20YseqX0CVAZ2Z6tpxZOGv.mp3",
         book: {
             isbn: "1560009624",
             title: "The Imperial Animal",
