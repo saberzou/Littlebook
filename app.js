@@ -279,7 +279,7 @@ function showHourglass() {
     document.getElementById('gravityClockCanvas').style.display = 'block';
     document.querySelector('.hourglass-label').textContent = "Tomorrow's pick arrives in";
     document.querySelector('.hourglass-countdown').style.display = '';
-    document.querySelector('.hourglass-hint').textContent = 'Come back tomorrow for a new book, wallpaper & quote';
+    document.querySelector('.hourglass-hint').textContent = 'Come back tomorrow for a new book & quote';
 
     const canvas = document.getElementById('gravityClockCanvas');
     if (gravityClock) gravityClock.stop();
