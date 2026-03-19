@@ -390,11 +390,11 @@ function loadContent() {
     const coverImg = document.getElementById('bookCover');
     const cover3d = document.getElementById('bookCover3d');
 
-    // Immediately show placeholder so old cover doesn't linger
+    // Hide old cover immediately, show shimmer while loading
+    cover3d.classList.add('loading');
     const placeholder = generateCoverPlaceholder(book.title, book.author);
     coverImg.src = placeholder;
     coverImg.alt = book.title;
-    cover3d.classList.add('loading');
 
     // Tag this fetch so stale responses from previous day switches are ignored
     const fetchId = ++coverImg._fetchId || (coverImg._fetchId = 1);
@@ -406,10 +406,22 @@ function loadContent() {
     ]).then(url => {
         if (coverImg._fetchId !== fetchId) return; // stale, ignore
         if (url) {
-            coverImg.src = url;
-            coverImg.alt = book.title;
+            // Preload the image before revealing — prevents flash of placeholder
+            const preload = new Image();
+            preload.onload = () => {
+                if (coverImg._fetchId !== fetchId) return;
+                coverImg.src = url;
+                coverImg.alt = book.title;
+                cover3d.classList.remove('loading');
+            };
+            preload.onerror = () => {
+                if (coverImg._fetchId !== fetchId) return;
+                cover3d.classList.remove('loading');
+            };
+            preload.src = url;
+        } else {
+            cover3d.classList.remove('loading');
         }
-        cover3d.classList.remove('loading');
     }).catch(() => {
         if (coverImg._fetchId !== fetchId) return;
         cover3d.classList.remove('loading');
