@@ -566,6 +566,7 @@ const dailyData = [
     },
     {
         date: "2026-03-20",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-20-r6nQpyKBZasXUbfzRInC9kQPaA5JUr.mp3",
         book: {
             isbn: "9780061233845",
             title: "Pilgrim at Tinker Creek",
