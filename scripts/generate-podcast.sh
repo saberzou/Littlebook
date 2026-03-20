@@ -32,7 +32,7 @@ if [[ $? -ne 0 ]] || [[ -z "$PARSED" ]]; then
   echo "❌ No book entry found for $TOMORROW in data.js" >&2
   exit 1
 fi
-read -r TITLE AUTHOR CATEGORY <<< "$(echo "$PARSED" | tr '\t' ' ')"
+IFS=$'\t' read -r TITLE AUTHOR CATEGORY <<< "$PARSED"
 _log "parse data.js: $(( $(_t) - _T ))s"
 
 if [[ "$TITLE" == "__AUDIO_EXISTS__" ]]; then
