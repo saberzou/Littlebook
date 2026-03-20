@@ -580,6 +580,7 @@ const dailyData = [
     },
     {
         date: "2026-03-21",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-21-2WhAlUMQXJKwbEXS6NigYi8A5MRtTj.mp3",
         book: {
             isbn: "0151334811",
             title: "Free to Choose",
