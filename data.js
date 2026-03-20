@@ -577,6 +577,20 @@ const dailyData = [
             text: "I am a frayed and nibbled survivor in a fallen world, and I am getting along.",
             source: "Annie Dillard, Pilgrim at Tinker Creek"
         }
+    },
+    {
+        date: "2026-03-21",
+        book: {
+            isbn: "0151334811",
+            title: "Free to Choose",
+            author: "Milton Friedman",
+            category: "Economics",
+            desc: "A landmark argument for free markets and individual liberty — Friedman dismantles the case for government intervention with sharp logic, real-world examples, and an infectious belief that ordinary people make better choices than bureaucrats."
+        },
+        quote: {
+            text: "A society that puts equality before freedom will get neither. A society that puts freedom before equality will get a high degree of both.",
+            source: "Milton Friedman, Free to Choose"
+        }
     }
 ];
 

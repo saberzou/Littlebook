@@ -15,7 +15,7 @@ TOMORROW=$(date -v+1d +%Y-%m-%d 2>/dev/null || date -d '+1 day' +%Y-%m-%d)
 
 # Extract ALL book info in a single node call (avoid 4x overhead)
 _T=$(_t)
-read -r TITLE AUTHOR CATEGORY <<< "$(node -e "
+PARSED=$(node -e "
   const fs = require('fs');
   const src = fs.readFileSync('$REPO_DIR/data.js', 'utf8');
   const dateIdx = src.indexOf('date: \"$TOMORROW\"');
@@ -27,7 +27,12 @@ read -r TITLE AUTHOR CATEGORY <<< "$(node -e "
   const title = g('title'); const author = g('author'); const cat = g('category');
   // Print as tab-separated for IFS splitting
   process.stdout.write(title + '\t' + author + '\t' + cat + '\n');
-" | tr '\t' ' ')"
+")
+if [[ $? -ne 0 ]] || [[ -z "$PARSED" ]]; then
+  echo "❌ No book entry found for $TOMORROW in data.js" >&2
+  exit 1
+fi
+read -r TITLE AUTHOR CATEGORY <<< "$(echo "$PARSED" | tr '\t' ' ')"
 _log "parse data.js: $(( $(_t) - _T ))s"
 
 if [[ "$TITLE" == "__AUDIO_EXISTS__" ]]; then
