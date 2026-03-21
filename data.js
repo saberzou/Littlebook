@@ -592,6 +592,20 @@ const dailyData = [
             text: "A society that puts equality before freedom will get neither. A society that puts freedom before equality will get a high degree of both.",
             source: "Milton Friedman, Free to Choose"
         }
+    },
+    {
+        date: "2026-03-22",
+        book: {
+            isbn: "0226458083",
+            title: "The Structure of Scientific Revolutions",
+            author: "Thomas S. Kuhn",
+            category: "Philosophy of Science",
+            desc: "The book that gave us 'paradigm shift' — Kuhn argues that science doesn't progress in a straight line but through revolutionary upheavals, where the old worldview cracks and a new one takes its place. Essential reading for anyone who thinks about how ideas change."
+        },
+        quote: {
+            text: "The scientist who pauses to examine every anomaly he notes will seldom get significant work done.",
+            source: "Thomas S. Kuhn, The Structure of Scientific Revolutions"
+        }
     }
 ];
 
