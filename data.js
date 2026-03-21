@@ -595,6 +595,7 @@ const dailyData = [
     },
     {
         date: "2026-03-22",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-22-xQ64kSRqSbBz4gsxeuos49Ch2bsmda.mp3",
         book: {
             isbn: "0226458083",
             title: "The Structure of Scientific Revolutions",
