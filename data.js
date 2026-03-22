@@ -610,6 +610,7 @@ const dailyData = [
     },
     {
         date: "2026-03-23",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-23-KjDzhQjjvzv3tAUxDcqexOWKVqDE4w.mp3",
         book: {
             isbn: "0318768089",
             title: "An Introduction to Logic and Scientific Method",
