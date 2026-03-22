@@ -607,6 +607,20 @@ const dailyData = [
             text: "The scientist who pauses to examine every anomaly he notes will seldom get significant work done.",
             source: "Thomas S. Kuhn, The Structure of Scientific Revolutions"
         }
+    },
+    {
+        date: "2026-03-23",
+        book: {
+            isbn: "0318768089",
+            title: "An Introduction to Logic and Scientific Method",
+            author: "Morris Raphael Cohen",
+            category: "Philosophy / Logic",
+            desc: "A foundational text that bridges formal logic with the practice of scientific inquiry — Cohen and Nagel show how clear thinking is the engine behind every credible experiment and every honest argument."
+        },
+        quote: {
+            text: "The method of science is the method of bold conjectures and ingenious and severe attempts to refute them.",
+            source: "Morris Raphael Cohen"
+        }
     }
 ];
 
