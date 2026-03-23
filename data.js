@@ -622,6 +622,20 @@ const dailyData = [
             text: "The method of science is the method of bold conjectures and ingenious and severe attempts to refute them.",
             source: "Morris Raphael Cohen"
         }
+    },
+    {
+        date: "2026-03-25",
+        book: {
+            isbn: "9780062316110",
+            title: "Sapiens: A Brief History of Humankind",
+            author: "Yuval Noah Harari",
+            category: "History / Anthropology",
+            desc: "Harari sweeps through 70,000 years of human history, revealing how fiction — from myths to money to nations — is the glue that lets strangers cooperate at scale."
+        },
+        quote: {
+            text: "You could never convince a monkey to give you a banana by promising him limitless bananas after death in monkey heaven.",
+            source: "Yuval Noah Harari, Sapiens"
+        }
     }
 ];
 
