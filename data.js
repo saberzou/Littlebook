@@ -624,6 +624,20 @@ const dailyData = [
         }
     },
     {
+        date: "2026-03-24",
+        book: {
+            isbn: "9780140433210",
+            title: "Adam Bede",
+            author: "George Eliot",
+            category: "Fiction",
+            desc: "George Eliot's debut novel drops you into rural England where a carpenter's quiet devotion collides with vanity and tragedy — a story about the gap between who we love and who deserves it."
+        },
+        quote: {
+            text: "It's but little good you'll do a-watering the last year's crop.",
+            source: "George Eliot, Adam Bede"
+        }
+    },
+    {
         date: "2026-03-25",
         audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-25-vSJd79T1XCUJ3GMG9JgoPiGuqjZZkT.mp3",
         book: {
@@ -636,6 +650,20 @@ const dailyData = [
         quote: {
             text: "You could never convince a monkey to give you a banana by promising him limitless bananas after death in monkey heaven.",
             source: "Yuval Noah Harari, Sapiens"
+        }
+    },
+    {
+        date: "2026-03-26",
+        book: {
+            isbn: "9780679731726",
+            title: "The Remains of the Day",
+            author: "Kazuo Ishiguro",
+            category: "Literary Fiction",
+            desc: "A devoted English butler drives through the countryside reflecting on decades of service, slowly uncovering the cost of a life spent in perfect duty — the love he never pursued and the master whose ideals he never questioned."
+        },
+        quote: {
+            text: "What is the point of worrying oneself too much about what one could or could not have done to control the course one's life took? Surely it is enough that the likes of you and I at least try to make our small contribution count for something true and worthy.",
+            source: "Kazuo Ishiguro, The Remains of the Day"
         }
     }
 ];
