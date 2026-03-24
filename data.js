@@ -625,6 +625,7 @@ const dailyData = [
     },
     {
         date: "2026-03-25",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-25-vSJd79T1XCUJ3GMG9JgoPiGuqjZZkT.mp3",
         book: {
             isbn: "9780062316110",
             title: "Sapiens: A Brief History of Humankind",
