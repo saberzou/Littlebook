@@ -638,20 +638,6 @@ const dailyData = [
         }
     },
     {
-        date: "2026-03-24",
-        book: {
-            isbn: "1860462057",
-            title: "The Flanders Panel",
-            author: "Arturo Pérez-Reverte",
-            category: "Art / Mystery",
-            desc: "A chess puzzle hidden inside a 15th-century Flemish painting pulls a young art restorer into a game where the murders are real and the next move is always yours to lose."
-        },
-        quote: {
-            text: "Every painting is a mirror in which we see what we are, and not what the painting actually shows.",
-            source: "Arturo Pérez-Reverte, The Flanders Panel"
-        }
-    },
-    {
         date: "2026-03-25",
         audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-25-vSJd79T1XCUJ3GMG9JgoPiGuqjZZkT.mp3",
         book: {
