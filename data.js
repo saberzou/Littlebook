@@ -665,6 +665,20 @@ const dailyData = [
             text: "What is the point of worrying oneself too much about what one could or could not have done to control the course one's life took? Surely it is enough that the likes of you and I at least try to make our small contribution count for something true and worthy.",
             source: "Kazuo Ishiguro, The Remains of the Day"
         }
+    },
+    {
+        date: "2026-03-27",
+        book: {
+            isbn: "8497779096",
+            title: "The Law of Success",
+            author: "Napoleon Hill",
+            category: "Psychology / Self-Development",
+            desc: "Hill distills two decades of interviews with titans like Carnegie, Ford, and Edison into sixteen principles of achievement — a sprawling, obsessive blueprint for turning desire into results."
+        },
+        quote: {
+            text: "A goal is a dream with a deadline.",
+            source: "Napoleon Hill, The Law of Success"
+        }
     }
 ];
 
