@@ -87,9 +87,15 @@ _log "notebooklm source add: $(( $(_t) - _T ))s"
 # Generate audio (brief, short)
 echo "🎙️ Generating audio..."
 _T=$(_t)
-notebooklm generate audio --format brief --length short --wait --retry 3 \
-  "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." 2>/dev/null
+AUDIO_OUTPUT=$(notebooklm generate audio --format brief --length short --wait --retry 3 \
+  "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." 2>&1) || true
 _log "notebooklm generate audio --wait: $(( $(_t) - _T ))s  ← main bottleneck"
+echo "$AUDIO_OUTPUT"
+
+# If generate failed, try downloading anyway (artifact may exist from a previous attempt)
+if echo "$AUDIO_OUTPUT" | grep -qi "fail\|error"; then
+  echo "⚠️ Generate reported error, but checking if audio artifact exists anyway..."
+fi
 
 # Download audio
 _T=$(_t)
