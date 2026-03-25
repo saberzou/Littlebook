@@ -654,6 +654,7 @@ const dailyData = [
     },
     {
         date: "2026-03-26",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-26-YiNosI2Nye6tcqfSey5Nzk95mjvQat.mp3",
         book: {
             isbn: "9780679731726",
             title: "The Remains of the Day",
