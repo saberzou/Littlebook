@@ -669,6 +669,7 @@ const dailyData = [
     },
     {
         date: "2026-03-27",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-27-Hlc8PmbVrxgYNuYH5I47pC0FjaPvMM.mp3",
         book: {
             isbn: "8497779096",
             title: "The Law of Success",
