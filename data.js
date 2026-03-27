@@ -684,6 +684,7 @@ const dailyData = [
     },
     {
         date: "2026-03-28",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-28-GrJh5ecIpZtPihjGCKasPaS2YqDQlZ.mp3",
         book: {
             isbn: "0367199394",
             title: "Cross-Cultural Psychology",
