@@ -681,6 +681,20 @@ const dailyData = [
             text: "A goal is a dream with a deadline.",
             source: "Napoleon Hill, The Law of Success"
         }
+    },
+    {
+        date: "2026-03-28",
+        book: {
+            isbn: "0367199394",
+            title: "Cross-Cultural Psychology",
+            author: "Eric B. Shiraev",
+            category: "Anthropology",
+            desc: "A rigorous yet accessible exploration of how culture shapes perception, emotion, and thought — bridging psychology and anthropology to reveal the invisible forces behind human behavior worldwide."
+        },
+        quote: {
+            text: "People do not simply live in a culture; they constantly create and re-create it.",
+            source: "Eric B. Shiraev, Cross-Cultural Psychology"
+        }
     }
 ];
 
