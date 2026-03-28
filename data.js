@@ -696,6 +696,21 @@ const dailyData = [
             text: "People do not simply live in a culture; they constantly create and re-create it.",
             source: "Eric B. Shiraev, Cross-Cultural Psychology"
         }
+    },
+    {
+        date: "2026-03-29",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-29-tNfXxCkDVYdFdwyzIbWAZ4V11Yu031.mp3",
+        book: {
+            isbn: "9780131687288",
+            title: "Digital Image Processing",
+            author: "Rafael C. Gonzalez",
+            category: "Technology",
+            desc: "The definitive textbook on how computers see — from pixel-level operations to pattern recognition, this book laid the foundation for everything from medical imaging to the filters on your phone."
+        },
+        quote: {
+            text: "The field of digital image processing refers to processing digital images by means of a digital computer — but its true power lies in making visible what was previously invisible.",
+            source: "Rafael C. Gonzalez, Digital Image Processing"
+        }
     }
 ];
 
