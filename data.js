@@ -714,6 +714,7 @@ const dailyData = [
     },
     {
         date: "2026-03-30",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-30-dmv9kxrzoHtk6XPU4ypzM1tMvsV4NV.mp3",
         book: {
             isbn: "9782757899571",
             title: "The Three Musketeers",
