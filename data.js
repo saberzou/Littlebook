@@ -711,6 +711,20 @@ const dailyData = [
             text: "The field of digital image processing refers to processing digital images by means of a digital computer — but its true power lies in making visible what was previously invisible.",
             source: "Rafael C. Gonzalez, Digital Image Processing"
         }
+    },
+    {
+        date: "2026-03-30",
+        book: {
+            isbn: "9782757899571",
+            title: "The Three Musketeers",
+            author: "Alexandre Dumas",
+            category: "Fiction",
+            desc: "A swashbuckling tale of friendship, honor, and intrigue in 17th-century France — young d'Artagnan joins three inseparable musketeers to outwit Cardinal Richelieu and protect the Queen's secret."
+        },
+        quote: {
+            text: "All for one and one for all.",
+            source: "Alexandre Dumas, The Three Musketeers"
+        }
     }
 ];
 
