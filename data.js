@@ -744,6 +744,7 @@ const dailyData = [
     },
     {
         date: "2026-04-01",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-01-XgJhKLTnMB8ibPMf4crGlMvky9lRLH.mp3",
         book: {
             isbn: "349911044x",
             title: "La Chute",
