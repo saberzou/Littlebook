@@ -741,6 +741,20 @@ const dailyData = [
             text: "I had to learn early that survival meant becoming invisible in a world that wanted me not to exist.",
             source: "Hans J. Massaquoi, Destined to Witness"
         }
+    },
+    {
+        date: "2026-04-01",
+        book: {
+            isbn: "349911044x",
+            title: "La Chute",
+            author: "Albert Camus",
+            category: "Philosophy",
+            desc: "A former Parisian lawyer confesses his moral failures to a stranger in an Amsterdam bar — Camus's haunting monologue on guilt, judgment, and the impossibility of innocence."
+        },
+        quote: {
+            text: "I'll tell you a great secret, my friend. Do not wait for the last judgment. It takes place every day.",
+            source: "Albert Camus, La Chute"
+        }
     }
 ];
 
