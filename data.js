@@ -726,6 +726,21 @@ const dailyData = [
             text: "All for one and one for all.",
             source: "Alexandre Dumas, The Three Musketeers"
         }
+    },
+    {
+        date: "2026-03-31",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-03-31-OGBsQKaNOJAEB74vBklvbJXmV86Ora.mp3",
+        book: {
+            isbn: "0060959614",
+            title: "Destined to Witness",
+            author: "Hans J. Massaquoi",
+            category: "Sociology",
+            desc: "An astonishing memoir of growing up Black in Nazi Germany — Hans Massaquoi recounts his childhood in Hamburg, navigating survival, identity, and belonging in a world that rejected his very existence."
+        },
+        quote: {
+            text: "I had to learn early that survival meant becoming invisible in a world that wanted me not to exist.",
+            source: "Hans J. Massaquoi, Destined to Witness"
+        }
     }
 ];
 
