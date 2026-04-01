@@ -759,6 +759,7 @@ const dailyData = [
     },
     {
         date: "2026-04-02",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-02-GDxdKX5wj9bVTmWAam0O3nqLqRHss5.mp3",
         book: {
             isbn: "9780553208849",
             title: "Siddhartha",
