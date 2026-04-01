@@ -756,6 +756,20 @@ const dailyData = [
             text: "I'll tell you a great secret, my friend. Do not wait for the last judgment. It takes place every day.",
             source: "Albert Camus, La Chute"
         }
+    },
+    {
+        date: "2026-04-02",
+        book: {
+            isbn: "9780553208849",
+            title: "Siddhartha",
+            author: "Hermann Hesse",
+            category: "Philosophy",
+            desc: "A young Brahmin's son leaves behind privilege and doctrine to seek meaning through asceticism, love, and the simple wisdom of a river — Hesse's luminous parable about finding truth not through teachings, but through living."
+        },
+        quote: {
+            text: "Wisdom cannot be imparted. Wisdom that a wise man attempts to impart always sounds like foolishness to someone else.",
+            source: "Hermann Hesse, Siddhartha"
+        }
     }
 ];
 
