@@ -771,6 +771,20 @@ const dailyData = [
             text: "Wisdom cannot be imparted. Wisdom that a wise man attempts to impart always sounds like foolishness to someone else.",
             source: "Hermann Hesse, Siddhartha"
         }
+    },
+    {
+        date: "2026-04-03",
+        book: {
+            isbn: "9780374529208",
+            title: "Thinking, Fast and Slow",
+            author: "Daniel Kahneman",
+            category: "Psychology",
+            desc: "Nobel laureate Kahneman reveals the two systems that drive how we think — the fast, intuitive mind and the slow, deliberate one — exposing the cognitive biases that shape every decision we make."
+        },
+        quote: {
+            text: "Nothing in life is as important as you think it is, while you are thinking about it.",
+            source: "Daniel Kahneman, Thinking, Fast and Slow"
+        }
     }
 ];
 
