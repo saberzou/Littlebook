@@ -774,6 +774,7 @@ const dailyData = [
     },
     {
         date: "2026-04-03",
+        audio: "undefined",
         book: {
             isbn: "9780374529208",
             title: "Thinking, Fast and Slow",
