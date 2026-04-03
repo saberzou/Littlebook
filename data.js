@@ -786,6 +786,20 @@ const dailyData = [
             text: "Nothing in life is as important as you think it is, while you are thinking about it.",
             source: "Daniel Kahneman, Thinking, Fast and Slow"
         }
+    },
+    {
+        date: "2026-04-04",
+        book: {
+            isbn: "9780486229492",
+            title: "The Gentle Art of Mathematics",
+            author: "Daniel Pedoe",
+            category: "Mathematics",
+            desc: "A playful romp through mathematical puzzles, games, and paradoxes that reveals the surprising beauty lurking in everyday logic and number patterns."
+        },
+        quote: {
+            text: "The mathematician does not study pure mathematics because it is useful; he studies it because he delights in it and he delights in it because it is beautiful.",
+            source: "Daniel Pedoe"
+        }
     }
 ];
 
