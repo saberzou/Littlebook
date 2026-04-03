@@ -789,6 +789,7 @@ const dailyData = [
     },
     {
         date: "2026-04-04",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-04-MUdF8KdDvbWZl5JDBEy1sj0dU4Bgis.mp3",
         book: {
             isbn: "9780486229492",
             title: "The Gentle Art of Mathematics",
