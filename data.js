@@ -804,6 +804,7 @@ const dailyData = [
     },
     {
         date: "2026-04-05",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-06-mGGKayVe0CGK1QhHEQI3VSBC0chmEG.mp3",
         book: {
             isbn: "0816509190",
             title: "Mirror for Man",
