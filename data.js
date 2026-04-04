@@ -801,6 +801,20 @@ const dailyData = [
             text: "The mathematician does not study pure mathematics because it is useful; he studies it because he delights in it and he delights in it because it is beautiful.",
             source: "Daniel Pedoe"
         }
+    },
+    {
+        date: "2026-04-05",
+        book: {
+            isbn: "0816509190",
+            title: "Mirror for Man",
+            author: "Clyde Kluckhohn",
+            category: "Anthropology",
+            desc: "A landmark introduction to anthropology that holds up a mirror to human nature, exploring how culture shapes everything from our deepest beliefs to our most mundane habits."
+        },
+        quote: {
+            text: "Every man is in certain respects like all other men, like some other men, like no other man.",
+            source: "Clyde Kluckhohn"
+        }
     }
 ];
 
