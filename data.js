@@ -819,6 +819,7 @@ const dailyData = [
     },
     {
         date: "2026-04-06",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-06-XQtrOQVIzfkkDaNH5Iy8Rm5YfxENeX.mp3",
         book: {
             isbn: "9781717423504",
             title: "The Two Paths",
