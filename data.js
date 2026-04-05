@@ -816,6 +816,20 @@ const dailyData = [
             text: "Every man is in certain respects like all other men, like some other men, like no other man.",
             source: "Clyde Kluckhohn"
         }
+    },
+    {
+        date: "2026-04-06",
+        book: {
+            isbn: "9781717423504",
+            title: "The Two Paths",
+            author: "John Ruskin",
+            category: "Art",
+            desc: "Ruskin's fiery lectures on art and labor, arguing that true beauty springs from the worker's joy and imagination — not mechanical perfection."
+        },
+        quote: {
+            text: "The highest reward for a person's toil is not what they get for it, but what they become by it.",
+            source: "John Ruskin"
+        }
     }
 ];
 
