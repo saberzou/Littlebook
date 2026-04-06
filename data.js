@@ -834,6 +834,7 @@ const dailyData = [
     },
     {
         date: "2026-04-07",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-07-N85E3oYB5wxMMAvbadfn9NCgo6MhvD.mp3",
         book: {
             isbn: "9781610660068",
             title: "The Long Tail",
