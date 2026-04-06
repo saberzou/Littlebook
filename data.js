@@ -831,6 +831,20 @@ const dailyData = [
             text: "The highest reward for a person's toil is not what they get for it, but what they become by it.",
             source: "John Ruskin"
         }
+    },
+    {
+        date: "2026-04-07",
+        book: {
+            isbn: "9781610660068",
+            title: "The Long Tail",
+            author: "Chris Anderson",
+            category: "Technology",
+            desc: "The former Wired editor reveals how the internet economy thrives not on blockbusters, but on the endless shelf of niche products — and why selling less of more is the future of business."
+        },
+        quote: {
+            text: "We are leaving the age of information and entering the age of recommendation.",
+            source: "Chris Anderson"
+        }
     }
 ];
 
