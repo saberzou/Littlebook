@@ -849,6 +849,7 @@ const dailyData = [
     },
     {
         date: "2026-04-08",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-08-fdGtJbFcH0y261QsIpQzXXPkt23aN8.mp3",
         book: {
             isbn: "9781101947883",
             title: "Exhalation: Stories",
