@@ -846,6 +846,20 @@ const dailyData = [
             text: "We are leaving the age of information and entering the age of recommendation.",
             source: "Chris Anderson"
         }
+    },
+    {
+        date: "2026-04-08",
+        book: {
+            isbn: "9781101947883",
+            title: "Exhalation: Stories",
+            author: "Ted Chiang",
+            category: "Science Fiction",
+            desc: "Nine stunning stories that explore free will, determinism, and what it means to be human — from the mind behind 'Arrival,' each tale a quiet detonation of ideas that lingers long after the last page."
+        },
+        quote: {
+            text: "The universe began as an enormous breath being held.",
+            source: "Ted Chiang, Exhalation"
+        }
     }
 ];
 
