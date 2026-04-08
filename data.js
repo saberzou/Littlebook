@@ -864,6 +864,7 @@ const dailyData = [
     },
     {
         date: "2026-04-09",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-10-xug0BrHivYArq9liCT2R0v8LoIx9yn.mp3",
         book: {
             isbn: "9781493003358",
             title: "Leonardo's Brain",
