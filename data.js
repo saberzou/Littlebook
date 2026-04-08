@@ -861,6 +861,20 @@ const dailyData = [
             text: "The universe began as an enormous breath being held.",
             source: "Ted Chiang, Exhalation"
         }
+    },
+    {
+        date: "2026-04-09",
+        book: {
+            isbn: "9781493003358",
+            title: "Leonardo's Brain",
+            author: "Leonard Shlain",
+            category: "Neuroscience",
+            desc: "A surgeon-polymath argues that Leonardo da Vinci's genius arose from an extraordinary integration of left- and right-brain thinking, weaving art, science, and anatomy into a radical theory of creativity."
+        },
+        quote: {
+            text: "Art and physics are a strange coupling, but like all good marriages, they are made in heaven.",
+            source: "Leonard Shlain"
+        }
     }
 ];
 
