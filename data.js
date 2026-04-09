@@ -876,6 +876,20 @@ const dailyData = [
             text: "Art and physics are a strange coupling, but like all good marriages, they are made in heaven.",
             source: "Leonard Shlain"
         }
+    },
+    {
+        date: "2026-04-10",
+        book: {
+            isbn: "0760735824",
+            title: "The Medieval Machine",
+            author: "Jean Gimpel",
+            category: "Technology",
+            desc: "A revelatory history of the Middle Ages as an era of stunning technological innovation — water mills, mechanical clocks, Gothic cathedrals — that shatters the myth of medieval backwardness and draws unsettling parallels to modern industrial decline."
+        },
+        quote: {
+            text: "The belief that the Middle Ages were a period of ignorance and stagnation is one of the most deeply rooted misconceptions in Western thought.",
+            source: "Jean Gimpel"
+        }
     }
 ];
 
