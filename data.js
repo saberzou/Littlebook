@@ -879,6 +879,7 @@ const dailyData = [
     },
     {
         date: "2026-04-10",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-10-h7wzpC66FDWN3jNw7LesKc3x4ma6Wu.mp3",
         book: {
             isbn: "0760735824",
             title: "The Medieval Machine",
