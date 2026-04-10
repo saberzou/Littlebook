@@ -891,6 +891,20 @@ const dailyData = [
             text: "The belief that the Middle Ages were a period of ignorance and stagnation is one of the most deeply rooted misconceptions in Western thought.",
             source: "Jean Gimpel"
         }
+    },
+    {
+        date: "2026-04-11",
+        book: {
+            isbn: "9780807064474",
+            title: "The Poetics of Space",
+            author: "Gaston Bachelard",
+            category: "Philosophy",
+            desc: "A lyrical phenomenology of intimate spaces — attics, cellars, drawers, nests — that reveals how the houses we inhabit shape our memories, daydreams, and deepest sense of self."
+        },
+        quote: {
+            text: "The house shelters daydreaming, the house protects the dreamer, the house allows one to dream in peace.",
+            source: "Gaston Bachelard"
+        }
     }
 ];
 
