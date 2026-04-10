@@ -894,6 +894,7 @@ const dailyData = [
     },
     {
         date: "2026-04-11",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-11-QOYShMyKPz5mQBuO6Ma8BaxJpVfnzo.mp3",
         book: {
             isbn: "9780807064474",
             title: "The Poetics of Space",
