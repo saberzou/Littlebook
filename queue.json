@@ -1,0 +1,321 @@
+[
+  {
+    "title": "Interaction of Color",
+    "author": "Josef Albers",
+    "isbn": "9780300179354",
+    "category": "Design",
+    "desc": "A masterclass in color theory from the Bauhaus pioneer, demonstrating that color is never perceived as it really is, but always in relation to its surroundings.",
+    "quote": {
+      "text": "In visual perception a color is almost never seen as it really is - as it physically is. This fact makes color the most relative medium in art.",
+      "source": "Josef Albers"
+    }
+  },
+  {
+    "title": "The Death and Life of Great American Cities",
+    "author": "Jane Jacobs",
+    "isbn": "9780679741954",
+    "category": "Architecture",
+    "desc": "A fierce critique of mid-century urban planning that champions organic, mixed-use neighborhoods and the complex 'ballet of the good city sidewalk'.",
+    "quote": {
+      "text": "Cities have the capability of providing something for everybody, only because, and only when, they are created by everybody.",
+      "source": "Jane Jacobs"
+    }
+  },
+  {
+    "title": "Understanding Media: The Extensions of Man",
+    "author": "Marshall McLuhan",
+    "isbn": "9780262631594",
+    "category": "Sociology",
+    "desc": "A prophetic analysis of media and technology, introducing the concept that the medium itself, rather than its content, fundamentally shapes human society.",
+    "quote": {
+      "text": "The medium is the message. This is merely to say that the personal and social consequences of any medium - that is, of any extension of ourselves - result from the new scale that is introduced into our affairs by each extension of ourselves, or by any new technology.",
+      "source": "Marshall McLuhan"
+    }
+  },
+  {
+    "title": "The Visual Display of Quantitative Information",
+    "author": "Edward R. Tufte",
+    "isbn": "9780961392147",
+    "category": "Design",
+    "desc": "The foundational text on data visualization, establishing principles for presenting complex information with clarity, precision, and elegance.",
+    "quote": {
+      "text": "Clutter and confusion are not attributes of data - they are shortcomings of design.",
+      "source": "Edward R. Tufte"
+    }
+  },
+  {
+    "title": "The Art of Looking Sideways",
+    "author": "Alan Fletcher",
+    "isbn": "9780714834498",
+    "category": "Design",
+    "desc": "A playful but rigorous cabinet of visual observations, prompts, diagrams, and provocations about how attention works. It trains taste by teaching you to notice more than you normally would.",
+    "quote": {
+      "text": "The real voyage of discovery consists not in seeking new landscapes but in having new eyes.",
+      "source": "Marcel Proust"
+    }
+  },
+  {
+    "title": "The Shape of Design",
+    "author": "Frank Chimero",
+    "isbn": "9780983662518",
+    "category": "Design",
+    "desc": "A small, warm book about form, responsibility, and making things for other people. It connects design craft to intention, systems, and the personality objects quietly accumulate over time.",
+    "quote": {
+      "text": "People ignore design that ignores people.",
+      "source": "Frank Chimero"
+    }
+  },
+  {
+    "title": "Understanding Comics",
+    "author": "Scott McCloud",
+    "isbn": "9780060976255",
+    "category": "Visual Storytelling",
+    "desc": "Nominally about comics, actually about how visual communication works. McCloud breaks down abstraction, sequence, time, and meaning with unusual clarity and playfulness.",
+    "quote": {
+      "text": "When you look at a comic, you're seeing not just a picture but a language.",
+      "source": "Scott McCloud"
+    }
+  },
+  {
+    "title": "On Writing Well",
+    "author": "William Zinsser",
+    "isbn": "9780060891541",
+    "category": "Writing",
+    "desc": "A durable guide to nonfiction prose that values clarity, simplicity, rhythm, and respect for the reader. Zinsser's core lesson is that good writing is good thinking made visible.",
+    "quote": {
+      "text": "Writing is thinking on paper.",
+      "source": "William Zinsser"
+    }
+  },
+  {
+    "title": "The Medium is the Massage",
+    "author": "Marshall McLuhan",
+    "isbn": "9781584230700",
+    "category": "Media Theory",
+    "desc": "A collage-like classic arguing that media reshape perception and social organization long before we consciously understand their content. Short, strange, and still useful.",
+    "quote": {
+      "text": "All media work us over completely.",
+      "source": "Marshall McLuhan"
+    }
+  },
+  {
+    "title": "Designing Design",
+    "author": "Kenya Hara",
+    "isbn": "9783037781050",
+    "category": "Design",
+    "desc": "A quiet, precise meditation on emptiness, information, and the emotional texture of objects. Hara's essays help sharpen restraint, simplicity, and the value of suggestion over noise.",
+    "quote": {
+      "text": "Design is not the answer. Design is the question.",
+      "source": "Kenya Hara"
+    }
+  },
+  {
+    "title": "How to Do Nothing",
+    "author": "Jenny Odell",
+    "isbn": "9781612198552",
+    "category": "Culture",
+    "desc": "An argument for reclaiming attention from the capture machinery of platforms and productivity culture. Odell reframes withdrawal not as laziness but as a political and perceptual act.",
+    "quote": {
+      "text": "Attention is the beginning of devotion.",
+      "source": "Mary Oliver"
+    }
+  },
+  {
+    "title": "Ways of Worldmaking",
+    "author": "Nelson Goodman",
+    "isbn": "9780872200524",
+    "category": "Philosophy",
+    "desc": "A compact philosophy classic about how representation, description, and symbol systems actively construct the worlds we inhabit. Useful when thinking about models, interfaces, and framing.",
+    "quote": {
+      "text": "Comprehension and creation go on together.",
+      "source": "Nelson Goodman"
+    }
+  },
+  {
+    "title": "Show Your Work!",
+    "author": "Austin Kleon",
+    "isbn": "9780761178972",
+    "category": "Creativity",
+    "desc": "A practical book about making your process visible without turning yourself into a brand caricature. Helpful for anyone trying to publish, document, and compound their work in public.",
+    "quote": {
+      "text": "In order to be found, you have to be findable.",
+      "source": "Austin Kleon"
+    }
+  },
+  {
+    "title": "Grid Systems in Graphic Design",
+    "author": "Josef Müller-Brockmann",
+    "isbn": "9783721201451",
+    "category": "Graphic Design",
+    "desc": "A disciplined manual on structure, proportion, spacing, and typographic order. It is not about stiffness for its own sake, but about building layouts that can hold complexity with calm.",
+    "quote": {
+      "text": "The grid system is an aid, not a guarantee.",
+      "source": "Josef Müller-Brockmann"
+    }
+  },
+  {
+    "title": "Seeing Is Forgetting the Name of the Thing One Sees",
+    "author": "Lawrence Weschler",
+    "isbn": "9780520256095",
+    "category": "Art",
+    "desc": "A beautiful portrait of artist Robert Irwin and the discipline of sustained perception. The book is really about attention, doubt, and the gradual training required to see more clearly.",
+    "quote": {
+      "text": "Seeing is forgetting the name of the thing one sees.",
+      "source": "Paul Valéry"
+    }
+  },
+  {
+    "title": "The Reflective Practitioner",
+    "author": "Donald A. Schön",
+    "isbn": "9780465068784",
+    "category": "Practice",
+    "desc": "Schön explains how skilled professionals think in the middle of uncertain situations, not after the fact. A strong framework for understanding design critique, iteration, and tacit judgment.",
+    "quote": {
+      "text": "In a swampy lowland, problems are messy and confusing and incapable of technical solution.",
+      "source": "Donald A. Schön"
+    }
+  },
+  {
+    "title": "The Creative Habit",
+    "author": "Twyla Tharp",
+    "isbn": "9780743235273",
+    "category": "Creativity",
+    "desc": "A no-nonsense book about building routines that make creativity repeatable. Tharp demystifies inspiration by treating it as the product of preparation, ritual, and consistent work.",
+    "quote": {
+      "text": "Creativity is a habit, and the best creativity is a result of good work habits.",
+      "source": "Twyla Tharp"
+    }
+  },
+  {
+    "title": "The Practice of Everyday Life",
+    "author": "Michel de Certeau",
+    "isbn": "9780520271456",
+    "category": "Culture",
+    "desc": "A brilliant study of how ordinary people quietly improvise inside systems designed by others. It offers a language for understanding daily agency, workarounds, and the subtle intelligence of users.",
+    "quote": {
+      "text": "The everyday has a certain strangeness that does not surface.",
+      "source": "Michel de Certeau"
+    }
+  },
+  {
+    "title": "In Praise of Shadows",
+    "author": "Jun'ichirō Tanizaki",
+    "isbn": "9780918172020",
+    "category": "Aesthetics",
+    "desc": "A short and elegant meditation on light, darkness, texture, and restraint in Japanese aesthetics. It is one of the best books for recalibrating taste away from brightness, excess, and obviousness.",
+    "quote": {
+      "text": "Were it not for shadows, there would be no beauty.",
+      "source": "Jun'ichirō Tanizaki"
+    }
+  },
+  {
+    "title": "The Nature of Order: Book One",
+    "author": "Christopher Alexander",
+    "isbn": "9780972652919",
+    "category": "Architecture",
+    "desc": "Alexander's mature argument that living structure emerges from deep patterns of wholeness rather than style. Dense but unusually rewarding for anyone thinking about systems, form, and why some environments feel alive.",
+    "quote": {
+      "text": "The degree of life which a thing has can be measured objectively.",
+      "source": "Christopher Alexander"
+    }
+  },
+  {
+    "title": "Building and Dwelling",
+    "author": "Richard Sennett",
+    "isbn": "9780374118785",
+    "category": "Urbanism",
+    "desc": "Sennett explores the gap between the city as designed and the city as actually lived. It is a strong book about openness, repair, and how urban environments should make room for complexity rather than flatten it.",
+    "quote": {
+      "text": "The open city is a city in which differences can coexist without being forced into conformity.",
+      "source": "Richard Sennett"
+    }
+  },
+  {
+    "title": "The Library of Babel",
+    "author": "Jorge Luis Borges",
+    "isbn": "9780141183022",
+    "category": "Fiction",
+    "desc": "A brief, dizzying fiction about infinity, knowledge, classification, and despair. Even in tiny doses Borges can permanently alter how you think about archives, systems, and meaning.",
+    "quote": {
+      "text": "The universe (which others call the Library) is composed of an indefinite, perhaps infinite number of hexagonal galleries.",
+      "source": "Jorge Luis Borges"
+    }
+  },
+  {
+    "title": "The Eyes of the Skin",
+    "author": "Juhani Pallasmaa",
+    "isbn": "9781119941286",
+    "category": "Architecture",
+    "desc": "A compact classic arguing that architecture has become too dominated by vision and too detached from the full body. Pallasmaa re-centers touch, atmosphere, materiality, and multisensory experience.",
+    "quote": {
+      "text": "The door handle is the handshake of the building.",
+      "source": "Juhani Pallasmaa"
+    }
+  },
+  {
+    "title": "The Craftsman and the Critic",
+    "author": "Adam Gopnik",
+    "isbn": "9781324091011",
+    "category": "Culture",
+    "desc": "A refined set of essays on taste, labor, making, and judgment. Gopnik is especially good at describing why standards matter without becoming sterile or pompous.",
+    "quote": {
+      "text": "Taste is never pure preference; it is preference educated by attention.",
+      "source": "Adam Gopnik"
+    }
+  },
+  {
+    "title": "A Technique for Producing Ideas",
+    "author": "James Webb Young",
+    "isbn": "9780071410946",
+    "category": "Creativity",
+    "desc": "A tiny, durable book on idea generation as a process of gathering, digesting, incubating, and recombining material. Short enough to reread often, useful enough to keep nearby.",
+    "quote": {
+      "text": "An idea is nothing more nor less than a new combination of old elements.",
+      "source": "James Webb Young"
+    }
+  },
+  {
+    "title": "The Ethics of Ambiguity",
+    "author": "Simone de Beauvoir",
+    "isbn": "9780807063217",
+    "category": "Philosophy",
+    "desc": "Beauvoir's argument that freedom is real only when it is lived among other freedoms. Sharp, demanding, and especially relevant when thinking about responsibility in uncertain systems.",
+    "quote": {
+      "text": "To will oneself moral and to will oneself free are one and the same decision.",
+      "source": "Simone de Beauvoir"
+    }
+  },
+  {
+    "title": "Invisible Cities",
+    "author": "Italo Calvino",
+    "isbn": "9780156453806",
+    "category": "Fiction",
+    "desc": "A luminous sequence of imagined cities that doubles as a meditation on memory, desire, decay, and language. Excellent for anyone who likes books that sharpen perception instead of merely informing it.",
+    "quote": {
+      "text": "The city does not tell its past, but contains it like the lines of a hand.",
+      "source": "Italo Calvino"
+    }
+  },
+  {
+    "title": "The Elements of Typographic Style",
+    "author": "Robert Bringhurst",
+    "isbn": "9780881792126",
+    "category": "Typography",
+    "desc": "A classic guide to typography that treats layout, rhythm, proportion, and language with unusual grace. It makes typography feel less like formatting and more like a form of thought.",
+    "quote": {
+      "text": "Typography exists to honor content.",
+      "source": "Robert Bringhurst"
+    }
+  },
+  {
+    "title": "The Mushroom at the End of the World",
+    "author": "Anna Lowenhaupt Tsing",
+    "isbn": "9780691220550",
+    "category": "Anthropology",
+    "desc": "A strange and brilliant book about precarity, capitalism, ecology, and what kinds of life remain possible in damaged worlds. It is one of the best examples of scholarship that still feels alive on the page.",
+    "quote": {
+      "text": "Precarity is the condition of our time.",
+      "source": "Anna Lowenhaupt Tsing"
+    }
+  }
+]
