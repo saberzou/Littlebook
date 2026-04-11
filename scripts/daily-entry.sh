@@ -53,16 +53,15 @@ if [ "$DRY_RUN" -eq 1 ]; then
     exit 0
 fi
 
-# 4. Insert into data.js (replace the last `    }` before `];`)
-# We find the last `    }` and replace it with our new entry + closing `    }`
-awk -v entry="$NEW_ENTRY" '
-    /\];/ { if (!done) { print entry"\n    }\n];"; done=1; next } }
-    { if (done) print; else lines[NR]=$0 }
-    END {
-        for(i=1; i<=NR-2; i++) if(lines[i]) print lines[i]
-        if (!done) print entry"\n    }\n];"
-    }
-' data.js > data.js.tmp && mv data.js.tmp data.js
+# 4. Insert into data.js — replace closing `];` with new entry + `];`
+export NEW_ENTRY
+node -e "
+const fs = require('fs');
+let s = fs.readFileSync('data.js', 'utf8');
+const entry = process.env.NEW_ENTRY;
+s = s.replace(/\n\];/, '\n' + entry + '\n    }\n];');
+fs.writeFileSync('data.js', s);
+" 
 
 # 5. Update queue
 echo "$REMAINING_JSON" > queue.json
