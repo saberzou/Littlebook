@@ -909,6 +909,7 @@ const dailyData = [
     },
     {
         date: "2026-04-12",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-12-ZugkruuLj8hvdtLssvPqnDZPa7kdqn.mp3",
         book: {
             isbn: "9780300179354",
             title: "Interaction of Color",
