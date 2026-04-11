@@ -906,6 +906,20 @@ const dailyData = [
             text: "The house shelters daydreaming, the house protects the dreamer, the house allows one to dream in peace.",
             source: "Gaston Bachelard"
         }
+    },
+    {
+        date: "2026-04-12",
+        book: {
+            isbn: "9780300179354",
+            title: "Interaction of Color",
+            author: "Josef Albers",
+            category: "Design",
+            desc: "A masterclass in color theory from the Bauhaus pioneer, demonstrating that color is never perceived as it really is, but always in relation to its surroundings."
+        },
+        quote: {
+            text: "In visual perception a color is almost never seen as it really is - as it physically is. This fact makes color the most relative medium in art.",
+            source: "Josef Albers"
+        }
     }
 ];
 
