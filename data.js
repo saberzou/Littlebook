@@ -924,6 +924,7 @@ const dailyData = [
     },
     {
         date: "2026-04-13",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-13-9wGNlvQ7FkrYm0xvm9gAHdMLZ4GY0r.mp3",
         book: {
             isbn: "9780679741954",
             title: "The Death and Life of Great American Cities",
