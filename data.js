@@ -921,6 +921,20 @@ const dailyData = [
             text: "In visual perception a color is almost never seen as it really is - as it physically is. This fact makes color the most relative medium in art.",
             source: "Josef Albers"
         }
+    },
+    {
+        date: "2026-04-13",
+        book: {
+            isbn: "9780679741954",
+            title: "The Death and Life of Great American Cities",
+            author: "Jane Jacobs",
+            category: "Architecture",
+            desc: "A fierce critique of mid-century urban planning that champions organic, mixed-use neighborhoods and the complex 'ballet of the good city sidewalk'."
+        },
+        quote: {
+            text: "Cities have the capability of providing something for everybody, only because, and only when, they are created by everybody.",
+            source: "Jane Jacobs"
+        }
     }
 ];
 
