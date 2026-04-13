@@ -939,6 +939,7 @@ const dailyData = [
     },
     {
         date: "2026-04-14",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-14-MoHN5VstOCdnkHUmARNuqrJiJTUwdz.mp3",
         book: {
             isbn: "9780262631594",
             title: "Understanding Media: The Extensions of Man",

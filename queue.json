@@ -1,16 +1,5 @@
 [
   {
-    "title": "Understanding Media: The Extensions of Man",
-    "author": "Marshall McLuhan",
-    "isbn": "9780262631594",
-    "category": "Sociology",
-    "desc": "A prophetic analysis of media and technology, introducing the concept that the medium itself, rather than its content, fundamentally shapes human society.",
-    "quote": {
-      "text": "The medium is the message. This is merely to say that the personal and social consequences of any medium - that is, of any extension of ourselves - result from the new scale that is introduced into our affairs by each extension of ourselves, or by any new technology.",
-      "source": "Marshall McLuhan"
-    }
-  },
-  {
     "title": "The Visual Display of Quantitative Information",
     "author": "Edward R. Tufte",
     "isbn": "9780961392147",
