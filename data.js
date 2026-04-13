@@ -936,6 +936,20 @@ const dailyData = [
             text: "Cities have the capability of providing something for everybody, only because, and only when, they are created by everybody.",
             source: "Jane Jacobs"
         }
+    },
+    {
+        date: "2026-04-14",
+        book: {
+            isbn: "9780262631594",
+            title: "Understanding Media: The Extensions of Man",
+            author: "Marshall McLuhan",
+            category: "Sociology",
+            desc: "A prophetic analysis of media and technology, introducing the concept that the medium itself, rather than its content, fundamentally shapes human society."
+        },
+        quote: {
+            text: "The medium is the message. This is merely to say that the personal and social consequences of any medium - that is, of any extension of ourselves - result from the new scale that is introduced into our affairs by each extension of ourselves, or by any new technology.",
+            source: "Marshall McLuhan"
+        }
     }
 ];
 
