@@ -951,6 +951,20 @@ const dailyData = [
             text: "The medium is the message. This is merely to say that the personal and social consequences of any medium - that is, of any extension of ourselves - result from the new scale that is introduced into our affairs by each extension of ourselves, or by any new technology.",
             source: "Marshall McLuhan"
         }
+    },
+    {
+        date: "2026-04-15",
+        book: {
+            isbn: "9780961392147",
+            title: "The Visual Display of Quantitative Information",
+            author: "Edward R. Tufte",
+            category: "Design",
+            desc: "The foundational text on data visualization, establishing principles for presenting complex information with clarity, precision, and elegance."
+        },
+        quote: {
+            text: "Clutter and confusion are not attributes of data - they are shortcomings of design.",
+            source: "Edward R. Tufte"
+        }
     }
 ];
 
