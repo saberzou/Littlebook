@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Visual Display of Quantitative Information",
-    "author": "Edward R. Tufte",
-    "isbn": "9780961392147",
-    "category": "Design",
-    "desc": "The foundational text on data visualization, establishing principles for presenting complex information with clarity, precision, and elegance.",
-    "quote": {
-      "text": "Clutter and confusion are not attributes of data - they are shortcomings of design.",
-      "source": "Edward R. Tufte"
-    }
-  },
-  {
     "title": "The Art of Looking Sideways",
     "author": "Alan Fletcher",
     "isbn": "9780714834498",

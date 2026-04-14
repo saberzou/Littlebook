@@ -954,6 +954,7 @@ const dailyData = [
     },
     {
         date: "2026-04-15",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-15-XblU26l6zYL2lFSI2wxGOZSzh0gmI2.mp3",
         book: {
             isbn: "9780961392147",
             title: "The Visual Display of Quantitative Information",
