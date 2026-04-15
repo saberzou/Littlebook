@@ -966,6 +966,20 @@ const dailyData = [
             text: "Clutter and confusion are not attributes of data - they are shortcomings of design.",
             source: "Edward R. Tufte"
         }
+    },
+    {
+        date: "2026-04-16",
+        book: {
+            isbn: "9780714834498",
+            title: "The Art of Looking Sideways",
+            author: "Alan Fletcher",
+            category: "Design",
+            desc: "A playful but rigorous cabinet of visual observations, prompts, diagrams, and provocations about how attention works. It trains taste by teaching you to notice more than you normally would."
+        },
+        quote: {
+            text: "The real voyage of discovery consists not in seeking new landscapes but in having new eyes.",
+            source: "Marcel Proust"
+        }
     }
 ];
 
