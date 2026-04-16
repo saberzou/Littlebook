@@ -983,6 +983,7 @@ const dailyData = [
     },
     {
         date: "2026-04-17",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-18-uYBejPykOaaweQ0jAp40mw6xBBNsN4.mp3",
         book: {
             isbn: "9780983662518",
             title: "The Shape of Design",
