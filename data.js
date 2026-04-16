@@ -980,6 +980,20 @@ const dailyData = [
             text: "The real voyage of discovery consists not in seeking new landscapes but in having new eyes.",
             source: "Marcel Proust"
         }
+    },
+    {
+        date: "2026-04-17",
+        book: {
+            isbn: "9780983662518",
+            title: "The Shape of Design",
+            author: "Frank Chimero",
+            category: "Design",
+            desc: "A small, warm book about form, responsibility, and making things for other people. It connects design craft to intention, systems, and the personality objects quietly accumulate over time."
+        },
+        quote: {
+            text: "People ignore design that ignores people.",
+            source: "Frank Chimero"
+        }
     }
 ];
 
