@@ -998,6 +998,7 @@ const dailyData = [
     },
     {
         date: "2026-04-18",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-18-3uVdc54aT2lPpcq6SmoXfGtqXN6PEQ.mp3",
         book: {
             isbn: "9780060976255",
             title: "Understanding Comics",

@@ -1,16 +1,5 @@
 [
   {
-    "title": "Understanding Comics",
-    "author": "Scott McCloud",
-    "isbn": "9780060976255",
-    "category": "Visual Storytelling",
-    "desc": "Nominally about comics, actually about how visual communication works. McCloud breaks down abstraction, sequence, time, and meaning with unusual clarity and playfulness.",
-    "quote": {
-      "text": "When you look at a comic, you're seeing not just a picture but a language.",
-      "source": "Scott McCloud"
-    }
-  },
-  {
     "title": "On Writing Well",
     "author": "William Zinsser",
     "isbn": "9780060891541",
