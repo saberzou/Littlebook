@@ -995,6 +995,20 @@ const dailyData = [
             text: "People ignore design that ignores people.",
             source: "Frank Chimero"
         }
+    },
+    {
+        date: "2026-04-18",
+        book: {
+            isbn: "9780060976255",
+            title: "Understanding Comics",
+            author: "Scott McCloud",
+            category: "Visual Storytelling",
+            desc: "Nominally about comics, actually about how visual communication works. McCloud breaks down abstraction, sequence, time, and meaning with unusual clarity and playfulness."
+        },
+        quote: {
+            text: "When you look at a comic, you're seeing not just a picture but a language.",
+            source: "Scott McCloud"
+        }
     }
 ];
 
