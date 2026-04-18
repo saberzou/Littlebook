@@ -1010,6 +1010,20 @@ const dailyData = [
             text: "When you look at a comic, you're seeing not just a picture but a language.",
             source: "Scott McCloud"
         }
+    },
+    {
+        date: "2026-04-19",
+        book: {
+            isbn: "9780060891541",
+            title: "On Writing Well",
+            author: "William Zinsser",
+            category: "Writing",
+            desc: "A durable guide to nonfiction prose that values clarity, simplicity, rhythm, and respect for the reader. Zinsser's core lesson is that good writing is good thinking made visible."
+        },
+        quote: {
+            text: "Writing is thinking on paper.",
+            source: "William Zinsser"
+        }
     }
 ];
 
