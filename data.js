@@ -1027,6 +1027,7 @@ const dailyData = [
     },
     {
         date: "2026-04-20",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-20-JTnLZ5ihBRdWib4g1QkBLoPSGSMR0i.mp3",
         book: {
             isbn: "9781584230700",
             title: "The Medium is the Massage",
