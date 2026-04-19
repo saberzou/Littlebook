@@ -1024,6 +1024,20 @@ const dailyData = [
             text: "Writing is thinking on paper.",
             source: "William Zinsser"
         }
+    },
+    {
+        date: "2026-04-20",
+        book: {
+            isbn: "9781584230700",
+            title: "The Medium is the Massage",
+            author: "Marshall McLuhan",
+            category: "Media Theory",
+            desc: "A collage-like classic arguing that media reshape perception and social organization long before we consciously understand their content. Short, strange, and still useful."
+        },
+        quote: {
+            text: "All media work us over completely.",
+            source: "Marshall McLuhan"
+        }
     }
 ];
 
