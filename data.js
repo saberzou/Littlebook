@@ -1039,6 +1039,20 @@ const dailyData = [
             text: "All media work us over completely.",
             source: "Marshall McLuhan"
         }
+    },
+    {
+        date: "2026-04-21",
+        book: {
+            isbn: "9783037781050",
+            title: "Designing Design",
+            author: "Kenya Hara",
+            category: "Design",
+            desc: "A quiet, precise meditation on emptiness, information, and the emotional texture of objects. Hara's essays help sharpen restraint, simplicity, and the value of suggestion over noise."
+        },
+        quote: {
+            text: "Design is not the answer. Design is the question.",
+            source: "Kenya Hara"
+        }
     }
 ];
 
