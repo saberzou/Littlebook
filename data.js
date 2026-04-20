@@ -1042,6 +1042,7 @@ const dailyData = [
     },
     {
         date: "2026-04-21",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-21-ctBvC8nfnPEN41R2EJgohGZ1mhMTGC.mp3",
         book: {
             isbn: "9783037781050",
             title: "Designing Design",
