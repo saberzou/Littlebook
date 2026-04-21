@@ -1054,6 +1054,20 @@ const dailyData = [
             text: "Design is not the answer. Design is the question.",
             source: "Kenya Hara"
         }
+    },
+    {
+        date: "2026-04-22",
+        book: {
+            isbn: "9781612198552",
+            title: "How to Do Nothing",
+            author: "Jenny Odell",
+            category: "Culture",
+            desc: "An argument for reclaiming attention from the capture machinery of platforms and productivity culture. Odell reframes withdrawal not as laziness but as a political and perceptual act."
+        },
+        quote: {
+            text: "Attention is the beginning of devotion.",
+            source: "Mary Oliver"
+        }
     }
 ];
 
