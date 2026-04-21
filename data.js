@@ -1057,6 +1057,7 @@ const dailyData = [
     },
     {
         date: "2026-04-22",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-22-Mgdhu3281LUky4s6uWn8pwAMT0SHc7.mp3",
         book: {
             isbn: "9781612198552",
             title: "How to Do Nothing",
