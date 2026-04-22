@@ -1069,6 +1069,20 @@ const dailyData = [
             text: "Attention is the beginning of devotion.",
             source: "Mary Oliver"
         }
+    },
+    {
+        date: "2026-04-23",
+        book: {
+            isbn: "9780872200524",
+            title: "Ways of Worldmaking",
+            author: "Nelson Goodman",
+            category: "Philosophy",
+            desc: "A compact philosophy classic about how representation, description, and symbol systems actively construct the worlds we inhabit. Useful when thinking about models, interfaces, and framing."
+        },
+        quote: {
+            text: "Comprehension and creation go on together.",
+            source: "Nelson Goodman"
+        }
     }
 ];
 
