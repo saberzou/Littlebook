@@ -1072,6 +1072,7 @@ const dailyData = [
     },
     {
         date: "2026-04-23",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-23-54hATXJOAGX9hDRLjPnIJnE0CFbMCX.mp3",
         book: {
             isbn: "9780872200524",
             title: "Ways of Worldmaking",
