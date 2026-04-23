@@ -1087,6 +1087,7 @@ const dailyData = [
     },
     {
         date: "2026-04-24",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-24-yKjeVHPlH5j5NUYN3YWn3Lq68nKwFZ.mp3",
         book: {
             isbn: "9780761178972",
             title: "Show Your Work!",
