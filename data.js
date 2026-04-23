@@ -1084,6 +1084,20 @@ const dailyData = [
             text: "Comprehension and creation go on together.",
             source: "Nelson Goodman"
         }
+    },
+    {
+        date: "2026-04-24",
+        book: {
+            isbn: "9780761178972",
+            title: "Show Your Work!",
+            author: "Austin Kleon",
+            category: "Creativity",
+            desc: "A practical book about making your process visible without turning yourself into a brand caricature. Helpful for anyone trying to publish, document, and compound their work in public."
+        },
+        quote: {
+            text: "In order to be found, you have to be findable.",
+            source: "Austin Kleon"
+        }
     }
 ];
 
