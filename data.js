@@ -1102,6 +1102,7 @@ const dailyData = [
     },
     {
         date: "2026-04-25",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-25-WfiCwM88cgygc1xbuDWZhtJ9L1RMUu.mp3",
         book: {
             isbn: "9783721201451",
             title: "Grid Systems in Graphic Design",
