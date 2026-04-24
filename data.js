@@ -1099,6 +1099,20 @@ const dailyData = [
             text: "In order to be found, you have to be findable.",
             source: "Austin Kleon"
         }
+    },
+    {
+        date: "2026-04-25",
+        book: {
+            isbn: "9783721201451",
+            title: "Grid Systems in Graphic Design",
+            author: "Josef Müller-Brockmann",
+            category: "Graphic Design",
+            desc: "A disciplined manual on structure, proportion, spacing, and typographic order. It is not about stiffness for its own sake, but about building layouts that can hold complexity with calm."
+        },
+        quote: {
+            text: "The grid system is an aid, not a guarantee.",
+            source: "Josef Müller-Brockmann"
+        }
     }
 ];
 
