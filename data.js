@@ -1114,6 +1114,20 @@ const dailyData = [
             text: "The grid system is an aid, not a guarantee.",
             source: "Josef Müller-Brockmann"
         }
+    },
+    {
+        date: "2026-04-26",
+        book: {
+            isbn: "9780520256095",
+            title: "Seeing Is Forgetting the Name of the Thing One Sees",
+            author: "Lawrence Weschler",
+            category: "Art",
+            desc: "A beautiful portrait of artist Robert Irwin and the discipline of sustained perception. The book is really about attention, doubt, and the gradual training required to see more clearly."
+        },
+        quote: {
+            text: "Seeing is forgetting the name of the thing one sees.",
+            source: "Paul Valéry"
+        }
     }
 ];
 
