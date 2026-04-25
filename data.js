@@ -1117,6 +1117,7 @@ const dailyData = [
     },
     {
         date: "2026-04-26",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-26-7COmAPSSM2Wrelu4GrnEjj1LXXcYmn.mp3",
         book: {
             isbn: "9780520256095",
             title: "Seeing Is Forgetting the Name of the Thing One Sees",
