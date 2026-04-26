@@ -1132,6 +1132,7 @@ const dailyData = [
     },
     {
         date: "2026-04-27",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-27-LzSFCPAJqRV5UQy7sNZ1MjQShzkVTB.mp3",
         book: {
             isbn: "9780465068784",
             title: "The Reflective Practitioner",

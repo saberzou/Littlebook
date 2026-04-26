@@ -29,8 +29,7 @@ echo "$BOOK_JSON" | jq -r '.title + " by " + .author'
 NEW_ENTRY=$(node -e "
 const book = $BOOK_JSON;
 const date = '$NEXT_DATE';
-console.log(\`    },
-    {
+console.log(\`    {
         date: \"\${date}\",
         book: {
             isbn: \"\${book.isbn}\",
@@ -42,7 +41,8 @@ console.log(\`    },
         quote: {
             text: \"\${book.quote.text}\",
             source: \"\${book.quote.source}\"
-        }\`);
+        }
+    }\`);
 ")
 
 if [ "$DRY_RUN" -eq 1 ]; then
@@ -59,7 +59,7 @@ node -e "
 const fs = require('fs');
 let s = fs.readFileSync('data.js', 'utf8');
 const entry = process.env.NEW_ENTRY;
-s = s.replace(/\n\];/, '\n' + entry + '\n    }\n];');
+s = s.replace(/\n(\s*)\}\n\];/, '\n$1},\n' + entry + '\n];');
 fs.writeFileSync('data.js', s);
 " 
 
