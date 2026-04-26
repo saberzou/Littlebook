@@ -1129,6 +1129,34 @@ const dailyData = [
             text: "Seeing is forgetting the name of the thing one sees.",
             source: "Paul Valéry"
         }
+    },
+    {
+        date: "2026-04-27",
+        book: {
+            isbn: "9780465068784",
+            title: "The Reflective Practitioner",
+            author: "Donald A. Schön",
+            category: "Practice",
+            desc: "Schön explains how skilled professionals think in the middle of uncertain situations, not after the fact. A strong framework for understanding design critique, iteration, and tacit judgment."
+        },
+        quote: {
+            text: "In a swampy lowland, problems are messy and confusing and incapable of technical solution.",
+            source: "Donald A. Schön"
+        }
+    },
+    {
+        date: "2026-04-28",
+        book: {
+            isbn: "9780743235273",
+            title: "The Creative Habit",
+            author: "Twyla Tharp",
+            category: "Creativity",
+            desc: "A no-nonsense book about building routines that make creativity repeatable. Tharp demystifies inspiration by treating it as the product of preparation, ritual, and consistent work."
+        },
+        quote: {
+            text: "Creativity is a habit, and the best creativity is a result of good work habits.",
+            source: "Twyla Tharp"
+        }
     }
 ];
 
