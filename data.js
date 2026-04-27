@@ -1158,6 +1158,20 @@ const dailyData = [
             text: "Creativity is a habit, and the best creativity is a result of good work habits.",
             source: "Twyla Tharp"
         }
+    },
+    {
+        date: "2026-04-29",
+        book: {
+            isbn: "9780918172020",
+            title: "In Praise of Shadows",
+            author: "Jun'ichirō Tanizaki",
+            category: "Aesthetics",
+            desc: "A short and elegant meditation on light, darkness, texture, and restraint in Japanese aesthetics. It is one of the best books for recalibrating taste away from brightness, excess, and obviousness."
+        },
+        quote: {
+            text: "Were it not for shadows, there would be no beauty.",
+            source: "Jun'ichirō Tanizaki"
+        }
     }
 ];
 
