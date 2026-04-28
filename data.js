@@ -1161,6 +1161,7 @@ const dailyData = [
     },
     {
         date: "2026-04-29",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-04-29-DOyxfiFXtfy6y8Y0SFhIim2YKaduwD.mp3",
         book: {
             isbn: "9780918172020",
             title: "In Praise of Shadows",

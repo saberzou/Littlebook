@@ -55,13 +55,13 @@ fi
 
 # 4. Insert into data.js — replace closing `];` with new entry + `];`
 export NEW_ENTRY
-node -e "
-const fs = require('fs');
-let s = fs.readFileSync('data.js', 'utf8');
+node -e '
+const fs = require("fs");
+let s = fs.readFileSync("data.js", "utf8");
 const entry = process.env.NEW_ENTRY;
-s = s.replace(/\n(\s*)\}\n\];/, '\n$1},\n' + entry + '\n];');
-fs.writeFileSync('data.js', s);
-" 
+s = s.replace(/\n(\s*)\}\n\];/, "\n$1},\n" + entry + "\n];");
+fs.writeFileSync("data.js", s);
+'
 
 # 5. Update queue
 echo "$REMAINING_JSON" > queue.json
