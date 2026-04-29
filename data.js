@@ -1187,6 +1187,20 @@ const dailyData = [
             text: "Were it not for shadows, there would be no beauty.",
             source: "Jun'ichirō Tanizaki"
         }
+    },
+    {
+        date: "2026-05-01",
+        book: {
+            isbn: "9780972652919",
+            title: "The Nature of Order: Book One",
+            author: "Christopher Alexander",
+            category: "Architecture",
+            desc: "Alexander's mature argument that living structure emerges from deep patterns of wholeness rather than style. Dense but unusually rewarding for anyone thinking about systems, form, and why some environments feel alive."
+        },
+        quote: {
+            text: "The degree of life which a thing has can be measured objectively.",
+            source: "Christopher Alexander"
+        }
     }
 ];
 
