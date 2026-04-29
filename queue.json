@@ -97,5 +97,225 @@
       "text": "Precarity is the condition of our time.",
       "source": "Anna Lowenhaupt Tsing"
     }
+  },
+  {
+    "title": "The Timeless Way of Building",
+    "author": "Christopher Alexander",
+    "isbn": "9780195024029",
+    "category": "Architecture",
+    "desc": "The philosophical companion to A Pattern Language. Alexander argues that buildings come alive only when made by people who inhabit them, through a process he calls nameless but unmistakable.",
+    "quote": {
+      "text": "There is a central quality which is the root criterion of life and spirit in a man, a town, a building, or a wilderness.",
+      "source": "Christopher Alexander"
+    }
+  },
+  {
+    "title": "Wabi-Sabi: for Artists, Designers, Poets & Philosophers",
+    "author": "Leonard Koren",
+    "isbn": "9780981484600",
+    "category": "Aesthetics",
+    "desc": "A slim, precise distillation of wabi-sabi as an alternative aesthetic system to Western modernism. Impermanence, incompleteness, and imperfection as design values.",
+    "quote": {
+      "text": "Wabi-sabi is the beauty of things imperfect, impermanent, and incomplete.",
+      "source": "Leonard Koren"
+    }
+  },
+  {
+    "title": "Specimen Days",
+    "author": "Walt Whitman",
+    "isbn": "9780486284828",
+    "category": "Writing",
+    "desc": "Whitman's prose diary — raw observations of nature, war, recovery, and the act of paying attention. A masterclass in noticing that predates every mindfulness book by a century.",
+    "quote": {
+      "text": "You must not know too much or be too precise or scientific about birds and trees and flowers and watercraft; a certain free margin helps.",
+      "source": "Walt Whitman"
+    }
+  },
+  {
+    "title": "The Concept of Mind",
+    "author": "Gilbert Ryle",
+    "isbn": "9780226732961",
+    "category": "Philosophy",
+    "desc": "Ryle dismantles Cartesian dualism with devastating clarity. The \"ghost in the machine\" phrase originates here. Still the sharpest argument against treating minds as hidden inner theaters.",
+    "quote": {
+      "text": "The dogma of the Ghost in the Machine maintains that there exist both bodies and minds.",
+      "source": "Gilbert Ryle"
+    }
+  },
+  {
+    "title": "Seeing Like a State",
+    "author": "James C. Scott",
+    "isbn": "9780300078152",
+    "category": "Political Theory",
+    "desc": "Why top-down schemes to improve the human condition so often fail. Scott shows how legibility — the state's drive to simplify and categorize — destroys the very knowledge that makes communities work.",
+    "quote": {
+      "text": "Certain forms of knowledge and control require a narrowing of vision.",
+      "source": "James C. Scott"
+    }
+  },
+  {
+    "title": "The Painter of Modern Life",
+    "author": "Charles Baudelaire",
+    "isbn": "9780714833651",
+    "category": "Art Criticism",
+    "desc": "Baudelaire's essay on Constantin Guys defines the flâneur and invents art criticism as we know it. Short, electric, and still the best writing on why ephemeral life deserves aesthetic attention.",
+    "quote": {
+      "text": "Modernity is the transient, the fleeting, the contingent; it is one half of art, the other being the eternal and the immovable.",
+      "source": "Charles Baudelaire"
+    }
+  },
+  {
+    "title": "The Gift",
+    "author": "Lewis Hyde",
+    "isbn": "9780307279507",
+    "category": "Creativity",
+    "desc": "A beautiful argument that art operates on gift-economy logic, not market logic. Hyde traces how creativity circulates, increases through sharing, and dies when hoarded.",
+    "quote": {
+      "text": "The gift must always move.",
+      "source": "Lewis Hyde"
+    }
+  },
+  {
+    "title": "Exercises in Style",
+    "author": "Raymond Queneau",
+    "isbn": "9780811220354",
+    "category": "Literature",
+    "desc": "One trivial anecdote retold 99 different ways. A playful, structuralist masterpiece that reveals how form creates meaning — essential reading for anyone who works with language or design.",
+    "quote": {
+      "text": "On the S bus, in the rush hour. A chap of about 26...",
+      "source": "Raymond Queneau"
+    }
+  },
+  {
+    "title": "The View from the Studio Door",
+    "author": "Ted Orland",
+    "isbn": "9780961454739",
+    "category": "Creativity",
+    "desc": "A companion to Art & Fear. Orland explores how artists sustain long careers — the unglamorous middle years, the gap between vision and execution, and the quiet discipline of showing up.",
+    "quote": {
+      "text": "The world doesn't owe you a chance to make art. You owe the world art.",
+      "source": "Ted Orland"
+    }
+  },
+  {
+    "title": "Ornament and Crime",
+    "author": "Adolf Loos",
+    "isbn": "9781572410466",
+    "category": "Design Theory",
+    "desc": "Loos's incendiary 1908 lecture arguing that ornament is wasted labor. Agree or not, this essay shaped a century of modernist design thinking and remains provocative.",
+    "quote": {
+      "text": "The evolution of culture is synonymous with the removal of ornament from objects of daily use.",
+      "source": "Adolf Loos"
+    }
+  },
+  {
+    "title": "How Buildings Learn",
+    "author": "Stewart Brand",
+    "isbn": "9780140139969",
+    "category": "Architecture",
+    "desc": "Buildings adapt over time, and the best ones are designed to be changed. Brand's photographic study of architectural evolution is really about how systems stay alive through use.",
+    "quote": {
+      "text": "A building is not something you finish. A building is something you start.",
+      "source": "Stewart Brand"
+    }
+  },
+  {
+    "title": "The Society of the Spectacle",
+    "author": "Guy Debord",
+    "isbn": "9781844676729",
+    "category": "Media Theory",
+    "desc": "Debord's 1967 thesis that modern life has been replaced by its representation. Dense, aphoristic, and uncomfortably predictive of social media culture decades before it existed.",
+    "quote": {
+      "text": "All that once was directly lived has become mere representation.",
+      "source": "Guy Debord"
+    }
+  },
+  {
+    "title": "Flatland",
+    "author": "Edwin A. Abbott",
+    "isbn": "9780486272634",
+    "category": "Fiction",
+    "desc": "A Victorian novella about a square living in two dimensions who encounters the third. A witty satire of hierarchy and a genuine thought experiment about perception and dimensionality.",
+    "quote": {
+      "text": "I call our world Flatland, not because we call it so, but to make its nature clearer to you.",
+      "source": "Edwin A. Abbott"
+    }
+  },
+  {
+    "title": "Speculative Everything",
+    "author": "Anthony Dunne & Fiona Raby",
+    "isbn": "9780262019842",
+    "category": "Design",
+    "desc": "Design as a tool for imagining alternative futures rather than solving present problems. Dunne and Raby argue for critical, speculative, and discursive design practices.",
+    "quote": {
+      "text": "Design can be used as a means of speculating about how things could be.",
+      "source": "Anthony Dunne & Fiona Raby"
+    }
+  },
+  {
+    "title": "The Pleasure of the Text",
+    "author": "Roland Barthes",
+    "isbn": "9780374521608",
+    "category": "Literary Theory",
+    "desc": "Barthes on reading as erotic, bodily pleasure. Slim and strange — a book about the physical joy of language that performs the very pleasure it describes.",
+    "quote": {
+      "text": "The text you write must prove to me that it desires me.",
+      "source": "Roland Barthes"
+    }
+  },
+  {
+    "title": "A Philosophy of Software Design",
+    "author": "John Ousterhout",
+    "isbn": "9781732102200",
+    "category": "Technology",
+    "desc": "Ousterhout distills decades of teaching into a clear, opinionated guide on managing complexity in software. The deepest problems in code are design problems, not coding problems.",
+    "quote": {
+      "text": "The most fundamental problem in computer science is problem decomposition.",
+      "source": "John Ousterhout"
+    }
+  },
+  {
+    "title": "Silence: Lectures and Writings",
+    "author": "John Cage",
+    "isbn": "9780819571762",
+    "category": "Art",
+    "desc": "Cage's collected lectures on chance, silence, mushrooms, and the erasure of boundaries between art and life. Playful, radical, and endlessly generative for creative thinkers.",
+    "quote": {
+      "text": "I have nothing to say and I am saying it and that is poetry as I need it.",
+      "source": "John Cage"
+    }
+  },
+  {
+    "title": "The Image of the City",
+    "author": "Kevin Lynch",
+    "isbn": "9780262620017",
+    "category": "Urbanism",
+    "desc": "Lynch's study of how people mentally map cities — paths, edges, districts, nodes, landmarks. Foundational for anyone designing navigable spaces, physical or digital.",
+    "quote": {
+      "text": "A good environmental image gives its possessor an important sense of emotional security.",
+      "source": "Kevin Lynch"
+    }
+  },
+  {
+    "title": "Mythologies",
+    "author": "Roland Barthes",
+    "isbn": "9780374532345",
+    "category": "Cultural Criticism",
+    "desc": "Barthes decodes the hidden ideologies in everyday French life — wrestling, steak, plastic, the new Citroën. A model for reading culture as a system of signs.",
+    "quote": {
+      "text": "Myth is a type of speech.",
+      "source": "Roland Barthes"
+    }
+  },
+  {
+    "title": "Toward a New Architecture",
+    "author": "Le Corbusier",
+    "isbn": "9780486250236",
+    "category": "Architecture",
+    "desc": "Le Corbusier's manifesto for modern architecture — machines for living, the play of volumes in light, the rejection of decoration. Love it or fight it, you have to reckon with it.",
+    "quote": {
+      "text": "A house is a machine for living in.",
+      "source": "Le Corbusier"
+    }
   }
 ]
