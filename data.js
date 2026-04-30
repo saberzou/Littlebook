@@ -1202,6 +1202,20 @@ const dailyData = [
             text: "The degree of life which a thing has can be measured objectively.",
             source: "Christopher Alexander"
         }
+    },
+    {
+        date: "2026-05-02",
+        book: {
+            isbn: "9780374118785",
+            title: "Building and Dwelling",
+            author: "Richard Sennett",
+            category: "Urbanism",
+            desc: "Sennett explores the gap between the city as designed and the city as actually lived. It is a strong book about openness, repair, and how urban environments should make room for complexity rather than flatten it."
+        },
+        quote: {
+            text: "The open city is a city in which differences can coexist without being forced into conformity.",
+            source: "Richard Sennett"
+        }
     }
 ];
 
