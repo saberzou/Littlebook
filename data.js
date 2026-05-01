@@ -1216,6 +1216,20 @@ const dailyData = [
             text: "The open city is a city in which differences can coexist without being forced into conformity.",
             source: "Richard Sennett"
         }
+    },
+    {
+        date: "2026-05-03",
+        book: {
+            isbn: "9780141183022",
+            title: "The Library of Babel",
+            author: "Jorge Luis Borges",
+            category: "Fiction",
+            desc: "A brief, dizzying fiction about infinity, knowledge, classification, and despair. Even in tiny doses Borges can permanently alter how you think about archives, systems, and meaning."
+        },
+        quote: {
+            text: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite number of hexagonal galleries.",
+            source: "Jorge Luis Borges"
+        }
     }
 ];
 
