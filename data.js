@@ -1232,6 +1232,20 @@ const dailyData = [
             text: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite number of hexagonal galleries.",
             source: "Jorge Luis Borges"
         }
+    },
+    {
+        date: "2026-05-04",
+        book: {
+            isbn: "9781119941286",
+            title: "The Eyes of the Skin",
+            author: "Juhani Pallasmaa",
+            category: "Architecture",
+            desc: "A compact classic arguing that architecture has become too dominated by vision and too detached from the full body. Pallasmaa re-centers touch, atmosphere, materiality, and multisensory experience."
+        },
+        quote: {
+            text: "The door handle is the handshake of the building.",
+            source: "Juhani Pallasmaa"
+        }
     }
 ];
 
