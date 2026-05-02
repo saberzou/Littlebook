@@ -11,7 +11,7 @@ _t() { date +%s; }
 _log() { echo "[$(date '+%H:%M:%S')] $*"; }
 
 # Get tomorrow's date (the book that was just added by daily content cron)
-TOMORROW=$(date -v+1d +%Y-%m-%d 2>/dev/null || date -d '+1 day' +%Y-%m-%d)
+TOMORROW="${FORCE_DATE:-$(date -v+1d +%Y-%m-%d 2>/dev/null || date -d '+1 day' +%Y-%m-%d)}"
 
 # Extract ALL book info in a single node call (avoid 4x overhead)
 _T=$(_t)

@@ -1219,6 +1219,7 @@ const dailyData = [
     },
     {
         date: "2026-05-03",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-03-9uIsw3lRPLzNa2OAwDOyXxeJPqISXJ.mp3",
         book: {
             isbn: "9780141183022",
             title: "The Library of Babel",
