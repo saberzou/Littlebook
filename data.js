@@ -1191,6 +1191,7 @@ const dailyData = [
     },
     {
         date: "2026-05-01",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-01-CRMJsN3rkgPcoPXPdxzGUsXKHemS9Q.mp3",
         book: {
             isbn: "9780972652919",
             title: "The Nature of Order: Book One",
