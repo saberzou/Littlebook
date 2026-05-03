@@ -1235,6 +1235,7 @@ const dailyData = [
     },
     {
         date: "2026-05-04",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-04-G6gOqsXUkcZyuZs8iB0bIVyL2CQ1wO.mp3",
         book: {
             isbn: "9781119941286",
             title: "The Eyes of the Skin",
