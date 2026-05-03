@@ -1246,6 +1246,20 @@ const dailyData = [
             text: "The door handle is the handshake of the building.",
             source: "Juhani Pallasmaa"
         }
+    },
+    {
+        date: "2026-05-05",
+        book: {
+            isbn: "9781324091011",
+            title: "The Craftsman and the Critic",
+            author: "Adam Gopnik",
+            category: "Culture",
+            desc: "A refined set of essays on taste, labor, making, and judgment. Gopnik is especially good at describing why standards matter without becoming sterile or pompous."
+        },
+        quote: {
+            text: "Taste is never pure preference; it is preference educated by attention.",
+            source: "Adam Gopnik"
+        }
     }
 ];
 
