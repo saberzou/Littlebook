@@ -1261,6 +1261,20 @@ const dailyData = [
             text: "Taste is never pure preference; it is preference educated by attention.",
             source: "Adam Gopnik"
         }
+    },
+    {
+        date: "2026-05-06",
+        book: {
+            isbn: "9780071410946",
+            title: "A Technique for Producing Ideas",
+            author: "James Webb Young",
+            category: "Creativity",
+            desc: "A tiny, durable book on idea generation as a process of gathering, digesting, incubating, and recombining material. Short enough to reread often, useful enough to keep nearby."
+        },
+        quote: {
+            text: "An idea is nothing more nor less than a new combination of old elements.",
+            source: "James Webb Young"
+        }
     }
 ];
 
