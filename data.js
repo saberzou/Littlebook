@@ -1250,6 +1250,7 @@ const dailyData = [
     },
     {
         date: "2026-05-05",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-05-ByCVncaoPRy5JI5DgYeSTg5eiGAjNH.mp3",
         book: {
             isbn: "9781324091011",
             title: "The Craftsman and the Critic",
