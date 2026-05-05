@@ -1279,6 +1279,7 @@ const dailyData = [
     },
     {
         date: "2026-05-07",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-07-JEM1gCaHddlCCEUc6O9wuwAQEVwInl.mp3",
         book: {
             isbn: "9780807063217",
             title: "The Ethics of Ambiguity",
