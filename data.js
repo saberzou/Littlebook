@@ -1276,6 +1276,20 @@ const dailyData = [
             text: "An idea is nothing more nor less than a new combination of old elements.",
             source: "James Webb Young"
         }
+    },
+    {
+        date: "2026-05-07",
+        book: {
+            isbn: "9780807063217",
+            title: "The Ethics of Ambiguity",
+            author: "Simone de Beauvoir",
+            category: "Philosophy",
+            desc: "Beauvoir's argument that freedom is real only when it is lived among other freedoms. Sharp, demanding, and especially relevant when thinking about responsibility in uncertain systems."
+        },
+        quote: {
+            text: "To will oneself moral and to will oneself free are one and the same decision.",
+            source: "Simone de Beauvoir"
+        }
     }
 ];
 
