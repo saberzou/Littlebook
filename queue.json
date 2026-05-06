@@ -1,16 +1,5 @@
 [
   {
-    "title": "Invisible Cities",
-    "author": "Italo Calvino",
-    "isbn": "9780156453806",
-    "category": "Fiction",
-    "desc": "A luminous sequence of imagined cities that doubles as a meditation on memory, desire, decay, and language. Excellent for anyone who likes books that sharpen perception instead of merely informing it.",
-    "quote": {
-      "text": "The city does not tell its past, but contains it like the lines of a hand.",
-      "source": "Italo Calvino"
-    }
-  },
-  {
     "title": "The Elements of Typographic Style",
     "author": "Robert Bringhurst",
     "isbn": "9780881792126",

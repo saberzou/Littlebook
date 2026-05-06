@@ -1291,6 +1291,20 @@ const dailyData = [
             text: "To will oneself moral and to will oneself free are one and the same decision.",
             source: "Simone de Beauvoir"
         }
+    },
+    {
+        date: "2026-05-08",
+        book: {
+            isbn: "9780156453806",
+            title: "Invisible Cities",
+            author: "Italo Calvino",
+            category: "Fiction",
+            desc: "A luminous sequence of imagined cities that doubles as a meditation on memory, desire, decay, and language. Excellent for anyone who likes books that sharpen perception instead of merely informing it."
+        },
+        quote: {
+            text: "The city does not tell its past, but contains it like the lines of a hand.",
+            source: "Italo Calvino"
+        }
     }
 ];
 
