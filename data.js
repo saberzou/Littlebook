@@ -1309,6 +1309,7 @@ const dailyData = [
     },
     {
         date: "2026-05-09",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-09-zYEbZ4anHALbsddk9nd600Gm4BKus8.mp3",
         book: {
             isbn: "9780881792126",
             title: "The Elements of Typographic Style",
