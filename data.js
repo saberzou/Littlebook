@@ -1294,6 +1294,7 @@ const dailyData = [
     },
     {
         date: "2026-05-08",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-08-VaHoeOinrwAgMEDlcDPoz3mdHcPtDe.mp3",
         book: {
             isbn: "9780156453806",
             title: "Invisible Cities",
