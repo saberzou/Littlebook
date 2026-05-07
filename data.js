@@ -1305,6 +1305,20 @@ const dailyData = [
             text: "The city does not tell its past, but contains it like the lines of a hand.",
             source: "Italo Calvino"
         }
+    },
+    {
+        date: "2026-05-09",
+        book: {
+            isbn: "9780881792126",
+            title: "The Elements of Typographic Style",
+            author: "Robert Bringhurst",
+            category: "Typography",
+            desc: "A classic guide to typography that treats layout, rhythm, proportion, and language with unusual grace. It makes typography feel less like formatting and more like a form of thought."
+        },
+        quote: {
+            text: "Typography exists to honor content.",
+            source: "Robert Bringhurst"
+        }
     }
 ];
 
