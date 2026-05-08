@@ -50,6 +50,28 @@ body {
     transition: background 0.4s, color 0.4s;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('assets/bg-lake.png') center/cover no-repeat;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    opacity: 0.78;
+    z-index: -1;
+    pointer-events: none;
+    transition: background 0.4s, opacity 0.4s;
+}
+
+[data-theme="dark"] body::after { opacity: 0.82; }
+
 .app-container {
     height: 100vh;
     display: flex;
