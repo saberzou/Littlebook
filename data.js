@@ -1321,6 +1321,20 @@ const dailyData = [
             text: "Typography exists to honor content.",
             source: "Robert Bringhurst"
         }
+    },
+    {
+        date: "2026-05-10",
+        book: {
+            isbn: "9780691220550",
+            title: "The Mushroom at the End of the World",
+            author: "Anna Lowenhaupt Tsing",
+            category: "Anthropology",
+            desc: "A strange and brilliant book about precarity, capitalism, ecology, and what kinds of life remain possible in damaged worlds. It is one of the best examples of scholarship that still feels alive on the page."
+        },
+        quote: {
+            text: "Precarity is the condition of our time.",
+            source: "Anna Lowenhaupt Tsing"
+        }
     }
 ];
 
