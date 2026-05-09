@@ -1324,6 +1324,7 @@ const dailyData = [
     },
     {
         date: "2026-05-10",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-10-4RwoHso20f16VsBhXaidsDLTl3clN6.mp3",
         book: {
             isbn: "9780691220550",
             title: "The Mushroom at the End of the World",
