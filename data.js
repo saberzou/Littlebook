@@ -1335,6 +1335,20 @@ const dailyData = [
             text: "Precarity is the condition of our time.",
             source: "Anna Lowenhaupt Tsing"
         }
+    },
+    {
+        date: "2026-05-11",
+        book: {
+            isbn: "9780195024029",
+            title: "The Timeless Way of Building",
+            author: "Christopher Alexander",
+            category: "Architecture",
+            desc: "The philosophical companion to A Pattern Language. Alexander argues that buildings come alive only when made by people who inhabit them, through a process he calls nameless but unmistakable."
+        },
+        quote: {
+            text: "There is a central quality which is the root criterion of life and spirit in a man, a town, a building, or a wilderness.",
+            source: "Christopher Alexander"
+        }
     }
 ];
 
