@@ -1339,6 +1339,7 @@ const dailyData = [
     },
     {
         date: "2026-05-11",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-11-01q0BMlQTTLkvWQ3QM5WZzBLILjykr.mp3",
         book: {
             isbn: "9780195024029",
             title: "The Timeless Way of Building",
