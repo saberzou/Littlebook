@@ -1350,6 +1350,20 @@ const dailyData = [
             text: "There is a central quality which is the root criterion of life and spirit in a man, a town, a building, or a wilderness.",
             source: "Christopher Alexander"
         }
+    },
+    {
+        date: "2026-05-12",
+        book: {
+            isbn: "9780981484600",
+            title: "Wabi-Sabi: for Artists, Designers, Poets & Philosophers",
+            author: "Leonard Koren",
+            category: "Aesthetics",
+            desc: "A slim, precise distillation of wabi-sabi as an alternative aesthetic system to Western modernism. Impermanence, incompleteness, and imperfection as design values."
+        },
+        quote: {
+            text: "Wabi-sabi is the beauty of things imperfect, impermanent, and incomplete.",
+            source: "Leonard Koren"
+        }
     }
 ];
 
