@@ -1365,6 +1365,20 @@ const dailyData = [
             text: "Wabi-sabi is the beauty of things imperfect, impermanent, and incomplete.",
             source: "Leonard Koren"
         }
+    },
+    {
+        date: "2026-05-13",
+        book: {
+            isbn: "9780486284828",
+            title: "Specimen Days",
+            author: "Walt Whitman",
+            category: "Writing",
+            desc: "Whitman's prose diary — raw observations of nature, war, recovery, and the act of paying attention. A masterclass in noticing that predates every mindfulness book by a century."
+        },
+        quote: {
+            text: "You must not know too much or be too precise or scientific about birds and trees and flowers and watercraft; a certain free margin helps.",
+            source: "Walt Whitman"
+        }
     }
 ];
 
