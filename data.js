@@ -1354,6 +1354,7 @@ const dailyData = [
     },
     {
         date: "2026-05-12",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-12-D4cGAobOHIoJIvaCHtTr7FVIiid1f7.mp3",
         book: {
             isbn: "9780981484600",
             title: "Wabi-Sabi: for Artists, Designers, Poets & Philosophers",
