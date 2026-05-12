@@ -1380,6 +1380,20 @@ const dailyData = [
             text: "You must not know too much or be too precise or scientific about birds and trees and flowers and watercraft; a certain free margin helps.",
             source: "Walt Whitman"
         }
+    },
+    {
+        date: "2026-05-14",
+        book: {
+            isbn: "9780226732961",
+            title: "The Concept of Mind",
+            author: "Gilbert Ryle",
+            category: "Philosophy",
+            desc: "Ryle dismantles Cartesian dualism with devastating clarity. The 'ghost in the machine' phrase originates here. Still the sharpest argument against treating minds as hidden inner theaters."
+        },
+        quote: {
+            text: "The dogma of the Ghost in the Machine maintains that there exist both bodies and minds.",
+            source: "Gilbert Ryle"
+        }
     }
 ];
 
