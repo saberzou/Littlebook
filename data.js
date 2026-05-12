@@ -1369,6 +1369,7 @@ const dailyData = [
     },
     {
         date: "2026-05-13",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-13-NgXRBkFlo6DdaomMlWy9ltF6VjfFbY.mp3",
         book: {
             isbn: "9780486284828",
             title: "Specimen Days",
