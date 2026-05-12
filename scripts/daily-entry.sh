@@ -26,24 +26,25 @@ echo "Adding entry for $NEXT_DATE:"
 echo "$BOOK_JSON" | jq -r '.title + " by " + .author'
 
 # 3. Format the new entry
-NEW_ENTRY=$(node -e "
-const book = $BOOK_JSON;
-const date = '$NEXT_DATE';
-console.log(\`    {
-        date: \"\${date}\",
+NEW_ENTRY=$(BOOK_JSON_ENV="$BOOK_JSON" NEXT_DATE_ENV="$NEXT_DATE" node -e '
+const book = JSON.parse(process.env.BOOK_JSON_ENV);
+const date = process.env.NEXT_DATE_ENV;
+const esc = (s) => JSON.stringify(String(s)).slice(1, -1).replace(/\\"/g, "\\\"");
+process.stdout.write(`    {
+        date: "${date}",
         book: {
-            isbn: \"\${book.isbn}\",
-            title: \"\${book.title}\",
-            author: \"\${book.author}\",
-            category: \"\${book.category}\",
-            desc: \"\${book.desc}\"
+            isbn: "${esc(book.isbn)}",
+            title: "${esc(book.title)}",
+            author: "${esc(book.author)}",
+            category: "${esc(book.category)}",
+            desc: "${esc(book.desc)}"
         },
         quote: {
-            text: \"\${book.quote.text}\",
-            source: \"\${book.quote.source}\"
+            text: "${esc(book.quote.text)}",
+            source: "${esc(book.quote.source)}"
         }
-    }\`);
-")
+    }`);
+')
 
 if [ "$DRY_RUN" -eq 1 ]; then
     echo "--- WOULD INSERT ---"
