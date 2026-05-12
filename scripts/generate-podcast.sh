@@ -84,23 +84,34 @@ notebooklm source add "$SOURCE_FILE" >/dev/null 2>&1
 rm "$SOURCE_FILE"
 _log "notebooklm source add: $(( $(_t) - _T ))s"
 
-# Generate audio (brief, short)
-echo "🎙️ Generating audio..."
+# Generate audio (brief, short) — submit without --wait, then poll via download dry-run.
+# (--wait has a hard 300s cap; NotebookLM often takes 5-7 min for audio.)
+echo "🎙️ Generating audio (this can take 5-10 min)..."
 _T=$(_t)
-AUDIO_OUTPUT=$(notebooklm generate audio --format brief --length short --wait --retry 3 \
-  "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." 2>&1) || true
-_log "notebooklm generate audio --wait: $(( $(_t) - _T ))s  ← main bottleneck"
-echo "$AUDIO_OUTPUT"
+notebooklm generate audio --format brief --length short --retry 3 \
+  "A concise 2-3 minute podcast overview of $TITLE by $AUTHOR. Be engaging and conversational." >/dev/null 2>&1 || true
 
-# If generate failed, try downloading anyway (artifact may exist from a previous attempt)
-if echo "$AUDIO_OUTPUT" | grep -qi "fail\|error"; then
-  echo "⚠️ Generate reported error, but checking if audio artifact exists anyway..."
+# Poll up to 15 min for artifact to appear
+MAX_WAIT=900
+ELAPSED=0
+while (( ELAPSED < MAX_WAIT )); do
+  if notebooklm download audio --latest --dry-run >/dev/null 2>&1; then
+    break
+  fi
+  sleep 20
+  ELAPSED=$(( ELAPSED + 20 ))
+done
+_log "audio ready after: ${ELAPSED}s"
+
+if (( ELAPSED >= MAX_WAIT )); then
+  echo "❌ Audio not ready after ${MAX_WAIT}s" >&2
+  exit 1
 fi
 
 # Download audio
 _T=$(_t)
 TMP_AUDIO=$(mktemp /tmp/littlebook-audio-XXXXXX).mp3
-notebooklm download audio --latest "$TMP_AUDIO" >/dev/null 2>&1
+notebooklm download audio --latest --force "$TMP_AUDIO" >/dev/null 2>&1
 _log "download audio: $(( $(_t) - _T ))s | raw size: $(du -h "$TMP_AUDIO" | cut -f1)"
 
 # Compress to 64kbps mono
