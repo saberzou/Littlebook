@@ -1398,6 +1398,7 @@ const dailyData = [
     },
     {
         date: "2026-05-15",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-15-hmUFQkb6tnYBQglqJA6l9jQc4214zx.mp3",
         book: {
             isbn: "9780300078152",
             title: "Seeing Like a State",
