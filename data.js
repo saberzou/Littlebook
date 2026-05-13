@@ -1395,6 +1395,20 @@ const dailyData = [
             text: "The dogma of the Ghost in the Machine maintains that there exist both bodies and minds.",
             source: "Gilbert Ryle"
         }
+    },
+    {
+        date: "2026-05-15",
+        book: {
+            isbn: "9780300078152",
+            title: "Seeing Like a State",
+            author: "James C. Scott",
+            category: "Political Theory",
+            desc: "Why top-down schemes to improve the human condition so often fail. Scott shows how legibility — the state's drive to simplify and categorize — destroys the very knowledge that makes communities work."
+        },
+        quote: {
+            text: "Certain forms of knowledge and control require a narrowing of vision.",
+            source: "James C. Scott"
+        }
     }
 ];
 
