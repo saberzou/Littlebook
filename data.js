@@ -1413,6 +1413,7 @@ const dailyData = [
     },
     {
         date: "2026-05-16",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-16-YW2gAAOzgc3OzFHi7Vfh07qZ62tLuy.mp3",
         book: {
             isbn: "9780714833651",
             title: "The Painter of Modern Life",
