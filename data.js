@@ -1410,6 +1410,20 @@ const dailyData = [
             text: "Certain forms of knowledge and control require a narrowing of vision.",
             source: "James C. Scott"
         }
+    },
+    {
+        date: "2026-05-16",
+        book: {
+            isbn: "9780714833651",
+            title: "The Painter of Modern Life",
+            author: "Charles Baudelaire",
+            category: "Art Criticism",
+            desc: "Baudelaire's essay on Constantin Guys defines the flâneur and invents art criticism as we know it. Short, electric, and still the best writing on why ephemeral life deserves aesthetic attention."
+        },
+        quote: {
+            text: "Modernity is the transient, the fleeting, the contingent; it is one half of art, the other being the eternal and the immovable.",
+            source: "Charles Baudelaire"
+        }
     }
 ];
 
