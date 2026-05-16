@@ -1428,6 +1428,7 @@ const dailyData = [
     },
     {
         date: "2026-05-17",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-17-V6UaB6JvMBJLQqzZ1KkaDw7xLWGZIe.mp3",
         book: {
             isbn: "9780307279507",
             title: "The Gift",
