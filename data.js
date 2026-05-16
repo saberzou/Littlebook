@@ -1425,6 +1425,20 @@ const dailyData = [
             text: "Modernity is the transient, the fleeting, the contingent; it is one half of art, the other being the eternal and the immovable.",
             source: "Charles Baudelaire"
         }
+    },
+    {
+        date: "2026-05-17",
+        book: {
+            isbn: "9780307279507",
+            title: "The Gift",
+            author: "Lewis Hyde",
+            category: "Creativity",
+            desc: "A beautiful argument that art operates on gift-economy logic, not market logic. Hyde traces how creativity circulates, increases through sharing, and dies when hoarded."
+        },
+        quote: {
+            text: "The gift must always move.",
+            source: "Lewis Hyde"
+        }
     }
 ];
 
