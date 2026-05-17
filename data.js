@@ -1440,6 +1440,20 @@ const dailyData = [
             text: "The gift must always move.",
             source: "Lewis Hyde"
         }
+    },
+    {
+        date: "2026-05-18",
+        book: {
+            isbn: "9780811220354",
+            title: "Exercises in Style",
+            author: "Raymond Queneau",
+            category: "Literature",
+            desc: "One trivial anecdote retold 99 different ways. A playful, structuralist masterpiece that reveals how form creates meaning — essential reading for anyone who works with language or design."
+        },
+        quote: {
+            text: "On the S bus, in the rush hour. A chap of about 26...",
+            source: "Raymond Queneau"
+        }
     }
 ];
 
