@@ -1457,6 +1457,7 @@ const dailyData = [
     },
     {
         date: "2026-05-19",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-19-nIzYhBVIsmAfuVmMTrSTlLUSg3pUZ4.mp3",
         book: {
             isbn: "9780961454739",
             title: "The View from the Studio Door",
