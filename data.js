@@ -1454,6 +1454,20 @@ const dailyData = [
             text: "On the S bus, in the rush hour. A chap of about 26...",
             source: "Raymond Queneau"
         }
+    },
+    {
+        date: "2026-05-19",
+        book: {
+            isbn: "9780961454739",
+            title: "The View from the Studio Door",
+            author: "Ted Orland",
+            category: "Creativity",
+            desc: "A companion to Art & Fear. Orland explores how artists sustain long careers — the unglamorous middle years, the gap between vision and execution, and the quiet discipline of showing up."
+        },
+        quote: {
+            text: "The world doesn't owe you a chance to make art. You owe the world art.",
+            source: "Ted Orland"
+        }
     }
 ];
 
