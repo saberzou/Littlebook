@@ -1469,6 +1469,20 @@ const dailyData = [
             text: "The world doesn't owe you a chance to make art. You owe the world art.",
             source: "Ted Orland"
         }
+    },
+    {
+        date: "2026-05-20",
+        book: {
+            isbn: "9781572410466",
+            title: "Ornament and Crime",
+            author: "Adolf Loos",
+            category: "Design Theory",
+            desc: "Loos's incendiary 1908 lecture arguing that ornament is wasted labor. Agree or not, this essay shaped a century of modernist design thinking and remains provocative."
+        },
+        quote: {
+            text: "The evolution of culture is synonymous with the removal of ornament from objects of daily use.",
+            source: "Adolf Loos"
+        }
     }
 ];
 
