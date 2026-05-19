@@ -1472,6 +1472,7 @@ const dailyData = [
     },
     {
         date: "2026-05-20",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-20-ilEAt1Tym9RO4niCHhopTEDhu5u74r.mp3",
         book: {
             isbn: "9781572410466",
             title: "Ornament and Crime",
