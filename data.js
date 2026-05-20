@@ -1487,6 +1487,7 @@ const dailyData = [
     },
     {
         date: "2026-05-21",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-21-1CCHr2Q1KAOdzBrfOlT2bb3ryiGB5S.mp3",
         book: {
             isbn: "9780140139969",
             title: "How Buildings Learn",
