@@ -97,5 +97,225 @@
       "text": "A house is a machine for living in.",
       "source": "Le Corbusier"
     }
+  },
+  {
+    "title": "Ways of Seeing",
+    "author": "John Berger",
+    "isbn": "9780140135152",
+    "category": "Visual Thinking",
+    "desc": "A 1972 BBC essay-book that rewired how a generation looked at images, advertising, and oil paintings. Short, sharp, still uncomfortably accurate.",
+    "quote": {
+      "text": "The relation between what we see and what we know is never settled.",
+      "source": "John Berger, Ways of Seeing"
+    }
+  },
+  {
+    "title": "On Photography",
+    "author": "Susan Sontag",
+    "isbn": "9780312420093",
+    "category": "Media Theory",
+    "desc": "Sontag's essays on what it means to point a camera at the world. Less about photography than about how images quietly reshape memory, ethics, and attention.",
+    "quote": {
+      "text": "To collect photographs is to collect the world.",
+      "source": "Susan Sontag, On Photography"
+    }
+  },
+  {
+    "title": "Amusing Ourselves to Death",
+    "author": "Neil Postman",
+    "isbn": "9780143036531",
+    "category": "Media Theory",
+    "desc": "Postman's 1985 argument that television was reshaping public discourse into entertainment. Written for TV, it reads like a diagnosis of the feed.",
+    "quote": {
+      "text": "We are what we watch.",
+      "source": "Neil Postman, Amusing Ourselves to Death"
+    }
+  },
+  {
+    "title": "Zen and the Art of Motorcycle Maintenance",
+    "author": "Robert M. Pirsig",
+    "isbn": "9780060589462",
+    "category": "Philosophy",
+    "desc": "A father, a son, a motorcycle, and a long inquiry into what 'Quality' actually is. Part road trip, part metaphysics, fully singular.",
+    "quote": {
+      "text": "The real cycle you're working on is a cycle called yourself.",
+      "source": "Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance"
+    }
+  },
+  {
+    "title": "A Pattern Language",
+    "author": "Christopher Alexander",
+    "isbn": "9780195019193",
+    "category": "Architecture",
+    "desc": "253 patterns for towns, buildings, and rooms — a grammar for places that feel alive. Quietly the most influential design book of the last 50 years.",
+    "quote": {
+      "text": "No pattern is an isolated entity.",
+      "source": "Christopher Alexander, A Pattern Language"
+    }
+  },
+  {
+    "title": "Atmospheres",
+    "author": "Peter Zumthor",
+    "isbn": "9783764374952",
+    "category": "Architecture",
+    "desc": "Zumthor's slim lecture on how buildings make us feel. Light, sound, temperature, the sound of a door — architecture as choreography of sensation.",
+    "quote": {
+      "text": "Quality architecture to me is when a building manages to move me.",
+      "source": "Peter Zumthor, Atmospheres"
+    }
+  },
+  {
+    "title": "Delirious New York",
+    "author": "Rem Koolhaas",
+    "isbn": "9781885254009",
+    "category": "Architecture",
+    "desc": "Koolhaas's 'retroactive manifesto' for Manhattan — a city that built its own myth on a grid. Reads like a love letter written by a structural engineer with a sense of humor.",
+    "quote": {
+      "text": "Manhattan is the 20th century's Rosetta Stone.",
+      "source": "Rem Koolhaas, Delirious New York"
+    }
+  },
+  {
+    "title": "The War of Art",
+    "author": "Steven Pressfield",
+    "isbn": "9781936891023",
+    "category": "Creativity",
+    "desc": "Pressfield names the enemy 'Resistance' and spends a short, urgent book teaching you how to fight it. Tough-love tactics for anyone who keeps not making the thing.",
+    "quote": {
+      "text": "The most important thing about art is to work. Nothing else matters except sitting down every day and trying.",
+      "source": "Steven Pressfield, The War of Art"
+    }
+  },
+  {
+    "title": "Draft No. 4",
+    "author": "John McPhee",
+    "isbn": "9780374142742",
+    "category": "Writing",
+    "desc": "A master of the long-form essay shows his structure, his cuts, his green-pencil edits. The closest thing to watching a great writer think on the page.",
+    "quote": {
+      "text": "Writing is selection.",
+      "source": "John McPhee, Draft No. 4"
+    }
+  },
+  {
+    "title": "The Sense of Style",
+    "author": "Steven Pinker",
+    "isbn": "9780143127796",
+    "category": "Writing",
+    "desc": "A modern, evidence-based replacement for Strunk & White. Pinker explains why good prose feels good and how to stop sounding like a memo.",
+    "quote": {
+      "text": "Good writing makes the reader feel like a genius.",
+      "source": "Steven Pinker, The Sense of Style"
+    }
+  },
+  {
+    "title": "The Myth of Sisyphus",
+    "author": "Albert Camus",
+    "isbn": "9780525564454",
+    "category": "Philosophy",
+    "desc": "Camus stares at the absurd and refuses to look away. The opening question — whether life is worth living — gets the most generous possible answer.",
+    "quote": {
+      "text": "One must imagine Sisyphus happy.",
+      "source": "Albert Camus, The Myth of Sisyphus"
+    }
+  },
+  {
+    "title": "Finite and Infinite Games",
+    "author": "James P. Carse",
+    "isbn": "9781476731711",
+    "category": "Philosophy",
+    "desc": "Two kinds of games: one you play to win, one you play to keep playing. A small book that reframes careers, relationships, and how you spend a life.",
+    "quote": {
+      "text": "A finite game is played for the purpose of winning, an infinite game for the purpose of continuing the play.",
+      "source": "James P. Carse, Finite and Infinite Games"
+    }
+  },
+  {
+    "title": "The Shallows",
+    "author": "Nicholas Carr",
+    "isbn": "9780393339758",
+    "category": "Technology",
+    "desc": "Carr's calm, alarming case that the internet isn't just changing what we read but the shape of our attention. Reads better the more distracted you feel.",
+    "quote": {
+      "text": "The Net is, by design, an interruption system.",
+      "source": "Nicholas Carr, The Shallows"
+    }
+  },
+  {
+    "title": "Shop Class as Soulcraft",
+    "author": "Matthew B. Crawford",
+    "isbn": "9780143117469",
+    "category": "Culture",
+    "desc": "A philosopher who quit a think-tank to fix motorcycles makes the case that working with your hands is real intellectual work. A quiet protest against managerial life.",
+    "quote": {
+      "text": "The satisfactions of manifesting oneself concretely in the world through manual competence have been known to make a man quiet and easy.",
+      "source": "Matthew B. Crawford, Shop Class as Soulcraft"
+    }
+  },
+  {
+    "title": "The Mythical Man-Month",
+    "author": "Frederick P. Brooks Jr.",
+    "isbn": "9780201835953",
+    "category": "Technology",
+    "desc": "The book that named almost every truth about software teams: adding people to a late project makes it later, plan to throw one away, the second-system effect. From 1975, still unbeaten.",
+    "quote": {
+      "text": "Adding manpower to a late software project makes it later.",
+      "source": "Frederick P. Brooks Jr., The Mythical Man-Month"
+    }
+  },
+  {
+    "title": "The Information",
+    "author": "James Gleick",
+    "isbn": "9781400096237",
+    "category": "Technology",
+    "desc": "A history of information itself — from African talking drums to Shannon's bits to the modern flood. Sweeping, beautifully written, surprisingly intimate.",
+    "quote": {
+      "text": "Information is the resolution of uncertainty.",
+      "source": "James Gleick, The Information (after Claude Shannon)"
+    }
+  },
+  {
+    "title": "The Vignelli Canon",
+    "author": "Massimo Vignelli",
+    "isbn": "9783037782255",
+    "category": "Design",
+    "desc": "Vignelli's free, opinionated little book on what makes design good: discipline, appropriateness, ambiguity-killing. Six typefaces are enough; the rest is taste.",
+    "quote": {
+      "text": "If you can design one thing, you can design everything.",
+      "source": "Massimo Vignelli, The Vignelli Canon"
+    }
+  },
+  {
+    "title": "Operating Manual for Spaceship Earth",
+    "author": "R. Buckminster Fuller",
+    "isbn": "9783037781265",
+    "category": "Philosophy",
+    "desc": "Fuller's 1969 cosmic memo: the planet is a ship, we are crew, and the manual was never written. Idealistic, engineering-minded, oddly current.",
+    "quote": {
+      "text": "We are not going to be able to operate our Spaceship Earth successfully nor for much longer unless we see it as a whole spaceship.",
+      "source": "R. Buckminster Fuller, Operating Manual for Spaceship Earth"
+    }
+  },
+  {
+    "title": "White",
+    "author": "Kenya Hara",
+    "isbn": "9783037781838",
+    "category": "Design",
+    "desc": "Hara's meditation on white — not as a color but as a way of thinking about emptiness, restraint, and quality. Small book, deep room.",
+    "quote": {
+      "text": "White is not a color. It is a sensitivity, a way of thinking.",
+      "source": "Kenya Hara, White"
+    }
+  },
+  {
+    "title": "Letters from a Stoic",
+    "author": "Seneca",
+    "isbn": "9780140442106",
+    "category": "Philosophy",
+    "desc": "124 letters from a Roman statesman to a friend, on time, money, friendship, anger, and dying well. Stoicism written like a smart older friend, two thousand years before Twitter.",
+    "quote": {
+      "text": "We suffer more often in imagination than in reality.",
+      "source": "Seneca, Letters from a Stoic"
+    }
   }
 ]
