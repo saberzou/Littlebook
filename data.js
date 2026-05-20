@@ -1484,6 +1484,20 @@ const dailyData = [
             text: "The evolution of culture is synonymous with the removal of ornament from objects of daily use.",
             source: "Adolf Loos"
         }
+    },
+    {
+        date: "2026-05-21",
+        book: {
+            isbn: "9780140139969",
+            title: "How Buildings Learn",
+            author: "Stewart Brand",
+            category: "Architecture",
+            desc: "Buildings adapt over time, and the best ones are designed to be changed. Brand's photographic study of architectural evolution is really about how systems stay alive through use."
+        },
+        quote: {
+            text: "A building is not something you finish. A building is something you start.",
+            source: "Stewart Brand"
+        }
     }
 ];
 
