@@ -1502,6 +1502,7 @@ const dailyData = [
     },
     {
         date: "2026-05-22",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-22-lpPk6eArIivw9LGwYXHnACX1zQ5nnd.mp3",
         book: {
             isbn: "9781844676729",
             title: "The Society of the Spectacle",
