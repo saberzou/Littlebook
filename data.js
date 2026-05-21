@@ -1499,6 +1499,20 @@ const dailyData = [
             text: "A building is not something you finish. A building is something you start.",
             source: "Stewart Brand"
         }
+    },
+    {
+        date: "2026-05-22",
+        book: {
+            isbn: "9781844676729",
+            title: "The Society of the Spectacle",
+            author: "Guy Debord",
+            category: "Media Theory",
+            desc: "Debord's 1967 thesis that modern life has been replaced by its representation. Dense, aphoristic, and uncomfortably predictive of social media culture decades before it existed."
+        },
+        quote: {
+            text: "All that once was directly lived has become mere representation.",
+            source: "Guy Debord"
+        }
     }
 ];
 
