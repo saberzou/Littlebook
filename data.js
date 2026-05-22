@@ -1517,6 +1517,7 @@ const dailyData = [
     },
     {
         date: "2026-05-23",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-23-tw4prEbL6YluQ1QO7h9k1p9tosCdjj.mp3",
         book: {
             isbn: "9780486272634",
             title: "Flatland",
