@@ -1514,6 +1514,20 @@ const dailyData = [
             text: "All that once was directly lived has become mere representation.",
             source: "Guy Debord"
         }
+    },
+    {
+        date: "2026-05-23",
+        book: {
+            isbn: "9780486272634",
+            title: "Flatland",
+            author: "Edwin A. Abbott",
+            category: "Fiction",
+            desc: "A Victorian novella about a square living in two dimensions who encounters the third. A witty satire of hierarchy and a genuine thought experiment about perception and dimensionality."
+        },
+        quote: {
+            text: "I call our world Flatland, not because we call it so, but to make its nature clearer to you.",
+            source: "Edwin A. Abbott"
+        }
     }
 ];
 
