@@ -1529,6 +1529,20 @@ const dailyData = [
             text: "I call our world Flatland, not because we call it so, but to make its nature clearer to you.",
             source: "Edwin A. Abbott"
         }
+    },
+    {
+        date: "2026-05-24",
+        book: {
+            isbn: "9780262019842",
+            title: "Speculative Everything",
+            author: "Anthony Dunne & Fiona Raby",
+            category: "Design",
+            desc: "Design as a tool for imagining alternative futures rather than solving present problems. Dunne and Raby argue for critical, speculative, and discursive design practices."
+        },
+        quote: {
+            text: "Design can be used as a means of speculating about how things could be.",
+            source: "Anthony Dunne & Fiona Raby"
+        }
     }
 ];
 
