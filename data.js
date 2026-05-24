@@ -1547,6 +1547,7 @@ const dailyData = [
     },
     {
         date: "2026-05-25",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-25-v5d6qcpFPQ4Sk84So5dGjIgYVuDDo3.mp3",
         book: {
             isbn: "9780374521608",
             title: "The Pleasure of the Text",
