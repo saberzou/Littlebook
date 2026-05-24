@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Pleasure of the Text",
-    "author": "Roland Barthes",
-    "isbn": "9780374521608",
-    "category": "Literary Theory",
-    "desc": "Barthes on reading as erotic, bodily pleasure. Slim and strange — a book about the physical joy of language that performs the very pleasure it describes.",
-    "quote": {
-      "text": "The text you write must prove to me that it desires me.",
-      "source": "Roland Barthes"
-    }
-  },
-  {
     "title": "A Philosophy of Software Design",
     "author": "John Ousterhout",
     "isbn": "9781732102200",

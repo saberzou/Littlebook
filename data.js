@@ -1544,6 +1544,20 @@ const dailyData = [
             text: "Design can be used as a means of speculating about how things could be.",
             source: "Anthony Dunne & Fiona Raby"
         }
+    },
+    {
+        date: "2026-05-25",
+        book: {
+            isbn: "9780374521608",
+            title: "The Pleasure of the Text",
+            author: "Roland Barthes",
+            category: "Literary Theory",
+            desc: "Barthes on reading as erotic, bodily pleasure. Slim and strange — a book about the physical joy of language that performs the very pleasure it describes."
+        },
+        quote: {
+            text: "The text you write must prove to me that it desires me.",
+            source: "Roland Barthes"
+        }
     }
 ];
 
