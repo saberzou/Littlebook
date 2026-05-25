@@ -1562,6 +1562,7 @@ const dailyData = [
     },
     {
         date: "2026-05-26",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-26-wh6COoz7J8JtVvKJS0Sr6KxGAqJZSJ.mp3",
         book: {
             isbn: "9781732102200",
             title: "A Philosophy of Software Design",
