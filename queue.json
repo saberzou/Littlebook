@@ -1,16 +1,5 @@
 [
   {
-    "title": "A Philosophy of Software Design",
-    "author": "John Ousterhout",
-    "isbn": "9781732102200",
-    "category": "Technology",
-    "desc": "Ousterhout distills decades of teaching into a clear, opinionated guide on managing complexity in software. The deepest problems in code are design problems, not coding problems.",
-    "quote": {
-      "text": "The most fundamental problem in computer science is problem decomposition.",
-      "source": "John Ousterhout"
-    }
-  },
-  {
     "title": "Silence: Lectures and Writings",
     "author": "John Cage",
     "isbn": "9780819571762",

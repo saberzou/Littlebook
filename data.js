@@ -1559,6 +1559,20 @@ const dailyData = [
             text: "The text you write must prove to me that it desires me.",
             source: "Roland Barthes"
         }
+    },
+    {
+        date: "2026-05-26",
+        book: {
+            isbn: "9781732102200",
+            title: "A Philosophy of Software Design",
+            author: "John Ousterhout",
+            category: "Technology",
+            desc: "Ousterhout distills decades of teaching into a clear, opinionated guide on managing complexity in software. The deepest problems in code are design problems, not coding problems."
+        },
+        quote: {
+            text: "The most fundamental problem in computer science is problem decomposition.",
+            source: "John Ousterhout"
+        }
     }
 ];
 
