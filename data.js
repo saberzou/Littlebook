@@ -1574,6 +1574,20 @@ const dailyData = [
             text: "The most fundamental problem in computer science is problem decomposition.",
             source: "John Ousterhout"
         }
+    },
+    {
+        date: "2026-05-27",
+        book: {
+            isbn: "9780819571762",
+            title: "Silence: Lectures and Writings",
+            author: "John Cage",
+            category: "Art",
+            desc: "Cage's collected lectures on chance, silence, mushrooms, and the erasure of boundaries between art and life. Playful, radical, and endlessly generative for creative thinkers."
+        },
+        quote: {
+            text: "I have nothing to say and I am saying it and that is poetry as I need it.",
+            source: "John Cage"
+        }
     }
 ];
 
