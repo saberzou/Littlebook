@@ -1577,6 +1577,7 @@ const dailyData = [
     },
     {
         date: "2026-05-27",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-27-5NUN2ZV44VtpTmN90yM7R9vts8TMqL.mp3",
         book: {
             isbn: "9780819571762",
             title: "Silence: Lectures and Writings",
