@@ -1589,6 +1589,20 @@ const dailyData = [
             text: "I have nothing to say and I am saying it and that is poetry as I need it.",
             source: "John Cage"
         }
+    },
+    {
+        date: "2026-05-28",
+        book: {
+            isbn: "9780262620017",
+            title: "The Image of the City",
+            author: "Kevin Lynch",
+            category: "Urbanism",
+            desc: "Lynch's study of how people mentally map cities — paths, edges, districts, nodes, landmarks. Foundational for anyone designing navigable spaces, physical or digital."
+        },
+        quote: {
+            text: "A good environmental image gives its possessor an important sense of emotional security.",
+            source: "Kevin Lynch"
+        }
     }
 ];
 
