@@ -1592,6 +1592,7 @@ const dailyData = [
     },
     {
         date: "2026-05-28",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-28-GqBGC1XaNBiMD4hqW6u2Z1qF279VeM.mp3",
         book: {
             isbn: "9780262620017",
             title: "The Image of the City",
