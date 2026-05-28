@@ -1604,6 +1604,20 @@ const dailyData = [
             text: "A good environmental image gives its possessor an important sense of emotional security.",
             source: "Kevin Lynch"
         }
+    },
+    {
+        date: "2026-05-29",
+        book: {
+            isbn: "9780374532345",
+            title: "Mythologies",
+            author: "Roland Barthes",
+            category: "Cultural Criticism",
+            desc: "Barthes decodes the hidden ideologies in everyday French life — wrestling, steak, plastic, the new Citroën. A model for reading culture as a system of signs."
+        },
+        quote: {
+            text: "Myth is a type of speech.",
+            source: "Roland Barthes"
+        }
     }
 ];
 
