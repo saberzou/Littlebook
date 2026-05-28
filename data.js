@@ -1607,6 +1607,7 @@ const dailyData = [
     },
     {
         date: "2026-05-29",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-29-drzpujJvw3Lm9VaMRCpYMgn9K7Gwn9.mp3",
         book: {
             isbn: "9780374532345",
             title: "Mythologies",
