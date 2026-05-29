@@ -1622,6 +1622,7 @@ const dailyData = [
     },
     {
         date: "2026-05-30",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-30-ET6BBWPxl349hL5arprZMVKvpZOxE4.mp3",
         book: {
             isbn: "9780486250236",
             title: "Toward a New Architecture",
