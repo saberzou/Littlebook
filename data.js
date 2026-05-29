@@ -1619,6 +1619,20 @@ const dailyData = [
             text: "Myth is a type of speech.",
             source: "Roland Barthes"
         }
+    },
+    {
+        date: "2026-05-30",
+        book: {
+            isbn: "9780486250236",
+            title: "Toward a New Architecture",
+            author: "Le Corbusier",
+            category: "Architecture",
+            desc: "Le Corbusier's manifesto for modern architecture — machines for living, the play of volumes in light, the rejection of decoration. Love it or fight it, you have to reckon with it."
+        },
+        quote: {
+            text: "A house is a machine for living in.",
+            source: "Le Corbusier"
+        }
     }
 ];
 
