@@ -1634,6 +1634,20 @@ const dailyData = [
             text: "A house is a machine for living in.",
             source: "Le Corbusier"
         }
+    },
+    {
+        date: "2026-05-31",
+        book: {
+            isbn: "9780140135152",
+            title: "Ways of Seeing",
+            author: "John Berger",
+            category: "Visual Thinking",
+            desc: "A 1972 BBC essay-book that rewired how a generation looked at images, advertising, and oil paintings. Short, sharp, still uncomfortably accurate."
+        },
+        quote: {
+            text: "The relation between what we see and what we know is never settled.",
+            source: "John Berger, Ways of Seeing"
+        }
     }
 ];
 
