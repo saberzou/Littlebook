@@ -1637,6 +1637,7 @@ const dailyData = [
     },
     {
         date: "2026-05-31",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-05-31-ZHn4S5vMWpzvH5kAOUV5GIxCJkkXW8.mp3",
         book: {
             isbn: "9780140135152",
             title: "Ways of Seeing",
