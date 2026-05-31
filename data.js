@@ -1649,6 +1649,20 @@ const dailyData = [
             text: "The relation between what we see and what we know is never settled.",
             source: "John Berger, Ways of Seeing"
         }
+    },
+    {
+        date: "2026-06-01",
+        book: {
+            isbn: "9780312420093",
+            title: "On Photography",
+            author: "Susan Sontag",
+            category: "Media Theory",
+            desc: "Sontag's essays on what it means to point a camera at the world. Less about photography than about how images quietly reshape memory, ethics, and attention."
+        },
+        quote: {
+            text: "To collect photographs is to collect the world.",
+            source: "Susan Sontag, On Photography"
+        }
     }
 ];
 
