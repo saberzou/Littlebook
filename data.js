@@ -1652,6 +1652,7 @@ const dailyData = [
     },
     {
         date: "2026-06-01",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-01-8TjHeGs89JBr5ORJteXTzCgC33Zr0y.mp3",
         book: {
             isbn: "9780312420093",
             title: "On Photography",
