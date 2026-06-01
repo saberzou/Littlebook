@@ -1667,6 +1667,7 @@ const dailyData = [
     },
     {
         date: "2026-06-02",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-02-QmCOy3RxUqVtdQNyYSSJrJ7POQtv0A.mp3",
         book: {
             isbn: "9780143036531",
             title: "Amusing Ourselves to Death",
