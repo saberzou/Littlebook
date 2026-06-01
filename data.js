@@ -1664,6 +1664,20 @@ const dailyData = [
             text: "To collect photographs is to collect the world.",
             source: "Susan Sontag, On Photography"
         }
+    },
+    {
+        date: "2026-06-02",
+        book: {
+            isbn: "9780143036531",
+            title: "Amusing Ourselves to Death",
+            author: "Neil Postman",
+            category: "Media Theory",
+            desc: "Postman's 1985 argument that television was reshaping public discourse into entertainment. Written for TV, it reads like a diagnosis of the feed."
+        },
+        quote: {
+            text: "We are what we watch.",
+            source: "Neil Postman, Amusing Ourselves to Death"
+        }
     }
 ];
 
