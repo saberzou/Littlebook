@@ -1,16 +1,5 @@
 [
   {
-    "title": "Zen and the Art of Motorcycle Maintenance",
-    "author": "Robert M. Pirsig",
-    "isbn": "9780060589462",
-    "category": "Philosophy",
-    "desc": "A father, a son, a motorcycle, and a long inquiry into what 'Quality' actually is. Part road trip, part metaphysics, fully singular.",
-    "quote": {
-      "text": "The real cycle you're working on is a cycle called yourself.",
-      "source": "Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance"
-    }
-  },
-  {
     "title": "A Pattern Language",
     "author": "Christopher Alexander",
     "isbn": "9780195019193",

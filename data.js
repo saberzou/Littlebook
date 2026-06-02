@@ -1679,6 +1679,20 @@ const dailyData = [
             text: "We are what we watch.",
             source: "Neil Postman, Amusing Ourselves to Death"
         }
+    },
+    {
+        date: "2026-06-03",
+        book: {
+            isbn: "9780060589462",
+            title: "Zen and the Art of Motorcycle Maintenance",
+            author: "Robert M. Pirsig",
+            category: "Philosophy",
+            desc: "A father, a son, a motorcycle, and a long inquiry into what 'Quality' actually is. Part road trip, part metaphysics, fully singular."
+        },
+        quote: {
+            text: "The real cycle you're working on is a cycle called yourself.",
+            source: "Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance"
+        }
     }
 ];
 
