@@ -1682,6 +1682,7 @@ const dailyData = [
     },
     {
         date: "2026-06-03",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-03-Gqcozjf0xmr8qowa0Gp6dPjdbMpOvV.mp3",
         book: {
             isbn: "9780060589462",
             title: "Zen and the Art of Motorcycle Maintenance",
