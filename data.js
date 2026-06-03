@@ -1694,6 +1694,20 @@ const dailyData = [
             text: "The real cycle you're working on is a cycle called yourself.",
             source: "Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance"
         }
+    },
+    {
+        date: "2026-06-04",
+        book: {
+            isbn: "9780195019193",
+            title: "A Pattern Language",
+            author: "Christopher Alexander",
+            category: "Architecture",
+            desc: "253 patterns for towns, buildings, and rooms — a grammar for places that feel alive. Quietly the most influential design book of the last 50 years."
+        },
+        quote: {
+            text: "No pattern is an isolated entity.",
+            source: "Christopher Alexander, A Pattern Language"
+        }
     }
 ];
 
