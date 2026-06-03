@@ -1697,6 +1697,7 @@ const dailyData = [
     },
     {
         date: "2026-06-04",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-04-kiKzsAvFK1kq6srQ96upJpluBTCpgH.mp3",
         book: {
             isbn: "9780195019193",
             title: "A Pattern Language",
