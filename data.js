@@ -1712,6 +1712,7 @@ const dailyData = [
     },
     {
         date: "2026-06-05",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-05-ESQnddLsNtKe11hNZBT5aLpZmEcihs.mp3",
         book: {
             isbn: "9783764374952",
             title: "Atmospheres",
