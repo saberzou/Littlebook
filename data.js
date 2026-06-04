@@ -1709,6 +1709,20 @@ const dailyData = [
             text: "No pattern is an isolated entity.",
             source: "Christopher Alexander, A Pattern Language"
         }
+    },
+    {
+        date: "2026-06-05",
+        book: {
+            isbn: "9783764374952",
+            title: "Atmospheres",
+            author: "Peter Zumthor",
+            category: "Architecture",
+            desc: "Zumthor's slim lecture on how buildings make us feel. Light, sound, temperature, the sound of a door — architecture as choreography of sensation."
+        },
+        quote: {
+            text: "Quality architecture to me is when a building manages to move me.",
+            source: "Peter Zumthor, Atmospheres"
+        }
     }
 ];
 
