@@ -1727,6 +1727,7 @@ const dailyData = [
     },
     {
         date: "2026-06-06",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-06-2LYPwUyY4vrl59zqSxvbsHR4025wzM.mp3",
         book: {
             isbn: "9781885254009",
             title: "Delirious New York",
