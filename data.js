@@ -1724,6 +1724,20 @@ const dailyData = [
             text: "Quality architecture to me is when a building manages to move me.",
             source: "Peter Zumthor, Atmospheres"
         }
+    },
+    {
+        date: "2026-06-06",
+        book: {
+            isbn: "9781885254009",
+            title: "Delirious New York",
+            author: "Rem Koolhaas",
+            category: "Architecture",
+            desc: "Koolhaas's 'retroactive manifesto' for Manhattan — a city that built its own myth on a grid. Reads like a love letter written by a structural engineer with a sense of humor."
+        },
+        quote: {
+            text: "Manhattan is the 20th century's Rosetta Stone.",
+            source: "Rem Koolhaas, Delirious New York"
+        }
     }
 ];
 
