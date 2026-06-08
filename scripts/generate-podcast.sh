@@ -126,7 +126,7 @@ echo "🔊 Compressed audio: $(du -h "$COMPRESSED" | cut -f1)"
 _T=$(_t)
 BLOB_URL=$(vercel blob put "$COMPRESSED" \
   --pathname "littlebook/audio/$TOMORROW.mp3" \
-  --allow-overwrite true --add-random-suffix false \
+  --access public --allow-overwrite \
   --rw-token "$BLOB_READ_WRITE_TOKEN" --token "$VERCEL_TOKEN" 2>&1 \
   | grep -o 'https://[^[:space:]]*\.mp3')
 rm "$COMPRESSED"
