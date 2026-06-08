@@ -1753,6 +1753,20 @@ const dailyData = [
             text: "The most important thing about art is to work. Nothing else matters except sitting down every day and trying.",
             source: "Steven Pressfield, The War of Art"
         }
+    },
+    {
+        date: "2026-06-08",
+        book: {
+            isbn: "9780374142742",
+            title: "Draft No. 4",
+            author: "John McPhee",
+            category: "Writing",
+            desc: "A master of the long-form essay shows his structure, his cuts, his green-pencil edits. The closest thing to watching a great writer think on the page."
+        },
+        quote: {
+            text: "Writing is selection.",
+            source: "John McPhee, Draft No. 4"
+        }
     }
 ];
 
