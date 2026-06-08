@@ -1739,6 +1739,20 @@ const dailyData = [
             text: "Manhattan is the 20th century's Rosetta Stone.",
             source: "Rem Koolhaas, Delirious New York"
         }
+    },
+    {
+        date: "2026-06-07",
+        book: {
+            isbn: "9781936891023",
+            title: "The War of Art",
+            author: "Steven Pressfield",
+            category: "Creativity",
+            desc: "Pressfield names the enemy 'Resistance' and spends a short, urgent book teaching you how to fight it. Tough-love tactics for anyone who keeps not making the thing."
+        },
+        quote: {
+            text: "The most important thing about art is to work. Nothing else matters except sitting down every day and trying.",
+            source: "Steven Pressfield, The War of Art"
+        }
     }
 ];
 
