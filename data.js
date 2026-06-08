@@ -1770,6 +1770,7 @@ const dailyData = [
     },
     {
         date: "2026-06-09",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-09.mp3",
         book: {
             isbn: "9780143127796",
             title: "The Sense of Style",
