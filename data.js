@@ -1767,6 +1767,20 @@ const dailyData = [
             text: "Writing is selection.",
             source: "John McPhee, Draft No. 4"
         }
+    },
+    {
+        date: "2026-06-09",
+        book: {
+            isbn: "9780143127796",
+            title: "The Sense of Style",
+            author: "Steven Pinker",
+            category: "Writing",
+            desc: "A modern, evidence-based replacement for Strunk & White. Pinker explains why good prose feels good and how to stop sounding like a memo."
+        },
+        quote: {
+            text: "Good writing makes the reader feel like a genius.",
+            source: "Steven Pinker, The Sense of Style"
+        }
     }
 ];
 

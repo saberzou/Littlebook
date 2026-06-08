@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Sense of Style",
-    "author": "Steven Pinker",
-    "isbn": "9780143127796",
-    "category": "Writing",
-    "desc": "A modern, evidence-based replacement for Strunk & White. Pinker explains why good prose feels good and how to stop sounding like a memo.",
-    "quote": {
-      "text": "Good writing makes the reader feel like a genius.",
-      "source": "Steven Pinker, The Sense of Style"
-    }
-  },
-  {
     "title": "The Myth of Sisyphus",
     "author": "Albert Camus",
     "isbn": "9780525564454",
