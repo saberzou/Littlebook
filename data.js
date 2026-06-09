@@ -1785,6 +1785,7 @@ const dailyData = [
     },
     {
         date: "2026-06-10",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-10.mp3",
         book: {
             isbn: "9780525564454",
             title: "The Myth of Sisyphus",
