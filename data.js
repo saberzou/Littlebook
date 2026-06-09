@@ -1796,6 +1796,20 @@ const dailyData = [
             text: "One must imagine Sisyphus happy.",
             source: "Albert Camus, The Myth of Sisyphus"
         }
+    },
+    {
+        date: "2026-06-11",
+        book: {
+            isbn: "9781476731711",
+            title: "Finite and Infinite Games",
+            author: "James P. Carse",
+            category: "Philosophy",
+            desc: "Two kinds of games: one you play to win, one you play to keep playing. A small book that reframes careers, relationships, and how you spend a life."
+        },
+        quote: {
+            text: "A finite game is played for the purpose of winning, an infinite game for the purpose of continuing the play.",
+            source: "James P. Carse, Finite and Infinite Games"
+        }
     }
 ];
 
