@@ -86,5 +86,225 @@
       "text": "We suffer more often in imagination than in reality.",
       "source": "Seneca, Letters from a Stoic"
     }
+  },
+  {
+    "title": "Hackers and Painters",
+    "author": "Paul Graham",
+    "isbn": "9781449389550",
+    "category": "Technology",
+    "desc": "Graham's essays from a programmer who thinks like a painter — on startups, taste, why nerds are unpopular, and how the right languages bend your mind. Plain prose, sharp angles.",
+    "quote": {
+      "text": "What hackers and painters have in common is that they're both makers. Along with composers, architects, and writers, what hackers and painters are trying to do is make good things.",
+      "source": "Paul Graham, Hackers and Painters"
+    }
+  },
+  {
+    "title": "Pensées",
+    "author": "Blaise Pascal",
+    "isbn": "9780140446456",
+    "category": "Philosophy",
+    "desc": "A 17th-century mathematician's unfinished defense of faith, left as fragments. Less a system than a mind thinking out loud about boredom, distraction, and the size of the universe.",
+    "quote": {
+      "text": "All of humanity's problems stem from man's inability to sit quietly in a room alone.",
+      "source": "Blaise Pascal, Pensées"
+    }
+  },
+  {
+    "title": "The Practice of the Wild",
+    "author": "Gary Snyder",
+    "isbn": "9781582436388",
+    "category": "Nature & Philosophy",
+    "desc": "Snyder, poet and Zen student, on wildness as a property of mind as much as landscape. Essays that move between mountain trails, Buddhist practice, and how language carries place.",
+    "quote": {
+      "text": "Nature is not a place to visit. It is home.",
+      "source": "Gary Snyder, The Practice of the Wild"
+    }
+  },
+  {
+    "title": "Hyperion",
+    "author": "Dan Simmons",
+    "isbn": "9780553283686",
+    "category": "Science Fiction",
+    "desc": "Seven pilgrims travel to a distant world, each telling a story that reframes the others. A space opera built like The Canterbury Tales — strange, layered, hauntingly literary.",
+    "quote": {
+      "text": "The most alien landscape is not strange enough; the most familiar street, on a certain night, can be unrecognizable.",
+      "source": "Dan Simmons, Hyperion"
+    }
+  },
+  {
+    "title": "Notes on the Synthesis of Form",
+    "author": "Christopher Alexander",
+    "isbn": "9780674627512",
+    "category": "Design",
+    "desc": "Alexander's first book, where he tries to make designing rigorous: decompose the problem, find the misfits, let form follow constraint. The seed of everything he wrote later.",
+    "quote": {
+      "text": "Every design problem begins with an effort to achieve fitness between two entities: the form in question and its context.",
+      "source": "Christopher Alexander, Notes on the Synthesis of Form"
+    }
+  },
+  {
+    "title": "Thinking with Type",
+    "author": "Ellen Lupton",
+    "isbn": "9781568989693",
+    "category": "Design",
+    "desc": "The friendliest serious book on typography in print. Letters, text, and grid, explained with the warmth of a good teacher and the eye of a working designer.",
+    "quote": {
+      "text": "Typography is what language looks like.",
+      "source": "Ellen Lupton, Thinking with Type"
+    }
+  },
+  {
+    "title": "Several Short Sentences About Writing",
+    "author": "Verlyn Klinkenborg",
+    "isbn": "9780307279415",
+    "category": "Writing",
+    "desc": "An anti-handbook, laid out almost like poetry. Klinkenborg argues that good prose comes from short sentences, real attention, and trusting your own noticing.",
+    "quote": {
+      "text": "Some of your best sentences will occur to you as you write them.",
+      "source": "Verlyn Klinkenborg, Several Short Sentences About Writing"
+    }
+  },
+  {
+    "title": "Camera Lucida",
+    "author": "Roland Barthes",
+    "isbn": "9780374521349",
+    "category": "Photography",
+    "desc": "Barthes circles a single photograph of his mother and, around it, builds a theory of what photographs really are: stubborn proof that something was. Quiet, devastating.",
+    "quote": {
+      "text": "Ultimately — or at the limit — in order to see a photograph well, it is best to look away or close your eyes.",
+      "source": "Roland Barthes, Camera Lucida"
+    }
+  },
+  {
+    "title": "S, M, L, XL",
+    "author": "Rem Koolhaas & Bruce Mau",
+    "isbn": "9781885254863",
+    "category": "Architecture",
+    "desc": "A 1,300-page brick by OMA and Bruce Mau, sorted by project size. Manifestos, plans, photos, and rants — the book that taught a generation what an architecture monograph could be.",
+    "quote": {
+      "text": "Where there is nothing, everything is possible. Where there is architecture, nothing (else) is possible.",
+      "source": "Rem Koolhaas, S, M, L, XL"
+    }
+  },
+  {
+    "title": "Hooked on Drawing",
+    "author": "Sandy Brooke",
+    "isbn": "9780132447300",
+    "category": "Art",
+    "desc": "Less a how-to than an invitation: how looking carefully changes what you see, and how drawing — even badly — slows the world down. Good for anyone who wishes they sketched more.",
+    "quote": {
+      "text": "Drawing is the art of taking a line for a walk.",
+      "source": "Sandy Brooke, Hooked on Drawing (after Paul Klee)"
+    }
+  },
+  {
+    "title": "Living with Complexity",
+    "author": "Donald A. Norman",
+    "isbn": "9780262528948",
+    "category": "Design",
+    "desc": "Norman's quieter follow-up to The Design of Everyday Things: complexity isn't the enemy, confusion is. A defense of well-designed complexity in a world that keeps over-simplifying.",
+    "quote": {
+      "text": "Things should be as simple as possible — but no simpler.",
+      "source": "Donald A. Norman, Living with Complexity"
+    }
+  },
+  {
+    "title": "On the Shortness of Life",
+    "author": "Seneca",
+    "isbn": "9780143036326",
+    "category": "Philosophy",
+    "desc": "Seneca's brief, scalding essay on time: it isn't short, we just spend it like fools. A small book to keep near the desk for the next time a day disappears.",
+    "quote": {
+      "text": "It is not that we have a short time to live, but that we waste a lot of it.",
+      "source": "Seneca, On the Shortness of Life"
+    }
+  },
+  {
+    "title": "Tao Te Ching",
+    "author": "Lao Tzu",
+    "isbn": "9780060812454",
+    "category": "Philosophy",
+    "desc": "Eighty-one short poems, 2,500 years old, on yielding, emptiness, and how the most useful part of a cup is the space inside. Read in any order; reread for life.",
+    "quote": {
+      "text": "When I let go of what I am, I become what I might be.",
+      "source": "Lao Tzu, Tao Te Ching"
+    }
+  },
+  {
+    "title": "The Art Spirit",
+    "author": "Robert Henri",
+    "isbn": "9780064300384",
+    "category": "Art",
+    "desc": "A painter's letters and notes to his students, collected in 1923. Henri talks about art the way a coach talks about courage: bluntly, warmly, with no time for fashion.",
+    "quote": {
+      "text": "The object isn't to make art, it's to be in that wonderful state which makes art inevitable.",
+      "source": "Robert Henri, The Art Spirit"
+    }
+  },
+  {
+    "title": "No Logo",
+    "author": "Naomi Klein",
+    "isbn": "9780312429270",
+    "category": "Culture",
+    "desc": "Klein's 1999 dissection of the brand economy — how logos colonized public space, schools, and identity. Older than most reading it, and somehow still ahead.",
+    "quote": {
+      "text": "The astronomical growth in the wealth and cultural influence of multinational corporations has been the result of one, seemingly innocuous idea: that successful corporations must produce primarily brands, as opposed to products.",
+      "source": "Naomi Klein, No Logo"
+    }
+  },
+  {
+    "title": "How to Read a Book",
+    "author": "Mortimer J. Adler & Charles Van Doren",
+    "isbn": "9780671212094",
+    "category": "Learning",
+    "desc": "A serious manual for serious readers: inspectional, analytical, syntopical. Old-fashioned in tone, but the only book on reading that treats it like a craft you can actually practice.",
+    "quote": {
+      "text": "Reading is to the mind what exercise is to the body.",
+      "source": "Mortimer J. Adler, How to Read a Book"
+    }
+  },
+  {
+    "title": "The Order of Time",
+    "author": "Carlo Rovelli",
+    "isbn": "9780735216105",
+    "category": "Science & Philosophy",
+    "desc": "A physicist gently dismantles the idea that time is a smooth river — and then, in the last chapters, lets it back in as memory and music. Short, lyrical, deeply strange.",
+    "quote": {
+      "text": "We are histories of ourselves, narratives.",
+      "source": "Carlo Rovelli, The Order of Time"
+    }
+  },
+  {
+    "title": "Where Good Ideas Come From",
+    "author": "Steven Johnson",
+    "isbn": "9781594485381",
+    "category": "Creativity",
+    "desc": "Johnson tours the natural history of innovation — coral reefs, coffeehouses, slow hunches, liquid networks. Not a how-to, more a field guide to the environments that breed new ideas.",
+    "quote": {
+      "text": "Chance favors the connected mind.",
+      "source": "Steven Johnson, Where Good Ideas Come From"
+    }
+  },
+  {
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "isbn": "9780593135204",
+    "category": "Science Fiction",
+    "desc": "A science teacher wakes up alone on a spacecraft, light-years from Earth, with no memory of how he got there. The most fun a problem-solving novel has been in years.",
+    "quote": {
+      "text": "I just gave a kid a Russian science book about Einstein. Kid wins.",
+      "source": "Andy Weir, Project Hail Mary"
+    }
+  },
+  {
+    "title": "Klara and the Sun",
+    "author": "Kazuo Ishiguro",
+    "isbn": "9780593318171",
+    "category": "Literary Fiction",
+    "desc": "An artificial friend, designed to keep a sick child company, watches the world through a shop window and then a bedroom one. Ishiguro at his quietest, asking what love and personhood actually are.",
+    "quote": {
+      "text": "There was something very special, but it wasn't inside Josie. It was inside those who loved her.",
+      "source": "Kazuo Ishiguro, Klara and the Sun"
+    }
   }
 ]
