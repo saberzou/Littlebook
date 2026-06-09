@@ -1782,6 +1782,20 @@ const dailyData = [
             text: "Good writing makes the reader feel like a genius.",
             source: "Steven Pinker, The Sense of Style"
         }
+    },
+    {
+        date: "2026-06-10",
+        book: {
+            isbn: "9780525564454",
+            title: "The Myth of Sisyphus",
+            author: "Albert Camus",
+            category: "Philosophy",
+            desc: "Camus stares at the absurd and refuses to look away. The opening question — whether life is worth living — gets the most generous possible answer."
+        },
+        quote: {
+            text: "One must imagine Sisyphus happy.",
+            source: "Albert Camus, The Myth of Sisyphus"
+        }
     }
 ];
 

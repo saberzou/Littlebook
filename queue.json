@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Myth of Sisyphus",
-    "author": "Albert Camus",
-    "isbn": "9780525564454",
-    "category": "Philosophy",
-    "desc": "Camus stares at the absurd and refuses to look away. The opening question — whether life is worth living — gets the most generous possible answer.",
-    "quote": {
-      "text": "One must imagine Sisyphus happy.",
-      "source": "Albert Camus, The Myth of Sisyphus"
-    }
-  },
-  {
     "title": "Finite and Infinite Games",
     "author": "James P. Carse",
     "isbn": "9781476731711",
