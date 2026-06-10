@@ -1800,6 +1800,7 @@ const dailyData = [
     },
     {
         date: "2026-06-11",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-11.mp3",
         book: {
             isbn: "9781476731711",
             title: "Finite and Infinite Games",
