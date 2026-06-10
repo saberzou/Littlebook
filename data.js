@@ -1811,6 +1811,20 @@ const dailyData = [
             text: "A finite game is played for the purpose of winning, an infinite game for the purpose of continuing the play.",
             source: "James P. Carse, Finite and Infinite Games"
         }
+    },
+    {
+        date: "2026-06-12",
+        book: {
+            isbn: "9780393339758",
+            title: "The Shallows",
+            author: "Nicholas Carr",
+            category: "Technology",
+            desc: "Carr's calm, alarming case that the internet isn't just changing what we read but the shape of our attention. Reads better the more distracted you feel."
+        },
+        quote: {
+            text: "The Net is, by design, an interruption system.",
+            source: "Nicholas Carr, The Shallows"
+        }
     }
 ];
 

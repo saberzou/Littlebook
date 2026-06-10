@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Shallows",
-    "author": "Nicholas Carr",
-    "isbn": "9780393339758",
-    "category": "Technology",
-    "desc": "Carr's calm, alarming case that the internet isn't just changing what we read but the shape of our attention. Reads better the more distracted you feel.",
-    "quote": {
-      "text": "The Net is, by design, an interruption system.",
-      "source": "Nicholas Carr, The Shallows"
-    }
-  },
-  {
     "title": "Shop Class as Soulcraft",
     "author": "Matthew B. Crawford",
     "isbn": "9780143117469",
