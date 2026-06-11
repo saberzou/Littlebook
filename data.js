@@ -1826,6 +1826,20 @@ const dailyData = [
             text: "The Net is, by design, an interruption system.",
             source: "Nicholas Carr, The Shallows"
         }
+    },
+    {
+        date: "2026-06-13",
+        book: {
+            isbn: "9780143117469",
+            title: "Shop Class as Soulcraft",
+            author: "Matthew B. Crawford",
+            category: "Culture",
+            desc: "A philosopher who quit a think-tank to fix motorcycles makes the case that working with your hands is real intellectual work. A quiet protest against managerial life."
+        },
+        quote: {
+            text: "The satisfactions of manifesting oneself concretely in the world through manual competence have been known to make a man quiet and easy.",
+            source: "Matthew B. Crawford, Shop Class as Soulcraft"
+        }
     }
 ];
 

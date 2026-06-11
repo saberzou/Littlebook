@@ -1,16 +1,5 @@
 [
   {
-    "title": "Shop Class as Soulcraft",
-    "author": "Matthew B. Crawford",
-    "isbn": "9780143117469",
-    "category": "Culture",
-    "desc": "A philosopher who quit a think-tank to fix motorcycles makes the case that working with your hands is real intellectual work. A quiet protest against managerial life.",
-    "quote": {
-      "text": "The satisfactions of manifesting oneself concretely in the world through manual competence have been known to make a man quiet and easy.",
-      "source": "Matthew B. Crawford, Shop Class as Soulcraft"
-    }
-  },
-  {
     "title": "The Mythical Man-Month",
     "author": "Frederick P. Brooks Jr.",
     "isbn": "9780201835953",
