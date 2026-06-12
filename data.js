@@ -1840,6 +1840,20 @@ const dailyData = [
             text: "The satisfactions of manifesting oneself concretely in the world through manual competence have been known to make a man quiet and easy.",
             source: "Matthew B. Crawford, Shop Class as Soulcraft"
         }
+    },
+    {
+        date: "2026-06-14",
+        book: {
+            isbn: "9780201835953",
+            title: "The Mythical Man-Month",
+            author: "Frederick P. Brooks Jr.",
+            category: "Technology",
+            desc: "The book that named almost every truth about software teams: adding people to a late project makes it later, plan to throw one away, the second-system effect. From 1975, still unbeaten."
+        },
+        quote: {
+            text: "Adding manpower to a late software project makes it later.",
+            source: "Frederick P. Brooks Jr., The Mythical Man-Month"
+        }
     }
 ];
 

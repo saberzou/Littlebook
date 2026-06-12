@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Mythical Man-Month",
-    "author": "Frederick P. Brooks Jr.",
-    "isbn": "9780201835953",
-    "category": "Technology",
-    "desc": "The book that named almost every truth about software teams: adding people to a late project makes it later, plan to throw one away, the second-system effect. From 1975, still unbeaten.",
-    "quote": {
-      "text": "Adding manpower to a late software project makes it later.",
-      "source": "Frederick P. Brooks Jr., The Mythical Man-Month"
-    }
-  },
-  {
     "title": "The Information",
     "author": "James Gleick",
     "isbn": "9781400096237",
