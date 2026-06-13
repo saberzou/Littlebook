@@ -1854,6 +1854,20 @@ const dailyData = [
             text: "Adding manpower to a late software project makes it later.",
             source: "Frederick P. Brooks Jr., The Mythical Man-Month"
         }
+    },
+    {
+        date: "2026-06-15",
+        book: {
+            isbn: "9781400096237",
+            title: "The Information",
+            author: "James Gleick",
+            category: "Technology",
+            desc: "A history of information itself — from African talking drums to Shannon's bits to the modern flood. Sweeping, beautifully written, surprisingly intimate."
+        },
+        quote: {
+            text: "Information is the resolution of uncertainty.",
+            source: "James Gleick, The Information (after Claude Shannon)"
+        }
     }
 ];
 
