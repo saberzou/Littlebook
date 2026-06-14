@@ -1858,6 +1858,7 @@ const dailyData = [
     },
     {
         date: "2026-06-15",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-15.mp3",
         book: {
             isbn: "9781400096237",
             title: "The Information",
