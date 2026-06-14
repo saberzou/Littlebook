@@ -1,16 +1,5 @@
 [
   {
-    "title": "The Vignelli Canon",
-    "author": "Massimo Vignelli",
-    "isbn": "9783037782255",
-    "category": "Design",
-    "desc": "Vignelli's free, opinionated little book on what makes design good: discipline, appropriateness, ambiguity-killing. Six typefaces are enough; the rest is taste.",
-    "quote": {
-      "text": "If you can design one thing, you can design everything.",
-      "source": "Massimo Vignelli, The Vignelli Canon"
-    }
-  },
-  {
     "title": "Operating Manual for Spaceship Earth",
     "author": "R. Buckminster Fuller",
     "isbn": "9783037781265",

@@ -1869,6 +1869,20 @@ const dailyData = [
             text: "Information is the resolution of uncertainty.",
             source: "James Gleick, The Information (after Claude Shannon)"
         }
+    },
+    {
+        date: "2026-06-16",
+        book: {
+            isbn: "9783037782255",
+            title: "The Vignelli Canon",
+            author: "Massimo Vignelli",
+            category: "Design",
+            desc: "Vignelli's free, opinionated little book on what makes design good: discipline, appropriateness, ambiguity-killing. Six typefaces are enough; the rest is taste."
+        },
+        quote: {
+            text: "If you can design one thing, you can design everything.",
+            source: "Massimo Vignelli, The Vignelli Canon"
+        }
     }
 ];
 
