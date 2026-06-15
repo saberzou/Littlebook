@@ -1873,6 +1873,7 @@ const dailyData = [
     },
     {
         date: "2026-06-16",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-16.mp3",
         book: {
             isbn: "9783037782255",
             title: "The Vignelli Canon",
