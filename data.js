@@ -1884,6 +1884,20 @@ const dailyData = [
             text: "If you can design one thing, you can design everything.",
             source: "Massimo Vignelli, The Vignelli Canon"
         }
+    },
+    {
+        date: "2026-06-17",
+        book: {
+            isbn: "9783037781265",
+            title: "Operating Manual for Spaceship Earth",
+            author: "R. Buckminster Fuller",
+            category: "Philosophy",
+            desc: "Fuller's 1969 cosmic memo: the planet is a ship, we are crew, and the manual was never written. Idealistic, engineering-minded, oddly current."
+        },
+        quote: {
+            text: "We are not going to be able to operate our Spaceship Earth successfully nor for much longer unless we see it as a whole spaceship.",
+            source: "R. Buckminster Fuller, Operating Manual for Spaceship Earth"
+        }
     }
 ];
 
