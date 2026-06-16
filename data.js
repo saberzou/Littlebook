@@ -1899,6 +1899,20 @@ const dailyData = [
             text: "We are not going to be able to operate our Spaceship Earth successfully nor for much longer unless we see it as a whole spaceship.",
             source: "R. Buckminster Fuller, Operating Manual for Spaceship Earth"
         }
+    },
+    {
+        date: "2026-06-18",
+        book: {
+            isbn: "9783037781838",
+            title: "White",
+            author: "Kenya Hara",
+            category: "Design",
+            desc: "Hara's meditation on white — not as a color but as a way of thinking about emptiness, restraint, and quality. Small book, deep room."
+        },
+        quote: {
+            text: "White is not a color. It is a sensitivity, a way of thinking.",
+            source: "Kenya Hara, White"
+        }
     }
 ];
 
