@@ -1913,6 +1913,20 @@ const dailyData = [
             text: "White is not a color. It is a sensitivity, a way of thinking.",
             source: "Kenya Hara, White"
         }
+    },
+    {
+        date: "2026-06-19",
+        book: {
+            isbn: "9780140442106",
+            title: "Letters from a Stoic",
+            author: "Seneca",
+            category: "Philosophy",
+            desc: "124 letters from a Roman statesman to a friend, on time, money, friendship, anger, and dying well. Stoicism written like a smart older friend, two thousand years before Twitter."
+        },
+        quote: {
+            text: "We suffer more often in imagination than in reality.",
+            source: "Seneca, Letters from a Stoic"
+        }
     }
 ];
 
