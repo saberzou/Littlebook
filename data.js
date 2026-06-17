@@ -1902,6 +1902,7 @@ const dailyData = [
     },
     {
         date: "2026-06-18",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-18.mp3",
         book: {
             isbn: "9783037781838",
             title: "White",
