@@ -1,16 +1,5 @@
 [
   {
-    "title": "Hackers and Painters",
-    "author": "Paul Graham",
-    "isbn": "9781449389550",
-    "category": "Technology",
-    "desc": "Graham's essays from a programmer who thinks like a painter — on startups, taste, why nerds are unpopular, and how the right languages bend your mind. Plain prose, sharp angles.",
-    "quote": {
-      "text": "What hackers and painters have in common is that they're both makers. Along with composers, architects, and writers, what hackers and painters are trying to do is make good things.",
-      "source": "Paul Graham, Hackers and Painters"
-    }
-  },
-  {
     "title": "Pensées",
     "author": "Blaise Pascal",
     "isbn": "9780140446456",

@@ -1928,6 +1928,20 @@ const dailyData = [
             text: "We suffer more often in imagination than in reality.",
             source: "Seneca, Letters from a Stoic"
         }
+    },
+    {
+        date: "2026-06-20",
+        book: {
+            isbn: "9781449389550",
+            title: "Hackers and Painters",
+            author: "Paul Graham",
+            category: "Technology",
+            desc: "Graham's essays from a programmer who thinks like a painter — on startups, taste, why nerds are unpopular, and how the right languages bend your mind. Plain prose, sharp angles."
+        },
+        quote: {
+            text: "What hackers and painters have in common is that they're both makers. Along with composers, architects, and writers, what hackers and painters are trying to do is make good things.",
+            source: "Paul Graham, Hackers and Painters"
+        }
     }
 ];
 
