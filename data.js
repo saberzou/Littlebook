@@ -1917,6 +1917,7 @@ const dailyData = [
     },
     {
         date: "2026-06-19",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-19.mp3",
         book: {
             isbn: "9780140442106",
             title: "Letters from a Stoic",
