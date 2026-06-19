@@ -1932,6 +1932,7 @@ const dailyData = [
     },
     {
         date: "2026-06-20",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-20.mp3",
         book: {
             isbn: "9781449389550",
             title: "Hackers and Painters",
