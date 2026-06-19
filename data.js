@@ -1943,6 +1943,20 @@ const dailyData = [
             text: "What hackers and painters have in common is that they're both makers. Along with composers, architects, and writers, what hackers and painters are trying to do is make good things.",
             source: "Paul Graham, Hackers and Painters"
         }
+    },
+    {
+        date: "2026-06-21",
+        book: {
+            isbn: "9780140446456",
+            title: "Pensées",
+            author: "Blaise Pascal",
+            category: "Philosophy",
+            desc: "A 17th-century mathematician's unfinished defense of faith, left as fragments. Less a system than a mind thinking out loud about boredom, distraction, and the size of the universe."
+        },
+        quote: {
+            text: "All of humanity's problems stem from man's inability to sit quietly in a room alone.",
+            source: "Blaise Pascal, Pensées"
+        }
     }
 ];
 

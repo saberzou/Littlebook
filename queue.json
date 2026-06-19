@@ -1,16 +1,5 @@
 [
   {
-    "title": "Pensées",
-    "author": "Blaise Pascal",
-    "isbn": "9780140446456",
-    "category": "Philosophy",
-    "desc": "A 17th-century mathematician's unfinished defense of faith, left as fragments. Less a system than a mind thinking out loud about boredom, distraction, and the size of the universe.",
-    "quote": {
-      "text": "All of humanity's problems stem from man's inability to sit quietly in a room alone.",
-      "source": "Blaise Pascal, Pensées"
-    }
-  },
-  {
     "title": "The Practice of the Wild",
     "author": "Gary Snyder",
     "isbn": "9781582436388",
