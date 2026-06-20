@@ -1958,6 +1958,20 @@ const dailyData = [
             text: "All of humanity's problems stem from man's inability to sit quietly in a room alone.",
             source: "Blaise Pascal, Pensées"
         }
+    },
+    {
+        date: "2026-06-22",
+        book: {
+            isbn: "9781582436388",
+            title: "The Practice of the Wild",
+            author: "Gary Snyder",
+            category: "Nature & Philosophy",
+            desc: "Snyder, poet and Zen student, on wildness as a property of mind as much as landscape. Essays that move between mountain trails, Buddhist practice, and how language carries place."
+        },
+        quote: {
+            text: "Nature is not a place to visit. It is home.",
+            source: "Gary Snyder, The Practice of the Wild"
+        }
     }
 ];
 
