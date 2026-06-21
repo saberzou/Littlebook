@@ -1973,6 +1973,20 @@ const dailyData = [
             text: "Nature is not a place to visit. It is home.",
             source: "Gary Snyder, The Practice of the Wild"
         }
+    },
+    {
+        date: "2026-06-23",
+        book: {
+            isbn: "9780553283686",
+            title: "Hyperion",
+            author: "Dan Simmons",
+            category: "Science Fiction",
+            desc: "Seven pilgrims travel to a distant world, each telling a story that reframes the others. A space opera built like The Canterbury Tales — strange, layered, hauntingly literary."
+        },
+        quote: {
+            text: "The most alien landscape is not strange enough; the most familiar street, on a certain night, can be unrecognizable.",
+            source: "Dan Simmons, Hyperion"
+        }
     }
 ];
 

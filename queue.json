@@ -1,16 +1,5 @@
 [
   {
-    "title": "Hyperion",
-    "author": "Dan Simmons",
-    "isbn": "9780553283686",
-    "category": "Science Fiction",
-    "desc": "Seven pilgrims travel to a distant world, each telling a story that reframes the others. A space opera built like The Canterbury Tales — strange, layered, hauntingly literary.",
-    "quote": {
-      "text": "The most alien landscape is not strange enough; the most familiar street, on a certain night, can be unrecognizable.",
-      "source": "Dan Simmons, Hyperion"
-    }
-  },
-  {
     "title": "Notes on the Synthesis of Form",
     "author": "Christopher Alexander",
     "isbn": "9780674627512",
