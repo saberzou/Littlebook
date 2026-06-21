@@ -1962,6 +1962,7 @@ const dailyData = [
     },
     {
         date: "2026-06-22",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-22.mp3",
         book: {
             isbn: "9781582436388",
             title: "The Practice of the Wild",
