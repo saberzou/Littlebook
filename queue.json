@@ -1,16 +1,5 @@
 [
   {
-    "title": "Notes on the Synthesis of Form",
-    "author": "Christopher Alexander",
-    "isbn": "9780674627512",
-    "category": "Design",
-    "desc": "Alexander's first book, where he tries to make designing rigorous: decompose the problem, find the misfits, let form follow constraint. The seed of everything he wrote later.",
-    "quote": {
-      "text": "Every design problem begins with an effort to achieve fitness between two entities: the form in question and its context.",
-      "source": "Christopher Alexander, Notes on the Synthesis of Form"
-    }
-  },
-  {
     "title": "Thinking with Type",
     "author": "Ellen Lupton",
     "isbn": "9781568989693",

@@ -1988,6 +1988,20 @@ const dailyData = [
             text: "The most alien landscape is not strange enough; the most familiar street, on a certain night, can be unrecognizable.",
             source: "Dan Simmons, Hyperion"
         }
+    },
+    {
+        date: "2026-06-24",
+        book: {
+            isbn: "9780674627512",
+            title: "Notes on the Synthesis of Form",
+            author: "Christopher Alexander",
+            category: "Design",
+            desc: "Alexander's first book, where he tries to make designing rigorous: decompose the problem, find the misfits, let form follow constraint. The seed of everything he wrote later."
+        },
+        quote: {
+            text: "Every design problem begins with an effort to achieve fitness between two entities: the form in question and its context.",
+            source: "Christopher Alexander, Notes on the Synthesis of Form"
+        }
     }
 ];
 
