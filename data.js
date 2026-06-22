@@ -1977,6 +1977,7 @@ const dailyData = [
     },
     {
         date: "2026-06-23",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-23.mp3",
         book: {
             isbn: "9780553283686",
             title: "Hyperion",
