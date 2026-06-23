@@ -2003,6 +2003,20 @@ const dailyData = [
             text: "Every design problem begins with an effort to achieve fitness between two entities: the form in question and its context.",
             source: "Christopher Alexander, Notes on the Synthesis of Form"
         }
+    },
+    {
+        date: "2026-06-25",
+        book: {
+            isbn: "9781568989693",
+            title: "Thinking with Type",
+            author: "Ellen Lupton",
+            category: "Design",
+            desc: "The friendliest serious book on typography in print. Letters, text, and grid, explained with the warmth of a good teacher and the eye of a working designer."
+        },
+        quote: {
+            text: "Typography is what language looks like.",
+            source: "Ellen Lupton, Thinking with Type"
+        }
     }
 ];
 
