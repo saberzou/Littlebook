@@ -1992,6 +1992,7 @@ const dailyData = [
     },
     {
         date: "2026-06-24",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-24.mp3",
         book: {
             isbn: "9780674627512",
             title: "Notes on the Synthesis of Form",
