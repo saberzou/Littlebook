@@ -2018,6 +2018,20 @@ const dailyData = [
             text: "Typography is what language looks like.",
             source: "Ellen Lupton, Thinking with Type"
         }
+    },
+    {
+        date: "2026-06-26",
+        book: {
+            isbn: "9780307279415",
+            title: "Several Short Sentences About Writing",
+            author: "Verlyn Klinkenborg",
+            category: "Writing",
+            desc: "An anti-handbook, laid out almost like poetry. Klinkenborg argues that good prose comes from short sentences, real attention, and trusting your own noticing."
+        },
+        quote: {
+            text: "Some of your best sentences will occur to you as you write them.",
+            source: "Verlyn Klinkenborg, Several Short Sentences About Writing"
+        }
     }
 ];
 
