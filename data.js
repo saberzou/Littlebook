@@ -2007,6 +2007,7 @@ const dailyData = [
     },
     {
         date: "2026-06-25",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-25.mp3",
         book: {
             isbn: "9781568989693",
             title: "Thinking with Type",
