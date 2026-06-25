@@ -2022,6 +2022,7 @@ const dailyData = [
     },
     {
         date: "2026-06-26",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-26.mp3",
         book: {
             isbn: "9780307279415",
             title: "Several Short Sentences About Writing",
