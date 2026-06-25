@@ -2033,6 +2033,20 @@ const dailyData = [
             text: "Some of your best sentences will occur to you as you write them.",
             source: "Verlyn Klinkenborg, Several Short Sentences About Writing"
         }
+    },
+    {
+        date: "2026-06-27",
+        book: {
+            isbn: "9780374521349",
+            title: "Camera Lucida",
+            author: "Roland Barthes",
+            category: "Photography",
+            desc: "Barthes circles a single photograph of his mother and, around it, builds a theory of what photographs really are: stubborn proof that something was. Quiet, devastating."
+        },
+        quote: {
+            text: "Ultimately — or at the limit — in order to see a photograph well, it is best to look away or close your eyes.",
+            source: "Roland Barthes, Camera Lucida"
+        }
     }
 ];
 
