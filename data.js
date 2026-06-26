@@ -2048,6 +2048,20 @@ const dailyData = [
             text: "Ultimately — or at the limit — in order to see a photograph well, it is best to look away or close your eyes.",
             source: "Roland Barthes, Camera Lucida"
         }
+    },
+    {
+        date: "2026-06-28",
+        book: {
+            isbn: "9781885254863",
+            title: "S, M, L, XL",
+            author: "Rem Koolhaas & Bruce Mau",
+            category: "Architecture",
+            desc: "A 1,300-page brick by OMA and Bruce Mau, sorted by project size. Manifestos, plans, photos, and rants — the book that taught a generation what an architecture monograph could be."
+        },
+        quote: {
+            text: "Where there is nothing, everything is possible. Where there is architecture, nothing (else) is possible.",
+            source: "Rem Koolhaas, S, M, L, XL"
+        }
     }
 ];
 
