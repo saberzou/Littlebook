@@ -2037,6 +2037,7 @@ const dailyData = [
     },
     {
         date: "2026-06-27",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-27.mp3",
         book: {
             isbn: "9780374521349",
             title: "Camera Lucida",
