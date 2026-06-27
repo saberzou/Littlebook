@@ -2052,6 +2052,7 @@ const dailyData = [
     },
     {
         date: "2026-06-28",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-28.mp3",
         book: {
             isbn: "9781885254863",
             title: "S, M, L, XL",
