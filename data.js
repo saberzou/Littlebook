@@ -2063,6 +2063,20 @@ const dailyData = [
             text: "Where there is nothing, everything is possible. Where there is architecture, nothing (else) is possible.",
             source: "Rem Koolhaas, S, M, L, XL"
         }
+    },
+    {
+        date: "2026-06-29",
+        book: {
+            isbn: "9780132447300",
+            title: "Hooked on Drawing",
+            author: "Sandy Brooke",
+            category: "Art",
+            desc: "Less a how-to than an invitation: how looking carefully changes what you see, and how drawing — even badly — slows the world down. Good for anyone who wishes they sketched more."
+        },
+        quote: {
+            text: "Drawing is the art of taking a line for a walk.",
+            source: "Sandy Brooke, Hooked on Drawing (after Paul Klee)"
+        }
     }
 ];
 
