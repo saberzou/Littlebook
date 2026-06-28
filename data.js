@@ -2078,6 +2078,20 @@ const dailyData = [
             text: "Drawing is the art of taking a line for a walk.",
             source: "Sandy Brooke, Hooked on Drawing (after Paul Klee)"
         }
+    },
+    {
+        date: "2026-06-30",
+        book: {
+            isbn: "9780262528948",
+            title: "Living with Complexity",
+            author: "Donald A. Norman",
+            category: "Design",
+            desc: "Norman's quieter follow-up to The Design of Everyday Things: complexity isn't the enemy, confusion is. A defense of well-designed complexity in a world that keeps over-simplifying."
+        },
+        quote: {
+            text: "Things should be as simple as possible — but no simpler.",
+            source: "Donald A. Norman, Living with Complexity"
+        }
     }
 ];
 
