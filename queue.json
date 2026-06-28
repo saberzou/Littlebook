@@ -97,5 +97,225 @@
       "text": "There was something very special, but it wasn't inside Josie. It was inside those who loved her.",
       "source": "Kazuo Ishiguro, Klara and the Sun"
     }
+  },
+  {
+    "title": "The Architecture of Happiness",
+    "author": "Alain de Botton",
+    "isbn": "9780375424434",
+    "category": "Architecture",
+    "desc": "De Botton argues that buildings speak — and that the rooms we live in slowly shape who we become. A gentle, beautifully illustrated case for taking aesthetics morally seriously.",
+    "quote": {
+      "text": "We owe it to the fields that our houses will not be the inferiors of the virgin land they have replaced.",
+      "source": "Alain de Botton, The Architecture of Happiness"
+    }
+  },
+  {
+    "title": "The Tipping Point",
+    "author": "Malcolm Gladwell",
+    "isbn": "9780316346627",
+    "category": "Culture",
+    "desc": "How small things tip into epidemics — of crime, fashion, ideas. Gladwell's first book is still his sharpest: connectors, mavens, salesmen, and the strange physics of what catches on.",
+    "quote": {
+      "text": "Look at the world around you. It may seem like an immovable, implacable place. It is not. With the slightest push — in just the right place — it can be tipped.",
+      "source": "Malcolm Gladwell, The Tipping Point"
+    }
+  },
+  {
+    "title": "Drawing on the Right Side of the Brain",
+    "author": "Betty Edwards",
+    "isbn": "9781585429202",
+    "category": "Art",
+    "desc": "The book that convinced a generation that drawing isn't talent but seeing. Edwards teaches you to silence the labeling left brain so the eye can finally do its job.",
+    "quote": {
+      "text": "Drawing is not really very difficult. Seeing is the problem.",
+      "source": "Betty Edwards, Drawing on the Right Side of the Brain"
+    }
+  },
+  {
+    "title": "The Phenomenon of Man",
+    "author": "Pierre Teilhard de Chardin",
+    "isbn": "9780061632655",
+    "category": "Philosophy",
+    "desc": "A Jesuit paleontologist sketches a universe that wants to become conscious of itself. Strange, lyrical, sometimes wild — and the source of half the noosphere ideas you've ever heard.",
+    "quote": {
+      "text": "We are not human beings having a spiritual experience. We are spiritual beings having a human experience.",
+      "source": "Pierre Teilhard de Chardin, The Phenomenon of Man"
+    }
+  },
+  {
+    "title": "The Inner Game of Tennis",
+    "author": "W. Timothy Gallwey",
+    "isbn": "9780679778318",
+    "category": "Performance",
+    "desc": "A tennis coach quietly invented modern performance psychology in 1974. Gallwey's two-self model — the judging Self 1 and the doing Self 2 — has been borrowed by athletes, musicians, surgeons, and CEOs ever since.",
+    "quote": {
+      "text": "Every game is composed of two parts, an outer game and an inner game.",
+      "source": "W. Timothy Gallwey, The Inner Game of Tennis"
+    }
+  },
+  {
+    "title": "Letters to a Young Poet",
+    "author": "Rainer Maria Rilke",
+    "isbn": "9780393310399",
+    "category": "Writing",
+    "desc": "Ten letters from Rilke to a stranger asking whether to give up writing. The answer, given slowly across years, is one of the gentlest and most demanding things ever said about a creative life.",
+    "quote": {
+      "text": "Be patient toward all that is unsolved in your heart and try to love the questions themselves.",
+      "source": "Rainer Maria Rilke, Letters to a Young Poet"
+    }
+  },
+  {
+    "title": "The Image",
+    "author": "Daniel J. Boorstin",
+    "isbn": "9780679741800",
+    "category": "Media Theory",
+    "desc": "Boorstin coined 'pseudo-event' in 1961 to describe news that exists only because someone planned a press conference. Six decades later, the whole feed is one.",
+    "quote": {
+      "text": "We risk being the first people in history to have been able to make their illusions so vivid, so persuasive, so 'realistic' that they can live in them.",
+      "source": "Daniel J. Boorstin, The Image"
+    }
+  },
+  {
+    "title": "Hidden in Plain Sight",
+    "author": "Jan Chipchase",
+    "isbn": "9780062303431",
+    "category": "Design Research",
+    "desc": "A field researcher who has interviewed people in 90 countries shows how to actually see what's in front of you — the unspoken habits, the worn-out spots, the workarounds that hint at unmet needs.",
+    "quote": {
+      "text": "The decisions that consumers make are not always rational, but they are always reasonable.",
+      "source": "Jan Chipchase, Hidden in Plain Sight"
+    }
+  },
+  {
+    "title": "Experiences in Visual Thinking",
+    "author": "Robert H. McKim",
+    "isbn": "9780534001230",
+    "category": "Visual Thinking",
+    "desc": "The 1972 book that quietly taught Stanford's d.school how to think with the hand. McKim treats sketching, imagining, and seeing as one continuous loop — a way of thinking, not a way of decorating thought.",
+    "quote": {
+      "text": "Visual thinking pervades all human activity, from the abstract and theoretical to the down-to-earth and everyday.",
+      "source": "Robert H. McKim, Experiences in Visual Thinking"
+    }
+  },
+  {
+    "title": "Genius of Place: The Life of Frederick Law Olmsted",
+    "author": "Justin Martin",
+    "isbn": "9780306821486",
+    "category": "Biography",
+    "desc": "Before he designed Central Park, Olmsted was a failed farmer, a war correspondent, and a journalist documenting slavery. A biography of the man who invented landscape architecture as a moral practice.",
+    "quote": {
+      "text": "The enjoyment of scenery employs the mind without fatigue and yet exercises it.",
+      "source": "Frederick Law Olmsted, quoted in Genius of Place"
+    }
+  },
+  {
+    "title": "The Practice: Shipping Creative Work",
+    "author": "Seth Godin",
+    "isbn": "9780593328972",
+    "category": "Creativity",
+    "desc": "Godin's quiet manifesto against waiting for inspiration. The practice is the work; the work is the practice. Shipping is not a reward for talent — it's the only thing that builds it.",
+    "quote": {
+      "text": "Trust yourself enough to do the work. The rest will follow.",
+      "source": "Seth Godin, The Practice"
+    }
+  },
+  {
+    "title": "Refactoring: Improving the Design of Existing Code",
+    "author": "Martin Fowler",
+    "isbn": "9780134757599",
+    "category": "Technology",
+    "desc": "Fowler's classic on how to clean up code without breaking it. Reads like a craftsman's manual: small, named moves you can apply with confidence — and a philosophy that good code is rewritten, not written.",
+    "quote": {
+      "text": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "source": "Martin Fowler, Refactoring"
+    }
+  },
+  {
+    "title": "The Glass Bead Game",
+    "author": "Hermann Hesse",
+    "isbn": "9780312278496",
+    "category": "Literary Fiction",
+    "desc": "Hesse's last novel imagines a monastic order whose highest art is a game that links music, mathematics, history, and philosophy into a single perfect move. A book about the dignity and danger of pure intellectual life.",
+    "quote": {
+      "text": "We must be able to meet every demand, fulfill any task that life sets us.",
+      "source": "Hermann Hesse, The Glass Bead Game"
+    }
+  },
+  {
+    "title": "Hara Kenya: Designing Design",
+    "author": "Kenya Hara",
+    "isbn": "9783037787298",
+    "category": "Design",
+    "desc": "Hara's later collection of essays on emptiness, exactingness, and Japanese design sensibility — the longer, looser companion to his Muji work. Beautifully made, slow to read, hard to forget.",
+    "quote": {
+      "text": "Emptiness is not nothing. It is the potential for everything.",
+      "source": "Kenya Hara, Hara Kenya"
+    }
+  },
+  {
+    "title": "Why We Sleep",
+    "author": "Matthew Walker",
+    "isbn": "9781501144318",
+    "category": "Science",
+    "desc": "A neuroscientist's case that sleep isn't downtime — it's when memory consolidates, the immune system rearms, and the brain takes out the trash. Will quietly change how you treat your nights.",
+    "quote": {
+      "text": "The shorter your sleep, the shorter your life.",
+      "source": "Matthew Walker, Why We Sleep"
+    }
+  },
+  {
+    "title": "A Short History of Nearly Everything",
+    "author": "Bill Bryson",
+    "isbn": "9780767908184",
+    "category": "Science",
+    "desc": "Bryson's grand tour of how scientists figured out what the universe, the planet, and we are made of — and how often they were wrong on the way. Funny, humble, and improbably gripping.",
+    "quote": {
+      "text": "We are all, to atoms, just fleeting arrangements.",
+      "source": "Bill Bryson, A Short History of Nearly Everything"
+    }
+  },
+  {
+    "title": "The Power Broker",
+    "author": "Robert A. Caro",
+    "isbn": "9780394720241",
+    "category": "Biography",
+    "desc": "Caro's 1,200-page biography of Robert Moses, the unelected planner who shaped New York for 44 years. A masterclass in how power actually works — and what it costs the neighborhoods in its way.",
+    "quote": {
+      "text": "Power doesn't always corrupt. But power always reveals.",
+      "source": "Robert A. Caro, The Power Broker"
+    }
+  },
+  {
+    "title": "The Beginning of Infinity",
+    "author": "David Deutsch",
+    "isbn": "9780143121350",
+    "category": "Philosophy of Science",
+    "desc": "A physicist argues that good explanations — hard-to-vary, reach-extending — are the engine of everything from quantum mechanics to moral progress. Difficult, demanding, occasionally vertiginous.",
+    "quote": {
+      "text": "Problems are inevitable, and problems are soluble.",
+      "source": "David Deutsch, The Beginning of Infinity"
+    }
+  },
+  {
+    "title": "Sketching User Experiences",
+    "author": "Bill Buxton",
+    "isbn": "9780123740373",
+    "category": "Design",
+    "desc": "Microsoft Research's Buxton on why design is sketching, prototyping, iterating — and why the finished pixel is the very last thing you should worry about. The book that taught a generation of UX designers to draw before they Figma.",
+    "quote": {
+      "text": "If we don't design wrong things on purpose, early, we end up designing wrong things by accident, late.",
+      "source": "Bill Buxton, Sketching User Experiences"
+    }
+  },
+  {
+    "title": "The Master and His Emissary",
+    "author": "Iain McGilchrist",
+    "isbn": "9780300188370",
+    "category": "Philosophy & Neuroscience",
+    "desc": "A psychiatrist's monumental case that the two hemispheres of the brain attend to the world differently — and that Western culture has handed the keys to the wrong one. Long, deep, paradigm-bending.",
+    "quote": {
+      "text": "The right hemisphere knows; the left hemisphere knows about.",
+      "source": "Iain McGilchrist, The Master and His Emissary"
+    }
   }
 ]
