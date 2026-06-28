@@ -2067,6 +2067,7 @@ const dailyData = [
     },
     {
         date: "2026-06-29",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-29.mp3",
         book: {
             isbn: "9780132447300",
             title: "Hooked on Drawing",
