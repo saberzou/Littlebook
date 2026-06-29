@@ -2093,6 +2093,20 @@ const dailyData = [
             text: "Things should be as simple as possible — but no simpler.",
             source: "Donald A. Norman, Living with Complexity"
         }
+    },
+    {
+        date: "2026-07-01",
+        book: {
+            isbn: "9780143036326",
+            title: "On the Shortness of Life",
+            author: "Seneca",
+            category: "Philosophy",
+            desc: "Seneca's brief, scalding essay on time: it isn't short, we just spend it like fools. A small book to keep near the desk for the next time a day disappears."
+        },
+        quote: {
+            text: "It is not that we have a short time to live, but that we waste a lot of it.",
+            source: "Seneca, On the Shortness of Life"
+        }
     }
 ];
 
