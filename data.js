@@ -2082,6 +2082,7 @@ const dailyData = [
     },
     {
         date: "2026-06-30",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-06-30.mp3",
         book: {
             isbn: "9780262528948",
             title: "Living with Complexity",
