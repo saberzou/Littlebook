@@ -2097,6 +2097,7 @@ const dailyData = [
     },
     {
         date: "2026-07-01",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-01.mp3",
         book: {
             isbn: "9780143036326",
             title: "On the Shortness of Life",
