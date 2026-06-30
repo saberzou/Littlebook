@@ -2108,6 +2108,20 @@ const dailyData = [
             text: "It is not that we have a short time to live, but that we waste a lot of it.",
             source: "Seneca, On the Shortness of Life"
         }
+    },
+    {
+        date: "2026-07-02",
+        book: {
+            isbn: "9780060812454",
+            title: "Tao Te Ching",
+            author: "Lao Tzu",
+            category: "Philosophy",
+            desc: "Eighty-one short poems, 2,500 years old, on yielding, emptiness, and how the most useful part of a cup is the space inside. Read in any order; reread for life."
+        },
+        quote: {
+            text: "When I let go of what I am, I become what I might be.",
+            source: "Lao Tzu, Tao Te Ching"
+        }
     }
 ];
 
