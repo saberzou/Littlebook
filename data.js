@@ -2112,6 +2112,7 @@ const dailyData = [
     },
     {
         date: "2026-07-02",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-02.mp3",
         book: {
             isbn: "9780060812454",
             title: "Tao Te Ching",
