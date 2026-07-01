@@ -2123,6 +2123,20 @@ const dailyData = [
             text: "When I let go of what I am, I become what I might be.",
             source: "Lao Tzu, Tao Te Ching"
         }
+    },
+    {
+        date: "2026-07-03",
+        book: {
+            isbn: "9780064300384",
+            title: "The Art Spirit",
+            author: "Robert Henri",
+            category: "Art",
+            desc: "A painter's letters and notes to his students, collected in 1923. Henri talks about art the way a coach talks about courage: bluntly, warmly, with no time for fashion."
+        },
+        quote: {
+            text: "The object isn't to make art, it's to be in that wonderful state which makes art inevitable.",
+            source: "Robert Henri, The Art Spirit"
+        }
     }
 ];
 
