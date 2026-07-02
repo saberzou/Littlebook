@@ -2138,6 +2138,20 @@ const dailyData = [
             text: "The object isn't to make art, it's to be in that wonderful state which makes art inevitable.",
             source: "Robert Henri, The Art Spirit"
         }
+    },
+    {
+        date: "2026-07-04",
+        book: {
+            isbn: "9780312429270",
+            title: "No Logo",
+            author: "Naomi Klein",
+            category: "Culture",
+            desc: "Klein's 1999 dissection of the brand economy — how logos colonized public space, schools, and identity. Older than most reading it, and somehow still ahead."
+        },
+        quote: {
+            text: "The astronomical growth in the wealth and cultural influence of multinational corporations has been the result of one, seemingly innocuous idea: that successful corporations must produce primarily brands, as opposed to products.",
+            source: "Naomi Klein, No Logo"
+        }
     }
 ];
 
