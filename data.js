@@ -2127,6 +2127,7 @@ const dailyData = [
     },
     {
         date: "2026-07-03",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-03.mp3",
         book: {
             isbn: "9780064300384",
             title: "The Art Spirit",
