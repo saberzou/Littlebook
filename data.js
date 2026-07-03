@@ -2153,6 +2153,20 @@ const dailyData = [
             text: "The astronomical growth in the wealth and cultural influence of multinational corporations has been the result of one, seemingly innocuous idea: that successful corporations must produce primarily brands, as opposed to products.",
             source: "Naomi Klein, No Logo"
         }
+    },
+    {
+        date: "2026-07-05",
+        book: {
+            isbn: "9780671212094",
+            title: "How to Read a Book",
+            author: "Mortimer J. Adler & Charles Van Doren",
+            category: "Learning",
+            desc: "A serious manual for serious readers: inspectional, analytical, syntopical. Old-fashioned in tone, but the only book on reading that treats it like a craft you can actually practice."
+        },
+        quote: {
+            text: "Reading is to the mind what exercise is to the body.",
+            source: "Mortimer J. Adler, How to Read a Book"
+        }
     }
 ];
 

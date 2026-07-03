@@ -1,16 +1,5 @@
 [
   {
-    "title": "How to Read a Book",
-    "author": "Mortimer J. Adler & Charles Van Doren",
-    "isbn": "9780671212094",
-    "category": "Learning",
-    "desc": "A serious manual for serious readers: inspectional, analytical, syntopical. Old-fashioned in tone, but the only book on reading that treats it like a craft you can actually practice.",
-    "quote": {
-      "text": "Reading is to the mind what exercise is to the body.",
-      "source": "Mortimer J. Adler, How to Read a Book"
-    }
-  },
-  {
     "title": "The Order of Time",
     "author": "Carlo Rovelli",
     "isbn": "9780735216105",
