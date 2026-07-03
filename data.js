@@ -2142,6 +2142,7 @@ const dailyData = [
     },
     {
         date: "2026-07-04",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-04.mp3",
         book: {
             isbn: "9780312429270",
             title: "No Logo",
