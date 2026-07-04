@@ -2168,6 +2168,20 @@ const dailyData = [
             text: "Reading is to the mind what exercise is to the body.",
             source: "Mortimer J. Adler, How to Read a Book"
         }
+    },
+    {
+        date: "2026-07-06",
+        book: {
+            isbn: "9780735216105",
+            title: "The Order of Time",
+            author: "Carlo Rovelli",
+            category: "Science & Philosophy",
+            desc: "A physicist gently dismantles the idea that time is a smooth river — and then, in the last chapters, lets it back in as memory and music. Short, lyrical, deeply strange."
+        },
+        quote: {
+            text: "We are histories of ourselves, narratives.",
+            source: "Carlo Rovelli, The Order of Time"
+        }
     }
 ];
 
