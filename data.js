@@ -2183,6 +2183,20 @@ const dailyData = [
             text: "We are histories of ourselves, narratives.",
             source: "Carlo Rovelli, The Order of Time"
         }
+    },
+    {
+        date: "2026-07-07",
+        book: {
+            isbn: "9781594485381",
+            title: "Where Good Ideas Come From",
+            author: "Steven Johnson",
+            category: "Creativity",
+            desc: "Johnson tours the natural history of innovation — coral reefs, coffeehouses, slow hunches, liquid networks. Not a how-to, more a field guide to the environments that breed new ideas."
+        },
+        quote: {
+            text: "Chance favors the connected mind.",
+            source: "Steven Johnson, Where Good Ideas Come From"
+        }
     }
 ];
 
