@@ -2172,6 +2172,7 @@ const dailyData = [
     },
     {
         date: "2026-07-06",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-06.mp3",
         book: {
             isbn: "9780735216105",
             title: "The Order of Time",
