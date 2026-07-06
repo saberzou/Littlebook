@@ -2198,6 +2198,20 @@ const dailyData = [
             text: "Chance favors the connected mind.",
             source: "Steven Johnson, Where Good Ideas Come From"
         }
+    },
+    {
+        date: "2026-07-08",
+        book: {
+            isbn: "9780593135204",
+            title: "Project Hail Mary",
+            author: "Andy Weir",
+            category: "Science Fiction",
+            desc: "A science teacher wakes up alone on a spacecraft, light-years from Earth, with no memory of how he got there. The most fun a problem-solving novel has been in years."
+        },
+        quote: {
+            text: "I just gave a kid a Russian science book about Einstein. Kid wins.",
+            source: "Andy Weir, Project Hail Mary"
+        }
     }
 ];
 
