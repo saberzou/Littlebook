@@ -2187,6 +2187,7 @@ const dailyData = [
     },
     {
         date: "2026-07-07",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-07.mp3",
         book: {
             isbn: "9781594485381",
             title: "Where Good Ideas Come From",
