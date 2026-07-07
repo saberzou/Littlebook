@@ -2202,6 +2202,7 @@ const dailyData = [
     },
     {
         date: "2026-07-08",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-08.mp3",
         book: {
             isbn: "9780593135204",
             title: "Project Hail Mary",
