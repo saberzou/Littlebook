@@ -2213,6 +2213,20 @@ const dailyData = [
             text: "I just gave a kid a Russian science book about Einstein. Kid wins.",
             source: "Andy Weir, Project Hail Mary"
         }
+    },
+    {
+        date: "2026-07-09",
+        book: {
+            isbn: "9780593318171",
+            title: "Klara and the Sun",
+            author: "Kazuo Ishiguro",
+            category: "Literary Fiction",
+            desc: "An artificial friend, designed to keep a sick child company, watches the world through a shop window and then a bedroom one. Ishiguro at his quietest, asking what love and personhood actually are."
+        },
+        quote: {
+            text: "There was something very special, but it wasn't inside Josie. It was inside those who loved her.",
+            source: "Kazuo Ishiguro, Klara and the Sun"
+        }
     }
 ];
 
