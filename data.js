@@ -2232,6 +2232,7 @@ const dailyData = [
     },
     {
         date: "2026-07-10",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-10.mp3",
         book: {
             isbn: "9780375424434",
             title: "The Architecture of Happiness",
