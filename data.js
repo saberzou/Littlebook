@@ -2229,6 +2229,20 @@ const dailyData = [
             text: "There was something very special, but it wasn't inside Josie. It was inside those who loved her.",
             source: "Kazuo Ishiguro, Klara and the Sun"
         }
+    },
+    {
+        date: "2026-07-10",
+        book: {
+            isbn: "9780375424434",
+            title: "The Architecture of Happiness",
+            author: "Alain de Botton",
+            category: "Architecture",
+            desc: "De Botton argues that buildings speak — and that the rooms we live in slowly shape who we become. A gentle, beautifully illustrated case for taking aesthetics morally seriously."
+        },
+        quote: {
+            text: "We owe it to the fields that our houses will not be the inferiors of the virgin land they have replaced.",
+            source: "Alain de Botton, The Architecture of Happiness"
+        }
     }
 ];
 
