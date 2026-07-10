@@ -2244,6 +2244,20 @@ const dailyData = [
             text: "We owe it to the fields that our houses will not be the inferiors of the virgin land they have replaced.",
             source: "Alain de Botton, The Architecture of Happiness"
         }
+    },
+    {
+        date: "2026-07-11",
+        book: {
+            isbn: "9780316346627",
+            title: "The Tipping Point",
+            author: "Malcolm Gladwell",
+            category: "Culture",
+            desc: "How small things tip into epidemics — of crime, fashion, ideas. Gladwell's first book is still his sharpest: connectors, mavens, salesmen, and the strange physics of what catches on."
+        },
+        quote: {
+            text: "Look at the world around you. It may seem like an immovable, implacable place. It is not. With the slightest push — in just the right place — it can be tipped.",
+            source: "Malcolm Gladwell, The Tipping Point"
+        }
     }
 ];
 
