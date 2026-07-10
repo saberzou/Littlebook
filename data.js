@@ -2247,6 +2247,7 @@ const dailyData = [
     },
     {
         date: "2026-07-11",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-11.mp3",
         book: {
             isbn: "9780316346627",
             title: "The Tipping Point",
