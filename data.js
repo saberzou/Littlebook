@@ -2259,6 +2259,20 @@ const dailyData = [
             text: "Look at the world around you. It may seem like an immovable, implacable place. It is not. With the slightest push — in just the right place — it can be tipped.",
             source: "Malcolm Gladwell, The Tipping Point"
         }
+    },
+    {
+        date: "2026-07-12",
+        book: {
+            isbn: "9781585429202",
+            title: "Drawing on the Right Side of the Brain",
+            author: "Betty Edwards",
+            category: "Art",
+            desc: "The book that convinced a generation that drawing isn't talent but seeing. Edwards teaches you to silence the labeling left brain so the eye can finally do its job."
+        },
+        quote: {
+            text: "Drawing is not really very difficult. Seeing is the problem.",
+            source: "Betty Edwards, Drawing on the Right Side of the Brain"
+        }
     }
 ];
 
