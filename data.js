@@ -2262,6 +2262,7 @@ const dailyData = [
     },
     {
         date: "2026-07-12",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-12.mp3",
         book: {
             isbn: "9781585429202",
             title: "Drawing on the Right Side of the Brain",
