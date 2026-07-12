@@ -2274,6 +2274,20 @@ const dailyData = [
             text: "Drawing is not really very difficult. Seeing is the problem.",
             source: "Betty Edwards, Drawing on the Right Side of the Brain"
         }
+    },
+    {
+        date: "2026-07-13",
+        book: {
+            isbn: "9780061632655",
+            title: "The Phenomenon of Man",
+            author: "Pierre Teilhard de Chardin",
+            category: "Philosophy",
+            desc: "A Jesuit paleontologist sketches a universe that wants to become conscious of itself. Strange, lyrical, sometimes wild — and the source of half the noosphere ideas you've ever heard."
+        },
+        quote: {
+            text: "We are not human beings having a spiritual experience. We are spiritual beings having a human experience.",
+            source: "Pierre Teilhard de Chardin, The Phenomenon of Man"
+        }
     }
 ];
 
