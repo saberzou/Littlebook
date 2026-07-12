@@ -2277,6 +2277,7 @@ const dailyData = [
     },
     {
         date: "2026-07-13",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-13.mp3",
         book: {
             isbn: "9780061632655",
             title: "The Phenomenon of Man",
