@@ -2292,6 +2292,7 @@ const dailyData = [
     },
     {
         date: "2026-07-14",
+        audio: "https://qxtynvj1amcfkfqv.public.blob.vercel-storage.com/littlebook/audio/2026-07-14.mp3",
         book: {
             isbn: "9780679778318",
             title: "The Inner Game of Tennis",
