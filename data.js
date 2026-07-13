@@ -2289,6 +2289,20 @@ const dailyData = [
             text: "We are not human beings having a spiritual experience. We are spiritual beings having a human experience.",
             source: "Pierre Teilhard de Chardin, The Phenomenon of Man"
         }
+    },
+    {
+        date: "2026-07-14",
+        book: {
+            isbn: "9780679778318",
+            title: "The Inner Game of Tennis",
+            author: "W. Timothy Gallwey",
+            category: "Performance",
+            desc: "A tennis coach quietly invented modern performance psychology in 1974. Gallwey's two-self model — the judging Self 1 and the doing Self 2 — has been borrowed by athletes, musicians, surgeons, and CEOs ever since."
+        },
+        quote: {
+            text: "Every game is composed of two parts, an outer game and an inner game.",
+            source: "W. Timothy Gallwey, The Inner Game of Tennis"
+        }
     }
 ];
 
