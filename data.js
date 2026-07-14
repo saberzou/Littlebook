@@ -2304,6 +2304,20 @@ const dailyData = [
             text: "Every game is composed of two parts, an outer game and an inner game.",
             source: "W. Timothy Gallwey, The Inner Game of Tennis"
         }
+    },
+    {
+        date: "2026-07-15",
+        book: {
+            isbn: "9780393310399",
+            title: "Letters to a Young Poet",
+            author: "Rainer Maria Rilke",
+            category: "Writing",
+            desc: "Ten letters from Rilke to a stranger asking whether to give up writing. The answer, given slowly across years, is one of the gentlest and most demanding things ever said about a creative life."
+        },
+        quote: {
+            text: "Be patient toward all that is unsolved in your heart and try to love the questions themselves.",
+            source: "Rainer Maria Rilke, Letters to a Young Poet"
+        }
     }
 ];
 
