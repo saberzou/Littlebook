@@ -2318,6 +2318,20 @@ const dailyData = [
             text: "Be patient toward all that is unsolved in your heart and try to love the questions themselves.",
             source: "Rainer Maria Rilke, Letters to a Young Poet"
         }
+    },
+    {
+        date: "2026-07-16",
+        book: {
+            isbn: "9780679741800",
+            title: "The Image",
+            author: "Daniel J. Boorstin",
+            category: "Media Theory",
+            desc: "Boorstin coined 'pseudo-event' in 1961 to describe news that exists only because someone planned a press conference. Six decades later, the whole feed is one."
+        },
+        quote: {
+            text: "We risk being the first people in history to have been able to make their illusions so vivid, so persuasive, so 'realistic' that they can live in them.",
+            source: "Daniel J. Boorstin, The Image"
+        }
     }
 ];
 
