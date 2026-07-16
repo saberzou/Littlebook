@@ -2332,6 +2332,20 @@ const dailyData = [
             text: "We risk being the first people in history to have been able to make their illusions so vivid, so persuasive, so 'realistic' that they can live in them.",
             source: "Daniel J. Boorstin, The Image"
         }
+    },
+    {
+        date: "2026-07-17",
+        book: {
+            isbn: "9780062303431",
+            title: "Hidden in Plain Sight",
+            author: "Jan Chipchase",
+            category: "Design Research",
+            desc: "A field researcher who has interviewed people in 90 countries shows how to actually see what's in front of you — the unspoken habits, the worn-out spots, the workarounds that hint at unmet needs."
+        },
+        quote: {
+            text: "The decisions that consumers make are not always rational, but they are always reasonable.",
+            source: "Jan Chipchase, Hidden in Plain Sight"
+        }
     }
 ];
 
