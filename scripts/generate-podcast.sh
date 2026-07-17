@@ -54,7 +54,38 @@ echo "📚 Generating podcast for: $TITLE by $AUTHOR ($TOMORROW)"
 
 # Create NotebookLM notebook
 _T=$(_t)
-NB_ID=$(notebooklm create "$TITLE - $AUTHOR" --json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).notebook.id")
+set +e
+CREATE_JSON=$(notebooklm create "$TITLE - $AUTHOR" --json 2>&1)
+CREATE_STATUS=$?
+set -e
+if (( CREATE_STATUS != 0 )); then
+  printf '%s' "$CREATE_JSON" | node -e "
+    const fs = require('fs');
+    const raw = fs.readFileSync(0, 'utf8');
+    try {
+      const res = JSON.parse(raw);
+      console.error(res.message || raw);
+    } catch {
+      console.error(raw);
+    }
+  " >&2
+  exit "$CREATE_STATUS"
+fi
+NB_ID=$(printf '%s' "$CREATE_JSON" | node -e "
+  const fs = require('fs');
+  const res = JSON.parse(fs.readFileSync(0, 'utf8'));
+  if (res.error) {
+    console.error(res.message || 'NotebookLM create failed');
+    process.exit(1);
+  }
+  const id = res.notebook?.id || res.id;
+  if (!id) {
+    console.error('NotebookLM create returned no notebook id');
+    console.error(JSON.stringify(res, null, 2));
+    process.exit(1);
+  }
+  process.stdout.write(id);
+")
 _log "notebooklm create: $(( $(_t) - _T ))s | NB_ID=$NB_ID"
 echo "📓 Created notebook: $NB_ID"
 notebooklm use "$NB_ID" >/dev/null 2>&1
