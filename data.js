@@ -2346,6 +2346,20 @@ const dailyData = [
             text: "The decisions that consumers make are not always rational, but they are always reasonable.",
             source: "Jan Chipchase, Hidden in Plain Sight"
         }
+    },
+    {
+        date: "2026-07-18",
+        book: {
+            isbn: "9780534001230",
+            title: "Experiences in Visual Thinking",
+            author: "Robert H. McKim",
+            category: "Visual Thinking",
+            desc: "The 1972 book that quietly taught Stanford's d.school how to think with the hand. McKim treats sketching, imagining, and seeing as one continuous loop — a way of thinking, not a way of decorating thought."
+        },
+        quote: {
+            text: "Visual thinking pervades all human activity, from the abstract and theoretical to the down-to-earth and everyday.",
+            source: "Robert H. McKim, Experiences in Visual Thinking"
+        }
     }
 ];
 
