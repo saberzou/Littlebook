@@ -2360,6 +2360,20 @@ const dailyData = [
             text: "Visual thinking pervades all human activity, from the abstract and theoretical to the down-to-earth and everyday.",
             source: "Robert H. McKim, Experiences in Visual Thinking"
         }
+    },
+    {
+        date: "2026-07-19",
+        book: {
+            isbn: "9780306821486",
+            title: "Genius of Place: The Life of Frederick Law Olmsted",
+            author: "Justin Martin",
+            category: "Biography",
+            desc: "Before he designed Central Park, Olmsted was a failed farmer, a war correspondent, and a journalist documenting slavery. A biography of the man who invented landscape architecture as a moral practice."
+        },
+        quote: {
+            text: "The enjoyment of scenery employs the mind without fatigue and yet exercises it.",
+            source: "Frederick Law Olmsted, quoted in Genius of Place"
+        }
     }
 ];
 
