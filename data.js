@@ -2374,6 +2374,20 @@ const dailyData = [
             text: "The enjoyment of scenery employs the mind without fatigue and yet exercises it.",
             source: "Frederick Law Olmsted, quoted in Genius of Place"
         }
+    },
+    {
+        date: "2026-07-20",
+        book: {
+            isbn: "9780593328972",
+            title: "The Practice: Shipping Creative Work",
+            author: "Seth Godin",
+            category: "Creativity",
+            desc: "Godin's quiet manifesto against waiting for inspiration. The practice is the work; the work is the practice. Shipping is not a reward for talent — it's the only thing that builds it."
+        },
+        quote: {
+            text: "Trust yourself enough to do the work. The rest will follow.",
+            source: "Seth Godin, The Practice"
+        }
     }
 ];
 
