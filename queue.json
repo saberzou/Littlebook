@@ -97,5 +97,225 @@
       "text": "The right hemisphere knows; the left hemisphere knows about.",
       "source": "Iain McGilchrist, The Master and His Emissary"
     }
+  },
+  {
+    "title": "The Elements of Style",
+    "author": "William Strunk Jr. & E.B. White",
+    "isbn": "9780205309023",
+    "category": "Writing",
+    "desc": "The slim classic on clear prose. Rules kept short so writers can remember them, and violate them well.",
+    "quote": {
+      "text": "Vigorous writing is concise. A sentence should contain no unnecessary words, a paragraph no unnecessary sentences.",
+      "source": "William Strunk Jr., The Elements of Style"
+    }
+  },
+  {
+    "title": "The Design of Design",
+    "author": "Frederick P. Brooks Jr.",
+    "isbn": "9780201362985",
+    "category": "Design",
+    "desc": "Brooks reflects on decades of designing hardware, software, houses, and books, mining a general theory of the design process.",
+    "quote": {
+      "text": "The hardest single part of building a system is deciding precisely what to build.",
+      "source": "Frederick P. Brooks Jr., The Design of Design"
+    }
+  },
+  {
+    "title": "Notes on the Death of Culture",
+    "author": "Mario Vargas Llosa",
+    "isbn": "9780374223885",
+    "category": "Culture",
+    "desc": "A Nobel laureate's polemic against the flattening of high culture into spectacle, entertainment, and noise.",
+    "quote": {
+      "text": "Culture, in the meaning the word traditionally had, is now on the point of disappearing.",
+      "source": "Mario Vargas Llosa, Notes on the Death of Culture"
+    }
+  },
+  {
+    "title": "The Craftsman",
+    "author": "Richard Sennett",
+    "isbn": "9780300151190",
+    "category": "Culture",
+    "desc": "A defense of skill, patience, and the deep satisfaction of making things well, from ancient potters to open-source coders.",
+    "quote": {
+      "text": "Making is thinking.",
+      "source": "Richard Sennett, The Craftsman"
+    }
+  },
+  {
+    "title": "The Poetics of Reverie",
+    "author": "Gaston Bachelard",
+    "isbn": "9780807064610",
+    "category": "Philosophy",
+    "desc": "Bachelard's meditation on daydream as a mode of knowing — where the imagination shapes memory, language, and the self.",
+    "quote": {
+      "text": "In its countless alveoli space contains compressed time. That is what space is for.",
+      "source": "Gaston Bachelard, The Poetics of Reverie"
+    }
+  },
+  {
+    "title": "The Ten Books on Architecture",
+    "author": "Vitruvius",
+    "isbn": "9780486206455",
+    "category": "Architecture",
+    "desc": "The oldest surviving treatise on architecture, prescribing that buildings serve firmitas, utilitas, and venustas — solid, useful, beautiful.",
+    "quote": {
+      "text": "Well building hath three conditions: firmness, commodity, and delight.",
+      "source": "Vitruvius, The Ten Books on Architecture"
+    }
+  },
+  {
+    "title": "Iconoclasm in Aesthetics",
+    "author": "John Armstrong",
+    "isbn": "9780521812092",
+    "category": "Philosophy",
+    "desc": "A quiet essay on why images move us, and how philosophy has spent centuries flinching from what art actually does.",
+    "quote": {
+      "text": "The task of aesthetics is to describe, without embarrassment, the pleasures art gives.",
+      "source": "John Armstrong, Iconoclasm in Aesthetics"
+    }
+  },
+  {
+    "title": "The Grammar of Ornament",
+    "author": "Owen Jones",
+    "isbn": "9780789208460",
+    "category": "Design",
+    "desc": "A 19th-century atlas of world ornament — 100 plates arguing that beauty follows universal principles, not fashion.",
+    "quote": {
+      "text": "Ornament must be secondary to the thing decorated.",
+      "source": "Owen Jones, The Grammar of Ornament"
+    }
+  },
+  {
+    "title": "Metaphors We Live By",
+    "author": "George Lakoff & Mark Johnson",
+    "isbn": "9780226468013",
+    "category": "Language",
+    "desc": "The book that showed metaphor isn't decoration — it's the scaffolding of thought itself. Argument is war. Time is money. And so on.",
+    "quote": {
+      "text": "The essence of metaphor is understanding and experiencing one kind of thing in terms of another.",
+      "source": "George Lakoff & Mark Johnson, Metaphors We Live By"
+    }
+  },
+  {
+    "title": "The Old Ways",
+    "author": "Robert Macfarlane",
+    "isbn": "9780241967874",
+    "category": "Nature Writing",
+    "desc": "Macfarlane walks ancient paths — chalk trails, sea roads, pilgrim tracks — and finds that landscape and language are made of each other.",
+    "quote": {
+      "text": "Paths are the habits of a landscape.",
+      "source": "Robert Macfarlane, The Old Ways"
+    }
+  },
+  {
+    "title": "The Society of the Text",
+    "author": "Jay David Bolter",
+    "isbn": "9780805803631",
+    "category": "Media Theory",
+    "desc": "An early, prescient reading of hypertext and screens as the new writing space, redefining what a book, a page, and an author can be.",
+    "quote": {
+      "text": "The computer is restructuring our current economy of writing.",
+      "source": "Jay David Bolter, Writing Space"
+    }
+  },
+  {
+    "title": "Six Memos for the Next Millennium",
+    "author": "Italo Calvino",
+    "isbn": "9780679742371",
+    "category": "Writing",
+    "desc": "Calvino's unfinished Harvard lectures on the qualities literature must carry into the future: lightness, quickness, exactitude, visibility, multiplicity.",
+    "quote": {
+      "text": "Lightness for me goes with precision and determination, not with vagueness and the haphazard.",
+      "source": "Italo Calvino, Six Memos for the Next Millennium"
+    }
+  },
+  {
+    "title": "The Aesthetic Brain",
+    "author": "Anjan Chatterjee",
+    "isbn": "9780199811809",
+    "category": "Science",
+    "desc": "A neurologist's field guide to why humans find things beautiful — landscapes, faces, art — and what evolution had to do with it.",
+    "quote": {
+      "text": "Beauty is not in the eye of the beholder; it is in the brain of the beholder.",
+      "source": "Anjan Chatterjee, The Aesthetic Brain"
+    }
+  },
+  {
+    "title": "Nonzero: The Logic of Human Destiny",
+    "author": "Robert Wright",
+    "isbn": "9780679758945",
+    "category": "History",
+    "desc": "Wright argues history has a direction: rising complexity and cooperation, driven by non-zero-sum games from hunter-gatherers to the internet.",
+    "quote": {
+      "text": "History is not just one damned thing after another.",
+      "source": "Robert Wright, Nonzero"
+    }
+  },
+  {
+    "title": "Provocations",
+    "author": "Camille Paglia",
+    "isbn": "9781101972618",
+    "category": "Culture",
+    "desc": "Paglia at full voltage — thirty years of essays on art, sex, education, and why the academy stopped being interesting.",
+    "quote": {
+      "text": "There is no female Mozart because there is no female Jack the Ripper.",
+      "source": "Camille Paglia, Provocations"
+    }
+  },
+  {
+    "title": "How to Write a Sentence",
+    "author": "Stanley Fish",
+    "isbn": "9780061840548",
+    "category": "Writing",
+    "desc": "A short, joyful clinic on sentences as tiny machines — how they think, how they land, and how to build one that lasts.",
+    "quote": {
+      "text": "Sentences are the vehicles by which everything gets done.",
+      "source": "Stanley Fish, How to Write a Sentence"
+    }
+  },
+  {
+    "title": "The World Beyond Your Head",
+    "author": "Matthew B. Crawford",
+    "isbn": "9780374292980",
+    "category": "Philosophy",
+    "desc": "Crawford argues attention is the substrate of a free life — and that a culture engineered to hijack it is a political problem, not just a personal one.",
+    "quote": {
+      "text": "Attention is a resource; a person has only so much of it.",
+      "source": "Matthew B. Crawford, The World Beyond Your Head"
+    }
+  },
+  {
+    "title": "The Ecological Approach to Visual Perception",
+    "author": "James J. Gibson",
+    "isbn": "9781848725782",
+    "category": "Design",
+    "desc": "Gibson's radical reframing: we don't see images, we perceive affordances. The book that gave designers 'affordance' and rewrote HCI.",
+    "quote": {
+      "text": "The affordances of the environment are what it offers the animal, what it provides or furnishes.",
+      "source": "James J. Gibson, The Ecological Approach to Visual Perception"
+    }
+  },
+  {
+    "title": "Junkspace / Running Room",
+    "author": "Rem Koolhaas & Hal Foster",
+    "isbn": "9781907903342",
+    "category": "Architecture",
+    "desc": "Koolhaas's ferocious essay on the global generic — malls, airports, lobbies — paired with Foster's reply. A short, savage diagnosis of the built present.",
+    "quote": {
+      "text": "Junkspace is what remains after modernization has run its course.",
+      "source": "Rem Koolhaas, Junkspace"
+    }
+  },
+  {
+    "title": "The Rings of Saturn",
+    "author": "W. G. Sebald",
+    "isbn": "9780811214131",
+    "category": "Literature",
+    "desc": "A walking book that drifts through Suffolk, herring, silk, empire, and ruin — inventing a form somewhere between memoir, essay, and elegy.",
+    "quote": {
+      "text": "We take almost all the decisive steps in our lives as a result of slight inner adjustments of which we are barely conscious.",
+      "source": "W. G. Sebald, The Rings of Saturn"
+    }
   }
 ]
