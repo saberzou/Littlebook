@@ -2388,6 +2388,20 @@ const dailyData = [
             text: "Trust yourself enough to do the work. The rest will follow.",
             source: "Seth Godin, The Practice"
         }
+    },
+    {
+        date: "2026-07-21",
+        book: {
+            isbn: "9780134757599",
+            title: "Refactoring: Improving the Design of Existing Code",
+            author: "Martin Fowler",
+            category: "Technology",
+            desc: "Fowler's classic on how to clean up code without breaking it. Reads like a craftsman's manual: small, named moves you can apply with confidence — and a philosophy that good code is rewritten, not written."
+        },
+        quote: {
+            text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+            source: "Martin Fowler, Refactoring"
+        }
     }
 ];
 

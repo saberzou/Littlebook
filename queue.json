@@ -1,16 +1,5 @@
 [
   {
-    "title": "Refactoring: Improving the Design of Existing Code",
-    "author": "Martin Fowler",
-    "isbn": "9780134757599",
-    "category": "Technology",
-    "desc": "Fowler's classic on how to clean up code without breaking it. Reads like a craftsman's manual: small, named moves you can apply with confidence — and a philosophy that good code is rewritten, not written.",
-    "quote": {
-      "text": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      "source": "Martin Fowler, Refactoring"
-    }
-  },
-  {
     "title": "The Glass Bead Game",
     "author": "Hermann Hesse",
     "isbn": "9780312278496",
