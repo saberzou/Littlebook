@@ -2402,6 +2402,20 @@ const dailyData = [
             text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
             source: "Martin Fowler, Refactoring"
         }
+    },
+    {
+        date: "2026-07-22",
+        book: {
+            isbn: "9780312278496",
+            title: "The Glass Bead Game",
+            author: "Hermann Hesse",
+            category: "Literary Fiction",
+            desc: "Hesse's last novel imagines a monastic order whose highest art is a game that links music, mathematics, history, and philosophy into a single perfect move. A book about the dignity and danger of pure intellectual life."
+        },
+        quote: {
+            text: "We must be able to meet every demand, fulfill any task that life sets us.",
+            source: "Hermann Hesse, The Glass Bead Game"
+        }
     }
 ];
 
