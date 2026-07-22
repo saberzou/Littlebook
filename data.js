@@ -2416,6 +2416,20 @@ const dailyData = [
             text: "We must be able to meet every demand, fulfill any task that life sets us.",
             source: "Hermann Hesse, The Glass Bead Game"
         }
+    },
+    {
+        date: "2026-07-23",
+        book: {
+            isbn: "9783037787298",
+            title: "Hara Kenya: Designing Design",
+            author: "Kenya Hara",
+            category: "Design",
+            desc: "Hara's later collection of essays on emptiness, exactingness, and Japanese design sensibility — the longer, looser companion to his Muji work. Beautifully made, slow to read, hard to forget."
+        },
+        quote: {
+            text: "Emptiness is not nothing. It is the potential for everything.",
+            source: "Kenya Hara, Hara Kenya"
+        }
     }
 ];
 
