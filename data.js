@@ -2430,6 +2430,20 @@ const dailyData = [
             text: "Emptiness is not nothing. It is the potential for everything.",
             source: "Kenya Hara, Hara Kenya"
         }
+    },
+    {
+        date: "2026-07-24",
+        book: {
+            isbn: "9781501144318",
+            title: "Why We Sleep",
+            author: "Matthew Walker",
+            category: "Science",
+            desc: "A neuroscientist's case that sleep isn't downtime — it's when memory consolidates, the immune system rearms, and the brain takes out the trash. Will quietly change how you treat your nights."
+        },
+        quote: {
+            text: "The shorter your sleep, the shorter your life.",
+            source: "Matthew Walker, Why We Sleep"
+        }
     }
 ];
 

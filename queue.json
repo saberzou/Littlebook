@@ -1,16 +1,5 @@
 [
   {
-    "title": "Why We Sleep",
-    "author": "Matthew Walker",
-    "isbn": "9781501144318",
-    "category": "Science",
-    "desc": "A neuroscientist's case that sleep isn't downtime — it's when memory consolidates, the immune system rearms, and the brain takes out the trash. Will quietly change how you treat your nights.",
-    "quote": {
-      "text": "The shorter your sleep, the shorter your life.",
-      "source": "Matthew Walker, Why We Sleep"
-    }
-  },
-  {
     "title": "A Short History of Nearly Everything",
     "author": "Bill Bryson",
     "isbn": "9780767908184",
