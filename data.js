@@ -2444,6 +2444,20 @@ const dailyData = [
             text: "The shorter your sleep, the shorter your life.",
             source: "Matthew Walker, Why We Sleep"
         }
+    },
+    {
+        date: "2026-07-25",
+        book: {
+            isbn: "9780767908184",
+            title: "A Short History of Nearly Everything",
+            author: "Bill Bryson",
+            category: "Science",
+            desc: "Bryson's grand tour of how scientists figured out what the universe, the planet, and we are made of — and how often they were wrong on the way. Funny, humble, and improbably gripping."
+        },
+        quote: {
+            text: "We are all, to atoms, just fleeting arrangements.",
+            source: "Bill Bryson, A Short History of Nearly Everything"
+        }
     }
 ];
 
