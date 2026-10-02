@@ -3,21 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Littlebook — Daily Book, Wallpaper & Quote</title>
-    <meta name="description" content="A curated daily book recommendation with a beautiful wallpaper and an inspiring quote.">
-    <link rel="stylesheet" href="style.css?v=6">
+    <title>Littlebook — The Archive</title>
+    <meta name="description" content="An archive of daily books and quotes. Revisit every entry by date.">
+    <link rel="stylesheet" href="style.css?v=7">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
 
-        <!-- Horizontal swipeable calendar strip -->
-        <div class="calendar-strip" id="calendarStrip">
-            <div class="calendar-track" id="calendarTrack"></div>
-        </div>
-
+        <header class="archive-header">
+            <a class="wordmark" href="index.html">Littlebook<span>The archive</span></a>
+            <a href="weekly.html" class="archive-link">All entries</a>
+        </header>
+        <div class="archive-layout">
+        <aside class="archive-sidebar" aria-label="Archive calendar">
+            <p class="archive-intro">Good books, kept close.</p>
+            <p class="archive-summary" id="archiveSummary"></p>
+            <div class="month-controls">
+                <button type="button" id="prevMonth" aria-label="Previous month">‹</button>
+                <label class="sr-only" for="monthSelect">Browse month</label>
+                <select id="monthSelect"></select>
+                <button type="button" id="nextMonth" aria-label="Next month">›</button>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+            <div class="archive-calendar" id="calendarTrack"></div>
+            <p class="calendar-key">Marked days have an entry.</p>
+            <p class="archive-note">A collection from February–July 2026.<br>No new entries. Always here to revisit.</p>
+        </aside>
         <!-- Main content area -->
-        <div class="content-area" id="contentArea">
+        <main class="content-area" id="contentArea">
+            <nav class="entry-navigation" aria-label="Browse entries">
+                <button type="button" id="prevEntry" aria-label="Previous entry">‹</button>
+                <time id="entryDate" aria-live="polite"></time>
+                <button type="button" id="nextEntry" aria-label="Next entry">›</button>
+            </nav>
 
             <!-- Desktop book carousel -->
             <div class="book-carousel" id="bookCarousel">
@@ -25,7 +44,7 @@
             </div>
 
             <!-- Book spread (cover + unfold pages) -->
-            <div class="book-spread" id="bookSpread">
+            <div class="book-spread" id="bookSpread" role="button" tabindex="0" aria-label="Open book to read its quote" aria-expanded="false">
                 <div class="book-3d">
                     <!-- Inner pages (visible when open) -->
                     <div class="book-pages" id="bookPages">
@@ -58,6 +77,8 @@
                 <p class="book-desc" id="bookDescBelow">Description</p>
             </div>
 
+            <p class="book-hint" id="bookHint">Open the book for a quote</p>
+
             <!-- Audio player pill -->
             <div class="audio-player" id="audioPlayer" style="display:none">
                 <button class="audio-btn" id="audioBtn" aria-label="Play podcast">
@@ -69,22 +90,11 @@
                 <audio id="audioEl" preload="metadata"></audio>
             </div>
 
-            <!-- Hourglass overlay (shown when tomorrow is selected) -->
-            <div class="hourglass-overlay" id="hourglassOverlay">
-                <div class="hourglass-container">
-                    <canvas id="gravityClockCanvas"></canvas>
-                    <div class="hourglass-label">Tomorrow's pick arrives in</div>
-                    <div class="hourglass-countdown" id="hourglassCountdown">--:--:--</div>
-                    <div class="hourglass-hint">Come back tomorrow for a new book & quote</div>
-                </div>
-            </div>
-
+        </main>
         </div>
-
     </div>
 
-    <script src="data.js?v=6"></script>
-    <script src="clock.js?v=6"></script>
-    <script src="app.js?v=6"></script>
+    <script src="data.js?v=7"></script>
+    <script src="app.js?v=7"></script>
 </body>
 </html>
