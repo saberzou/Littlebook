@@ -886,3 +886,14 @@ body:has(.archive-dialog[open]) { overflow: hidden; }
     .book-spread.long-quote .quote-text { font-size: 14px; line-height: 1.4; }
     .book-spread.long-quote .book-page-right { padding-top: 22px; padding-bottom: 12px; }
 }
+
+/* React Bits Pattern Waves: muted ink on Littlebook's paper palette. */
+body::before { background: none; }
+body::after { background: radial-gradient(ellipse at 65% 38%, #f4f1e8 0%, #e8ede9 65%, #dfe7e2 100%); opacity: 1; }
+[data-theme="dark"] body::after { background: radial-gradient(ellipse at 65% 38%, #26251f 0%, #1a1815 75%); opacity: 1; }
+#patternWaves { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+body::after { z-index: -2; }
+#patternWaves canvas { display: block; width: 100%; height: 100%; }
+@media (max-width: 800px) { #patternWaves { opacity: .7; } }
+#patternWaves { opacity: .45; }
+@media (max-width: 800px) { #patternWaves { opacity: .4; } }
