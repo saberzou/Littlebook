@@ -7,6 +7,18 @@ const archiveDates = DailyData.getAllDates().slice().sort();
 const archiveMonths = [...new Set(archiveDates.map(date => date.slice(0, 7)))];
 const dateLabel = date => new Date(date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
+let calendarCloseTimer;
+function closeCalendar() {
+    const dialog = document.getElementById('archiveDialog');
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        dialog.close();
+        return;
+    }
+    dialog.classList.add('is-closing');
+    calendarCloseTimer = setTimeout(() => dialog.close(), 220);
+}
+
 function init() {
     let saved;
     try { saved = localStorage.getItem('littlebook-theme'); } catch {}
@@ -23,11 +35,20 @@ function init() {
     }
     placeCalendar();
     mobile.addEventListener('change', placeCalendar);
-    document.getElementById('browseArchive').addEventListener('click', () => dialog.showModal());
-    document.getElementById('closeArchive').addEventListener('click', () => dialog.close());
+    document.getElementById('browseArchive').addEventListener('click', () => {
+        clearTimeout(calendarCloseTimer);
+        dialog.classList.remove('is-closing');
+        dialog.showModal();
+    });
+    dialog.addEventListener('close', () => {
+        clearTimeout(calendarCloseTimer);
+        dialog.classList.remove('is-closing');
+    });
+    dialog.addEventListener('cancel', event => { event.preventDefault(); closeCalendar(); });
+    document.getElementById('closeArchive').addEventListener('click', closeCalendar);
     dialog.addEventListener('click', event => { if (event.target === dialog) {
         const rect = dialog.getBoundingClientRect();
-        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeCalendar();
     }});
     const select = document.getElementById('monthSelect');
     archiveMonths.forEach(month => {
@@ -105,7 +126,7 @@ function buildCalendar() {
 function selectDate(date, pushHistory = true) {
     const resolved = DailyData.getByDate(date) ? date : archiveDates[archiveDates.length - 1];
     const dialog = document.getElementById('archiveDialog');
-    if (dialog.open) dialog.close();
+    if (dialog.open) closeCalendar();
     currentDate = resolved;
     currentData = DailyData.getByDate(resolved);
     archiveMonth = resolved.slice(0, 7);
