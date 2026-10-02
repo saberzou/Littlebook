@@ -39,6 +39,7 @@ function init() {
         clearTimeout(calendarCloseTimer);
         dialog.classList.remove('is-closing');
         dialog.showModal();
+        document.getElementById('calendarHeading').focus({ preventScroll: true });
     });
     dialog.addEventListener('close', () => {
         clearTimeout(calendarCloseTimer);

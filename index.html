@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Littlebook — The Archive</title>
     <meta name="description" content="An archive of daily books and quotes. Revisit every entry by date.">
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=12">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -87,7 +87,7 @@
                 <button class="audio-btn" id="audioBtn" aria-label="Play podcast">
                     <svg class="audio-icon play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                     <svg class="audio-icon pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                    <div class="audio-progress" id="audioProgress"></div>
+                    <div class="audio-track" aria-hidden="true"><div class="audio-progress" id="audioProgress"></div></div>
                     <span class="audio-time" id="audioTime">0:00</span>
                 </button>
                 <audio id="audioEl" preload="metadata"></audio>
@@ -98,12 +98,12 @@
     </div>
 
     <dialog id="archiveDialog" class="archive-dialog" aria-label="Browse the archive">
-        <div class="dialog-heading"><h2>Browse dates</h2><button type="button" id="closeArchive" aria-label="Close calendar">×</button></div>
+        <div class="dialog-heading"><h2 id="calendarHeading" tabindex="-1">Browse dates</h2><button type="button" id="closeArchive" aria-label="Close calendar">×</button></div>
         <div id="mobileCalendarHost"></div>
         <a href="weekly.html" class="archive-link">See all 171 entries</a>
     </dialog>
     <script src="data.js?v=9"></script>
-    <script src="app.js?v=11"></script>
+    <script src="app.js?v=12"></script>
     <script src="pattern-waves.js?v=1" defer></script>
 </body>
 </html>

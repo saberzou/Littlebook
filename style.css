@@ -910,3 +910,24 @@ body::after { z-index: -2; }
 @media (prefers-reduced-motion: reduce) {
     .archive-dialog[open], .archive-dialog[open]::backdrop { animation: none !important; }
 }
+
+/* Consistent calendar geometry, including narrow phone widths. */
+.archive-day, .archive-dialog .archive-day { width: 100%; max-width: 44px; height: auto; aspect-ratio: 1; justify-self: center; border-radius: 50%; }
+#calendarHeading { outline: none; }
+.dialog-heading button { border: 0; background: transparent; -webkit-tap-highlight-color: transparent; }
+.dialog-heading button:focus:not(:focus-visible) { outline: none; }
+
+/* Compact archive navigation; never allow intrinsic SVG sizing. */
+.weekly-container .pill-nav { display: flex; justify-content: center; gap: 28px; margin-top: 28px; }
+.weekly-container .nav-item { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: var(--text-secondary); text-decoration: none; }
+.weekly-container .nav-item.active { color: var(--text-primary); }
+.weekly-container .nav-icon { display: block; width: 20px; height: 20px; flex: 0 0 20px; }
+.weekly-container { animation: archive-page-arrive 350ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes archive-page-arrive { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .weekly-container { animation: none; } }
+
+/* Audio uses a thin, straight progress rail below its controls. */
+.audio-btn { border-radius: 0; background: transparent; box-shadow: none; overflow: visible; padding: 0 4px 8px; }
+.audio-btn:hover, [data-theme="dark"] .audio-btn { background: transparent; box-shadow: none; }
+.audio-track { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--border); pointer-events: none; }
+.audio-track .audio-progress { position: absolute; left: 0; top: 0; height: 2px; border-radius: 0; opacity: 1; background: var(--accent); }

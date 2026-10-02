@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Entries — Littlebook</title>
     <meta name="description" content="Every book and quote in the Littlebook archive.">
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=12">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="weekly-body">
@@ -69,8 +69,9 @@
             const container = document.getElementById('weeklyList');
             const today = new Date().toISOString().split('T')[0];
 
-            for (let i = 0; i < DailyData.data.length; i++) {
-                const data = DailyData.data[i];
+            const entries = [...DailyData.data].sort((a, b) => b.date.localeCompare(a.date));
+            for (let i = 0; i < entries.length; i++) {
+                const data = entries[i];
                 const isToday = data.date === today;
                 const placeholderSvg = 'data:image/svg+xml,' + encodeURIComponent(
                     '<svg xmlns="http://www.w3.org/2000/svg" width="72" height="100" fill="%23F5F0EB">' +
