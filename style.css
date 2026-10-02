@@ -816,3 +816,73 @@ button:focus-visible, a:focus-visible, select:focus-visible, [role="button"]:foc
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Book-first reader, with a rigid two-sided cover hinged at the spine. */
+.browse-button { display: none; }
+.archive-dialog { color: var(--text-primary); background: var(--bg); border: 1px solid var(--border); border-radius: 24px 24px 0 0; width: 100%; max-width: 480px; max-height: 90svh; margin: auto auto 0; padding: 20px 24px max(24px, env(safe-area-inset-bottom)); overflow-y: auto; box-shadow: 0 -12px 60px #0002; }
+.archive-dialog::backdrop { background: #171b1866; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.dialog-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.dialog-heading h2 { font: 24px Georgia, serif; }
+.dialog-heading button { width: 44px; height: 44px; font-size: 28px; color: inherit; background: transparent; border: 1px solid var(--border); border-radius: 50%; }
+.archive-dialog > .archive-link { display: inline-block; margin-top: 20px; }
+body:has(.archive-dialog[open]) { overflow: hidden; }
+.book-spread, .book-spread.open { --page-width: 240px; width: calc(var(--page-width) * 2); height: 360px; min-height: 0; perspective: 1600px; margin: 0 auto 28px; transition: none; isolation: isolate; }
+.book-3d, .book-spread.open .book-3d { height: 100%; min-height: 0; transform: translateX(-25%); transform-style: preserve-3d; transition: transform 800ms cubic-bezier(.2,.7,.2,1); }
+.book-spread.open .book-3d { transform: translateX(0); }
+.book-pages, .book-spread.open .book-pages { position: absolute; inset: 0 0 0 50%; min-height: 0; opacity: 1; display: block; overflow: visible; background: transparent; border-radius: 0 5px 5px 0; transition: none; transform: translateZ(-1px); box-shadow: 3px 2px 0 #ddd5c6, 5px 4px 0 #f1eadb, 10px 16px 28px #30271f20; }
+.book-page-right { height: 100%; width: 100%; background: var(--paper-color, #D4C9A1); border-radius: 0 5px 5px 0; padding: 36px 20px 24px; box-shadow: inset 12px 0 20px -15px #30271f88; overflow-y: auto; justify-content: safe center; }
+.book-cover, .book-spread:not(.open) .book-cover, .book-spread.open .book-cover { width: 50%; height: 100%; left: 50%; border-radius: 0; overflow: visible; background: transparent; transform-origin: left center; transform: rotateY(0deg); transform-style: preserve-3d; backface-visibility: visible; -webkit-backface-visibility: visible; box-shadow: none; transition: transform 800ms cubic-bezier(.2,.7,.2,1); }
+.book-spread:not(.open):hover .book-cover { transform: rotateY(0deg); box-shadow: none; }
+.book-spread.open .book-cover { transform: rotateY(-180deg); }
+.cover-front, .cover-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+.cover-front { transform: translateZ(1px); border-radius: 2px 5px 5px 2px; background: #171717; box-shadow: 8px 16px 30px #30271f25; }
+.cover-front::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, #0003 0, #fff2 3%, transparent 7%); border: 1px solid #ffffff18; border-radius: inherit; }
+.cover-back { transform: rotateY(180deg) translateZ(1px); border-radius: 5px 0 0 5px; background: var(--paper-color, #D4C9A1); box-shadow: inset -12px 0 20px -15px #30271f88; }
+.cover-back .book-page-left { height: 100%; padding: 24px 20px; border: 0; box-shadow: none; }
+.book-spread.open ~ .book-meta-below { display: flex; opacity: 1; pointer-events: auto; }
+.book-meta-below { animation: none; }
+.book-hint { order: 0; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .book-spread:not(.open):hover .book-cover { transform: rotateY(-8deg); }
+}
+@media (max-width: 800px) {
+    .archive-header { padding: 12px 20px; border-bottom: 0; }
+    .wordmark { font-size: 24px; }
+    .wordmark span { font-size: 9px; letter-spacing: 1.4px; margin-left: 8px; }
+    .desktop-archive-link { display: none; }
+    .browse-button { display: block; font: 14px 'Geist', sans-serif; color: var(--text-primary); background: var(--nav-bg); border: 1px solid var(--border); border-radius: 24px; padding: 10px 14px; min-height: 44px; }
+    .archive-layout { display: block; padding: 8px 20px max(24px, env(safe-area-inset-bottom)); }
+    .content-area { padding: 0; min-height: calc(100svh - 92px); }
+    .entry-navigation { margin: 0 auto 30px; max-width: 340px; }
+    .entry-navigation button { border-color: transparent; }
+    .book-spread, .book-spread.open { --page-width: min(42vw, 200px); width: calc(var(--page-width) * 2); height: clamp(250px, 66vw, 300px); min-height: 0; margin-bottom: 28px; }
+    .book-page-right { padding: 30px 14px 18px; }
+    .book-page-right .quote-text { font-size: 1.2rem; line-height: 1.4; }
+    .book-page-right .quote-source, .cover-back .book-author { font-size: 12px; line-height: 1.5; }
+    .cover-back .book-page-left { padding: 20px 14px; }
+    .cover-back .book-title { font-size: 1rem; }
+    .book-meta-below { max-width: 340px; }
+    .book-meta-below .book-title { font-size: 1.4rem; line-height: 1.3; }
+    .book-meta-below .book-desc { font-size: 14px; line-height: 1.6; }
+    .book-meta-below .tag { font-size: 10px; padding: 3px 10px; margin-bottom: 8px; }
+    .book-meta-below .book-author { font-size: 14px; }
+    .book-hint { margin-top: 14px; }
+    .archive-dialog .archive-sidebar { width: 100%; }
+    .archive-dialog .archive-day { height: 44px; }
+    .archive-dialog .archive-note { display: none; }
+}
+@media (max-width: 360px) { .wordmark span { display: none; } }
+@media (prefers-reduced-motion: reduce) { .book-3d, .book-cover { transition: none !important; } }
+/* Keep long quotes readable within the paper; overflow remains scrollable. */
+.book-page-right .quote-text { font-family: 'Caveat', Georgia, serif; flex-shrink: 0; }
+.book-page-right .quote-source { flex-shrink: 0; }
+@media (max-width: 800px) {
+    .book-page-right { padding: 26px 12px 16px; scrollbar-width: thin; }
+    .book-page-right .quote-text { font-size: 16px; line-height: 1.4; margin-bottom: 8px; }
+    .book-page-right .quote-source { font-size: 11px; line-height: 1.4; }
+    .book-spread.open .book-page-right::after { content: ''; display: block; min-height: 4px; }
+}
+@media (max-width: 800px) {
+    .book-spread.long-quote .quote-text { font-size: 14px; line-height: 1.4; }
+    .book-spread.long-quote .book-page-right { padding-top: 22px; padding-bottom: 12px; }
+}

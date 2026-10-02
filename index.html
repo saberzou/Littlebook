@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Littlebook — The Archive</title>
     <meta name="description" content="An archive of daily books and quotes. Revisit every entry by date.">
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,10 +13,11 @@
 
         <header class="archive-header">
             <a class="wordmark" href="index.html">Littlebook<span>The archive</span></a>
-            <a href="weekly.html" class="archive-link">All entries</a>
+            <button type="button" class="browse-button" id="browseArchive">Browse dates</button>
+            <a href="weekly.html" class="archive-link desktop-archive-link">All entries</a>
         </header>
         <div class="archive-layout">
-        <aside class="archive-sidebar" aria-label="Archive calendar">
+        <aside id="archiveSidebar" class="archive-sidebar" aria-label="Archive calendar">
             <p class="archive-intro">Good books, kept close.</p>
             <p class="archive-summary" id="archiveSummary"></p>
             <div class="month-controls">
@@ -48,10 +49,6 @@
                 <div class="book-3d">
                     <!-- Inner pages (visible when open) -->
                     <div class="book-pages" id="bookPages">
-                        <div class="book-page-left">
-                            <h1 class="book-title" id="bookTitle">Title</h1>
-                            <p class="book-author" id="bookAuthor">Author</p>
-                        </div>
                         <div class="book-page-right">
                             <div class="quote-decoration">
                                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +61,12 @@
                     </div>
                     <!-- The cover (flips open) -->
                     <div class="book-cover" id="bookCover3d">
-                        <img id="bookCover" src="" alt="Book cover">
+                        <div class="cover-front"><img id="bookCover" src="" alt="Book cover"></div>
+                        <div class="cover-back">                        <div class="book-page-left">
+                            <h1 class="book-title" id="bookTitle">Title</h1>
+                            <p class="book-author" id="bookAuthor">Author</p>
+                        </div>
+</div>
                     </div>
                 </div>
             </div>
@@ -94,7 +96,12 @@
         </div>
     </div>
 
-    <script src="data.js?v=7"></script>
-    <script src="app.js?v=7"></script>
+    <dialog id="archiveDialog" class="archive-dialog" aria-label="Browse the archive">
+        <div class="dialog-heading"><h2>Browse dates</h2><button type="button" id="closeArchive" aria-label="Close calendar">×</button></div>
+        <div id="mobileCalendarHost"></div>
+        <a href="weekly.html" class="archive-link">See all 171 entries</a>
+    </dialog>
+    <script src="data.js?v=8"></script>
+    <script src="app.js?v=8"></script>
 </body>
 </html>

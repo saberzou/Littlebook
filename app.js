@@ -13,6 +13,22 @@ function init() {
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
+    const dialog = document.getElementById('archiveDialog');
+    const sidebar = document.getElementById('archiveSidebar');
+    const mobile = window.matchMedia('(max-width: 800px)');
+    function placeCalendar() {
+        if (dialog.open) dialog.close();
+        if (mobile.matches) document.getElementById('mobileCalendarHost').appendChild(sidebar);
+        else document.querySelector('.archive-layout').prepend(sidebar);
+    }
+    placeCalendar();
+    mobile.addEventListener('change', placeCalendar);
+    document.getElementById('browseArchive').addEventListener('click', () => dialog.showModal());
+    document.getElementById('closeArchive').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) {
+        const rect = dialog.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+    }});
     const select = document.getElementById('monthSelect');
     archiveMonths.forEach(month => {
         const option = document.createElement('option');
@@ -38,8 +54,14 @@ function toggleBookSpread() {
     const spread = document.getElementById('bookSpread');
     const open = spread.classList.toggle('open');
     spread.setAttribute('aria-expanded', String(open));
+    document.getElementById('bookPages').setAttribute('aria-hidden', String(!open));
+    document.querySelector('.cover-back').setAttribute('aria-hidden', String(!open));
     spread.setAttribute('aria-label', open ? 'Close book' : 'Open book to read its quote');
     document.getElementById('bookHint').textContent = open ? 'Tap the book to close' : 'Open the book for a quote';
+    if (open) requestAnimationFrame(() => {
+        const page = document.querySelector('.book-page-right');
+        if (page.scrollHeight > page.clientHeight + 2) document.getElementById('bookHint').textContent = 'Scroll the quote to read more · Tap to close';
+    });
 }
 
 function moveMonth(direction) {
@@ -82,6 +104,8 @@ function buildCalendar() {
 
 function selectDate(date, pushHistory = true) {
     const resolved = DailyData.getByDate(date) ? date : archiveDates[archiveDates.length - 1];
+    const dialog = document.getElementById('archiveDialog');
+    if (dialog.open) dialog.close();
     currentDate = resolved;
     currentData = DailyData.getByDate(resolved);
     archiveMonth = resolved.slice(0, 7);
@@ -89,6 +113,8 @@ function selectDate(date, pushHistory = true) {
     const spread = document.getElementById('bookSpread');
     spread.classList.remove('open');
     spread.setAttribute('aria-expanded', 'false');
+    document.getElementById('bookPages').setAttribute('aria-hidden', 'true');
+    document.querySelector('.cover-back').setAttribute('aria-hidden', 'true');
     spread.setAttribute('aria-label', 'Open book to read its quote');
     document.getElementById('bookHint').textContent = 'Open the book for a quote';
     const dateEl = document.getElementById('entryDate');
@@ -162,6 +188,7 @@ function loadContent() {
 
     // Quote — inside spread right page
     document.getElementById('quoteText').textContent = quote.text;
+    document.getElementById('bookSpread').classList.toggle('long-quote', quote.text.length > 120);
     document.getElementById('quoteSource').textContent = `— ${quote.source}`;
 
     // Cover image
@@ -212,11 +239,12 @@ function loadContent() {
     const colorIdx = Math.abs(currentDate.split('-').reduce((a, b) => a + parseInt(b), 0)) % quoteColors.length;
     const bgColor = quoteColors[colorIdx];
     const bookPages = document.getElementById('bookPages');
-    bookPages.style.backgroundColor = bgColor;
+    document.getElementById('bookSpread').style.setProperty('--paper-color', bgColor);
+    bookPages.style.backgroundColor = 'transparent';
 
     // Dark mode: muted version
     if (document.documentElement.getAttribute('data-theme') === 'dark') {
-        bookPages.style.backgroundColor = blendWithDark(bgColor, 0.35);
+        document.getElementById('bookSpread').style.setProperty('--paper-color', blendWithDark(bgColor, 0.35));
     }
 }
 
