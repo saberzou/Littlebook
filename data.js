@@ -2564,7 +2564,10 @@ async function resolveCover(isbn, title, author) {
     }
     const isbn10 = isbn13to10(isbn);
     const ol = id => `https://covers.openlibrary.org/b/isbn/${id}-L.jpg?default=false`;
-    const candidates = [probeImage(ol(isbn), 12000)];
+    const candidates = [
+        probeImage(ol(isbn), 20000),
+        probeImage(`https://books.google.com/books/content?vid=ISBN${encodeURIComponent(isbn)}&printsec=frontcover&img=1&zoom=1&source=gbs_api`, 12000)
+    ];
     if (isbn10) candidates.push(probeImage(ol(isbn10), 12000));
     candidates.push(googleBooksCover(isbn).then(url => url ? probeImage(url, 8000) : null));
     if (title && author) candidates.push(olSearchCover(title, author).then(url => url ? probeImage(url, 8000) : null));
