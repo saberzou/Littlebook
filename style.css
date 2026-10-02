@@ -926,8 +926,5 @@ body::after { z-index: -2; }
 @keyframes archive-page-arrive { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .weekly-container { animation: none; } }
 
-/* Audio uses a thin, straight progress rail below its controls. */
-.audio-btn { border-radius: 0; background: transparent; box-shadow: none; overflow: visible; padding: 0 4px 8px; }
-.audio-btn:hover, [data-theme="dark"] .audio-btn { background: transparent; box-shadow: none; }
-.audio-track { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--border); pointer-events: none; }
-.audio-track .audio-progress { position: absolute; left: 0; top: 0; height: 2px; border-radius: 0; opacity: 1; background: var(--accent); }
+/* Preserve the pill player; only the progress fill has a flat leading edge. */
+.audio-progress { border-radius: 0; }
