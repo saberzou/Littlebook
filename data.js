@@ -2498,7 +2498,7 @@ function probeImage(url, timeout = 3000) {
 async function googleBooksCover(isbn) {
     try {
         const res = await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn.replace(/-/g, '')}&fields=items(volumeInfo/imageLinks)`
+            `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn.replace(/-/g, '')}&fields=items(volumeInfo/imageLinks)`, { signal: AbortSignal.timeout(6000) }
         );
         if (!res.ok) return null;
         const data = await res.json();
@@ -2519,7 +2519,7 @@ function olSearchCover(title, author) {
             olSearchActive++;
             try {
                 const params = new URLSearchParams({ title, author, fields: 'cover_i', limit: '1' });
-                const res = await fetch(`https://openlibrary.org/search.json?${params}`);
+                const res = await fetch(`https://openlibrary.org/search.json?${params}`, { signal: AbortSignal.timeout(6000) });
                 if (!res.ok) { resolve(null); return; }
                 const coverId = (await res.json()).docs?.[0]?.cover_i;
                 resolve(coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null);
@@ -2535,7 +2535,7 @@ function olSearchCover(title, author) {
 }
 
 // Persistent cover URL cache (survives page reloads)
-const COVER_CACHE_KEY = 'littlebook_covers';
+const COVER_CACHE_KEY = 'littlebook_covers_v2';
 const coverUrlCache = (() => {
     try {
         return JSON.parse(localStorage.getItem(COVER_CACHE_KEY)) || {};
@@ -2545,43 +2545,40 @@ function _saveCoverCache() {
     try { localStorage.setItem(COVER_CACHE_KEY, JSON.stringify(coverUrlCache)); } catch {}
 }
 
+// Share in-flight work across the reader and list. A failed lookup can be retried.
+const coverRequests = new Map();
 async function fetchBestCoverUrl(isbn, title, author) {
-    if (coverUrlCache[isbn]) return coverUrlCache[isbn];
+    const key = `${isbn}|${title}|${author}`;
+    if (coverRequests.has(key)) return coverRequests.get(key);
+    const request = resolveCover(isbn, title, author);
+    coverRequests.set(key, request);
+    try { return await request; } finally { coverRequests.delete(key); }
+}
 
+async function resolveCover(isbn, title, author) {
+    if (coverUrlCache[isbn]) {
+        const cached = await probeImage(coverUrlCache[isbn], 2500);
+        if (cached) return cached;
+        delete coverUrlCache[isbn];
+        _saveCoverCache();
+    }
     const isbn10 = isbn13to10(isbn);
-    const ol = (id, size) => `https://covers.openlibrary.org/b/isbn/${id}-${size}.jpg?default=false`;
-
-    const googlePromise = googleBooksCover(isbn);
-    const olSearchPromise = (title && author) ? olSearchCover(title, author) : Promise.resolve(null);
-
-    let url = await probeImage(ol(isbn, 'L'));
-    if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
-
-    if (isbn10) {
-        url = await probeImage(ol(isbn10, 'L'));
-        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
-    }
-
-    const olSearchUrl = await olSearchPromise;
-    if (olSearchUrl) {
-        url = await probeImage(olSearchUrl);
-        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
-    }
-
-    const googleUrl = await googlePromise;
-    if (googleUrl) {
-        url = await probeImage(googleUrl);
-        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
-    }
-
-    url = await probeImage(ol(isbn, 'M'));
-    if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
-    if (isbn10) {
-        url = await probeImage(ol(isbn10, 'M'));
-        if (url) { coverUrlCache[isbn] = url; _saveCoverCache(); return url; }
-    }
-
-    return null;
+    const ol = id => `https://covers.openlibrary.org/b/isbn/${id}-L.jpg?default=false`;
+    const candidates = [probeImage(ol(isbn), 12000)];
+    if (isbn10) candidates.push(probeImage(ol(isbn10), 12000));
+    candidates.push(googleBooksCover(isbn).then(url => url ? probeImage(url, 8000) : null));
+    if (title && author) candidates.push(olSearchCover(title, author).then(url => url ? probeImage(url, 8000) : null));
+    // First successful image wins; a failed source never hides a slower success.
+    try {
+        const url = await Promise.any(candidates.map(async candidate => {
+            const url = await candidate;
+            if (!url) throw new Error('Cover unavailable');
+            return url;
+        }));
+        coverUrlCache[isbn] = url;
+        _saveCoverCache();
+        return url;
+    } catch { return null; }
 }
 
 // =============================================

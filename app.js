@@ -198,39 +198,22 @@ function loadContent() {
     // Hide old cover immediately, show shimmer while loading
     cover3d.classList.remove('loading');
     const placeholder = generateCoverPlaceholder(book.title, book.author);
+    coverImg.onerror = null;
     coverImg.src = placeholder;
     coverImg.alt = book.title;
 
     // Tag this fetch so stale responses from previous day switches are ignored
     const fetchId = ++coverImg._fetchId || (coverImg._fetchId = 1);
 
-    const coverTimeout = new Promise(resolve => setTimeout(() => resolve(null), 10000));
-    Promise.race([
-        DailyData.fetchBestCover(book.isbn, book.title, book.author),
-        coverTimeout
-    ]).then(url => {
-        if (coverImg._fetchId !== fetchId) return; // stale, ignore
-        if (url) {
-            // Preload the image before revealing — prevents flash of placeholder
-            const preload = new Image();
-            preload.onload = () => {
-                if (coverImg._fetchId !== fetchId) return;
-                coverImg.src = url;
-                coverImg.alt = book.title;
-                cover3d.classList.remove('loading');
-            };
-            preload.onerror = () => {
-                if (coverImg._fetchId !== fetchId) return;
-                cover3d.classList.remove('loading');
-            };
-            preload.src = url;
-        } else {
-            cover3d.classList.remove('loading');
-        }
-    }).catch(() => {
-        if (coverImg._fetchId !== fetchId) return;
-        cover3d.classList.remove('loading');
-    });
+    DailyData.fetchBestCover(book.isbn, book.title, book.author).then(url => {
+        if (coverImg._fetchId !== fetchId || !url) return;
+        coverImg.onerror = () => {
+            if (coverImg._fetchId !== fetchId) return;
+            coverImg.onerror = null;
+            coverImg.src = placeholder;
+        };
+        coverImg.src = url;
+    }).catch(() => {});
 
     // Fetch only the selected cover; the archive does not need background API traffic.
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Entries — Littlebook</title>
     <meta name="description" content="Every book and quote in the Littlebook archive.">
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=9">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="weekly-body">
@@ -60,7 +60,7 @@
         </nav>
     </div>
 
-    <script src="data.js?v=7"></script>
+    <script src="data.js?v=9"></script>
     <script>
         'use strict';
 
@@ -95,6 +95,15 @@
                 img.loading = 'lazy';
                 img.src = DailyData.fetchCover(data.book.isbn);
                 img.onerror = () => { img.onerror = null; img.src = placeholderSvg; };
+                // Resolve missing ISBN covers only as their cards approach the viewport.
+                const observer = new IntersectionObserver(entries => {
+                    if (!entries.some(entry => entry.isIntersecting)) return;
+                    observer.disconnect();
+                    DailyData.fetchBestCover(data.book.isbn, data.book.title, data.book.author).then(url => {
+                        if (url) img.src = url;
+                    }).catch(() => {});
+                }, { rootMargin: '100px' });
+                observer.observe(card);
                 cover.appendChild(img);
 
                 const info = document.createElement('div');
