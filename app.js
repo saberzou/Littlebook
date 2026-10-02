@@ -1,330 +1,108 @@
 'use strict';
 
-let gravityClock = null;
 let currentData = null;
 let currentDate = null;
-let showingHourglass = false;
-let hourglassTimer = null;
+let archiveMonth = '';
+const archiveDates = DailyData.getAllDates().slice().sort();
+const archiveMonths = [...new Set(archiveDates.map(date => date.slice(0, 7)))];
+const dateLabel = date => new Date(date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
-function localDateStr(date) {
-    return (date || new Date()).toLocaleDateString('en-CA');
-}
-
-function localDateOffset(days) {
-    const d = new Date();
-    d.setDate(d.getDate() + days);
-    return d.toLocaleDateString('en-CA');
-}
-
-const isDesktop = () => window.innerWidth >= 769;
-let carouselDates = [];
-let carouselBuilt = false;
-
-// =============================================
-//  DESKTOP BOOK CAROUSEL
-// =============================================
-function buildCarousel() {
-    if (!isDesktop()) return;
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
-    track.innerHTML = '';
-    carouselDates = DailyData.getAllDates();
-
-    carouselDates.forEach((dateStr, i) => {
-        const data = DailyData.getByDate(dateStr);
-        const item = document.createElement('div');
-        item.className = 'carousel-item';
-        item.dataset.date = dateStr;
-        item.dataset.index = i;
-
-        const img = document.createElement('img');
-        if (data && data.book) {
-            img.src = generateCoverPlaceholder(data.book.title, data.book.author);
-            img.alt = data.book.title;
-            DailyData.fetchBestCover(data.book.isbn, data.book.title, data.book.author)
-                .then(url => { if (url) img.src = url; })
-                .catch(() => {});
-        }
-
-        item.appendChild(img);
-        item.addEventListener('click', () => {
-            if (dateStr !== currentDate) selectDate(dateStr);
-        });
-        track.appendChild(item);
-    });
-
-    carouselBuilt = true;
-    updateCarousel(currentDate);
-}
-
-function updateCarousel(dateStr) {
-    if (!isDesktop() || !carouselBuilt) return;
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
-
-    const items = track.querySelectorAll('.carousel-item');
-    const idx = carouselDates.indexOf(dateStr);
-    if (idx < 0) return;
-
-    const itemWidth = 180;
-    const gap = 20;
-    const step = itemWidth + gap;
-    const containerWidth = track.parentElement.offsetWidth;
-    const offset = containerWidth / 2 - itemWidth / 2 - idx * step;
-
-    track.style.transform = `translateX(${offset}px)`;
-
-    items.forEach((item, i) => {
-        const dist = Math.abs(i - idx);
-        item.classList.toggle('active', dist === 0);
-
-        let scale, opacity;
-        if (dist === 0) { scale = 1; opacity = 1; }
-        else if (dist === 1) { scale = 0.8; opacity = 0.7; }
-        else if (dist === 2) { scale = 0.65; opacity = 0.4; }
-        else { scale = 0.55; opacity = 0.25; }
-
-        if (dist !== 0) {
-            item.style.transform = `scale(${scale})`;
-            item.style.opacity = opacity;
-            item.style.boxShadow = 'none';
-        } else {
-            item.style.transform = '';
-            item.style.opacity = '';
-            item.style.boxShadow = '';
-        }
-    });
-}
-
-// =============================================
-//  INIT
-// =============================================
 function init() {
-    currentData = DailyData.getToday();
-    currentDate = currentData ? currentData.date : localDateStr();
-
-    const todayStr = localDateStr();
-    const tomorrowStr = localDateOffset(1);
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const dateParam = urlParams.get('date');
-    if (dateParam) {
-        if (dateParam === tomorrowStr) {
-            currentDate = tomorrowStr;
-        } else {
-            const data = DailyData.getByDate(dateParam);
-            if (data) {
-                currentData = data;
-                currentDate = dateParam;
-            } else {
-                currentDate = dateParam;
-            }
-        }
-    }
-
-    buildCalendar();
-
-    if (currentDate === tomorrowStr) {
-        showHourglass();
-    } else if (DailyData.getByDate(currentDate)) {
-        loadContent();
-    } else {
-        showNoData();
-    }
-
-    // Book spread click to toggle open/close
-    document.getElementById('bookSpread').addEventListener('click', toggleBookSpread);
-
-    // Dark mode — auto-detect only (toggle removed)
-    const saved = localStorage.getItem('littlebook-theme');
+    let saved;
+    try { saved = localStorage.getItem('littlebook-theme'); } catch {}
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
-
-    initCalendarSwipe();
-    buildCarousel();
-
-    window.addEventListener('resize', () => {
-        if (isDesktop() && !carouselBuilt) buildCarousel();
-        if (isDesktop()) updateCarousel(currentDate);
+    const select = document.getElementById('monthSelect');
+    archiveMonths.forEach(month => {
+        const option = document.createElement('option');
+        option.value = month;
+        option.textContent = new Date(month + '-01T12:00:00').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        select.appendChild(option);
     });
+    select.addEventListener('change', () => { archiveMonth = select.value; buildCalendar(); });
+    document.getElementById('prevMonth').addEventListener('click', () => moveMonth(-1));
+    document.getElementById('nextMonth').addEventListener('click', () => moveMonth(1));
+    document.getElementById('prevEntry').addEventListener('click', () => moveEntry(-1));
+    document.getElementById('nextEntry').addEventListener('click', () => moveEntry(1));
+    document.getElementById('archiveSummary').textContent = `${archiveDates.length} days of books & quotes`;
+    const spread = document.getElementById('bookSpread');
+    spread.addEventListener('click', toggleBookSpread);
+    spread.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleBookSpread(); }
+    });
+    selectDate(new URLSearchParams(location.search).get('date'), false);
 }
 
-// =============================================
-//  BOOK SPREAD TOGGLE
-// =============================================
 function toggleBookSpread() {
-    document.getElementById('bookSpread').classList.toggle('open');
+    const spread = document.getElementById('bookSpread');
+    const open = spread.classList.toggle('open');
+    spread.setAttribute('aria-expanded', String(open));
+    spread.setAttribute('aria-label', open ? 'Close book' : 'Open book to read its quote');
+    document.getElementById('bookHint').textContent = open ? 'Tap the book to close' : 'Open the book for a quote';
 }
 
-// =============================================
-//  CALENDAR STRIP
-// =============================================
+function moveMonth(direction) {
+    const next = archiveMonths[archiveMonths.indexOf(archiveMonth) + direction];
+    if (next) { archiveMonth = next; buildCalendar(); }
+}
+
+function moveEntry(direction) {
+    const next = archiveDates[archiveDates.indexOf(currentDate) + direction];
+    if (next) selectDate(next);
+}
+
 function buildCalendar() {
     const track = document.getElementById('calendarTrack');
-    track.innerHTML = '';
-
-    const todayStr = localDateStr();
-    const calendarDates = [];
-    for (let i = 5; i >= 1; i--) calendarDates.push(localDateOffset(-i));
-    calendarDates.push(todayStr);
-    const tomorrowStr = localDateOffset(1);
-    calendarDates.push(tomorrowStr);
-
-    calendarDates.forEach(dateStr => {
-        const d = new Date(dateStr + 'T12:00:00');
-        const isFuture = dateStr === tomorrowStr;
-        const isSelected = dateStr === currentDate;
-        const isToday = dateStr === todayStr;
-        const hasData = !!DailyData.getByDate(dateStr);
-
+    track.replaceChildren();
+    document.getElementById('monthSelect').value = archiveMonth;
+    const index = archiveMonths.indexOf(archiveMonth);
+    document.getElementById('prevMonth').disabled = index <= 0;
+    document.getElementById('nextMonth').disabled = index >= archiveMonths.length - 1;
+    const [year, month] = archiveMonth.split('-').map(Number);
+    const offset = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+    for (let i = 0; i < offset; i++) track.appendChild(document.createElement('span'));
+    const days = new Date(year, month, 0).getDate();
+    for (let day = 1; day <= days; day++) {
+        const date = `${archiveMonth}-${String(day).padStart(2, '0')}`;
+        const data = DailyData.getByDate(date);
         const cell = document.createElement('button');
-        cell.className = 'cal-cell'
-            + (isSelected ? ' selected' : '')
-            + (isFuture ? ' future' : '')
-            + (isToday ? ' today' : '')
-            + (!hasData && !isFuture ? ' no-data' : '');
-        cell.dataset.date = dateStr;
-
-        const weekday = document.createElement('span');
-        weekday.className = 'cal-weekday';
-        weekday.textContent = d.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
-
-        const day = document.createElement('span');
-        day.className = 'cal-day';
-        day.textContent = d.getDate();
-
-        cell.appendChild(weekday);
-        cell.appendChild(day);
-
-        if (isToday) {
-            const todayDot = document.createElement('span');
-            todayDot.className = 'cal-today-dot';
-            cell.appendChild(todayDot);
-        }
-
-        cell.addEventListener('click', () => selectDate(dateStr));
+        cell.type = 'button';
+        cell.className = 'archive-day' + (data ? ' has-entry' : '') + (date === currentDate ? ' selected' : '');
+        cell.textContent = day;
+        cell.dataset.date = date;
+        cell.disabled = !data;
+        cell.setAttribute('aria-label', dateLabel(date) + (data ? ': ' + data.book.title : ': no entry'));
+        cell.setAttribute('aria-pressed', String(date === currentDate));
+        if (data) cell.title = data.book.title;
+        cell.addEventListener('click', () => selectDate(date));
         track.appendChild(cell);
-    });
-
-    requestAnimationFrame(() => {
-        const selected = track.querySelector('.cal-cell.selected');
-        if (selected) selected.scrollIntoView({ inline: 'center', behavior: 'instant' });
-    });
+    }
 }
 
-function updateCalendarSelection(dateStr) {
-    document.querySelectorAll('.cal-cell').forEach(cell => {
-        cell.classList.toggle('selected', cell.dataset.date === dateStr);
-    });
-    const track = document.getElementById('calendarTrack');
-    const selected = track.querySelector('.cal-cell.selected');
-    if (selected) selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+function selectDate(date, pushHistory = true) {
+    const resolved = DailyData.getByDate(date) ? date : archiveDates[archiveDates.length - 1];
+    currentDate = resolved;
+    currentData = DailyData.getByDate(resolved);
+    archiveMonth = resolved.slice(0, 7);
+    buildCalendar();
+    const spread = document.getElementById('bookSpread');
+    spread.classList.remove('open');
+    spread.setAttribute('aria-expanded', 'false');
+    spread.setAttribute('aria-label', 'Open book to read its quote');
+    document.getElementById('bookHint').textContent = 'Open the book for a quote';
+    const dateEl = document.getElementById('entryDate');
+    dateEl.textContent = dateLabel(resolved);
+    dateEl.dateTime = resolved;
+    document.getElementById('prevEntry').disabled = resolved === archiveDates[0];
+    document.getElementById('nextEntry').disabled = resolved === archiveDates[archiveDates.length - 1];
+    const url = new URL(location.href);
+    url.searchParams.set('date', resolved);
+    history[pushHistory ? 'pushState' : 'replaceState']({ date: resolved }, '', url);
+    loadContent();
 }
 
-function selectDate(dateStr) {
-    const tomorrowStr = localDateOffset(1);
-    if (dateStr === currentDate) return;
-
-    currentDate = dateStr;
-    updateCalendarSelection(dateStr);
-    updateURL(dateStr);
-
-    // Close book spread on date change
-    document.getElementById('bookSpread').classList.remove('open');
-
-    const contentArea = document.getElementById('contentArea');
-    contentArea.classList.add('fade-out');
-
-    setTimeout(() => {
-        if (dateStr === tomorrowStr) {
-            showHourglass();
-        } else {
-            const data = DailyData.getByDate(dateStr);
-            if (data) {
-                currentData = data;
-                hideHourglass();
-                loadContent();
-                updateCarousel(dateStr);
-            } else {
-                showNoData();
-            }
-        }
-        requestAnimationFrame(() => contentArea.classList.remove('fade-out'));
-    }, 250);
-}
-
-function initCalendarSwipe() {
-    const strip = document.getElementById('calendarStrip');
-    let startX = 0, scrollStart = 0;
-    strip.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        scrollStart = strip.scrollLeft;
-    }, { passive: true });
-    strip.addEventListener('touchmove', (e) => {
-        strip.scrollLeft = scrollStart + (startX - e.touches[0].clientX);
-    }, { passive: true });
-}
-
-// =============================================
-//  HOURGLASS / NO DATA
-// =============================================
-function showHourglass() {
-    showingHourglass = true;
-    document.getElementById('bookSpread').style.display = 'none';
-    document.getElementById('bookMetaBelow').style.display = 'none';
-    document.getElementById('hourglassOverlay').style.display = 'flex';
-    if (document.getElementById('bookCarousel')) document.getElementById('bookCarousel').style.display = 'none';
-
-    document.getElementById('gravityClockCanvas').style.display = 'block';
-    document.querySelector('.hourglass-label').textContent = "Tomorrow's pick arrives in";
-    document.querySelector('.hourglass-countdown').style.display = '';
-    document.querySelector('.hourglass-hint').textContent = 'Come back tomorrow for a new book & quote';
-
-    const canvas = document.getElementById('gravityClockCanvas');
-    if (gravityClock) gravityClock.stop();
-    gravityClock = new GravityClock(canvas);
-    gravityClock.init();
-    updateCountdown();
-    hourglassTimer = setInterval(updateCountdown, 1000);
-}
-
-function hideHourglass() {
-    showingHourglass = false;
-    document.getElementById('bookSpread').style.display = '';
-    document.getElementById('bookMetaBelow').style.display = '';
-    document.getElementById('hourglassOverlay').style.display = 'none';
-    if (document.getElementById('bookCarousel')) document.getElementById('bookCarousel').style.display = '';
-    if (gravityClock) { gravityClock.stop(); gravityClock = null; }
-    if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
-}
-
-function showNoData() {
-    showingHourglass = false;
-    document.getElementById('bookSpread').style.display = 'none';
-    document.getElementById('bookMetaBelow').style.display = 'none';
-    document.getElementById('hourglassOverlay').style.display = 'flex';
-    if (document.getElementById('bookCarousel')) document.getElementById('bookCarousel').style.display = 'none';
-
-    document.getElementById('gravityClockCanvas').style.display = 'none';
-    document.querySelector('.hourglass-label').textContent = 'No content for this day';
-    document.querySelector('.hourglass-countdown').style.display = 'none';
-    document.querySelector('.hourglass-hint').textContent = 'Select another date to explore';
-    if (hourglassTimer) { clearInterval(hourglassTimer); hourglassTimer = null; }
-}
-
-function updateCountdown() {
-    const now = new Date();
-    const tomorrow = new Date(now);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-    const diff = tomorrow - now;
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    const pad = n => String(n).padStart(2, '0');
-    document.getElementById('hourglassCountdown').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
-}
+window.addEventListener('popstate', () => selectDate(new URLSearchParams(location.search).get('date'), false));
 
 // =============================================
 //  CONTENT LOADING
@@ -391,7 +169,7 @@ function loadContent() {
     const cover3d = document.getElementById('bookCover3d');
 
     // Hide old cover immediately, show shimmer while loading
-    cover3d.classList.add('loading');
+    cover3d.classList.remove('loading');
     const placeholder = generateCoverPlaceholder(book.title, book.author);
     coverImg.src = placeholder;
     coverImg.alt = book.title;
@@ -427,7 +205,7 @@ function loadContent() {
         cover3d.classList.remove('loading');
     });
 
-    preloadAdjacentCovers();
+    // Fetch only the selected cover; the archive does not need background API traffic.
 
     // Set book pages background color from palette
     const quoteColors = ['#D9A48B', '#CC7F4E', '#B8A0B0', '#7BC4D9', '#8B8B6E', '#D4C9A1'];
@@ -466,36 +244,6 @@ function preloadAdjacentCovers() {
 }
 
 // =============================================
-//  URL + HISTORY
-// =============================================
-function updateURL(dateStr) {
-    const newURL = `${window.location.pathname}?date=${dateStr}`;
-    window.history.pushState({ date: dateStr }, '', newURL);
-}
-
-window.addEventListener('popstate', (e) => {
-    const date = e.state?.date;
-    if (date) selectDate(date);
-});
-
-// =============================================
-//  DARK MODE
-// =============================================
-function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('littlebook-theme', 'light');
-    } else {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('littlebook-theme', 'dark');
-    }
-    // Re-apply page color for dark mode blend
-    if (currentData) loadContent();
-}
-
-// =============================================
 //  AUDIO PLAYER
 // =============================================
 function initAudioPlayer() {
@@ -523,6 +271,11 @@ function initAudioPlayer() {
         return m + ':' + String(sec).padStart(2, '0');
     }
 
+    el.addEventListener('error', () => {
+        player.classList.remove('playing', 'loading');
+        timeEl.textContent = 'Unavailable';
+    });
+
     el.addEventListener('loadedmetadata', () => {
         player.classList.remove('loading');
         timeEl.textContent = fmt(el.duration);
@@ -544,8 +297,10 @@ function initAudioPlayer() {
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (el.paused) {
-            el.play();
-            player.classList.add('playing');
+            el.play().then(() => player.classList.add('playing')).catch(() => {
+                player.classList.remove('playing', 'loading');
+                timeEl.textContent = 'Unavailable';
+            });
         } else {
             el.pause();
             player.classList.remove('playing');
